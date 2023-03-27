@@ -9,6 +9,8 @@ class Absent extends Model
 {
     use HasFactory;
 
+    public $table = 'absensis';
+
     protected $guarded = [
         // 'nim',
         // 'kode_matkul',

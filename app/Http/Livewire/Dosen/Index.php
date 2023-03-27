@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Dosen;
 
 use App\Models\Dosen;
 use App\Models\Kelas;
+use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
@@ -36,10 +37,8 @@ class Index extends Component
     public function render()
     {
         return view('livewire.dosen.index', [
-            'dosens' => $this->search === null ?
-            Dosen::first()->get() :
-            Dosen::first()->where('nama', 'like', '%' . $this->search . '%')->get(),
-            'kelas' => Kelas::all(),
+            'dosens' => Dosen::all(),
+            // 'kelas' => Kelas::all(),
         ]);
     }
 

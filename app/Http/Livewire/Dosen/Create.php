@@ -9,41 +9,58 @@ use RealRashid\SweetAlert\Facades\Alert;
 class Create extends Component
 {
     public $nama;
+    public $nik;
+    public $nip;
     public $nidn;
-    public $jabatan;
-    public $tanggal_lahir;
     public $tempat_lahir;
-    public $alamat;
-    public $tahun_angkatan;
-    public $email;
+    public $tanggal_lahir;
+    public $agama;
     public $no_hp;
+    public $email;
+    public $alamat;
+    public $program_studi;
+    public $status_aktif;
+    public $jenis_kelamin;
 
     public function store()
     {
         $this->validate([
             'nama' => 'required',
+            'nik' => 'required',
+            'nip' => 'required',
             'nidn' => 'required',
-            'jabatan' => 'required',
-            'tanggal_lahir' => 'required',
             'tempat_lahir' => 'required',
-            'tahun_angkatan' => 'required',
+            'tanggal_lahir' => 'required',
+            'agama' => 'required',
+            'no_hp' => 'required',
             'email' => 'required|email',
+            'alamat' => 'required',
+            'program_studi' => 'required',
+            'status_aktif' => 'required',
+            'jenis_kelamin' => 'required',
         ]);
 
-        Dosen::create([
-            'nama' => $this->nama,
-            'nidn' => $this->nidn,
-            'jabatan' => $this->jabatan,
-            'tanggal_lahir' => $this->tanggal_lahir,
-            'tempat_lahir' => $this->tempat_lahir,
-            'alamat' => $this->alamat,
-            'tahun_angkatan' => $this->tahun_angkatan,
-            'email' => $this->email,
-            'no_hp' => $this->no_hp,
-        ]);
+        if (Dosen::where('nidn', $this->nidn)->exists()) {
+            Alert::warning('GAGAL!','Data Mahasiswa Sudah Ada!');
+        } else {
+            Dosen::create([
+                'nama' => $this->nama,
+                'nik' => $this->nik,
+                'nip' => $this->nim,
+                'nidn' => $this->nim,
+                'tempat_lahir' => $this->tempat_lahir,
+                'tanggal_lahir' => $this->tanggal_lahir,
+                'agama' => $this->agama,
+                'no_hp' => $this->no_hp,
+                'email' => $this->email,
+                'alamat' => $this->alamat,
+                'program_studi' => $this->program_studi,
+                'status_aktif' => $this->status_aktif,
+                'jenis_kelamin' => $this->jenis_kelamin,
+            ]);
+        }
 
         //flash message
-        // session()->flash('message', 'Data Dosen ' .$this->nama. ' Berhasil Disimpan!');
         Alert::success('BERHASIL!','Data Dosen ' .$this->nama. ' Berhasil Disimpan!');
 
         // redirect

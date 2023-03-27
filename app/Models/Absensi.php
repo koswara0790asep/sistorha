@@ -5,11 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProgramStudi extends Model
+class Absensi extends Model
 {
     use HasFactory;
-
-    public $table = 'program_studies';
-
-    protected $guarded = ['id', 'program_studi', 'kode', 'status'];
 }

@@ -34,10 +34,11 @@
         <tr>
             <th style='text-align: center;border:1px solid black;'>NO</th>
             <th style='text-align: center;border:1px solid black;'>NIM</th>
-            <th style='text-align: center;border:1px solid black;'>NAME</th>
-            <th style='text-align: center;border:1px solid black;'>KELAS</th>
-            <th style='text-align: center;border:1px solid black;'>TAHUN ANGKATAN</th>
-            <th style='text-align: center;border:1px solid black;'>NOMOR TELPON</th>
+            <th style='text-align: center;border:1px solid black;'>NAMA</th>
+            <th style='text-align: center;border:1px solid black;'>JENIS KELAMIN</th>
+            <th style='text-align: center;border:1px solid black;'>PROGRAM STUDI</th>
+            <th style='text-align: center;border:1px solid black;'>PERIODE</th>
+            <th style='text-align: center;border:1px solid black;'>STATUS AKTIF</th>
         </tr>
     </thead>
     <tbody>
@@ -46,9 +47,15 @@
                 <td style='text-align: center;border:1px solid black;'>{{ $loop->iteration }}</td>
                 <td style='text-align: center;border:1px solid black;'>{{ $mhs->nim }}</td>
                 <td style='border:1px solid black;'>{{ $mhs->nama }}</td>
-                <td style='text-align: center;border:1px solid black;'>{{ $mhs->kelas }}</td>
-                <td style='text-align: center;border:1px solid black;'>{{ $mhs->tahun_angkatan }}</td>
-                <td style='text-align: center;border:1px solid black;'>{{ $mhs->no_hp }}</td>
+                <td style='text-align: center;border:1px solid black;'>{{ $mhs->jenis_kelamin }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $data = DB::table('program_studies')->where('id', $mhs->program_studi)->select('program_studies.*', 'program_studi')->first();
+                        echo $data->program_studi;
+                    @endphp
+                </td>
+                <td style='text-align: center;border:1px solid black;'>{{ $mhs->periode }}</td>
+                <td style='text-align: center;border:1px solid black;'>{{ $mhs->status_aktif }}</td>
             </tr>
         @endforeach
     </tbody>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Mahasiswa;
 
 use App\Models\Mahasiswa;
+use App\Models\ProgramStudi;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -10,14 +11,18 @@ class Edit extends Component
 {
     public $mahasiswaId;
     public $nama;
+    public $nik;
     public $nim;
-    public $kelas;
     public $tanggal_lahir;
     public $tempat_lahir;
-    public $alamat;
-    public $tahun_angkatan;
-    public $email;
+    public $agama;
     public $no_hp;
+    public $email;
+    public $alamat;
+    public $program_studi;
+    public $periode;
+    public $status_aktif;
+    public $jenis_kelamin;
 
     public function mount($id)
     {
@@ -26,14 +31,18 @@ class Edit extends Component
         if ($mahasiswa) {
             $this->mahasiswaId = $mahasiswa->id;
             $this->nama = $mahasiswa->nama;
+            $this->nik = $mahasiswa->nik;
             $this->nim = $mahasiswa->nim;
-            $this->kelas = $mahasiswa->kelas;
-            $this->tanggal_lahir = $mahasiswa->tanggal_lahir;
             $this->tempat_lahir = $mahasiswa->tempat_lahir;
-            $this->alamat = $mahasiswa->alamat;
-            $this->tahun_angkatan = $mahasiswa->tahun_angkatan;
-            $this->email = $mahasiswa->email;
+            $this->tanggal_lahir = $mahasiswa->tanggal_lahir;
+            $this->agama = $mahasiswa->agama;
             $this->no_hp = $mahasiswa->no_hp;
+            $this->email = $mahasiswa->email;
+            $this->alamat = $mahasiswa->alamat;
+            $this->program_studi = $mahasiswa->program_studi;
+            $this->periode = $mahasiswa->periode;
+            $this->status_aktif = $mahasiswa->status_aktif;
+            $this->jenis_kelamin = $mahasiswa->jenis_kelamin;
         } elseif ($this->nim == null) {
             Alert::error('Woops!','Data yang kamu cari tidak ada!');
         }
@@ -43,12 +52,18 @@ class Edit extends Component
     {
         $this->validate([
             'nama' => 'required',
+            'nik' => 'required',
             'nim' => 'required',
-            'kelas' => 'required',
-            'tanggal_lahir' => 'required',
             'tempat_lahir' => 'required',
-            'tahun_angkatan' => 'required',
+            'tanggal_lahir' => 'required',
+            'agama' => 'required',
+            'no_hp' => 'required',
             'email' => 'required|email',
+            'alamat' => 'required',
+            'program_studi' => 'required',
+            'periode' => 'required',
+            'status_aktif' => 'required',
+            'jenis_kelamin' => 'required',
         ]);
 
         if ($this->mahasiswaId) {
@@ -57,14 +72,18 @@ class Edit extends Component
             if ($mahasiswa) {
                 $mahasiswa->update([
                     'nama' => $this->nama,
+                    'nik' => $this->nik,
                     'nim' => $this->nim,
-                    'kelas' => $this->kelas,
                     'tanggal_lahir' => $this->tanggal_lahir,
                     'tempat_lahir' => $this->tempat_lahir,
-                    'alamat' => $this->alamat,
-                    'tahun_angkatan' => $this->tahun_angkatan,
+                    'agama' => $this->agama,
                     'email' => $this->email,
                     'no_hp' => $this->no_hp,
+                    'alamat' => $this->alamat,
+                    'program_studi' => $this->program_studi,
+                    'periode' => $this->periode,
+                    'status_aktif' => $this->status_aktif,
+                    'jenis_kelamin' => $this->jenis_kelamin,
                 ]);
             }
         }
@@ -78,6 +97,7 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.mahasiswa.edit');
+        $prodis = ProgramStudi::all();
+        return view('livewire.mahasiswa.edit', compact('prodis'));
     }
 }

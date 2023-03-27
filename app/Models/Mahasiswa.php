@@ -12,14 +12,14 @@ class Mahasiswa extends Model
     use HasFactory, Sortable;
 
     protected $guarded = [];
-    protected $sortable = [
-        'id',
-        'nim',
-        'nama',
-        'kelas',
-        'tahun_angkatan',
-        'no_hp',
-    ];
+    // protected $sortable = [
+    //     'id',
+    //     'nim',
+    //     'nama',
+    //     'kelas',
+    //     'tahun_angkatan',
+    //     'no_hp',
+    // ];
 
     public function kelas()
     {

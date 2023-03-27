@@ -47,10 +47,37 @@
                             <a href="/dosens" class="nav-link">Dosen</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/email/compose.html" class="nav-link">Jadwal Kuliah</a>
+                            <a href="/programstudies" class="nav-link">Program Studi</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/email/compose.html" class="nav-link">Form Absen</a>
+                            <a href="/dfkelass" class="nav-link">Daftar Kelas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/kelass" class="nav-link">Kelas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/kelasmhsws" class="nav-link">Kelas Mahasiswa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/ruangans" class="nav-link">Ruangan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dfmatkuls" class="nav-link">Daftar Matakuliah</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/matkuls" class="nav-link">Matakuliah</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/jadwals" class="nav-link">Jadwal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/jadwalkuliahs" class="nav-link">Jadwal Kuliah</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/absensis" class="nav-link">Absensi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/beritaacaras" class="nav-link">Berita Acara</a>
                         </li>
                     </ul>
                 </div>

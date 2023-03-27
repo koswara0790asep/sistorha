@@ -39,17 +39,60 @@
                 </div>
                 @else
             <div class="col-md-8">
-                <div class="text-center mt-3"> <span class="bg-secondary p-1 px-4 rounded text-white shadow">{{ $mahasiswa->nama }}</span>
-                    <h5 class="mt-2 mb-0">{{ $mahasiswa->nim }}</h5> <span>{{ $mahasiswa->kelas }}</span>
+                <div class="text-center mt-3">
+                    {{-- <span class="bg-secondary p-1 px-4 rounded text-white shadow">{{ $mahasiswa->nama }} ({{ $mahasiswa->nim }})</span> --}}
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <label class="btn btn-sm btn-outline-primary">
+                            <i class="mdi mdi-account"></i> {{ $mahasiswa->nama }} ({{ $mahasiswa->nim }})
+                        </label>
+                        @if ($mahasiswa->status_aktif == 'Aktif')
+                            <label class="btn btn-sm btn-outline-success">
+                                Aktif <i class="mdi mdi-check"></i>
+                            </label>
+                        @else
+                            <label class="btn btn-sm btn-outline-danger">
+                                Tidak Aktif <i class="mdi mdi-close"></i>
+                            </label>
+                        @endif
+                    </div>
+                    <br>
+                    <br>
+                    <span>
+                        @php
+                            $data = DB::table('program_studies')->where('id', $mahasiswa->program_studi)->select('program_studies.*', 'program_studi')->first();
+                            echo $data->program_studi;
+                        @endphp
+                    </span>
                     <hr>
                 </div>
                 <div class="px-2 mt-2">
                     <table>
                         <tr>
+                            <td><h4><i class="mdi mdi-barcode"></h4></i></td>
+                            <td>NIK</td>
+                            <td>:</td>
+                            <td>{{ $mahasiswa->nik }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4><i class="mdi mdi-heart"></h4></i></td>
+                            <td>Agama</td>
+                            <td>:</td>
+                            <td>{{ $mahasiswa->agama }}
+                            </td>
+                        </tr>
+                        <tr>
                             <td><h4><i class="mdi mdi-calendar"></h4></i></td>
                             <td>Tempat / Tanggal Lahir</td>
                             <td>:</td>
                             <td>{{ $mahasiswa->tempat_lahir }} / {{ \Carbon\Carbon::parse($mahasiswa->tanggal_lahir)->isoFormat('dddd, D MMMM YYYY') }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4><i class="mdi mdi-human-male-female"></h4></i></td>
+                            <td>Jenis Kelamin</td>
+                            <td>:</td>
+                            <td>{{ $mahasiswa->jenis_kelamin }}
                             </td>
                         </tr>
                         <tr>
@@ -59,9 +102,9 @@
                             <td>{{ $mahasiswa->alamat }}</td>
                         </tr>
                             <td><h4><i class="mdi mdi-label"></h4></i></td>
-                            <td>Tahun Angkatan</td>
+                            <td>Periode</td>
                             <td>:</td>
-                            <td>{{ $mahasiswa->tahun_angkatan }}</td>
+                            <td>{{ $mahasiswa->periode }}</td>
                         </tr>
                             <td><h4><i class="mdi mdi-email"></h4></i></td>
                             <td>Email</td>

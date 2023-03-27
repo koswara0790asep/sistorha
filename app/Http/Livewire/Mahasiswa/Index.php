@@ -17,14 +17,18 @@ class Index extends Component
     // mahasiswa
     public $mahasiswaId;
     public $nama;
+    public $nik;
     public $nim;
-    public $kelas;
     public $tanggal_lahir;
     public $tempat_lahir;
-    public $alamat;
-    public $tahun_angkatan;
-    public $email;
+    public $agama;
     public $no_hp;
+    public $email;
+    public $alamat;
+    public $program_studi;
+    public $periode;
+    public $status_aktif;
+    public $jenis_kelamin;
     // user
     public $userId;
     public $name;
@@ -50,14 +54,18 @@ class Index extends Component
         if ($mahasiswa) {
             $this->mahasiswaId = $mahasiswa->id;
             $this->nama = $mahasiswa->nama;
+            $this->nik = $mahasiswa->nik;
             $this->nim = $mahasiswa->nim;
-            $this->kelas = $mahasiswa->kelas;
-            $this->tanggal_lahir = $mahasiswa->tanggal_lahir;
             $this->tempat_lahir = $mahasiswa->tempat_lahir;
-            $this->alamat = $mahasiswa->alamat;
-            $this->tahun_angkatan = $mahasiswa->tahun_angkatan;
-            $this->email = $mahasiswa->email;
+            $this->tanggal_lahir = $mahasiswa->tanggal_lahir;
+            $this->agama = $mahasiswa->agama;
             $this->no_hp = $mahasiswa->no_hp;
+            $this->email = $mahasiswa->email;
+            $this->alamat = $mahasiswa->alamat;
+            $this->program_studi = $mahasiswa->program_studi;
+            $this->periode = $mahasiswa->periode;
+            $this->status_aktif = $mahasiswa->status_aktif;
+            $this->jenis_kelamin = $mahasiswa->jenis_kelamin;
         }
 
         $mahasiswa->delete();
@@ -76,14 +84,18 @@ class Index extends Component
         if ($mahasiswa) {
             $this->mahasiswaId = $mahasiswa->id;
             $this->nama = $mahasiswa->nama;
+            $this->nik = $mahasiswa->nik;
             $this->nim = $mahasiswa->nim;
-            $this->kelas = $mahasiswa->kelas;
-            $this->tanggal_lahir = $mahasiswa->tanggal_lahir;
             $this->tempat_lahir = $mahasiswa->tempat_lahir;
-            $this->alamat = $mahasiswa->alamat;
-            $this->tahun_angkatan = $mahasiswa->tahun_angkatan;
-            $this->email = $mahasiswa->email;
+            $this->tanggal_lahir = $mahasiswa->tanggal_lahir;
+            $this->agama = $mahasiswa->agama;
             $this->no_hp = $mahasiswa->no_hp;
+            $this->email = $mahasiswa->email;
+            $this->alamat = $mahasiswa->alamat;
+            $this->program_studi = $mahasiswa->program_studi;
+            $this->periode = $mahasiswa->periode;
+            $this->status_aktif = $mahasiswa->status_aktif;
+            $this->jenis_kelamin = $mahasiswa->jenis_kelamin;
         }
 
         $user = User::where('username', $this->nim)->first();
@@ -107,6 +119,10 @@ class Index extends Component
 
     public function import()
     {
+        $this->validate([
+            'importFile' => 'required|mimes:xlsx'
+        ]);
+
         $file = $this->importFile;
         $reader = IOFactory::createReader('Xlsx');
         $spreadsheet = $reader->load($file->getRealPath());
@@ -126,45 +142,27 @@ class Index extends Component
 
         // Simpan data ke database
         foreach ($rows as $row){
-            Mahasiswa::create([
-                'nama' => $row[0],
-                'nim' => $row[1],
-                'kelas' => $row[2],
-                'tanggal_lahir' => $row[3],
-                'tempat_lahir' => $row[4],
-                'alamat' => $row[5],
-                'tahun_angkatan' => $row[6],
-                'email' => $row[7],
-                'no_hp' => $row[8],
-            ]);
+            // dd($row);
+            Mahasiswa::firstOrCreate(
+                [
+                    'nim' => $row[0],
+                ],
+                [
+                    'nik' => $row[1],
+                    'nama' => $row[2],
+                    'tanggal_lahir' => $row[4],
+                    'tempat_lahir' => $row[3],
+                    'agama' => $row[5],
+                    'email' => $row[6],
+                    'no_hp' => $row[7],
+                    'alamat' => $row[8],
+                    'program_studi' => $row[9],
+                    'periode' => $row[10],
+                    'status_aktif' => $row[11],
+                    'jenis_kelamin' => $row[12],
+                ]
+            );
         }
-        // foreach ($rows as $row) {
-        //     $mahasiswa = new Mahasiswa;
-        //     $mahasiswa->nama = $row[0];
-        //     $mahasiswa->nim = $row[1];
-        //     $mahasiswa->kelas = $row[2];
-        //     $mahasiswa->tanggal_lahir = $row[3];
-        //     $mahasiswa->tempat_lahir = $row[4];
-        //     $mahasiswa->alamat = $row[5];
-        //     $mahasiswa->tahun_angkatan = $row[6];
-        //     $mahasiswa->email = $row[7];
-        //     $mahasiswa->no_hp = $row[8];
-            // dd($mahasiswa);
-            // Mahasiswa::create($mahasiswa);
-            // $mahasiswa->save();
-            // $mahasiswa = new Mahasiswa;
-            // $mahasiswa->nama = $row['nama'];
-            // $mahasiswa->nim = $row['nim'];
-            // $mahasiswa->kelas = $row['kelas'];
-            // $mahasiswa->tanggal_lahir = $row['tanggal_lahir'];
-            // $mahasiswa->tempat_lahir = $row['tempat_lahir'];
-            // $mahasiswa->alamat = $row['alamat'];
-            // $mahasiswa->tahun_angkatan = $row['tahun_angkatan'];
-            // $mahasiswa->email = $row['email'];
-            // $mahasiswa->no_hp = $row['no_hp'];
-            // $mahasiswa->save();
-        // }
-        // dd($rowData);
 
         // Reset form dan property
         $this->importFile = null;

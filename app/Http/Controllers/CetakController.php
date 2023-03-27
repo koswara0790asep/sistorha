@@ -13,7 +13,9 @@ class CetakController extends Controller
     public function index()
     {
         $mahasiswas = Mahasiswa::get();
+        $mahasiswas = Mahasiswa::orderBy('nim','asc')->get();
         return view('livewire.mahasiswa.cetak', compact('mahasiswas'));
+
         return redirect()->route('mahasiswa.index');
     }
 
