@@ -3,7 +3,7 @@
         <ol class="breadcrumb breadcrumb-arrwo">
             <li class="breadcrumb-item">Olah Data</li>
             <li class="breadcrumb-item">Mahasiswa</li>
-            <li class="breadcrumb-item active">Tambah Mahasiswa</li>
+            <li class="breadcrumb-item active">Tambah Data</li>
         </ol>
     </div>
     <div class="col-md-12 stretch-card">
@@ -105,7 +105,7 @@
                             <div class="col-sm-4">
                                 <label for="tanggal_lahir">Tanggal Lahir: </label>
                                 <div class="mb-3 input-group flatpickr" id="flatpickr-date">
-                                    <input type="text" id="tanggal_lahir" name="tanggal_lahir" wire:model="tanggal_lahir" class="form-control flatpickr-input @error('tanggal_lahir') is-invalid @enderror" value="Pilih Tanggal" data-input readonly="readonly">
+                                    <input type="text" id="tanggal_lahir" name="tanggal_lahir" wire:model="tanggal_lahir" class="form-control flatpickr-input @error('tanggal_lahir') is-invalid @enderror" placeholder="Pilih Tanggal" data-input>
                                     <span class="input-group-text"><h4><i class="mdi mdi-calendar-blank"></i></h4></span>
                                     @error('tanggal_lahir')
                                     <span class="invalid-feedback">
@@ -151,7 +151,7 @@
                             </div><!-- Col -->
                             <div class="col-sm-4">
                                 <label for="status_aktif">Status Aktif: </label>
-                                <div class="mb-3 input-group flatpickr" id="flatpickr-date">
+                                <div class="mb-3 input-group">
                                     <select id="status_aktif" name="status_aktif" wire:model="status_aktif" class="form-control @error('status_aktif') is-invalid @enderror">
                                         <option value="" hidden>--- Pilih Status Aktif ---</option>
                                         <option value="Aktif">Aktif</option>
@@ -172,6 +172,11 @@
                                 <div class="mb-3 input-group">
                                     <textarea type="text" id="alamat" name="alamat" wire:model="alamat" rows="4" class="form-control @error('alamat') is-invalid @enderror" placeholder="Masukkan Alamat Lengkap""></textarea>
                                     <span class="input-group-text"><h4><i class="mdi mdi-home-map-marker"></i></h4></span>
+                                    @error('email')
+                                    <span class="invalid-feedback">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -191,8 +196,13 @@
                             <div class="col-sm-6">
                                 <label for="no_hp">Nomor Telepon: </label>
                                 <div class="mb-3 input-group">
-                                    <input type="text" id="no_hp" name="no_hp" wire:model="no_hp" class="form-control" placeholder="Masukkan Nomor Ponsel / WhatsApp Aktif">
+                                    <input type="text" id="no_hp" name="no_hp" wire:model="no_hp" class="form-control @error('no_hp') is-invalid @enderror" placeholder="Masukkan Nomor Ponsel / WhatsApp Aktif">
                                     <span class="input-group-text"><h4><i class="mdi mdi-phone"></i></h4></span>
+                                    @error('no_hp')
+                                    <span class="invalid-feedback">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
                                 </div>
                             </div><!-- Col -->
                         </div><!-- Row -->

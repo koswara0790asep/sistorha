@@ -4,7 +4,7 @@
         <ol class="breadcrumb breadcrumb-arrwo">
             <li class="breadcrumb-item">Olah Data</li>
             <li class="breadcrumb-item">User</li>
-            <li class="breadcrumb-item active">Tambah User</li>
+            <li class="breadcrumb-item active">Tambah Data</li>
         </ol>
     </div>
     <div class="card shadow col-lg-12 grid-margin stretch-card">

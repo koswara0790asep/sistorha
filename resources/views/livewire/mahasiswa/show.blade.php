@@ -101,16 +101,19 @@
                             <td>:</td>
                             <td>{{ $mahasiswa->alamat }}</td>
                         </tr>
+                        <tr>
                             <td><h4><i class="mdi mdi-label"></h4></i></td>
                             <td>Periode</td>
                             <td>:</td>
                             <td>{{ $mahasiswa->periode }}</td>
                         </tr>
+                        <tr>
                             <td><h4><i class="mdi mdi-email"></h4></i></td>
                             <td>Email</td>
                             <td>:</td>
                             <td>{{ $mahasiswa->email }}</td>
                         </tr>
+                        <tr>
                             <td><h4><i class="mdi mdi-phone"></i></h4></td>
                             <td>Nomor Telepon</td>
                             <td>:</td>
@@ -118,11 +121,6 @@
                         </tr>
                     </table>
                 </div>
-
-                {{-- <div class="buttons text-center mt-3">
-                    <button onclick="window.history.back()" class="btn btn-primary shadow"><i class="icon-close"></i> Kembali</button>
-                    {{-- <a href="{{ route('mahasiswa.index') }}" class="btn btn-primary shadow"><i class="fa fa-close"></i> Kembali</a> --}}
-                {{-- </div> --}}
             </div>
             @endif
         </div>

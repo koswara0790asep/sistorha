@@ -68,7 +68,17 @@ class Index extends Component
             $this->jenis_kelamin = $mahasiswa->jenis_kelamin;
         }
 
-        $mahasiswa->delete();
+        $user = User::where('username', $this->nim)->first();
+
+        if ($user) {
+            $user->delete();
+            $mahasiswa->delete();
+        } else {
+            $mahasiswa->delete();
+        }
+
+        // $user->delete();
+        // $mahasiswa->delete();
 
         //flash message
         Alert::success('Berhasil!','Data mahasiswa berhasil terhapus!');

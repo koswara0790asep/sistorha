@@ -81,7 +81,7 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     Route::livewire('/mahasiswa/create', 'mahasiswa.create')->name('mahasiswa.create');
     Route::livewire('/mahasiswa/edit/{id}', 'mahasiswa.edit')->name('mahasiswa.edit');
     Route::livewire('/mahasiswa/show/{id}', 'mahasiswa.show')->name('mahasiswa.show');
-    Route::get('/mahasiswas/cetak', [CetakController::class, 'index'])->name('mahasiswa.cetak');
+    Route::get('/mahasiswas/cetak', [CetakController::class, 'cetakMhs'])->name('mahasiswa.cetak');
 
     // dosen
     Route::livewire('/dosens', 'dosen.index')->name('dosen.index');
@@ -90,6 +90,11 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     Route::livewire('/dosen/show/{id}', 'dosen.show')->name('dosen.show');
     Route::get('/dosens/cetak', [CetakDosenController::class, 'index'])->name('dosen.cetak');
 
+    // program studi
+    Route::livewire('/programstudies', 'programstudi.index')->name('programstudi.index');
+    Route::livewire('/programstudi/create', 'programstudi.create')->name('programstudi.create');
+    Route::livewire('/programstudi/edit/{id}', 'programstudi.edit')->name('programstudi.edit');
+    Route::get('/programstudi/cetak', [CetakController::class, 'cetakProdi'])->name('programstudi.cetak');
 });
 
 

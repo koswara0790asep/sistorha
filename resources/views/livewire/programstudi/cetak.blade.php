@@ -33,31 +33,18 @@
     <thead>
         <tr>
             <th style='text-align: center;border:1px solid black;'>NO</th>
-            <th style='text-align: center;border:1px solid black;'>NIP</th>
-            <th style='text-align: center;border:1px solid black;'>NIDN</th>
-            <th style='text-align: center;border:1px solid black;'>NAMA</th>
-            <th style='text-align: center;border:1px solid black;'>JENIS KELAMIN</th>
             <th style='text-align: center;border:1px solid black;'>PROGRAM STUDI</th>
+            <th style='text-align: center;border:1px solid black;'>KODE</th>
             <th style='text-align: center;border:1px solid black;'>STATUS AKTIF</th>
-            <th style='text-align: center;border:1px solid black;'>NOMOR TELPON</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($dosens as $dsn)
+        @foreach ($programstudies as $prodi)
             <tr>
                 <td style='text-align: center;border:1px solid black;'>{{ $loop->iteration }}</td>
-                <td style='text-align: center;border:1px solid black;'>{{ $dsn->nip }}</td>
-                <td style='text-align: center;border:1px solid black;'>{{ $dsn->nidn }}</td>
-                <td style='border:1px solid black;'>{{ $dsn->nama }}</td>
-                <td style='text-align: center;border:1px solid black;'>{{ $dsn->jenis_kelamin }}</td>
-                <td style='text-align: center;border:1px solid black;'>
-                    @php
-                        $data = DB::table('program_studies')->where('id', $dsn->program_studi)->select('program_studies.*', 'program_studi')->first();
-                        echo $data->program_studi;
-                    @endphp
-                </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $dsn->status_aktif }}</td>
-                <td style='text-align: center;border:1px solid black;'>{{ $dsn->no_hp }}</td>
+                <td style='border:1px solid black;'>{{ $prodi->program_studi }}</td>
+                <td style='text-align: center;border:1px solid black;'>{{ $prodi->kode }}</td>
+                <td style='text-align: center;border:1px solid black;'>{{ $prodi->status }}</td>
             </tr>
         @endforeach
     </tbody>

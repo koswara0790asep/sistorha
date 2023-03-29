@@ -17,8 +17,8 @@ class CreateDosensTable extends Migration
             $table->id();
             $table->string('nama', 50);
             $table->string('nik', 16)->nullable();
-            $table->string('nip', 16)->nullable();
-            $table->string('nidn', 10)->nullable();
+            $table->string('nip', 20)->nullable();
+            $table->string('nidn', 20)->nullable();
             $table->string('tempat_lahir', 50);
             $table->date('tanggal_lahir');
             $table->string('agama', 10)->nullable();

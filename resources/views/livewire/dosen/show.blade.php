@@ -36,45 +36,82 @@
             @else
 
             <div class="col-md-8">
-                <div class="text-center mt-3"> <span class="bg-secondary p-1 px-4 rounded text-white shadow">{{ $dosen->nama }}</span>
-                    <h5 class="mt-2 mb-0">{{ $dosen->nidn }}</h5> <span>{{ $dosen->jabatan }}</span>
+                <div class="text-center mt-3">
+                    {{-- <span class="bg-secondary p-1 px-4 rounded text-white shadow">{{ $mahasiswa->nama }} ({{ $mahasiswa->nim }})</span> --}}
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <label class="btn btn-sm btn-outline-primary">
+                            <i class="mdi mdi-account"></i> {{ $dosen->nama }} ({{ $dosen->nip }}/{{ $dosen->nidn }})
+                        </label>
+                        @if ($dosen->status_aktif == 'Aktif')
+                            <label class="btn btn-sm btn-outline-success">
+                                Aktif <i class="mdi mdi-check"></i>
+                            </label>
+                        @else
+                            <label class="btn btn-sm btn-outline-danger">
+                                Tidak Aktif <i class="mdi mdi-close"></i>
+                            </label>
+                        @endif
+                    </div>
+                    <br>
+                    <br>
+                    <span>
+                        @php
+                            $data = DB::table('program_studies')->where('id', $dosen->program_studi)->select('program_studies.*', 'program_studi')->first();
+                            echo $data->program_studi;
+                        @endphp
+                    </span>
                     <hr>
                 </div>
                 <div class="px-2 mt-2">
                     <table>
                         <tr>
-                        <td><h4><i class="mdi mdi-calendar"></i></h4></td>
-                            <td>Tempat / Tanggal Lahir</td>
+                            <td><h4><i class="mdi mdi-barcode"></h4></i></td>
+                            <td>NIK</td>
                             <td>:</td>
-                            <td>{{ $dosen->tempat_lahir }} / {{ \Carbon\Carbon::parse($dosen->tanggal_lahir)->isoFormat('dddd, D MMMM YYYY') }}</td>
+                            <td>{{ $dosen->nik }}
+                            </td>
                         </tr>
                         <tr>
-                            <td><h4><i class="mdi mdi-home-map-marker"></i></i></td>
+                            <td><h4><i class="mdi mdi-heart"></h4></i></td>
+                            <td>Agama</td>
+                            <td>:</td>
+                            <td>{{ $dosen->agama }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4><i class="mdi mdi-calendar"></h4></i></td>
+                            <td>Tempat / Tanggal Lahir</td>
+                            <td>:</td>
+                            <td>{{ $dosen->tempat_lahir }} / {{ \Carbon\Carbon::parse($dosen->tanggal_lahir)->isoFormat('dddd, D MMMM YYYY') }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4><i class="mdi mdi-human-male-female"></h4></i></td>
+                            <td>Jenis Kelamin</td>
+                            <td>:</td>
+                            <td>{{ $dosen->jenis_kelamin }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4><i class="mdi mdi-home-map-marker"></i></h4></td>
                             <td>Alamat</td>
                             <td>:</td>
                             <td>{{ $dosen->alamat }}</td>
                         </tr>
-                            <td><h4><i class="mdi mdi-label"></td>
-                            <td>Tahun Masuk</td>
-                            <td>:</td>
-                            <td>{{ $dosen->tahun_angkatan }}</td>
-                        </tr>
+                        <tr>
                             <td><h4><i class="mdi mdi-email"></h4></i></td>
                             <td>Email</td>
                             <td>:</td>
                             <td>{{ $dosen->email }}</td>
                         </tr>
-                            <td><h4><i class="mdi mdi-phone"></i></td>
+                        <tr>
+                            <td><h4><i class="mdi mdi-phone"></i></h4></td>
                             <td>Nomor Telepon</td>
                             <td>:</td>
                             <td>{{ $dosen->no_hp }}</td>
                         </tr>
                     </table>
                 </div>
-
-                {{-- <div class="buttons text-center mt-3">
-                    <a href="{{ route('dosen.index') }}" class="btn btn-primary shadow"><i class="fa fa-close"></i> Kembali</a>
-                </div> --}}
             </div>
             @endif
         </div>

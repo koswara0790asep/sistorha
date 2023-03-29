@@ -10,7 +10,7 @@
             <div class="col-md-auto">
                 <a href="/mahasiswa/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                     <i class="mdi mdi-account-plus"></i> Tambah Data</a>
-                <a href="/mahasiswas/cetak" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                     <i class="mdi mdi-printer"></i> Cetak</a>
                 <!-- Button trigger modal -->
                 <button type="button" onclick="toggle()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
@@ -30,15 +30,16 @@
             </div>
             <div class="card-body">
                 <form action="">
-                    <div class="input-group mb-3">
+                    <div>
                         <input type="file" name="importFile" id="importFile" wire:model="importFile" class="form-control @error('importFile') is-invalid @enderror">
-                        <span class="input-group-text"><i class="mdi mdi-file"></i></span>
+                        {{-- <span class="input-group-text"><i class="mdi mdi-file"></i></span> --}}
                         @error('importFile')
                         <span class="invalid-feedback">
                             {{ $message }}
                         </span>
                         @enderror
                     </div>
+                    <br>
                     <button class="btn btn-secondary btn-sm" type="submit" wire:click.prevent="import"><i class="mdi mdi-content-save"></i> Impor Data</button>
                     {{-- <button class="btn btn-primary btn-sm" type="submit" wire:click="download"><i class="mdi mdi-download"></i> Unduh Contoh</button> --}}
                     <a href="{{ asset('/sheets/ex-mhs.xlsx') }}" class="btn btn-info btn-sm" download><i class="mdi mdi-download"></i> Unduh Contoh</a>
@@ -66,7 +67,7 @@
                                 <th class="text-light">PROGRAM STUDI</th>
                                 <th class="text-light">PERIODE</th>
                                 <th class="text-light">STATUS</th>
-                                <th class="text-light">NOMOR TELPON</th>
+                                <th class="text-light">NOMOR TELEPON</th>
                                 <th class="text-light">AKSI</th>
                             </tr>
                         </thead>
@@ -109,7 +110,7 @@
                                                             class="mdi mdi-alert-circle-outline"></i></p>
                                                     <br>
                                                     <h3>Apakah anda yakin?</h3>
-                                                    <p>Data Mahasiswa {{ $mhs->nama }} yang dihapus tidak dapat dikembalikan.</p>
+                                                    <p>Semua data Mahasiswa {{ $mhs->nama }} (termasuk akun) yang dihapus tidak dapat dikembalikan.</p>
                                                     <br>
 
                                                     <button type="button" class="btn btn-secondary"
@@ -139,14 +140,9 @@
         </div>
     </div>
 </div>
-<script>
-    function toggle() {
-        var content = document.getElementById("content");
-            if (content.style.display === "none") {
-                content.style.display = "block";
-            } else {
-                content.style.display = "none";
-            }
-        }
 
+<script>
+    function openNewWindow() {
+        window.open("/mahasiswas/cetak", "_blank");
+    }
 </script>

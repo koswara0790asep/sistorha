@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Dosen;
 
 use App\Models\Dosen;
+use App\Models\ProgramStudi;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,8 +47,8 @@ class Create extends Component
             Dosen::create([
                 'nama' => $this->nama,
                 'nik' => $this->nik,
-                'nip' => $this->nim,
-                'nidn' => $this->nim,
+                'nip' => $this->nip,
+                'nidn' => $this->nidn,
                 'tempat_lahir' => $this->tempat_lahir,
                 'tanggal_lahir' => $this->tanggal_lahir,
                 'agama' => $this->agama,
@@ -69,6 +70,7 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.dosen.create');
+        $prodis = ProgramStudi::all();
+        return view('livewire.dosen.create', compact('prodis'));
     }
 }

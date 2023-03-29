@@ -11,5 +11,6 @@ class ProgramStudi extends Model
 
     public $table = 'program_studies';
 
-    protected $guarded = ['id', 'program_studi', 'kode', 'status'];
+    protected $guarded = [];
+    // protected $fillable = ['program_studi', 'kode', 'status'];
 }

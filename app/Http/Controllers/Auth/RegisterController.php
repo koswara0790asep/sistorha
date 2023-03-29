@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'prodi_id' => $data['prodi_id'],
             'status' => $data['status'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => encrypt($data['password']),
         ]);
 
 
@@ -85,7 +85,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $roles = Roles::pluck('name', 'id');
+        // $roles = Roles::pluck('name', 'id');
         $prodis = ProgramStudi::pluck('prodi_id', 'program_studi');
         return view('auth.register', compact(['roles', 'prodis']));
     }
