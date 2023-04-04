@@ -9,7 +9,8 @@ class Ruangan extends Model
 {
     use HasFactory;
 
-    public $table = 'ruangans';
+    // public $table = 'ruangans';
 
-    protected $fillable = ['id', 'lantai', 'ruangan', 'kode'];
+    protected $guarded = [];
+    // protected $fillable = ['id', 'lantai', 'ruangan', 'kode'];
 }

@@ -39,10 +39,10 @@ Route::middleware(['auth'])->group(function () {
     // Route::livewire('/dosen/edit/{id}', 'dosen.edit')->name('dosen.edit');
     // Route::livewire('/dosen/show/{id}', 'dosen.show')->name('dosen.show');
 
-    Route::livewire('/kelass', 'kelas.index')->name('kelas.index');
-    Route::livewire('/kelas/create', 'kelas.create')->name('kelas.create');
-    Route::livewire('/kelas/edit/{id}', 'kelas.edit')->name('kelas.edit');
-    Route::livewire('/kelas/mhskelas/{id}', 'kelas.mhskelas')->name('kelas.mhskelas');
+    // Route::livewire('/kelass', 'kelas.index')->name('kelas.index');
+    // Route::livewire('/kelas/create', 'kelas.create')->name('kelas.create');
+    // Route::livewire('/kelas/edit/{id}', 'kelas.edit')->name('kelas.edit');
+    // Route::livewire('/kelas/mhskelas/{id}', 'kelas.mhskelas')->name('kelas.mhskelas');
 
     Route::livewire('/matkuls', 'matkul.index')->name('matkul.index');
     Route::livewire('/matkul/create', 'matkul.create')->name('matkul.create');
@@ -94,7 +94,32 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     Route::livewire('/programstudies', 'programstudi.index')->name('programstudi.index');
     Route::livewire('/programstudi/create', 'programstudi.create')->name('programstudi.create');
     Route::livewire('/programstudi/edit/{id}', 'programstudi.edit')->name('programstudi.edit');
-    Route::get('/programstudi/cetak', [CetakController::class, 'cetakProdi'])->name('programstudi.cetak');
+    Route::get('/programstudies/cetak', [CetakController::class, 'cetakProdi'])->name('programstudi.cetak');
+
+    // daftar kelas
+    Route::livewire('/dfkelases', 'dfkelas.index')->name('dfkelas.index');
+    Route::livewire('/dfkelas/create', 'dfkelas.create')->name('dfkelas.create');
+    Route::livewire('/dfkelas/edit/{id}', 'dfkelas.edit')->name('dfkelas.edit');
+    Route::get('/dfkelases/cetak', [CetakController::class, 'cetakDFkelas'])->name('dfkelas.cetak');
+
+    //kelas
+    Route::livewire('/kelass', 'kelas.index')->name('kelas.index');
+    Route::livewire('/kelas/create', 'kelas.create')->name('kelas.create');
+    Route::livewire('/kelas/edit/{id}', 'kelas.edit')->name('kelas.edit');
+    Route::get('/kelases/cetak', [CetakController::class, 'cetakKelas'])->name('kelas.cetak');
+
+    //kelas mahasiswa
+    Route::livewire('/kelasmhsws', 'kelasmhs.index')->name('kelasmhs.index');
+    Route::livewire('/kelasmhsw/create', 'kelasmhs.create')->name('kelasmhs.create');
+    Route::livewire('/kelasmhsw/edit/{id}', 'kelasmhs.edit')->name('kelasmhs.edit');
+    Route::get('/kelasmhsws/cetak', [CetakController::class, 'cetakKelasmhsw'])->name('kelasmhsw.cetak');
+
+    //ruangan
+    Route::livewire('/ruangans', 'ruangan.index')->name('ruangan.index');
+    Route::livewire('/ruangan/create', 'ruangan.create')->name('ruangan.create');
+    Route::livewire('/ruangan/edit/{id}', 'ruangan.edit')->name('ruangan.edit');
+    Route::get('/ruangans/cetak', [CetakController::class, 'cetakRuangan'])->name('ruangan.cetak');
+
 });
 
 

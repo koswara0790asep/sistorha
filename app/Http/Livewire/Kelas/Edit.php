@@ -2,15 +2,19 @@
 
 namespace App\Http\Livewire\Kelas;
 
+use App\Models\DfKelas;
+use App\Models\Dosen;
 use App\Models\Kelas;
+use App\Models\ProgramStudi;
 use Livewire\Component;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Edit extends Component
 {
     public $kelasId;
-    public $nama_kelas;
-    public $dosen_wali;
-    public $ketua_kelas;
+    public $dosen_id;
+    public $prodi_id;
+    public $daftar_kelas_id;
 
     public function mount($id)
     {
@@ -18,18 +22,20 @@ class Edit extends Component
 
         if ($kelas) {
             $this->kelasId = $kelas->id;
-            $this->nama_kelas = $kelas->nama_kelas;
-            $this->dosen_wali = $kelas->dosen_wali;
-            $this->ketua_kelas = $kelas->ketua_kelas;
+            $this->dosen_id = $kelas->dosen_id;
+            $this->prodi_id = $kelas->prodi_id;
+            $this->daftar_kelas_id = $kelas->daftar_kelas_id;
+        } elseif ($this->daftar_kelas_id == null) {
+            Alert::error('Woops!','Data yang kamu cari tidak ada!');
         }
     }
 
     public function update()
     {
         $this->validate([
-            'nama_kelas' => 'required',
-            'dosen_wali' => 'required',
-            'ketua_kelas' => 'required',
+            'dosen_id' => 'required',
+            'prodi_id' => 'required',
+            'daftar_kelas_id' => 'required',
         ]);
 
         if ($this->kelasId) {
@@ -37,15 +43,16 @@ class Edit extends Component
 
             if ($kelas) {
                 $kelas->update([
-                    'nama_kelas' => $this->nama_kelas,
-                    'dosen_wali' => $this->dosen_wali,
-                    'ketua_kelas' => $this->ketua_kelas,
+                    'dosen_id' => $this->dosen_id,
+                    'prodi_id' => $this->prodi_id,
+                    'daftar_kelas_id' => $this->daftar_kelas_id,
                 ]);
             }
         }
 
         //flash message
-        session()->flash('message', 'Data Kelas ' . $this->nama_kelas . ' Berhasil Diperbaharui!');
+        Alert::success('BERHASIL!','Data Kelas Berhasil Diperbaharui!');
+        // session()->flash('message', 'Data Kelas Berhasil Diperbaharui!');
 
         // redirect
         return redirect()->route('kelas.index');
@@ -53,6 +60,9 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.kelas.edit');
+        $dosens = Dosen::all();
+        $prodis = ProgramStudi::all();
+        $dfkelases = DfKelas::all();
+        return view('livewire.kelas.edit', compact(['dosens', 'prodis', 'dfkelases']));
     }
 }

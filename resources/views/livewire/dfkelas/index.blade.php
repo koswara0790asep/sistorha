@@ -4,7 +4,7 @@
             <div class="col-sm-7">
                 <ol class="breadcrumb breadcrumb-arrwo mt-2">
                     <li class="breadcrumb-item"> Olah Data</li>
-                    <li class="breadcrumb-item active" aria-current="page"> Kelas</li>
+                    <li class="breadcrumb-item active" aria-current="page"> Daftar Kelas</li>
                 </ol>
             </div>
             <div class="col-sm-2"></div>
@@ -12,7 +12,7 @@
                 <p style="color: #F9FAFB">.........</p>
                 <div class="col">
 
-                    <a href="/kelas/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                    <a href="/dfkelas/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-account-plus"></i> Tambah Data</a>
                     <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-printer"></i> Cetak</a>
@@ -66,7 +66,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-account-multiple"></i> Data Table Kelas
+                        <i class="mdi mdi-account-multiple"></i> Data Table Daftar Kelas
                     </h4>
                 </div>
             </div>
@@ -77,18 +77,29 @@
                         <thead class="table table-dark">
                             <tr>
                                 <th class="text-light">#</th>
-                                <th class="text-light">DOSEN</th>
+                                <th class="text-light">KODE KELAS</th>
+                                <th class="text-light">NAMA KELAS</th>
                                 <th class="text-light">PROGRAM STUDI</th>
-                                <th class="text-light">KELAS</th>
+                                <th class="text-light">PERIODE</th>
+                                <th class="text-light">DOSEN WALI</th>
                                 <th class="text-light">AKSI</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($kelases as $key => $kls)
+                            @foreach($df_kelases as $kls)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $kls->kode }}</td>
+                                <td>{{ $kls->nama_kelas }}</td>
+                                <td class="text-center">
+                                    @php
+                                        $data = DB::table('program_studies')->where('id',
+                                        $kls->prodi_id)->select('program_studies.*', 'program_studi')->first();
+                                        echo $data->program_studi;
+                                    @endphp
+                                </td>
+                                <td class="text-center">{{ $kls->periode }}</td>
                                 <td>
-                                    {{-- {{ $kls->dosen_id }} --}}
                                     @php
                                         $data = DB::table('dosens')->where('id',
                                         $kls->dosen_id)->select('dosens.*', 'nama')->first();
@@ -96,30 +107,8 @@
                                     @endphp
                                 </td>
                                 <td class="text-center">
-                                    {{-- {{ $kls->prodi_id }} --}}
-                                    @php
-                                        $data = DB::table('program_studies')->where('id',
-                                        $kls->prodi_id)->select('program_studies.*', 'program_studi')->first();
-                                        echo $data->program_studi;
-                                    @endphp
-                                </td>
-                                <td>
-                                        @php
-                                            $data = DB::table('df_kelases')->where('id',
-                                            $kls->daftar_kelas_id)->select('df_kelases.*', 'kode')->first();
-                                        @endphp
-                                        <a class="badge bg-primary">{{ $data->kode }}</a>
-                                    {{--
-                                    @php
-                                        $data = DB::table('df_kelases')->where('id',
-                                        $kls->daftar_kelas_id)->select('df_kelases.*', 'kode')->first();
-                                        echo $data->kode;
-                                    @endphp --}}
-                                </td>
-
-                                <td class="text-center">
-                                    {{-- <a href="{{ route('kelas.edit', $kls->id) }}"
-                                        class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a> --}}
+                                    <a href="{{ route('dfkelas.edit', $kls->id) }}"
+                                        class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
 
                                     {{-- <button wire:click="genAkun({{ $kls->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button> --}}
 
@@ -171,6 +160,6 @@
 </div>
 <script>
     function openNewWindow() {
-        window.open("/kelases/cetak", "_blank");
+        window.open("/dfkelases/cetak", "_blank");
     }
 </script>

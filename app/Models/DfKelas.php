@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class DfKelas extends Model
 {
     use HasFactory;
+
+    public $table = 'df_kelases';
+
+    protected $guarded = [];
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Kelas;
 
+use App\Models\DfKelas;
+use App\Models\Dosen;
 use App\Models\Kelas;
 use App\Models\Mahasiswa;
 use Livewire\Component;
@@ -13,51 +15,17 @@ use function PHPUnit\Framework\callback;
 class Index extends Component
 {
     public $kelasId;
-    public $nama_kelas;
-    public $dosen_wali;
-    public $ketua_kelas;
-    public $search;
-
-    protected $listeners = ['hapus'];
+    public $dosen_id;
+    public $prodi_id;
+    public $daftar_kelas_id;
 
     use WithPagination;
 
     public function render()
     {
-        return view('livewire.kelas.index', [
-            'kelas' => $this->search === null ?
-            Kelas::first()->get() :
-            Kelas::first()->where('nama_kelas', 'like', '%' . $this->search . '%')->get(),
-            'mahasiswa' => Mahasiswa::all()
-        ]);
-    }
-
-    public function deleteData($id)
-    {
-
-        $this->confirm('Yakin ingin menghapus data?', [
-            'toast' => false,
-            'position' => 'top-end',
-            'text' => 'Data akan dihapus secara permanen!',
-            'showCancelButton' => true,
-            'showConfirmButton' => true,
-            'confirmButtonText' => 'Ya, hapus data!',
-            'cancelButtonText' => 'Batal',
-            'onConfirmed' => 'deleteConfirmed',
-            'onCancelled' => 'deleteCancelled',
-            'id' => $id,
-        ]);
-    }
-
-    public function deleteConfirmed()
-    {
-        // Code untuk menghapus data
-        $this->alert('success', 'Data berhasil dihapus!');
-    }
-
-    public function deleteCancelled()
-    {
-        // Tidak melakukan apa-apa
+        // $dosens = Dosen::all();
+        $kelases = Kelas::all();
+        return view('livewire.kelas.index', compact(['kelases']));
     }
 
     public function destroy($kelasId)
@@ -66,19 +34,15 @@ class Index extends Component
 
         if ($kelas) {
             $this->kelasId = $kelas->id;
-            $this->nama_kelas = $kelas->nama_kelas;
-            $this->dosen_wali = $kelas->dosen_wali;
-            $this->ketua_kelas = $kelas->ketua_kelas;
+            $this->dosen_id = $kelas->dosen_id;
+            $this->prodi_id = $kelas->prodi_id;
+            $this->daftar_kelas_id = $kelas->daftar_kelas_id;
         }
 
 
         $kelas->delete();
-        // dd($kelas);
-        // ->customClass([
-        //     // "confirmButton" => dd("confirm"),
-        //     // "cancelButton" => dd("cancel"),
-        // ]);
-        Alert::success('BERHASIL','Ada! ditemukan');
+
+        Alert::success('BERHASIL','Data berhasil dihapus!');
 
         // redirect
         return redirect()->route('kelas.index');

@@ -50,7 +50,7 @@
                             <a href="/programstudies" class="nav-link">Program Studi</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/dfkelass" class="nav-link">Daftar Kelas</a>
+                            <a href="/dfkelases" class="nav-link">Daftar Kelas</a>
                         </li>
                         <li class="nav-item">
                             <a href="/kelass" class="nav-link">Kelas</a>

@@ -94,12 +94,12 @@
                                 </td>
                                 <td class="text-center">
                                     @php
-                                    $data = DB::table('program_studies')->where('id',
-                                    $dsn->program_studi)->select('program_studies.*', 'program_studi')->first();
-                                    echo $data->program_studi;
+                                        $data = DB::table('program_studies')->where('id',
+                                        $dsn->program_studi)->select('program_studies.*', 'program_studi')->first();
+                                        echo $data->program_studi;
                                     @endphp
                                 </td>
-                                <td class="text-center">{{ $dsn->no_hp }}</td>
+                                <td class="text-center">+62{{ $dsn->no_hp }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('dosen.edit', $dsn->id) }}"
                                         class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>

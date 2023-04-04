@@ -31,7 +31,7 @@
 
 <center>
     <h1>
-        DATA-DATA PROGRAM STUDI
+        DATA-DATA RUANGAN
     </h1>
 </center>
 
@@ -39,18 +39,18 @@
     <thead>
         <tr>
             <th style='text-align: center;border:1px solid black;'>NO</th>
-            <th style='text-align: center;border:1px solid black;'>PROGRAM STUDI</th>
+            <th style='text-align: center;border:1px solid black;'>LANTAI</th>
+            <th style='text-align: center;border:1px solid black;'>RUANGAN</th>
             <th style='text-align: center;border:1px solid black;'>KODE</th>
-            <th style='text-align: center;border:1px solid black;'>STATUS AKTIF</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($programstudies as $prodi)
+        @foreach ($ruangans as $ruang)
             <tr>
                 <td style='text-align: center;border:1px solid black;'>{{ $loop->iteration }}</td>
-                <td style='border:1px solid black;'>{{ $prodi->program_studi }}</td>
-                <td style='text-align: center;border:1px solid black;'>{{ $prodi->kode }}</td>
-                <td style='text-align: center;border:1px solid black;'>{{ $prodi->status }}</td>
+                <td style='text-align: center;border:1px solid black;'>{{ $ruang->lantai }}</td>
+                <td style='text-align: center;border:1px solid black;'>{{ $ruang->ruang }}</td>
+                <td style='text-align: center;border:1px solid black;'>{{ $ruang->kode }}</td>
             </tr>
         @endforeach
     </tbody>

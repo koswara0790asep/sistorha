@@ -153,6 +153,6 @@
 </div>
 <script>
     function openNewWindow() {
-        window.open("/programstudi/cetak", "_blank");
+        window.open("/programstudies/cetak", "_blank");
     }
 </script>

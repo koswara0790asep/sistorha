@@ -36,7 +36,7 @@ class Create extends Component
 
             // dd($prodi);
 
-            Alert::success('BERHASIL!','Data Program Studi' .$this->program_studi. 'Berhasil Disimpan!');
+            Alert::success('BERHASIL!','Data Program Studi ' .$this->program_studi. ' Berhasil Disimpan!');
         }
 
         // redirect

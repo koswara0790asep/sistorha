@@ -90,7 +90,7 @@
                                         {{ $mhs->status_aktif }}
                                     </button>
                                 </td>
-                                <td>{{ $mhs->no_hp }}</td>
+                                <td>+62{{ $mhs->no_hp }}</td>
                                 <td class="text text-center">
                                     {{-- <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-info"><i class="link-icon" data-feather="eye"></i></a> --}}
                                     <a href="{{ route('mahasiswa.edit', $mhs->id) }}" class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>

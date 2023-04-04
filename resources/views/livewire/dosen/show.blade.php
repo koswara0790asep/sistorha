@@ -108,7 +108,7 @@
                             <td><h4><i class="mdi mdi-phone"></i></h4></td>
                             <td>Nomor Telepon</td>
                             <td>:</td>
-                            <td>{{ $dosen->no_hp }}</td>
+                            <td>+62{{ $dosen->no_hp }}</td>
                         </tr>
                     </table>
                 </div>

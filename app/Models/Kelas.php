@@ -10,6 +10,8 @@ class Kelas extends Model
 {
     use HasFactory;
 
+    public $table = 'kelases';
+
     protected $guarded = [];
 
 
@@ -17,5 +19,6 @@ class Kelas extends Model
     {
         return $this->hasMany(Mahasiswa::class);
     }
+
 }
 

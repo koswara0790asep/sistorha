@@ -31,7 +31,7 @@
 
 <center>
     <h1>
-        DATA-DATA MAHASISWA
+        DATA KELAS YANG DIAMPU DOSEN
     </h1>
 </center>
 
@@ -39,29 +39,36 @@
     <thead>
         <tr>
             <th style='text-align: center;border:1px solid black;'>NO</th>
-            <th style='text-align: center;border:1px solid black;'>NIM</th>
-            <th style='text-align: center;border:1px solid black;'>NAMA</th>
-            <th style='text-align: center;border:1px solid black;'>JENIS KELAMIN</th>
+            <th style='text-align: center;border:1px solid black;'>DOSEN</th>
             <th style='text-align: center;border:1px solid black;'>PROGRAM STUDI</th>
-            <th style='text-align: center;border:1px solid black;'>PERIODE</th>
-            <th style='text-align: center;border:1px solid black;'>STATUS AKTIF</th>
+            <th style='text-align: center;border:1px solid black;'>KELAS DIAMPU</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($mahasiswas as $mhs)
+        @foreach ($dosens as $dsn)
             <tr>
                 <td style='text-align: center;border:1px solid black;'>{{ $loop->iteration }}</td>
-                <td style='text-align: center;border:1px solid black;'>{{ $mhs->nim }}</td>
-                <td style='border:1px solid black;'>{{ $mhs->nama }}</td>
-                <td style='text-align: center;border:1px solid black;'>{{ $mhs->jenis_kelamin }}</td>
+                <td style='border:1px solid black;'>{{ $dsn->nama }}</td>
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        $data = DB::table('program_studies')->where('id', $mhs->program_studi)->select('program_studies.*', 'program_studi')->first();
+                        $data = DB::table('program_studies')->where('id',
+                        $dsn->program_studi)->select('program_studies.*', 'program_studi')->first();
                         echo $data->program_studi;
                     @endphp
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $mhs->periode }}</td>
-                <td style='text-align: center;border:1px solid black;'>{{ $mhs->status_aktif }}</td>
+                <td style='border:1px solid black;'>
+                    @foreach ($kelases as $kls)
+                        @if ($kls->dosen_id == $dsn->id)
+                            @php
+                                $data = DB::table('df_kelases')->where('id',
+                                $kls->daftar_kelas_id)->select('df_kelases.*', 'nama_kelas')->first();
+                                echo $data->nama_kelas. ', ';
+                            @endphp
+                        @endif
+                    @endforeach
+
+                </td>
             </tr>
         @endforeach
     </tbody>

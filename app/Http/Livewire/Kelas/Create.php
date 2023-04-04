@@ -2,31 +2,76 @@
 
 namespace App\Http\Livewire\Kelas;
 
+use App\Models\DfKelas;
+use App\Models\Dosen;
 use App\Models\Kelas;
+use App\Models\ProgramStudi;
 use Livewire\Component;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Create extends Component
 {
-    public $nama_kelas;
-    public $dosen_wali;
-    public $ketua_kelas;
+    public $dosen_id;
+    public $prodi_id;
+    public $daftar_kelas_id;
+    public $selectedKelases = [];
 
     public function store()
     {
         $this->validate([
-            'nama_kelas' => 'required',
-            'dosen_wali' => 'required',
-            'ketua_kelas' => 'required',
+            'dosen_id' => 'required',
+            'prodi_id' => 'required',
+            'selectedKelases' => 'required',
         ]);
 
-        Kelas::create([
-            'nama_kelas' => $this->nama_kelas,
-            'dosen_wali' => $this->dosen_wali,
-            'ketua_kelas' => $this->ketua_kelas,
-        ]);
+        // if ((Kelas::where('dosen_id', $this->dosen_id)->exists()) && (Kelas::where('daftar_kelas_id', $this->daftar_kelas_id)->exists())) {
+        //     Alert::warning('GAGAL!','Data Kelas Sudah Ada!');
+        // } else {
+        // if (Kelas::where('dosen_id', $this->dosen_id)->exists()) {
+        //     if (Kelas::where('daftar_kelas_id', $this->daftar_kelas_id)->exists()) {
+        //         Alert::warning('GAGAL!','Data Kelas Sudah Ada!');
+        //     }
+        // } else {
+        //     foreach ($this->selectedKelases as $kelas) {
+        //         Kelas::firstOrCreate(
+        //             [
+        //                 'dosen_id' => $this->dosen_id,
+        //                 'daftar_kelas_id' => $kelas,
+        //             ],
+        //             [
+        //                 'prodi_id' => $this->prodi_id,
+        //             ]
+        //         );
+        //     }
+        // }
+
+        $dataExists = Kelas::where('dosen_id', $this->dosen_id)
+                            ->where('daftar_kelas_id', $this->selectedKelases)
+                            ->exists();
+
+        // dd($dataExists);
+
+        if (!$dataExists) {
+            foreach ($this->selectedKelases as $kelas) {
+                Kelas::firstOrCreate(
+                    [
+                        'dosen_id' => $this->dosen_id,
+                        'daftar_kelas_id' => $kelas,
+                    ],
+                    [
+                        'prodi_id' => $this->prodi_id,
+                    ]
+                );
+            }
+            Alert::success('BERHASIL!','Data Kelas Berhasil Disimpan!');
+        } else {
+            Alert::warning('GAGAL!','Data Kelas Sudah Ada!');
+        }
+
+        // $this->reset('selectedKelases');
 
         //flash message
-        session()->flash('message', 'Data Kelas ' .$this->nama_kelas. ' Berhasil Disimpan!');
+
 
         // redirect
         return redirect()->route('kelas.index');
@@ -34,6 +79,9 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.kelas.create');
+        $dosens = Dosen::all();
+        $prodis = ProgramStudi::all();
+        $dfkelases = DfKelas::all();
+        return view('livewire.kelas.create', compact(['dosens', 'prodis', 'dfkelases']));
     }
 }

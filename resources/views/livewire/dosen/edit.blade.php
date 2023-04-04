@@ -215,6 +215,7 @@
                         <div class="col-sm-6">
                             <label for="no_hp">Nomor Telepon: </label>
                             <div class="mb-3 input-group">
+                                <span class="input-group-text">+62</span>
                                 <input type="text" id="no_hp" name="no_hp" wire:model="no_hp" class="form-control @error('no_hp') is-invalid @enderror" placeholder="Masukkan Nomor Ponsel / WhatsApp Aktif">
                                 <span class="input-group-text"><h4><i class="mdi mdi-phone"></i></h4></span>
                                 @error('no_hp')
