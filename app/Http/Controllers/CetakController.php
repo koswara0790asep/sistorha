@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DfKelas;
+use App\Models\DfMatkul;
 use App\Models\Dosen;
 use App\Models\Kelas;
 use App\Models\KelasMhsw;
@@ -49,7 +50,7 @@ class CetakController extends Controller
         // $dosens = DfKelas::orderBy('kode','asc')->get();
         return view('livewire.kelas.cetak', compact(['dosens', 'kelases']));
 
-        return redirect()->route('dfkelas.index');
+        return redirect()->route('kelas.index');
     }
 
     public function cetakKelasmhsw()
@@ -60,7 +61,7 @@ class CetakController extends Controller
         // $dosens = DfKelas::orderBy('kode','asc')->get();
         return view('livewire.kelasmhs.cetak', compact(['mahasiswas', 'kelases', 'kelasmhsws']));
 
-        return redirect()->route('dfkelas.index');
+        return redirect()->route('kelasmhs.index');
     }
 
     public function cetakRuangan()
@@ -69,7 +70,15 @@ class CetakController extends Controller
         $ruangans = Ruangan::orderBy('kode','asc')->get();
         return view('livewire.ruangan.cetak', compact('ruangans'));
 
-        return redirect()->route('dfkelas.index');
+        return redirect()->route('ruangan.index');
+    }
+
+    public function cetakDFmatkul()
+    {
+        $dfmatkuls = DfMatkul::get();
+        return view('livewire.dfmatkul.cetak', compact('dfmatkuls'));
+
+        return redirect()->route('dfmatkul.index');
     }
 
     public function exportPDF()

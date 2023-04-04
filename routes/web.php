@@ -105,20 +105,26 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     //kelas
     Route::livewire('/kelass', 'kelas.index')->name('kelas.index');
     Route::livewire('/kelas/create', 'kelas.create')->name('kelas.create');
-    Route::livewire('/kelas/edit/{id}', 'kelas.edit')->name('kelas.edit');
+    // Route::livewire('/kelas/edit/{id}', 'kelas.edit')->name('kelas.edit');
     Route::get('/kelases/cetak', [CetakController::class, 'cetakKelas'])->name('kelas.cetak');
 
     //kelas mahasiswa
     Route::livewire('/kelasmhsws', 'kelasmhs.index')->name('kelasmhs.index');
     Route::livewire('/kelasmhsw/create', 'kelasmhs.create')->name('kelasmhs.create');
-    Route::livewire('/kelasmhsw/edit/{id}', 'kelasmhs.edit')->name('kelasmhs.edit');
+    // Route::livewire('/kelasmhsw/edit/{id}', 'kelasmhs.edit')->name('kelasmhs.edit');
     Route::get('/kelasmhsws/cetak', [CetakController::class, 'cetakKelasmhsw'])->name('kelasmhsw.cetak');
 
     //ruangan
     Route::livewire('/ruangans', 'ruangan.index')->name('ruangan.index');
     Route::livewire('/ruangan/create', 'ruangan.create')->name('ruangan.create');
-    Route::livewire('/ruangan/edit/{id}', 'ruangan.edit')->name('ruangan.edit');
+    // Route::livewire('/ruangan/edit/{id}', 'ruangan.edit')->name('ruangan.edit');
     Route::get('/ruangans/cetak', [CetakController::class, 'cetakRuangan'])->name('ruangan.cetak');
+
+    // daftar matakuliah
+    Route::livewire('/dfmatkuls', 'dfmatkul.index')->name('dfmatkul.index');
+    Route::livewire('/dfmatkul/create', 'dfmatkul.create')->name('dfmatkul.create');
+    Route::livewire('/dfmatkul/edit/{id}', 'dfmatkul.edit')->name('dfmatkul.edit');
+    Route::get('/dfmatkuls/cetak', [CetakController::class, 'cetakDFmatkul'])->name('dfmatkul.cetak');
 
 });
 

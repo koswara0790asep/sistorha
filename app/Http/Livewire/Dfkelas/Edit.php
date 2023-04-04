@@ -10,7 +10,6 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class Edit extends Component
 {
-
     public $dfkelasId;
     public $nama_kelas;
     public $dosen_id;
