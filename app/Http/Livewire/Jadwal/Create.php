@@ -10,10 +10,8 @@ use App\Models\Ruangan;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class Edit extends Component
+class Create extends Component
 {
-
-    public $jadwalId;
     public $kelas_id;
     public $semester;
     public $matkul_id;
@@ -25,28 +23,7 @@ class Edit extends Component
     public $jam_akhir;
     public $ruang_id;
 
-    public function mount($id)
-    {
-        $jadwal = Jadwal::find($id);
-
-        if ($jadwal) {
-            $this->jadwalId = $jadwal->id;
-            $this->kelas_id = $jadwal->kelas_id;
-            $this->semester = $jadwal->semester;
-            $this->matkul_id = $jadwal->matkul_id;
-            $this->sks = $jadwal->sks;
-            $this->jml_jam = $jadwal->jml_jam;
-            $this->dosen_id = $jadwal->dosen_id;
-            $this->hari = $jadwal->hr;
-            $this->jam_awal = $jadwal->jam_awal;
-            $this->jam_akhir = $jadwal->jam_akhir;
-            $this->ruang_id = $jadwal->ruang_id;
-        } elseif ($this->matkul_id == null) {
-            Alert::error('Woops!','Data yang kamu cari tidak ada!');
-        }
-    }
-
-    public function update()
+    public function store()
     {
         $this->validate([
             'kelas_id' => 'required',
@@ -59,27 +36,33 @@ class Edit extends Component
             'jam_awal' => 'required',
             'jam_akhir' => 'required',
             'ruang_id' => 'required',
-
         ]);
 
-        if ($this->jadwalId) {
-            $jadwal = Jadwal::find($this->jadwalId);
+        if ($this->hari == 1) {
+            $hari = 'Senin';
+        } elseif ($this->hari == 2) {
+            $hari = 'Selasa';
+        } elseif ($this->hari == 3) {
+            $hari = 'Rabu';
+        } elseif ($this->hari == 4) {
+            $hari = 'Kamis';
+        } elseif ($this->hari == 5) {
+            $hari = 'Jum.at';
+        } elseif ($this->hari == 6) {
+            $hari = 'Sabtu';
+        } elseif ($this->hari == 7) {
+            $hari = 'Minggu/Ahad';
+        }
 
-            if ($this->hari == 1) {
-                $hari = 'Senin';
-            } elseif ($this->hari == 2) {
-                $hari = 'Selasa';
-            } elseif ($this->hari == 3) {
-                $hari = 'Rabu';
-            } elseif ($this->hari == 4) {
-                $hari = 'Kamis';
-            } elseif ($this->hari == 5) {
-                $hari = 'Jum.at';
-            } elseif ($this->hari == 6) {
-                $hari = 'Sabtu';
-            } elseif ($this->hari == 7) {
-                $hari = 'Minggu/Ahad';
-            }
+        $existingData = Jadwal::where('matkul_id', $this->matkul_id)
+                              ->where('hari', $hari)
+                              ->where('jam_awal', $this->jam_awal)
+                              ->where('ruang_id', $this->ruang_id)
+                              ->exists();
+
+        if ($existingData) {
+            Alert::warning('GAGAL!','Data Jadwal Sudah Ada!');
+        } else {
 
             $existingTimeSlot = Jadwal::where('hari', $hari)
                                         ->where('jam_awal', $this->jam_awal)
@@ -89,10 +72,9 @@ class Edit extends Component
             if ($existingTimeSlot) {
                 // Jika ada, tampilkan pesan error
                 Alert::warning('GAGAL!','Jadwal Hari, Jam, dan Ruangan Sudah Terisi!');
-            }
+            } else {
 
-            if ($jadwal) {
-                $jadwal->update([
+                Jadwal::create([
                     'kelas_id' => $this->kelas_id,
                     'semester' => $this->semester,
                     'matkul_id' => $this->matkul_id,
@@ -105,13 +87,10 @@ class Edit extends Component
                     'jam_akhir' => $this->jam_akhir,
                     'ruang_id' => $this->ruang_id,
                 ]);
-                Alert::success('BERHASIL!', 'Data Jadwal Mata Kuliah ini Berhasil Diperbaharui!');
+
+                Alert::success('BERHASIL!','Data Jadwal Mata Kuliah ini Berhasil Disimpan!');
             }
         }
-
-        //flash message
-        // session()->flash('message', 'Anda berhasil absen hari ini!');
-
         // redirect
         return redirect()->route('jadwal.index');
     }
@@ -122,6 +101,6 @@ class Edit extends Component
         $df_matkuls = DfMatkul::all();
         $dosens = Dosen::all();
         $ruangans = Ruangan::all();
-        return view('livewire.jadwal.edit', compact(['kelases', 'df_matkuls', 'dosens', 'ruangans']));
+        return view('livewire.jadwal.create', compact(['kelases', 'df_matkuls', 'dosens', 'ruangans']));
     }
 }

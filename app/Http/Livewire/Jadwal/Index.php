@@ -4,18 +4,30 @@ namespace App\Http\Livewire\Jadwal;
 
 use App\Models\Jadwal;
 use Livewire\Component;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Index extends Component
 {
-    public $search;
-    public $pick;
+    public $jadwalId;
 
     public function render()
     {
-        return view('livewire.jadwal.index', [
-            'jadwals' => $this->search === null || $this->pick === null ?
-            Jadwal::first()->get() :
-            Jadwal::first()->where('kelas', 'like', '%' . $this->search . '%')->where( 'nama_dosen', 'like', '%' . $this->pick . '%')->get(),
-        ]);
+        $jadwals = Jadwal::all();
+        return view('livewire.jadwal.index', compact('jadwals'));
     }
+
+    public function destroy($jadwalId)
+    {
+        $jadwal = Jadwal::find($jadwalId);
+
+        if ($jadwal) {
+            $jadwal->delete();
+        }
+
+        Alert::success('BERHASIL','Data Jadwal terpilih berhasil dihapus!');
+
+        // redirect
+        return redirect()->route('jadwal.index');
+    }
+
 }

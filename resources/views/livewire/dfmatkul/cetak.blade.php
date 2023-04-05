@@ -39,7 +39,7 @@
         <tr>
             <th style='text-align: center;border:1px solid black;'>NO</th>
             <th style='text-align: center;border:1px solid black;'>KODE</th>
-            <th style='text-align: center;border:1px solid black;'>NAMA</th>
+            <th style='text-align: center;border:1px solid black;'>NAMA MATA KULIAH</th>
             <th style='text-align: center;border:1px solid black;'>PROGRAM STUDI</th>
             <th style='text-align: center;border:1px solid black;'>SEMESTER</th>
             <th style='text-align: center;border:1px solid black;'>DOSEN</th>

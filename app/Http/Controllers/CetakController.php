@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DfKelas;
 use App\Models\DfMatkul;
 use App\Models\Dosen;
+use App\Models\Jadwal;
 use App\Models\Kelas;
 use App\Models\KelasMhsw;
 use App\Models\Mahasiswa;
@@ -77,6 +78,14 @@ class CetakController extends Controller
     {
         $dfmatkuls = DfMatkul::get();
         return view('livewire.dfmatkul.cetak', compact('dfmatkuls'));
+
+        return redirect()->route('dfmatkul.index');
+    }
+
+    public function cetakJadwal()
+    {
+        $jadwals = Jadwal::get();
+        return view('livewire.jadwal.cetak', compact('jadwals'));
 
         return redirect()->route('dfmatkul.index');
     }

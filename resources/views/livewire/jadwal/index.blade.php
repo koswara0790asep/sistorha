@@ -1,273 +1,199 @@
-<div class="container">
-    <h5>jadwal/<a href="">index</a></h5>
-    <hr>
-    <center>
-        <h1>Jadwal Saya</h1>
-        <span>2021/2022</span>
-    </center>
+<div class="row">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <ol class="breadcrumb breadcrumb-arrwo mt-2">
+                    <li class="breadcrumb-item"> Olah Data</li>
+                    <li class="breadcrumb-item active" aria-current="page"> Daftar Jadwal</li>
+                </ol>
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-3 d-flex">
+                <p style="color: #F9FAFB">.........</p>
+                <div class="col">
 
-    <div class="form-group">
-
-        <h4>
-            Jadwal Kelas
-            <select type="text" wire:model="search" class="form-select" placeholder="Search">
-                <option value="" hidden>-- Pilih Kelas --</option>
-                <?php
-                    $kelass = DB::table('kelas')->get('nama_kelas');
-                    foreach ($kelass as $kelas) {
-                        echo "<option value='". $kelas->nama_kelas ."'>". $kelas->nama_kelas ."</option>";
-                    }
-                    ?>
-            </select>
-        </h4>
-        <h4>
-            Nama Anda
-            <select name="nama" wire:model="pick"  class="form-select" id="nama">
-                <option value="" hidden>-- Pilih Nama--</option>
-                <option value="{{ Auth::user()->name }}">{{ Auth::user()->name }}</option>
-            </select>
-        </h4>
+                    <a href="/jadwal/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                        <i class="mdi mdi-account-plus"></i> Tambah Data</a>
+                    <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                        <i class="mdi mdi-printer"></i> Cetak</a>
+                </div>
+                <!-- Button trigger modal -->
+                {{-- <button type="button" onclick="toggle()"
+                    class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                    <i class="mdi mdi-file-import"></i> Import XLSX</button> --}}
+            </div>
+        </div>
     </div>
 
-    <div class="col">
-        <table class="table tabel-bordered">
-            <thead class="thead-dark">
-                <th>Nama Dosen</th>
-                <th>Kelas</th>
-                <th>Hari, Tanggal</th>
-                <th>Absen</th>
-                <th>Hari, Tanggal</th>
-                <th>Absen</th>
-                <th>Hari, Tanggal</th>
-                <th>Absen</th>
-                <th>Hari, Tanggal</th>
-                <th>Absen</th>
-                <th>Hari, Tanggal</th>
-                <th>Absen</th>
-                <th>Hari, Tanggal</th>
-                <th>Absen</th>
-                <th>Hari, Tanggal</th>
-                <th>Absen</th>
-                <th>Hari, Tanggal</th>
-                <th>Absen</th>
-                <th>Hari, Tanggal</th>
-                <th>Absen</th>
-                <th>Hadir</th>
-                <th>Tidak Hadir</th>
-                <th>Aksi</th>
-            </thead>
-            <tbody>
-                @foreach ($jadwals as $jadwal)
-                <tr>
-                    <td>{{ $jadwal->nama_dosen }}</td>
-                    <td>{{ $jadwal->kelas }}</td>
-                    @if ($jadwal->minggu1 == date('Y-m-d'))
-                    <td class="table-info"><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
 
-                        $hariIni = new DateTime($jadwal->minggu1);
+    {{-- Toggle --}}
+    {{-- <div id="content" class="mb-3" style="display: block;">
+        <div class="card">
 
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @else
-                    <td><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
+            <div class="card-header">
+                <div class="card-title mt-3">
+                    <h4>
+                        <i class="mdi mdi-file-import"></i> Impor Data Dari Exel
+                    </h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="">
+                    <div>
+                        <input type="file" name="importDosen" id="importDosen" wire:model="importDosen"
+                            class="form-control @error('importDosen') is-invalid @enderror">
+                        {{-- <span class="input-group-text"><i class="mdi mdi-file"></i></span> --}}
+                        {{-- @error('importDosen')
+                        <span class="invalid-feedback">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                    </div>
+                    <br>
+                    <button class="btn btn-secondary btn-sm" type="submit" wire:click.prevent="importmk"><i
+                            class="mdi mdi-content-save"></i> Impor Data</button>
+                    {{-- <button class="btn btn-primary btn-sm" type="submit" wire:click="download"><i class="mdi mdi-download"></i> Unduh Contoh</button> --}}
+                    {{-- <a href="{{ asset('/sheets/ex-mk.xlsx') }}" class="btn btn-info btn-sm" download><i
+                            class="mdi mdi-download"></i> Unduh Contoh</a>
 
-                        $hariIni = new DateTime($jadwal->minggu1);
+                </form>
+            </div>
+        </div>
+    </div> --}}
 
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @endif
-                    <td>{{ $jadwal->h1 }}</td>
-                    @if ($jadwal->minggu2 == date('Y-m-d'))
-                    <td class="table-info"><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title mt-3">
+                    <h4>
+                        <i class="mdi mdi-account-multiple"></i> Data Table Jadwal
+                    </h4>
+                </div>
+            </div>
+            <div class="card-body">
 
-                        $hariIni = new DateTime($jadwal->minggu2);
+                <div class="table-responsive">
+                    <table id="dataTableExample" class="table table-bordered table-striped table-hover">
+                        <thead class="table table-dark">
+                            <tr>
+                                <th class="text-light">#</th>
+                                <th class="text-light">KODE <br>KELAS</th>
+                                <th class="text-light">KELAS</th>
+                                <th class="text-light">PROGRAM STUDI</th>
+                                <th class="text-light">SMT</th>
+                                <th class="text-light">KODE</th>
+                                <th class="text-light">MATA KULIAH</th>
+                                <th class="text-light">SKS</th>
+                                <th class="text-light">JAM</th>
+                                <th class="text-light">DOSEN MENGAJAR</th>
+                                <th class="text-light">HARI</th>
+                                <th class="text-light">JAM <br>AWAL</th>
+                                <th class="text-light">JAM <br>AKHIR</th>
+                                <th class="text-light">RUANGAN</th>
+                                <th class="text-light">AKSI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($jadwals as $jadw)
+                            <tr>
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">
+                                    @php
+                                        $dataKls = DB::table('df_kelases')->where('id',
+                                        $jadw->kelas_id)->select('df_kelases.*', 'kode', 'prodi_id')->first();
+                                    @endphp
+                                    {{ $dataKls->kode }}
+                                </td>
+                                <td class="text-center">Reguler</td>
+                                <td class="text-center">
+                                    @php
+                                        $dataProd = DB::table('program_studies')->where('id',
+                                        $dataKls->prodi_id)->select('program_studies.*', 'program_studi')->first();
+                                        echo $dataProd->program_studi;
+                                    @endphp
+                                </td>
+                                <td class="text-center">{{ $jadw->semester }}</td>
+                                <td class="text-center">
+                                    @php
+                                        $dataMk = DB::table('df_matkuls')->where('id',
+                                        $jadw->matkul_id)->select('df_matkuls.*', 'kode_matkul', 'nama_matkul')->first();
+                                    @endphp
+                                    {{ $dataMk->kode_matkul }}
+                                </td>
+                                <td>{{ $dataMk->nama_matkul }}</td>
+                                <td class="text-center">{{ $jadw->sks }}</td>
+                                <td class="text-center">{{ $jadw->jml_jam }}</td>
+                                <td>
+                                    @php
+                                        $dataDsn = DB::table('dosens')->where('id',
+                                        $jadw->dosen_id)->select('dosens.*', 'nama')->first();
+                                        echo $dataDsn->nama;
+                                    @endphp
+                                </td>
+                                <td>{{ $jadw->hari }}</td>
+                                <td>{{ $jadw->jam_awal }}</td>
+                                <td>{{ $jadw->jam_akhir }}</td>
+                                <td class="text-center">
+                                    @php
+                                        $dataRn = DB::table('ruangans')->where('id',
+                                        $jadw->ruang_id)->select('ruangans.*', 'kode')->first();
+                                        echo $dataRn->kode;
+                                    @endphp
+                                </td>
+                                <td class="text-center">
+                                    <a href="{{ route('jadwal.edit', $jadw->id) }}"
+                                        class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
 
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @else
-                    <td><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
+                                    {{-- <button wire:click="genAkun({{ $jadw->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button> --}}
 
-                        $hariIni = new DateTime($jadwal->minggu2);
+                                    <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
+                                        data-bs-target="#id_{{ $jadw->id }}">
+                                        <i class="mdi mdi-delete"></i>
+                                    </button>
 
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @endif
-                    <td>{{ $jadwal->h2 }}</td>
-                    @if ($jadwal->minggu3 == date('Y-m-d'))
-                    <td class="table-info"><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
+                                    <!-- Modal -->
+                                    <div class="modal fade text-center text-wrap" id="id_{{ $jadw->id }}" tabindex="-1"
+                                        aria-labelledby="id_{{ $jadw->id }}Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <p class="text text-secondary" style="font-size: 100px"><i
+                                                            class="mdi mdi-alert-circle-outline"></i></p>
+                                                    <br>
+                                                    <h3>Apakah anda yakin?</h3>
+                                                    <p>Data {{ $jadw->nama_matkul }} dari Daftar Jadwal yang dihapus
+                                                        tidak dapat dikembalikan.</p>
+                                                    <br>
 
-                        $hariIni = new DateTime($jadwal->minggu3);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @else
-                    <td><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
-
-                        $hariIni = new DateTime($jadwal->minggu3);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @endif
-                    <td>{{ $jadwal->h3 }}</td>
-                    @if ($jadwal->minggu4 == date('Y-m-d'))
-                    <td class="table-info"><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
-
-                        $hariIni = new DateTime($jadwal->minggu4);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @else
-                    <td><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
-
-                        $hariIni = new DateTime($jadwal->minggu4);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @endif
-                    <td>{{ $jadwal->h4 }}</td>
-                    @if ($jadwal->minggu5 == date('Y-m-d'))
-                    <td class="table-info"><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
-
-                        $hariIni = new DateTime($jadwal->minggu5);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @else
-                    <td><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
-
-                        $hariIni = new DateTime($jadwal->minggu5);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @endif
-                    <td>{{ $jadwal->h5 }}</td>
-                    @if ($jadwal->minggu6 == date('Y-m-d'))
-                    <td class="table-info"><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
-
-                        $hariIni = new DateTime($jadwal->minggu6);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @else
-                    <td><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
-
-                        $hariIni = new DateTime($jadwal->minggu6);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @endif
-                    <td>{{ $jadwal->h6 }}</td>
-                    @if ($jadwal->minggu7 == date('Y-m-d'))
-                    <td class="table-info"><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
-
-                        $hariIni = new DateTime($jadwal->minggu7);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @else
-                    <td><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
-
-                        $hariIni = new DateTime($jadwal->minggu7);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @endif
-                    <td>{{ $jadwal->h7 }}</td>
-                    @if ($jadwal->minggu8 == date('Y-m-d'))
-                    <td class="table-info"><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
-
-                        $hariIni = new DateTime($jadwal->minggu8);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @else
-                    <td><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
-
-                        $hariIni = new DateTime($jadwal->minggu8);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @endif
-                    <td>{{ $jadwal->h8 }}</td>
-                    @if ($jadwal->minggu9 == date('Y-m-d'))
-                    <td class="table-info"><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
-
-                        $hariIni = new DateTime($jadwal->minggu9);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @else
-                    <td><?php
-                        setlocale(LC_TIME, 'id_ID.utf8');
-
-                        $hariIni = new DateTime($jadwal->minggu9);
-
-                        echo $hariIni->format('l, d F Y')
-                    ?>
-                    </td>
-                    @endif
-                    <td>{{ $jadwal->h9 }}</td>
-                    <td class="text-center">
-                        <?php
-                            $jml_hadir = $jadwal->h1 + $jadwal->h2 + $jadwal->h3 + $jadwal->h4 + $jadwal->h5 + $jadwal->h6 + $jadwal->h7 + $jadwal->h8 + $jadwal->h9;
-                            echo $jml_hadir;
-                        ?>
-                    </td>
-                    <td class="text-center">
-                        <?php
-                            $tdk_hadir = 9 - $jml_hadir;
-                            echo $tdk_hadir;
-                        ?>
-                    </td>
-                    <td>
-                        <a href="{{ route('jadwal.edit', $jadwal->id) }}" class="shadow btn btn-primary btn-lg"><i
-                                class="icon-edit"></i>Absen</a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <div class="p-3">
-            <h3>Keterangan</h3>
-            <ul>
-                <li>
-                    <p><button class="btn btn-info btn-lg"> </button> = Jadwal anda hari ini</p>
-                </li>
-            </ul>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal"><i class="mdi mdi-window-close"></i> Batalkan</button>
+                                                    <button wire:click="destroy({{ $jadw->id }})"
+                                                        class="btn btn-danger"><i class="mdi mdi-delete"></i> Ya, Hapus</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    {{-- <a href="{{ route('dosen.show', $jadw->id) }}" class="shadow btn btn-info"><i
+                                        class="icon-eye"></i> SHOW</a> --}}
+                                    {{-- <div class="mt-1">
+                                        <button wire:click="genAkun({{ $jadw->id }})"
+                                            class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
+                                        <a href="{{ route('dosen.show', $jadw->id) }}"
+                                            class="btn btn-sm btn-info btn-icon"><i class="mdi mdi-eye"></i></a>
+                                    </div> --}}
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<script>
+    function openNewWindow() {
+        window.open("/jadwals/cetak", "_blank");
+    }
+</script>

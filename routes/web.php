@@ -44,9 +44,9 @@ Route::middleware(['auth'])->group(function () {
     // Route::livewire('/kelas/edit/{id}', 'kelas.edit')->name('kelas.edit');
     // Route::livewire('/kelas/mhskelas/{id}', 'kelas.mhskelas')->name('kelas.mhskelas');
 
-    Route::livewire('/matkuls', 'matkul.index')->name('matkul.index');
-    Route::livewire('/matkul/create', 'matkul.create')->name('matkul.create');
-    Route::livewire('/matkul/edit/{id}', 'matkul.edit')->name('matkul.edit');
+    // Route::livewire('/matkuls', 'matkul.index')->name('matkul.index');
+    // Route::livewire('/matkul/create', 'matkul.create')->name('matkul.create');
+    // Route::livewire('/matkul/edit/{id}', 'matkul.edit')->name('matkul.edit');
 
     Route::livewire('/prodis', 'prodi.index')->name('prodi.index');
     Route::livewire('/prodi/create', 'prodi.create')->name('prodi.create');
@@ -57,10 +57,10 @@ Route::middleware(['auth'])->group(function () {
     Route::livewire('/absent/create', 'absen.create')->name('absen.create');
     Route::livewire('/absent/edit/{id}', 'absen.edit')->name('absen.edit');
     // Route::livewire('/dosen/absen/create', 'absen.create')->name('absen.create');
-    // Route::livewire('/dosen/absen/edit/{id}', 'absen.edit')->name('dosen.absen.edit');
+    // // Route::livewire('/dosen/absen/edit/{id}', 'absen.edit')->name('dosen.absen.edit');
 
-    Route::livewire('/jadwals', 'jadwal.index')->name('jadwal.index');
-    Route::livewire('/jadwal/edit/{id}', 'jadwal.edit')->name('jadwal.edit');
+    // Route::livewire('/jadwals', 'jadwal.index')->name('jadwal.index');
+    // Route::livewire('/jadwal/edit/{id}', 'jadwal.edit')->name('jadwal.edit');
 
 });
 // if (request()->$this->user->role == 'akademik') {
@@ -125,6 +125,13 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     Route::livewire('/dfmatkul/create', 'dfmatkul.create')->name('dfmatkul.create');
     Route::livewire('/dfmatkul/edit/{id}', 'dfmatkul.edit')->name('dfmatkul.edit');
     Route::get('/dfmatkuls/cetak', [CetakController::class, 'cetakDFmatkul'])->name('dfmatkul.cetak');
+
+    // jadwal
+    Route::livewire('/jadwals', 'jadwal.index')->name('jadwal.index');
+    Route::livewire('/jadwal/create', 'jadwal.create')->name('jadwal.create');
+    Route::livewire('/jadwal/edit/{id}', 'jadwal.edit')->name('jadwal.edit');
+    Route::get('/jadwals/cetak', [CetakController::class, 'cetakJadwal'])->name('jadwal.cetak');
+
 
 });
 

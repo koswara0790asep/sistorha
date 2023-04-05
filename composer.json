@@ -9,6 +9,8 @@
         "barryvdh/laravel-dompdf": "^2.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "illuminate/database": "^8.83",
+        "illuminate/support": "^8.83",
         "kyslik/column-sortable": "^6.4",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",

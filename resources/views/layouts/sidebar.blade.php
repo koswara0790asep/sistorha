@@ -64,15 +64,15 @@
                         <li class="nav-item">
                             <a href="/dfmatkuls" class="nav-link">Daftar Matakuliah</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="/matkuls" class="nav-link">Matakuliah</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="/jadwals" class="nav-link">Jadwal</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="/jadwalkuliahs" class="nav-link">Jadwal Kuliah</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="/absensis" class="nav-link">Absensi</a>
                         </li>

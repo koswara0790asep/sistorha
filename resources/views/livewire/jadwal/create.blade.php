@@ -3,7 +3,7 @@
         <ol class="breadcrumb breadcrumb-arrwo">
             <li class="breadcrumb-item">Olah Data</li>
             <li class="breadcrumb-item">Jadwal</li>
-            <li class="breadcrumb-item active">Ubah Data</li>
+            <li class="breadcrumb-item active">Tambah Data</li>
         </ol>
     </div>
     <div class="card shadow col-lg-12 grid-margin stretch-card">
@@ -12,30 +12,11 @@
                 <a href="{{ route('jadwal.index') }}" class="btn btn-danger btn-sm shadow"><i
                         class="mdi mdi-close"></i></a>
                 <i class="mdi mdi-account-plus"></i>
-                UBAH DATA JADWAL
+                TAMBAH DATA JADWAL
             </h4>
         </div>
         <div class="card-body">
-            @if ($this->matkul_id == null)
-                <div class="main-wrapper">
-                    <div class="page-wrapper full-page">
-                        <div class="page-content d-flex align-items-center justify-content-center">
-
-                            <div class="row w-100 mx-0 auth-page">
-                                <div class="col-md-8 col-xl-6 mx-auto d-flex flex-column align-items-center">
-                                    <img src="{{ asset('/assets/images/others/404.svg') }}" class="img-fluid mb-2" alt="404">
-                                    <h1 class="fw-bolder mb-22 mt-2 tx-80 text-muted">404</h1>
-                                    <h4 class="mb-2">Page Not Found</h4>
-                                    <h6 class="text-muted mb-3 text-center">Oopps!! Halaman yang kamu akses tidak pernah ada.</h6>
-                                    <a href="{{ route('jadwal.index') }}" class="btn btn-danger btn-sm shadow"><i class="mdi mdi-close"></i></a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                @else
-            <form action="" wire:submit.prevent="update">
+            <form action="" wire:submit.prevent="store">
 
                 <div class="row">
                     <div class="col-sm-6">
@@ -202,7 +183,6 @@
                 <button type="submit" class="btn btn-primary shadow"><i class="mdi mdi-content-save"></i>
                     SIMPAN</button>
             </form>
-            @endif
         </div>
     </div>
 </div>

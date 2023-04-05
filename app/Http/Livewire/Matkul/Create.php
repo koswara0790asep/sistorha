@@ -2,34 +2,40 @@
 
 namespace App\Http\Livewire\Matkul;
 
+use App\Models\DfMatkul;
 use App\Models\Matkul;
 use Livewire\Component;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Create extends Component
 {
-    public $kode_matkul;
-    public $nama;
-    public $sks;
-    public $jam;
+    public $matkul_id;
 
     public function store()
     {
         $this->validate([
-            'kode_matkul' => 'required',
-            'nama' => 'required',
-            'sks' => 'required',
-            'jam' => 'required',
+            'matkul_id' => 'required',
+            'prodi_id' => 'required',
+            'semester' => 'required',
+            'dosen_id' => 'required',
         ]);
 
+        $df_mtk = DfMatkul::find($this->matkul_id)->first();
+
+        if ($df_mtk) {
+            
+        }
+
         Matkul::create([
-            'kode_matkul' => $this->kode_matkul,
-            'nama' => $this->nama,
-            'sks' => $this->sks,
-            'jam' => $this->jam,
+            'matkul_id' => $this->matkul_id,
+            'prodi_id' => $this->prodi_id,
+            'semester' => $this->semester,
+            'dosen_id' => $this->dosen_id,
         ]);
 
         //flash message
-        session()->flash('message', 'Data Matakuliah ' .$this->nama. ' Berhasil Disimpan!');
+        // session()->flash('message', 'Data Matakuliah ' .$this->prodi_id. ' Berhasil Disimpan!');
+        Alert::success('BERHASIL!', 'Data Matakuliah Berhasil Disimpan!');
 
         // redirect
         return redirect()->route('matkul.index');
