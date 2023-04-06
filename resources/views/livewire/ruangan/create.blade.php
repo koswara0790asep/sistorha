@@ -24,7 +24,7 @@
                         <div class="mb-3 input-group">
                             <input type="number" id="lantai" name="lantai" wire:model="lantai" class="form-control @error('lantai') is-invalid @enderror" placeholder="Masukkan Lantai || Con: 1">
 
-                            <span class="input-group-text"><h4><i class="mdi mdi-human-male-female"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-stairs"></i></h4></span>
                             @error('lantai')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -37,7 +37,7 @@
                         <div class="mb-3 input-group">
                             <input type="number" id="ruang" name="ruang" wire:model="ruang" class="form-control @error('ruang') is-invalid @enderror"  placeholder="Masukkan Lantai || Con: 01">
 
-                            <span class="input-group-text"><h4><i class="mdi mdi-human-male-female"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-home-variant"></i></h4></span>
                             @error('ruang')
                             <span class="invalid-feedback">
                                 {{ $message }}

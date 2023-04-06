@@ -41,13 +41,13 @@
                     <div class="col-sm-6">
                         <label for="kelas_id">Kelas: </label>
                         <div class="mb-3 input-group">
-                            <select id="kelas_id" name="kelas_id" wire:model="kelas_id" class="form-control @error('kelas_id') is-invalid @enderror">
+                            <select id="kelas_id" name="kelas_id" wire:model="kelas_id" class="form-select @error('kelas_id') is-invalid @enderror">
                                 <option value="" hidden>--- Pilih Kelas ---</option>
                                 @foreach ($kelases as $kls)
                                     <option value="{{ $kls->id }}">{{ $kls->kode }}</option>
                                 @endforeach
                             </select>
-                            <span class="input-group-text"><h4><i class="mdi mdi-human-male-female"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-home-variant"></i></h4></span>
                             @error('kelas_id')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -59,7 +59,7 @@
                         <label for="semester">Semester: </label>
                         <div class="mb-3 input-group">
                             <input type="number" id="semester" name="semester" min="1" max="8" wire:model="semester" class="form-control @error('semester') is-invalid @enderror" placeholder="Masukkan Semester">
-                            <span class="input-group-text"><h4><i class="mdi mdi-calendar-blank"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-marker-check"></i></h4></span>
                             @error('semester')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -73,13 +73,13 @@
                     <div class="col-sm-4">
                         <label for="matkul_id">Mata Kuliah: </label>
                         <div class="mb-3 input-group">
-                            <select id="matkul_id" name="matkul_id" wire:model="matkul_id" class="form-control @error('matkul_id') is-invalid @enderror">
+                            <select id="matkul_id" name="matkul_id" wire:model="matkul_id" class="form-select @error('matkul_id') is-invalid @enderror">
                                 <option value="" hidden>--- Pilih Satu Mata Kuliah dari Daftar ---</option>
                                 @foreach ($df_matkuls as $mk)
                                     <option value="{{ $mk->id }}">{{ $mk->kode_matkul }} - {{ $mk->nama_matkul }}</option>
                                 @endforeach
                             </select>
-                            <span class="input-group-text"><h4><i class="mdi mdi-human-male-female"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-book"></i></h4></span>
                             @error('matkul_id')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -91,7 +91,7 @@
                         <label for="sks">SKS: </label>
                         <div class="mb-3 input-group">
                             <input type="number" id="sks" name="sks" min="1" max="8" wire:model="sks" class="form-control @error('sks') is-invalid @enderror" placeholder="Masukkan SKS">
-                            <span class="input-group-text"><h4><i class="mdi mdi-calendar-blank"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-library"></i></h4></span>
                             @error('sks')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -103,7 +103,7 @@
                         <label for="jml_jam">Jumlah Jam: </label>
                         <div class="mb-3 input-group">
                             <input type="number" id="jml_jam" name="jml_jam" min="1" max="12" wire:model="jml_jam" class="form-control @error('jml_jam') is-invalid @enderror" placeholder="Masukkan Jumlah Jam">
-                            <span class="input-group-text"><h4><i class="mdi mdi-calendar-blank"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-clock"></i></h4></span>
                             @error('jml_jam')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -117,13 +117,13 @@
                     <div class="col-sm-6">
                         <label for="dosen_id">Dosen Pengampu: </label>
                         <div class="mb-3 input-group">
-                            <select id="dosen_id" name="dosen_id" wire:model="dosen_id" class="form-control @error('dosen_id') is-invalid @enderror">
+                            <select id="dosen_id" name="dosen_id" wire:model="dosen_id" class="form-select @error('dosen_id') is-invalid @enderror">
                                 <option value="" hidden>--- Pilih Dosen Pengampu ---</option>
                                 @foreach ($dosens as $dsn)
                                     <option value="{{ $dsn->id }}">{{ $dsn->nidn }} - {{ $dsn->nama }}</option>
                                 @endforeach
                             </select>
-                            <span class="input-group-text"><h4><i class="mdi mdi-google-circles-communities"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-account-star"></i></h4></span>
                             @error('dosen_id')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -134,7 +134,7 @@
                     <div class="col-sm-6">
                         <label for="hari">Hari: </label>
                         <div class="mb-3 input-group">
-                            <select id="hari" name="hari" wire:model="hari" class="form-control @error('hari') is-invalid @enderror">
+                            <select id="hari" name="hari" wire:model="hari" class="form-select @error('hari') is-invalid @enderror">
                                 <option value="" hidden>--- Pilih Hari ---</option>
                                 <option value="1">Senin</option>
                                 <option value="2">Selasa</option>
@@ -144,7 +144,7 @@
                                 <option value="6">Sabtu</option>
                                 <option value="7">Ahad/Minggu</option>
                             </select>
-                            <span class="input-group-text"><h4><i class="mdi mdi-account"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-calendar"></i></h4></span>
                             @error('hari')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -159,7 +159,7 @@
                         <label for="jam_awal">Jam Awal: </label>
                         <div class="mb-3 input-group">
                             <input type="time" id="jam_awal" name="jam_awal" wire:model="jam_awal" class="form-control @error('jam_awal') is-invalid @enderror">
-                            <span class="input-group-text"><h4><i class="mdi mdi-calendar-blank"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-clock-start"></i></h4></span>
                             @error('jam_awal')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -171,7 +171,7 @@
                         <label for="jam_akhir">Jam Akhir: </label>
                         <div class="mb-3 input-group">
                             <input type="time" id="jam_akhir" name="jam_akhir" wire:model="jam_akhir" class="form-control @error('jam_akhir') is-invalid @enderror">
-                            <span class="input-group-text"><h4><i class="mdi mdi-calendar-blank"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-clock-end"></i></h4></span>
                             @error('jam_akhir')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -182,13 +182,13 @@
                     <div class="col-sm-4">
                         <label for="ruang_id">Ruangan: </label>
                         <div class="mb-3 input-group">
-                            <select id="ruang_id" name="ruang_id" wire:model="ruang_id" class="form-control @error('ruang_id') is-invalid @enderror">
+                            <select id="ruang_id" name="ruang_id" wire:model="ruang_id" class="form-select @error('ruang_id') is-invalid @enderror">
                                 <option value="" hidden>--- Pilih Ruangan ---</option>
                                 @foreach ($ruangans as $ruang)
                                     <option value="{{ $ruang->id }}">{{ $ruang->kode }}</option>
                                 @endforeach
                             </select>
-                            <span class="input-group-text"><h4><i class="mdi mdi-human-male-female"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-home-variant"></i></h4></span>
                             @error('ruang_id')
                             <span class="invalid-feedback">
                                 {{ $message }}

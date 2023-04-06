@@ -23,7 +23,7 @@
                         <label for="nama_kelas">Nama Kelas: </label>
                         <div class="mb-3 input-group">
                             <input type="text" id="nama_kelas" name="nama_kelas" wire:model="nama_kelas" class="form-control @error('nama_kelas') is-invalid @enderror" placeholder="Masukkan Nama Kelas || Con: IF2019-C">
-                            <span class="input-group-text"><h4><i class="mdi mdi-account"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-home-variant"></i></h4></span>
                             @error('nama_kelas')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -49,13 +49,13 @@
                     <div class="col-sm-4">
                         <label for="prodi_id">Program Studi: </label>
                         <div class="mb-3 input-group">
-                            <select id="prodi_id" name="prodi_id" wire:model="prodi_id" class="form-control @error('prodi_id') is-invalid @enderror">
+                            <select id="prodi_id" name="prodi_id" wire:model="prodi_id" class="form-select @error('prodi_id') is-invalid @enderror">
                                 <option value="" hidden>--- Pilih Program Studi ---</option>
                                 @foreach ($prodis as $prodi)
                                     <option value="{{ $prodi->id }}">{{ $prodi->kode }} - {{ $prodi->program_studi }}</option>
                                 @endforeach
                             </select>
-                            <span class="input-group-text"><h4><i class="mdi mdi-human-male-female"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-heart-box-outline"></i></h4></span>
                             @error('prodi_id')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -66,13 +66,13 @@
                     <div class="col-sm-4">
                         <label for="dosen_id">Dosen Wali: </label>
                         <div class="mb-3 input-group">
-                            <select id="dosen_id" name="dosen_id" wire:model="dosen_id" class="form-control @error('dosen_id') is-invalid @enderror">
+                            <select id="dosen_id" name="dosen_id" wire:model="dosen_id" class="form-select @error('dosen_id') is-invalid @enderror">
                                 <option value="" hidden>--- Pilih Dosen Wali ---</option>
                                 @foreach ($dosens as $dsn)
                                     <option value="{{ $dsn->id }}">{{ $dsn->nidn }} - {{ $dsn->nama }}</option>
                                 @endforeach
                             </select>
-                            <span class="input-group-text"><h4><i class="mdi mdi-google-circles-communities"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-account-star"></i></h4></span>
                             @error('dosen_id')
                             <span class="invalid-feedback">
                                 {{ $message }}

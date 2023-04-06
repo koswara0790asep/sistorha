@@ -92,7 +92,7 @@
                         <div class="col-sm-4">
                             <label for="agama">Agama: </label>
                             <div class="mb-3 input-group">
-                                <select id="agama" name="agama" wire:model="agama" class="form-control @error('agama') is-invalid @enderror">
+                                <select id="agama" name="agama" wire:model="agama" class="form-select @error('agama') is-invalid @enderror">
                                     <option value="" hidden>--- Pilih Agama ---</option>
                                     <option value="Islam">Islam</option>
                                     <option value="Kristen">Kristen</option>
@@ -138,7 +138,7 @@
                         <div class="col-sm-4">
                             <label for="jenis_kelamin">Jenis Kelamin: </label>
                             <div class="mb-3 input-group">
-                                <select id="jenis_kelamin" name="jenis_kelamin" wire:model="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror">
+                                <select id="jenis_kelamin" name="jenis_kelamin" wire:model="jenis_kelamin" class="form-select @error('jenis_kelamin') is-invalid @enderror">
                                     <option value="" hidden>--- Pilih Jenis Kelamin ---</option>
                                     <option value="Laki-Laki">Laki-Laki</option>
                                     <option value="Perempuan">Perempuan</option>
@@ -154,7 +154,7 @@
                         <div class="col-sm-4">
                             <label for="status_aktif">Program Studi: </label>
                             <div class="mb-3 input-group">
-                                <select id="program_studi" name="program_studi" wire:model="program_studi" class="form-control @error('program_studi') is-invalid @enderror">
+                                <select id="program_studi" name="program_studi" wire:model="program_studi" class="form-select @error('program_studi') is-invalid @enderror">
                                     <option value="" hidden>--- Pilih Program Studi ---</option>
                                     @foreach ($prodis as $prodi)
                                         <option value="{{ $prodi->id }}">{{ $prodi->kode }} - {{ $prodi->program_studi }}</option>

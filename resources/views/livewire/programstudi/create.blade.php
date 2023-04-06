@@ -28,7 +28,7 @@
                                 class="form-control @error('program_studi') is-invalid @enderror"
                                 placeholder="Masukkan Nama Program Studi">
                             <span class="input-group-text">
-                                <h4><i class="mdi mdi-account"></i></h4>
+                                <h4><i class="mdi mdi-heart-box-outline"></i></h4>
                             </span>
                             @error('program_studi')
                             <span class="invalid-feedback">
@@ -65,7 +65,7 @@
                     <div class="col-lg-8">
                         <div class="input-group">
                             <select id="status" name="status" wire:model="status"
-                                class="form-control @error('status') is-invalid @enderror">
+                                class="form-select @error('status') is-invalid @enderror">
                                 <option value="" hidden>--- Pilih Status Aktif ---</option>
                                 <option value="Aktif">Aktif</option>
                                 <option value="Tidak Aktif">Tidak Aktif</option>

@@ -68,7 +68,7 @@
                     <div class="col-sm-4">
                         <label for="program_studi">Program Studi: </label>
                         <div class="mb-3 input-group">
-                            <select id="program_studi" name="program_studi" wire:model="program_studi" class="form-control @error('program_studi') is-invalid @enderror">
+                            <select id="program_studi" name="program_studi" wire:model="program_studi" class="form-select @error('program_studi') is-invalid @enderror">
                                 <option value="" hidden>--- Pilih Program Studi ---</option>
                                 @foreach ($prodis as $prodi)
                                     <option value="{{ $prodi->id }}">{{ $prodi->kode }} - {{ $prodi->program_studi }}</option>
@@ -85,7 +85,7 @@
                     <div class="col-sm-4">
                         <label for="dosen">Dosen Pengampu: </label>
                         <div class="mb-3 input-group">
-                            <select id="dosen" name="dosen" wire:model="dosen" class="form-control @error('dosen') is-invalid @enderror">
+                            <select id="dosen" name="dosen" wire:model="dosen" class="form-select @error('dosen') is-invalid @enderror">
                                 <option value="" hidden>--- Pilih Dosen Pengampu ---</option>
                                 @foreach ($dosens as $dsn)
                                     <option value="{{ $dsn->id }}">{{ $dsn->nidn }} - {{ $dsn->nama }}</option>
