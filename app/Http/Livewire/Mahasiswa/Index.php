@@ -118,6 +118,8 @@ class Index extends Component
                 'email' => $this->email,
                 'role' => 'mahasiswa',
                 'password' => Hash::make($this->nim),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
 
             Alert::success('BERHASIL!','Mahasiswa '.$this->name.' berhasil dibuatkan akun!');

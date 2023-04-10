@@ -5,7 +5,7 @@
   <div class="navbar-content">
     <h4 class="text text-primary mt-3" id="datetime"></h4>
     <ul class="navbar-nav">
-      <li class="nav-item dropdown">
+      {{-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i data-feather="mail"></i>
         </a>
@@ -81,8 +81,8 @@
           </div>
         </div>
       </li>
-      {{--  --}}
-      <li class="nav-item dropdown">
+      --}}
+      {{-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i data-feather="bell"></i>
           <div class="indicator">
@@ -145,7 +145,7 @@
             <a href="javascript:;">View all</a>
           </div>
         </div>
-      </li>
+      </li> --}}
       {{--  --}}
       @guest
       <li class="nav-item dropdown">
@@ -187,15 +187,15 @@
           </div>
           <ul class="list-unstyled p-1">
             <li class="dropdown-item py-2">
-              <a href="pages/general/profile.html" class="text-body ms-0">
+              <a href="/user/profil/{{ Auth::user()->id }}" class="text-body ms-0">
                 <i class="me-2 icon-md" data-feather="user"></i>
                 <span>Profile</span>
               </a>
             </li>
             <li class="dropdown-item py-2">
-              <a href="javascript:;" class="text-body ms-0">
+              <a href="/user/epassword/{{ Auth::user()->id }}" class="text-body ms-0">
                 <i class="me-2 icon-md" data-feather="edit"></i>
-                <span>Edit Profile</span>
+                <span>Edit Password</span>
               </a>
             </li>
             <li class="dropdown-item py-2">

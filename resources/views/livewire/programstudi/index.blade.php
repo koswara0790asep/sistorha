@@ -66,7 +66,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-account-multiple"></i> Data Table Program Studi
+                        <i class="mdi mdi-heart-box-outline"></i> Data Table Program Studi
                     </h4>
                 </div>
             </div>
@@ -105,10 +105,10 @@
 
                                     <button wire:click="genAkun({{ $prodi->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
 
-                                    <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
+                                    {{-- <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
                                         data-bs-target="#id_{{ $prodi->id }}">
                                         <i class="mdi mdi-delete"></i>
-                                    </button>
+                                    </button> --}}
 
                                     <!-- Modal -->
                                     <div class="modal fade text-center text-wrap" id="id_{{ $prodi->id }}" tabindex="-1"

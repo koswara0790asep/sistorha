@@ -25,7 +25,9 @@
 
             <div class="card-header">
                 <div class="card-title mt-3">
-                    <i class="mdi mdi-file-import"></i> Impor Data Dari Exel
+                    <h4>
+                        <i class="mdi mdi-file-import"></i> Impor Data Dari Exel
+                    </h4>
                 </div>
             </div>
             <div class="card-body">
@@ -52,8 +54,11 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <h6 class="card-title mt-3"><i class="mdi mdi-account-multiple"></i> Data Table Mahasiswa</h6>
-
+                <div class="card-title mt-3">
+                    <h4>
+                        <i class="mdi mdi-account-multiple"></i> Data Table Mahasiswa
+                    </h4>
+                </div>
             </div>
             <div class="card-body">
 
@@ -95,10 +100,10 @@
                                     {{-- <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-info"><i class="link-icon" data-feather="eye"></i></a> --}}
                                     <a href="{{ route('mahasiswa.edit', $mhs->id) }}" class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
                                     {{-- <button wire:click="destroy" class="btn btn-sm btn-danger btn-icon"><i data-feather="trash"></i></button> --}}
-                                    <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
+                                    {{-- <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
                                         data-bs-target="#id_{{ $mhs->id }}">
                                         <i class="mdi mdi-delete"></i>
-                                    </button>
+                                    </button> --}}
 
                                     <!-- Modal -->
                                     <div class="modal fade text-center text-wrap" id="id_{{ $mhs->id }}" tabindex="-1" aria-labelledby="id_{{ $mhs->id }}Label"
@@ -124,11 +129,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <br>
-                                    <div class="mt-1">
-                                        <button wire:click="genAkun({{ $mhs->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
-                                        <a href="{{ route('mahasiswa.show', $mhs->id) }}" class="btn btn-sm btn-info btn-icon"><i class="mdi mdi-eye"></i></a>
-                                    </div>
+
+                                    <button wire:click="genAkun({{ $mhs->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
+                                    <a href="{{ route('mahasiswa.show', $mhs->id) }}" class="btn btn-sm btn-info btn-icon"><i class="mdi mdi-eye"></i></a>
                                 </td>
                             </tr>
                             @endforeach

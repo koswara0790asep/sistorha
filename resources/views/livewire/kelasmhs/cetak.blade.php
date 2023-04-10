@@ -85,6 +85,9 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $nomor = 1;
+            @endphp
             @foreach ($kelasmhsws as $mhs)
                 @if ($kls->id == $mhs->kelas_id)
 
@@ -92,7 +95,7 @@
                     $data = DB::table('mahasiswas')->where('id', $mhs->mahasiswa_id)->select('mahasiswas.*', 'nim', 'nama', 'jenis_kelamin', 'program_studi', 'periode', 'status_aktif')->first();
                 @endphp
                     <tr>
-                        <td style='text-align: center;border:1px solid black;'>{{ $loop->iteration }}</td>
+                        <td style='text-align: center;border:1px solid black;'>{{ $nomor }}</td>
                         <td style='text-align: center;border:1px solid black;'>{{ $data->nim }}</td>
                         <td style='border:1px solid black;'>{{ $data->nama }}</td>
                         <td style='text-align: center;border:1px solid black;'>{{ $data->jenis_kelamin }}</td>
@@ -105,6 +108,9 @@
                         <td style='text-align: center;border:1px solid black;'>{{ $data->periode }}</td>
                         <td style='text-align: center;border:1px solid black;'>{{ $data->status_aktif }}</td>
                     </tr>
+            @php
+                $nomor = $nomor + 1;
+            @endphp
                 @endif
             @endforeach
         </tbody>

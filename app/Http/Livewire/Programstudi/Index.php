@@ -69,6 +69,8 @@ class Index extends Component
                 'email' => strtolower($this->kode). '@poltektedc.ac.id',
                 'role' => 'prodi',
                 'password' => Hash::make($this->kode),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
 
             Alert::success('BERHASIL!','Program Studi '.$this->program_studi.' berhasil dibuatkan akun!');

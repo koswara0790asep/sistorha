@@ -75,6 +75,8 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     Route::livewire('/user/create', 'user.create')->name('user.create');
     // Route::livewire('/user/show/{id}', 'user.show')->name('user.show');
     Route::livewire('/user/edit/{id}', 'user.edit')->name('user.edit');
+    Route::livewire('/user/profil/{id}', 'user.profil')->name('user.profil');
+    Route::livewire('/user/epassword/{id}', 'user.epassword')->name('user.epassword');
 
     // mahasiswa
     Route::livewire('/mahasiswas', 'mahasiswa.index')->name('mahasiswa.index');
@@ -144,4 +146,5 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+Route::livewire('/user/profil/{id}', 'user.profil')->name('user.profil');
+Route::livewire('/user/epassword/{id}', 'user.edpassword')->name('user.edpassword');

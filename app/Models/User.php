@@ -19,15 +19,19 @@ class User extends Authenticatable
      */
     public $timestamps = false;
 
-    protected $fillable = [
-        'name',
-        'username',
-        'role',
-        'prodi_id',
-        'email',
-        'password',
-        'status',
-    ];
+    // protected $fillable = [
+    //     'name',
+    //     'username',
+    //     'role',
+    //     'prodi_id',
+    //     'email',
+    //     'password',
+    //     'status',
+    //     'created_at',
+    //     'updated_at',
+    // ];
+
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.

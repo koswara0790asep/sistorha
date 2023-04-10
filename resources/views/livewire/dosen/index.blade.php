@@ -104,10 +104,10 @@
                                     <a href="{{ route('dosen.edit', $dsn->id) }}"
                                         class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
 
-                                    <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
+                                    {{-- <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
                                         data-bs-target="#id_{{ $dsn->id }}">
                                         <i class="mdi mdi-delete"></i>
-                                    </button>
+                                    </button> --}}
 
                                     <!-- Modal -->
                                     <div class="modal fade text-center text-wrap" id="id_{{ $dsn->id }}" tabindex="-1"
@@ -131,15 +131,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <br>
                                     {{-- <a href="{{ route('dosen.show', $dsn->id) }}" class="shadow btn btn-info"><i
                                         class="icon-eye"></i> SHOW</a> --}}
-                                    <div class="mt-1">
-                                        <button wire:click="genAkun({{ $dsn->id }})"
-                                            class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
-                                        <a href="{{ route('dosen.show', $dsn->id) }}"
-                                            class="btn btn-sm btn-info btn-icon"><i class="mdi mdi-eye"></i></a>
-                                    </div>
+                                    <button wire:click="genAkun({{ $dsn->id }})"
+                                        class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
+                                    <a href="{{ route('dosen.show', $dsn->id) }}"
+                                        class="btn btn-sm btn-info btn-icon"><i class="mdi mdi-eye"></i></a>
                                 </td>
                             </tr>
                             @endforeach

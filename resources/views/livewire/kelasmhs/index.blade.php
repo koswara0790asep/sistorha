@@ -89,8 +89,8 @@
                                 <td class="text-center">
                                     @php
                                         $data = DB::table('df_kelases')->where('id',
-                                        $klsmhs->kelas_id)->select('df_kelases.*', 'nama_kelas')->first();
-                                        echo $data->nama_kelas;
+                                        $klsmhs->kelas_id)->select('df_kelases.*', 'kode')->first();
+                                        echo $data->kode;
                                     @endphp
                                 </td>
                                 <td>

@@ -17,6 +17,7 @@ class Edit extends Component
     public $email;
     public $role;
     public $password;
+    public $updated_at;
 
     public function mount($id)
     {
@@ -30,6 +31,7 @@ class Edit extends Component
             $this->email = $user->email;
             $this->role = $user->role;
             $this->password = $user->password;
+            $this->updated_at = $user->updated_at;
 
         } elseif ($this->username == null) {
             Alert::error('Woops!','Data yang kamu cari tidak ada!');
@@ -57,6 +59,7 @@ class Edit extends Component
                     'role' => $this->role,
                     // 'password' => Hash::make($this->password),
                     'password' => $this->password == $user->getOriginal('password') ? $user->getOriginal('password') : Hash::make($this->password),
+                    'updated_at' => now(),
                 ]);
 
                 Alert::success('BERHASIL!','User '.$this->name.' berhasil diperbaharui!');

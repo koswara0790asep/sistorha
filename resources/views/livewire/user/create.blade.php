@@ -26,12 +26,12 @@
                         <div class="input-group">
                             <input id="name" name="name" type="text" wire:model="name" class="form-control @error('name') is-invalid @enderror" placeholder="Masukkan Nama Lengkap">
                             <span class="input-group-text"><h4><i class="mdi mdi-account"></i></h4></span>
+                            @error('name')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
-                        @error('name')
-                            <span class="invalid-feedback">
-                                {{ $message }}
-                            </span>
-                        @enderror
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -42,12 +42,12 @@
                         <div class="input-group">
                             <input id="username" name="username" type="text" wire:model="username" class="form-control @error('username') is-invalid @enderror" placeholder="Masukkan Kode Unik (NIM/NIDN)">
                             <span class="input-group-text"><h4><i class="mdi mdi-barcode"></i></h4></span>
+                            @error('username')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
-                        @error('username')
-                            <span class="invalid-feedback">
-                                {{ $message }}
-                            </span>
-                        @enderror
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -58,12 +58,12 @@
                         <div class="input-group">
                             <input id="email" name="email" type="text" wire:model="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Alamat E-mail">
                             <span class="input-group-text"><h4><i class="mdi mdi-email"></i></h4></span>
+                            @error('email')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
-                        @error('email')
-                            <span class="invalid-feedback">
-                                {{ $message }}
-                            </span>
-                        @enderror
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -80,6 +80,11 @@
                                 <option value="mahasiswa">Mahasiswa</option>
                             </select>
                             <span class="input-group-text"><h4><i class="mdi mdi-account-network"></i></h4></span>
+                            @error('role')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -91,12 +96,12 @@
                         <div class="input-group">
                             <input id="password" name="password" type="text" wire:model="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan Password">
                             <span class="input-group-text"><h4><i class="mdi mdi-eye"></i></h4></span>
+                            @error('password')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
-                        @error('password')
-                            <span class="invalid-feedback">
-                                {{ $message }}
-                            </span>
-                        @enderror
                     </div>
                 </div>
 
