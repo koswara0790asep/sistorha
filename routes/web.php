@@ -53,9 +53,10 @@ Route::middleware(['auth'])->group(function () {
     Route::livewire('/prodi/edit/{id}', 'prodi.edit')->name('prodi.edit');
     Route::livewire('/prodi/show/{id}', 'prodi.show')->name('prodi.show');
 
-    Route::livewire('/absents', 'absen.index')->name('absen.index');
-    Route::livewire('/absent/create', 'absen.create')->name('absen.create');
-    Route::livewire('/absent/edit/{id}', 'absen.edit')->name('absen.edit');
+    Route::livewire('/absensis', 'absen.index')->name('absen.index');
+    Route::livewire('/absen/create', 'absen.create')->name('absen.create');
+    Route::livewire('/absen/edit/{jadwal}/{id}', 'absen.edit')->name('absen.edit');
+    Route::get('/absensis/cetak/{jadwal}/{dfkelas}/{dfmatkul}', [CetakController::class, 'cetakAbsenMhs'])->name('absen.cetak');
     // Route::livewire('/dosen/absen/create', 'absen.create')->name('absen.create');
     // // Route::livewire('/dosen/absen/edit/{id}', 'absen.edit')->name('dosen.absen.edit');
 
@@ -134,6 +135,8 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     Route::livewire('/jadwal/edit/{id}', 'jadwal.edit')->name('jadwal.edit');
     Route::get('/jadwals/cetak', [CetakController::class, 'cetakJadwal'])->name('jadwal.cetak');
 
+    // absen->search
+    Route::livewire('/absensis/{jadwal}/{dfkelas}/{dfmatkul}', 'absen.mhs')->name('absen.mhs');
 
 });
 

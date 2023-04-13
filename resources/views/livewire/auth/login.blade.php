@@ -199,19 +199,6 @@
           }
         }
     </script>
-    {{-- <script>
-        $(document).ready(function() {
-                $('.toggle-password').click(function() {
-                    $(this).toggleClass('active');
-                    var input = $($(this).parent().prev('input'));
-                    if (input.attr('type') == 'password') {
-                        input.attr('type', 'text');
-                    } else {
-                        input.attr('type', 'password');
-                    }
-                });
-            });
-    </script> --}}
     <script>
         var button = document.getElementById("toggle-button");
 
@@ -225,6 +212,7 @@
         }
         });
     </script>
+    
 </body>
 
 </html>

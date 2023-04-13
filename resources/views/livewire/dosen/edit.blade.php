@@ -11,7 +11,7 @@
             <div class="card-body">
                 <div class="card-title">
                     <h4>
-                        <a href="{{ route('dosen.index') }}" class="btn btn-danger btn-sm shadow"><i class="mdi mdi-close"></i></a>
+                        <button onclick="window.history.back()" class="btn btn-danger btn-sm shadow"><i class="mdi mdi-close"></i></button>
                         <i class="mdi mdi-account-box"></i>
                         Ubah Data Dosen
                     </h4>
@@ -27,7 +27,7 @@
                                     <h1 class="fw-bolder mb-22 mt-2 tx-80 text-muted">404</h1>
                                     <h4 class="mb-2">Page Not Found</h4>
                                     <h6 class="text-muted mb-3 text-center">Oopps!! Halaman yang kamu akses tidak pernah ada.</h6>
-                                    <a href="{{ route('dosen.index') }}" class="btn btn-danger btn-sm shadow"><i class="mdi mdi-close"></i></a>
+                                    <button onclick="window.history.back()" class="btn btn-danger btn-sm shadow"><i class="mdi mdi-close"></i></button>
                                 </div>
                             </div>
 

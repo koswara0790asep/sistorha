@@ -94,8 +94,8 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="input-group">
-                            <input id="password" name="password" type="text" wire:model="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan Password">
-                            <span class="input-group-text"><h4><i class="mdi mdi-eye"></i></h4></span>
+                            <input id="password" name="password" type="password" wire:model="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan Password">
+                            <a class="input-group-text toggle-password" onclick="togglePassword()" id="toggle-button" ><h4><i class="mdi mdi-eye-off"></h4></i></a>
                             @error('password')
                                 <span class="invalid-feedback">
                                     {{ $message }}
@@ -111,3 +111,27 @@
         </div>
     </div>
 </div>
+
+<script>
+    function togglePassword() {
+      var passwordInput = document.getElementById('password');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
+      }
+    }
+</script>
+<script>
+    var button = document.getElementById("toggle-button");
+
+    button.addEventListener("click", function() {
+    this.classList.toggle("active");
+
+    if (this.classList.contains("active")) {
+        this.innerHTML = '<h4><i class="mdi mdi-eye"></h4></i>';
+    } else {
+        this.innerHTML = '<h4><i class="mdi mdi-eye-off"></h4></i>';
+    }
+    });
+</script>

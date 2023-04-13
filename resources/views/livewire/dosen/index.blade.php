@@ -45,7 +45,7 @@
                         @enderror
                     </div>
                     <br>
-                    <button class="btn btn-secondary btn-sm" type="submit" wire:click.prevent="importDsn"><i
+                    <button class="btn {{ $importDosen != null ? 'btn-success' : 'btn-secondary' }} btn-sm" type="submit" wire:click.prevent="importDsn"><i
                             class="mdi mdi-content-save"></i> Impor Data</button>
                     {{-- <button class="btn btn-primary btn-sm" type="submit" wire:click="download"><i class="mdi mdi-download"></i> Unduh Contoh</button> --}}
                     <a href="{{ asset('/sheets/ex-dsn.xlsx') }}" class="btn btn-info btn-sm" download><i

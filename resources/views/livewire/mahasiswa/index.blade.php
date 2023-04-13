@@ -31,6 +31,7 @@
                 </div>
             </div>
             <div class="card-body">
+                
                 <form action="">
                     <div>
                         <input type="file" name="importFile" id="importFile" wire:model="importFile" class="form-control @error('importFile') is-invalid @enderror">
@@ -42,7 +43,7 @@
                         @enderror
                     </div>
                     <br>
-                    <button class="btn btn-secondary btn-sm" type="submit" wire:click.prevent="import"><i class="mdi mdi-content-save"></i> Impor Data</button>
+                    <button class="btn {{ $importFile != null ? 'btn-success' : 'btn-secondary' }} btn-sm" type="submit" wire:click.prevent="import"><i class="mdi mdi-content-save"></i> Impor Data</button>
                     {{-- <button class="btn btn-primary btn-sm" type="submit" wire:click="download"><i class="mdi mdi-download"></i> Unduh Contoh</button> --}}
                     <a href="{{ asset('/sheets/ex-mhs.xlsx') }}" class="btn btn-info btn-sm" download><i class="mdi mdi-download"></i> Unduh Contoh</a>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use App\Models\DfKelas;
 use App\Models\DfMatkul;
 use App\Models\Dosen;
@@ -88,6 +89,28 @@ class CetakController extends Controller
         return view('livewire.jadwal.cetak', compact('jadwals'));
 
         return redirect()->route('dfmatkul.index');
+    }
+
+    public $matkulSelect;
+    public $kelasSelect;
+    public $jadwalId;
+
+    public function cetakAbsenMhs(Jadwal $jadwal)
+    {
+        $kelasSelect = $jadwal->kelas_id;
+        $matkulSelect = $jadwal->matkul_id;
+        $jadwalId = $jadwal->id;
+
+        // $jadwals = Jadwal::get();
+        return view('livewire.absen.cetak', [
+            'jadwalId' => $jadwalId,
+            'kelasSelect' => $kelasSelect,
+            'matkulSelect' => $matkulSelect,
+            'absensis' => $matkulSelect == null && $kelasSelect == null ?
+            ''
+            :
+            Absensi::first()->where('kelas_id', 'like', '%' . $kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $matkulSelect . '%')->get(),
+        ]);
     }
 
     public function exportPDF()

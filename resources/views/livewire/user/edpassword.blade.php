@@ -46,8 +46,9 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="input-group">
-                                <input id="oldpassword" name="oldpassword" type="text" wire:model="oldpassword" class="form-control @error('oldpassword') is-invalid @enderror" placeholder="Masukkan Kode Unik (NIM/NIDN)">
-                                <span class="input-group-text"><h4><i class="mdi mdi-barcode"></i></h4></span>
+                                <input id="oldpassword" name="oldpassword" type="password" wire:model="oldpassword" class="form-control @error('oldpassword') is-invalid @enderror" placeholder="Masukkan Kode Unik (NIM/NIDN)">
+                                <a class="input-group-text toggle-password" onclick="oldPasswordToggle()" id="toggle-old" ><h4><i class="mdi mdi-eye-off"></h4></i></a>
+                                {{-- <span class="input-group-text"><h4><i class="mdi mdi-eye"></i></h4></span> --}}
                                 @error('oldpassword')
                                     <span class="invalid-feedback">
                                         {{ $message }}
@@ -62,8 +63,9 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="input-group">
-                                <input id="newpassword" name="newpassword" type="text" wire:model="newpassword" class="form-control @error('newpassword') is-invalid @enderror" placeholder="Masukkan Nama Lengkap">
-                                <span class="input-group-text"><h4><i class="mdi mdi-account"></i></h4></span>
+                                <input id="newpassword" name="newpassword" type="password" wire:model="newpassword" class="form-control @error('newpassword') is-invalid @enderror" placeholder="Masukkan Nama Lengkap">
+                                <a class="input-group-text toggle-password" onclick="newPasswordToggle()" id="toggle-new" ><h4><i class="mdi mdi-eye-off"></h4></i></a>
+                                {{-- <span class="input-group-text"><h4><i class="mdi mdi-eye"></i></h4></span> --}}
                                 @error('newpassword')
                                     <span class="invalid-feedback">
                                         {{ $message }}
@@ -78,8 +80,9 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="input-group">
-                                <input id="confirmpassword" name="confirmpassword" type="text" wire:model="confirmpassword" class="form-control @error('confirmpassword') is-invalid @enderror" placeholder="Masukkan Alamat E-mail">
-                                <span class="input-group-text"><h4><i class="mdi mdi-email"></i></h4></span>
+                                <input id="confirmpassword" name="confirmpassword" type="password" wire:model="confirmpassword" class="form-control @error('confirmpassword') is-invalid @enderror" placeholder="Masukkan Alamat E-mail">
+                                <a class="input-group-text toggle-password" onclick="conPasswordToggle()" id="toggle-con" ><h4><i class="mdi mdi-eye-off"></h4></i></a>
+                                {{-- <span class="input-group-text"><h4><i class="mdi mdi-eye"></i></h4></span> --}}
                                 @error('confirmpassword')
                                     <span class="invalid-feedback">
                                         {{ $message }}
@@ -88,19 +91,6 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col-sm-6">
-                        <label for="confirmpassword">Nomor Telepon: </label>
-                        <div class="mb-3 input-group">
-                            <span class="input-group-text">+62</span>
-                            <input type="text" id="confirmpassword" name="confirmpassword" wire:model="confirmpassword" class="form-control @error('confirmpassword') is-invalid @enderror" placeholder="Masukkan Nomor Ponsel / WhatsApp Aktif">
-                            <span class="input-group-text"><h4><i class="mdi mdi-phone"></i></h4></span>
-                            @error('confirmpassword')
-                            <span class="invalid-feedback">
-                                {{ $message }}
-                            </span>
-                            @enderror
-                        </div>
-                    </div><!-- Col --> --}}
                     <br>
                     <button type="submit" class="btn btn-primary shadow"><i class="mdi mdi-content-save"></i> SIMPAN</button>
                 </form>
@@ -108,3 +98,73 @@
         </div>
     </div>
 </div>
+
+<script>
+    function oldPasswordToggle() {
+      var passwordInput = document.getElementById('oldpassword');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
+      }
+    }
+</script>
+<script>
+    var button = document.getElementById("toggle-old");
+
+    button.addEventListener("click", function() {
+    this.classList.toggle("active");
+
+    if (this.classList.contains("active")) {
+        this.innerHTML = '<h4><i class="mdi mdi-eye"></h4></i>';
+    } else {
+        this.innerHTML = '<h4><i class="mdi mdi-eye-off"></h4></i>';
+    }
+    });
+</script>
+<script>
+    function newPasswordToggle() {
+      var passwordInput = document.getElementById('newpassword');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
+      }
+    }
+</script>
+<script>
+    var button = document.getElementById("toggle-new");
+
+    button.addEventListener("click", function() {
+    this.classList.toggle("active");
+
+    if (this.classList.contains("active")) {
+        this.innerHTML = '<h4><i class="mdi mdi-eye"></h4></i>';
+    } else {
+        this.innerHTML = '<h4><i class="mdi mdi-eye-off"></h4></i>';
+    }
+    });
+</script>
+<script>
+    function conPasswordToggle() {
+      var passwordInput = document.getElementById('confirmpassword');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
+      }
+    }
+</script>
+<script>
+    var button = document.getElementById("toggle-con");
+
+    button.addEventListener("click", function() {
+    this.classList.toggle("active");
+
+    if (this.classList.contains("active")) {
+        this.innerHTML = '<h4><i class="mdi mdi-eye"></h4></i>';
+    } else {
+        this.innerHTML = '<h4><i class="mdi mdi-eye-off"></h4></i>';
+    }
+    });
+</script>

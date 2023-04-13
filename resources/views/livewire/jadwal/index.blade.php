@@ -143,6 +143,8 @@
                                 <td class="text-center">
                                     <a href="{{ route('jadwal.edit', $jadw->id) }}"
                                         class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
+                                    <a href="/absensis/{{ $jadw->id }}/{{ $jadw->kelas_id }}/{{ $jadw->matkul_id }}"
+                                        class="btn btn-sm btn-primary btn-icon"><i class="mdi mdi-file-document"></i></a>
 
                                     {{-- <button wire:click="genAkun({{ $jadw->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button> --}}
 
