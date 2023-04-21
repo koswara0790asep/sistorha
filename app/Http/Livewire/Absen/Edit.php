@@ -54,10 +54,12 @@ class Edit extends Component
     public $keterangan;
 
     public $jadwalId;
+    public $waktuMasuk;
 
     public function mount($id, Jadwal $jadwal)
     {
         $this->jadwalId = $jadwal->id;
+        $this->waktuMasuk = $jadwal->jam_awal;
         $absen = Absent::find($id);
 
         if ($absen) {
@@ -104,6 +106,8 @@ class Edit extends Component
             $this->pertemuan18 = $absen->pertemuan18;
             $this->keterangan = $absen->keterangan;
 
+        } elseif ($this->jadwalId == null) {
+            Alert::error('Woops!','Data yang kamu cari tidak ada!');
         }
     }
 
@@ -169,7 +173,7 @@ class Edit extends Component
 
         //flash message
         // session()->flash('message', 'Data absen ' . $this->nama . ' Berhasil Diperbaharui!');
-        Alert::success('BERHASIL!', 'Absen berhasil diinputkan');
+        Alert::success('BERHASIL!', 'Absen berhasil diinputkan!');
 
         // redirect
         // return redirect()->back();

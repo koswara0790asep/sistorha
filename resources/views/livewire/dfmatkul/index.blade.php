@@ -88,7 +88,7 @@
                         <tbody>
                             @foreach($df_matkuls as $mk)
                             <tr>
-                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $mk->id }}</td>
                                 <td class="text-center">{{ $mk->kode_matkul }}</td>
                                 <td>{{ $mk->nama_matkul }}</td>
                                 <td class="text-center">

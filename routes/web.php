@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     Route::livewire('/absen/create', 'absen.create')->name('absen.create');
     Route::livewire('/absen/edit/{jadwal}/{id}', 'absen.edit')->name('absen.edit');
     Route::get('/absensis/cetak/{jadwal}/{dfkelas}/{dfmatkul}', [CetakController::class, 'cetakAbsenMhs'])->name('absen.cetak');
+    Route::get('/absensis/rekap/{jadwal}/{dfkelas}/{dfmatkul}', [CetakController::class, 'rekapAbsenMhs'])->name('absen.rekap');
     // Route::livewire('/dosen/absen/create', 'absen.create')->name('absen.create');
     // // Route::livewire('/dosen/absen/edit/{id}', 'absen.edit')->name('dosen.absen.edit');
 

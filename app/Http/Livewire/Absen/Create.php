@@ -2,45 +2,61 @@
 
 namespace App\Http\Livewire\Absen;
 
+use App\Models\Absensi;
 use App\Models\Absent;
+use App\Models\DfKelas;
+use App\Models\DfMatkul;
+use App\Models\KelasMhsw;
+use App\Models\Mahasiswa;
 use Livewire\Component;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Create extends Component
 {
+    public $matkul_id;
+    public $kelas_id;
+    public $semester;
     public $nim;
-    public $kode_matkul;
-    public $nama;
-    public $kelas;
-    public $p1;
-    public $p2;
-    public $p3;
-    public $p4;
-    public $p5;
-    public $p6;
-    public $p7;
-    public $p8;
-    public $p9;
+    public $selectedMhsw = [];
 
     public function store()
     {
         $this->validate([
-            'nim' => 'required',
-            'kode_matkul' => 'required',
-            'nama' => 'required',
-            'kelas' => 'required',
+            'matkul_id' => 'required',
+            'kelas_id' => 'required',
+            'semester' => 'required',
+            'selectedMhsw' => 'required',
 
         ]);
 
-        Absent::create([
-            'nim' => $this->nim,
-            'kode_matkul' => $this->kode_matkul,
-            'nama' => $this->nama,
-            'kelas' => $this->kelas,
+        $dataExists = Absensi::where('matkul_id', $this->matkul_id)
+                            ->where('kelas_id', $this->kelas_id)
+                            ->where('semester', $this->semester)
+                            ->where('nim', $this->nim)
+                            ->exists();
 
-        ]);
+        if (!$dataExists) {
+            foreach ($this->selectedMhsw as $mhs) {
+                Absensi::firstOrCreate([
+                    'matkul_id' => $this->matkul_id,
+                    'kelas_id' => $this->kelas_id,
+                    'semester' => $this->semester,
+                    'nim' => $mhs,
+                ]);
+            }
+        }
+
+        Alert::success('BERHASIL!', 'Data absen berhasil ditambahkan!');
+        // Absent::create([
+        //     'matkul_id' => $this->matkul_id,
+        //     'kelas_id' => $this->kelas_id,
+        //     'semester' => $this->semester,
+        //     'nim' => $this->nim,
+
+        // ]);
 
         //flash message
-        session()->flash('message', 'Data absen ' .$this->nama. ' Berhasil Disimpan!');
+        // session()->flash('message', 'Data absen ' .$this->nama. ' Berhasil Disimpan!');
 
         // redirect
         return redirect()->route('absen.index');
@@ -48,6 +64,9 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.absen.create');
+        $dfmatkuls = DfMatkul::get();
+        $dfkelases = DfKelas::get();
+        $klsmhses = KelasMhsw::get();
+        return view('livewire.absen.create', compact(['dfmatkuls', 'dfkelases', 'klsmhses']));
     }
 }

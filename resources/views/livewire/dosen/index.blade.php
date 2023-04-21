@@ -83,7 +83,7 @@
                         <tbody>
                             @foreach($dosens as $dsn)
                             <tr>
-                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $dsn->id }}</td>
                                 <td>{{ $dsn->nidn }}</td>
                                 <td>{{ $dsn->nama }}</td>
                                 <td class="text-center">

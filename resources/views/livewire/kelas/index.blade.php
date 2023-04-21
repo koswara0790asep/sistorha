@@ -86,7 +86,7 @@
                         <tbody>
                             @foreach($kelases as $key => $kls)
                             <tr>
-                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $kls->id }}</td>
                                 <td>
                                     {{-- {{ $kls->dosen_id }} --}}
                                     @php

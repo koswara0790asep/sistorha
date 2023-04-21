@@ -21,7 +21,7 @@
                         Kehadiran {{ $dataMhs->nama }} ({{ $this->nim }})
                     </h4>
                 </div>
-                {{-- @if ($this->dosenId == null || $this->nidn == null)
+                @if ($this->jadwalId == null || $this->absenId == null)
                 <div class="main-wrapper">
                     <div class="page-wrapper full-page">
                         <div class="page-content d-flex align-items-center justify-content-center">
@@ -32,14 +32,14 @@
                                     <h1 class="fw-bolder mb-22 mt-2 tx-80 text-muted">404</h1>
                                     <h4 class="mb-2">Page Not Found</h4>
                                     <h6 class="text-muted mb-3 text-center">Oopps!! Halaman yang kamu akses tidak pernah ada.</h6>
-                                    <a href="{{ route('dosen.index') }}" class="btn btn-danger btn-sm shadow"><i class="mdi mdi-close"></i></a>
+                                    <a href="{{ route('jadwal.index') }}" class="btn btn-danger btn-sm shadow"><i class="mdi mdi-close"></i></a>
                                 </div>
                             </div>
 
                         </div>
                     </div>
                 </div>
-                @else --}}
+                @else
                 <form action="" wire:submit.prevent="update">
                     @php
                         $ulang = 18;
@@ -85,7 +85,7 @@
 
                     <button type="submit" class="btn btn-primary shadow"><i class="mdi mdi-content-save"></i> SIMPAN</button>
                 </form>
-                {{-- @endif --}}
+                @endif
         </div>
     </div>
 </div>

@@ -79,13 +79,14 @@
                                 <th class="text-light">#</th>
                                 <th class="text-light">KELAS</th>
                                 <th class="text-light">MAHASISWA</th>
+                                <th class="text-light">STATUS</th>
                                 <th class="text-light">AKSI</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($kelasmhsws as $key => $klsmhs)
                             <tr>
-                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $klsmhs->id }}</td>
                                 <td class="text-center">
                                     @php
                                         $data = DB::table('df_kelases')->where('id',
@@ -96,9 +97,15 @@
                                 <td>
                                     @php
                                         $data = DB::table('mahasiswas')->where('id',
-                                        $klsmhs->mahasiswa_id)->select('mahasiswas.*', 'nama')->first();
+                                        $klsmhs->mahasiswa_id)->select('mahasiswas.*', 'nama', 'status_aktif')->first();
                                         echo $data->nama;
                                     @endphp
+                                </td>
+
+                                <td class="text-center">
+                                    <button class="btn {{ $data->status_aktif == 'Aktif' ? 'btn-outline-success' : 'btn-outline-danger' }} btn-sm">
+                                        {{ $data->status_aktif }}
+                                    </button>
                                 </td>
 
                                 <td class="text-center">

@@ -1,184 +1,108 @@
 <div>
-    <h5>absen/<a href="">create</a></h5>
-    <hr>
-    <div class="card shadow p-3 mb-5 rounded">
-        <div class="card-title m-3">
-            <h2>
-                Tambah Absen
-                <i class="icon-pencil"></i>
-            </h2>
+    <div aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-arrwo">
+            <li class="breadcrumb-item">Olah Data</li>
+            <li class="breadcrumb-item">Absensi</li>
+            <li class="breadcrumb-item active">Tambah Data</li>
+        </ol>
+    </div>
+    <div class="card shadow col-lg-12 grid-margin stretch-card">
+        <div class="card-title m-3 d-flex">
+            <h4 class="card-title">
+                <a href="{{ route('absen.index') }}" class="btn btn-danger btn-sm shadow"><i
+                        class="mdi mdi-close"></i></a>
+                <i class="mdi mdi-account-plus"></i>
+                TAMBAH ABSENSI
+            </h4>
         </div>
         <div class="card-body">
             <form action="" wire:submit.prevent="store">
 
-                <div class="form-row">
-                    <div class="col">
-                        <label for="kode_matkul">Kode Matkul: </label>
-                        <input type="text" wire:model="kode_matkul"
-                            class="form-control @error('kode_matkul') is-invalid @enderror"
-                            placeholder="Masukkan Kode Matkul">
-                        @error('kode_matkul')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <label for="nama">Nama: </label>
-                        <input type="text" wire:model="nama" class="form-control @error('nama') is-invalid @enderror"
-                            placeholder="Masukkan Nama Lengkap">
-                        @error('nama')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <label for="nim">NIM: </label>
-                        <input type="text" wire:model="nim" class="form-control @error('nim') is-invalid @enderror"
-                            placeholder="Masukkan NIM">
-                        @error('nim')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <label for="kelas">Kelas: </label>
-                        <input type="text" wire:model="kelas" class="form-control @error('kelas') is-invalid @enderror"
-                            placeholder="Masukkan Kelas">
-                        @error('kelas')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col">
-                        <label for="p1">Pertemuan 1:</label>
-                        <select name="p1" id="p1" wire:model="p1"
-                            class="form-control @error('p1') is-invalid @enderror">
-                            <option value="0">Tidak Hadir</option>
-                            <option value="1">Hadir</option>
-                        </select>
-                        @error('p1')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <label for="p2">Pertemuan 2:</label>
-                        <select name="p2" id="p2" wire:model="p2"
-                            class="form-control @error('p2') is-invalid @enderror">
-                            <option value="0">Tidak Hadir</option>
-                            <option value="1">Hadir</option>
-                        </select>
-                        @error('p2')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <label for="p3">Pertemuan 3:</label>
-                        <select name="p3" id="p3" wire:model="p3"
-                            class="form-control @error('p3') is-invalid @enderror">
-                            <option value="0">Tidak Hadir</option>
-                            <option value="1">Hadir</option>
-                        </select>
-                        @error('p3')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <label for="p4">Pertemuan 4:</label>
-                        <select name="p4" id="p4" wire:model="p4"
-                            class="form-control @error('p4') is-invalid @enderror">
-                            <option value="0">Tidak Hadir</option>
-                            <option value="1">Hadir</option>
-                        </select>
-                        @error('p4')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <label for="p5">Pertemuan 5:</label>
-                        <select name="p5" id="p5" wire:model="p5"
-                            class="form-control @error('p5') is-invalid @enderror">
-                            <option value="0">Tidak Hadir</option>
-                            <option value="1">Hadir</option>
-                        </select>
-                        @error('p5')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <label for="p6">Pertemuan 6:</label>
-                        <select name="p6" id="p6" wire:model="p6"
-                            class="form-control @error('p6') is-invalid @enderror">
-                            <option value="0">Tidak Hadir</option>
-                            <option value="1">Hadir</option>
-                        </select>
-                        @error('p6')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <label for="p7">Pertemuan 7:</label>
-                        <select name="p7" id="p7" wire:model="p7"
-                            class="form-control @error('p7') is-invalid @enderror">
-                            <option value="0">Tidak Hadir</option>
-                            <option value="1">Hadir</option>
-                        </select>
-                        @error('p7')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <label for="p8">Pertemuan 8:</label>
-                        <select name="p8" id="p8" wire:model="p8"
-                            class="form-control @error('p8') is-invalid @enderror">
-                            <option value="0">Tidak Hadir</option>
-                            <option value="1">Hadir</option>
-                        </select>
-                        @error('p8')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <label for="p9">Pertemuan 9:</label>
-                        <select name="p9" id="p9" wire:model="p9"
-                            class="form-control @error('p9') is-invalid @enderror">
-                            <option value="0">Tidak Hadir</option>
-                            <option value="1">Hadir</option>
-                        </select>
-                        @error('p9')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="matkul_id">Mata Kuliah: </label>
+                        <div class="mb-3 input-group">
+                            <select id="matkul_id" name="matkul_id" wire:model="matkul_id" class="form-select @error('matkul_id') is-invalid @enderror">
+                                <option value="" hidden>--- Pilih Mata Kuliah ---</option>
+                                @foreach ($dfmatkuls as $mk)
+                                    <option value="{{ $mk->id }}">{{ $mk->kode_matkul }} - {{ $mk->nama_matkul }}</option>
+                                @endforeach
+                            </select>
+                            <span class="input-group-text"><h4><i class="mdi mdi-book"></i></h4></span>
+                            @error('matkul_id')
+                            <span class="invalid-feedback">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
+                    </div><!-- Col -->
+                    <div class="col-sm-6">
+                        <div class="mb-3 input-group">
+                            <label for="semester">Semester: </label>
+                            <div class="mb-3 input-group">
+                                <input type="number" id="semester" name="semester" min="1" max="12" wire:model="semester" class="form-control @error('semester') is-invalid @enderror" placeholder="Masukkan Semester">
+                                <span class="input-group-text"><h4><i class="mdi mdi-marker-check"></i></h4></span>
+                                @error('semester')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div><!-- Col -->
+                </div><!-- Row -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="kelas_id">Kelas: </label>
+                        <div class="mb-3 input-group">
+                            <select id="kelas_id" name="kelas_id" wire:model="kelas_id" class="form-select @error('kelas_id') is-invalid @enderror">
+                                <option value="" hidden>--- Pilih Kelas ---</option>
+                                @foreach ($dfkelases as $dfkls)
+                                    <option value="{{ $dfkls->id }}">{{ $dfkls->kode }}</option>
+                                @endforeach
+                            </select>
+                            <span class="input-group-text"><h4><i class="mdi mdi-home-variant"></i></h4></span>
+                            @error('kelas_id')
+                            <span class="invalid-feedback">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
+                    </div><!-- Col -->
+                    <div class="col-sm-6">
+                        <div class="mb-3 input-group">
+                            <label for="selectedMhsw">Pilih Mahasiswa Yang Berada Dalam kelas: </label>
+                            <div class="mb-3 input-group">
+                                <select id="selectedMhsw" name="selectedMhsw" wire:model="selectedMhsw" class="form-select @error('selectedMhsw') is-invalid @enderror" multiple>
+                                    @foreach ($dfkelases as $dfkls)
+                                        <optgroup label="{{ $dfkls->kode }}">
+                                            @foreach ($klsmhses as $klsmhs)
+                                                @if ($dfkls->id == $klsmhs->kelas_id)
+                                                @php
+                                                    $dataMhs = DB::table('mahasiswas')->where('id', $klsmhs->mahasiswa_id)->select('mahasiswas.*', 'nama', 'nim', 'status_aktif')->first();
+                                                @endphp
+                                                    <option value="{{ $dataMhs->nim }}">{{ $dataMhs->nama }} ({{ $dataMhs->nim }}) - {{ $dataMhs->status_aktif }}</option>
+                                                @endif
+                                            @endforeach
+                                        </optgroup>
+                                    @endforeach
+                                </select>
+                                <span class="input-group-text"><h4><i class="mdi mdi-account-multiple-outline"></i></h4></span>
+                                @error('selectedMhsw')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div><!-- Col -->
+                </div><!-- Row -->
 
-                <hr>
-                <button type="submit" class="btn btn-primary shadow"><i class="icon-save"></i> SIMPAN</button>
-                <a href="{{ route('absen.index') }}" class="btn btn-danger shadow"><i class="icon-cancel"></i>
-                    CANCEL</a>
+                <br>
+                <button type="submit" class="btn btn-primary shadow"><i class="mdi mdi-content-save"></i>
+                    SIMPAN</button>
             </form>
         </div>
     </div>
 </div>
+

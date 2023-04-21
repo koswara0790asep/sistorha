@@ -42,7 +42,7 @@
                             <select id="selectedMhsw" name="selectedMhsw" wire:model="selectedMhsw" class="form-control @error('selectedMhsw') is-invalid @enderror" multiple>
                                 {{-- <option value="" hidden>--- Pilih Daftar Kelas ---</option> --}}
                                 @foreach ($mahasiswas as $mhs)
-                                    <option value="{{ $mhs->id }}">{{ $mhs->nim }} - {{ $mhs->nama }}</option>
+                                    <option value="{{ $mhs->id }}">{{ $mhs->nim }} - {{ $mhs->nama }} - {{ $mhs->status_aktif }}</option>
                                 @endforeach
                             </select>
                             <span class="input-group-text"><h4><i class="mdi mdi-playlist-check"></i></h4></span>

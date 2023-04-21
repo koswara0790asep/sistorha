@@ -25,7 +25,7 @@ class Index extends Component
             // 'absensis' => Absensi::all(),
             'matkuls' => DfMatkul::all(),
             'kelases' => DfKelas::all(),
-            'absensis' => $this->matkulSelect == null && $this->kelasSelect == null ?
+            'absensis' => $this->matkulSelect == null || $this->kelasSelect == null ?
             ''
             :
             Absensi::first()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $this->matkulSelect . '%')->get(),

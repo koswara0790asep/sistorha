@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="card-body">
-                
+
                 <form action="">
                     <div>
                         <input type="file" name="importFile" id="importFile" wire:model="importFile" class="form-control @error('importFile') is-invalid @enderror">
@@ -80,7 +80,7 @@
                         <tbody>
                             @foreach ($mahasiswas as $mhs)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $mhs->id }}</td>
                                 <td>{{ $mhs->nim }}</td>
                                 <td>{{ $mhs->nama }}</td>
                                 <td>

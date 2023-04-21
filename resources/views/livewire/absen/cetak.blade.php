@@ -98,46 +98,46 @@
             <th style='text-align: center;border:1px solid black;' rowspan="3">NIM</th>
             <th style='text-align: center;border:1px solid black;' rowspan="3">NAMA</th>
             <th style='text-align: center;border:1px solid black;' colspan="36">PERTEMUAN KE-</th>
-            <th style='text-align: center;border:1px solid black;' rowspan="3">KETERANGAN</th>
+            <th style='text-align: center;border:1px solid black;' rowspan="3">KET.</th>
         </tr>
         <tr>
 
             <td style='text-align: center;border:1px solid black;' rowspan="2">1</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">2</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">3</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">4</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">5</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">6</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">7</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">8</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">9</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">10</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">11</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">12</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">13</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">14</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">15</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">16</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">17</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
             <td style='text-align: center;border:1px solid black;' rowspan="2">18</td>
-            <td style='text-align: center;border:1px solid black;'>Waktu</td>
+            <td style='text-align: center;border:1px solid black;'>Menit</td>
         </tr>
         <tr>
 
@@ -239,7 +239,21 @@
                     @endphp
                     {{ $h1 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat1 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat1 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan2 == 'Hadir'){
@@ -255,7 +269,21 @@
                     @endphp
                     {{ $h2 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat2 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat2 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan3 == 'Hadir'){
@@ -271,7 +299,21 @@
                     @endphp
                     {{ $h3 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat3 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat3 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan4 == 'Hadir'){
@@ -287,7 +329,21 @@
                     @endphp
                     {{ $h4 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat4 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat4 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan5 == 'Hadir'){
@@ -303,7 +359,21 @@
                     @endphp
                     {{ $h5 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat5 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat5 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan6 == 'Hadir'){
@@ -319,7 +389,21 @@
                     @endphp
                     {{ $h6 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat6 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat6 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan7 == 'Hadir'){
@@ -335,7 +419,21 @@
                     @endphp
                     {{ $h7 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat7 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat7 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan8 == 'Hadir'){
@@ -351,7 +449,21 @@
                     @endphp
                     {{ $h8 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat8 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat8 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan9 == 'Hadir'){
@@ -367,7 +479,21 @@
                     @endphp
                     {{ $h9 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat9 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat9 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan10 == 'Hadir'){
@@ -383,7 +509,21 @@
                     @endphp
                     {{ $h10 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat10 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat10 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan11 == 'Hadir'){
@@ -399,7 +539,21 @@
                     @endphp
                     {{ $h11 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat11 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat11 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan12 == 'Hadir'){
@@ -415,7 +569,21 @@
                     @endphp
                     {{ $h12 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat12 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat12 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan13 == 'Hadir'){
@@ -431,7 +599,21 @@
                     @endphp
                     {{ $h13 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat13 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat13 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan14 == 'Hadir'){
@@ -447,7 +629,21 @@
                     @endphp
                     {{ $h14 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat14 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat14 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan15 == 'Hadir'){
@@ -463,7 +659,21 @@
                     @endphp
                     {{ $h15 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat15 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat15 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan16 == 'Hadir'){
@@ -479,7 +689,21 @@
                     @endphp
                     {{ $h16 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat16 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat16 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan17 == 'Hadir'){
@@ -495,7 +719,21 @@
                     @endphp
                     {{ $h17 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat17 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat17 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         if ($absen->pertemuan18 == 'Hadir'){
@@ -511,7 +749,21 @@
                     @endphp
                     {{ $h18 }}
                 </td>
-                <td style='text-align: center;border:1px solid black;'>{{ $absen->telat18 }}</td>
+                <td style='text-align: center;border:1px solid black;'>
+                    @php
+                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                        $datang = $absen->telat18 ?? '00:00:00';
+
+                        $wkawal = new DateTime($awal ?? '00:00:00');
+                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                        $wktelat = $wkdatang->diff($wkawal);
+                    @endphp
+                    @if ($wktelat->format('%i') != '0')
+                        {{ $wktelat->format('%i') ?? '' }}
+                    @else
+
+                    @endif
+                </td>
                 <td style='text-align: center;border:1px solid black;'>{{ $absen->keterangan }}</td>
                 {{-- <td style='text-align: center;border:1px solid black;'>
                     <a href="{{ $data->status_aktif == 'Aktif' ? '/absen/edit/'.$jadwalId.'/'.$absen->id.'' : '#' }}" class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
@@ -537,7 +789,7 @@
             <td style='text-align: center;border:1px solid black; color: white;'> .</td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td>
         </tr>
         <tr>
-            <td style='text-align: center;border:1px solid black;' colspan="3">Jumlah Mahasiswa Hadir</td>
+            <td style='text-align: center;border:1px solid black;' colspan="3"><b><i>Jumlah Mhs</i></b></td>
             <td style='text-align: center;border:1px solid black;'>{{ $jmlHadir1 ?? '' }}</td>
             <td style='text-align: center;border:1px solid black;'></td>
             <td style='text-align: center;border:1px solid black;'>{{ $jmlHadir2  ?? '' }} </td>
@@ -577,27 +829,14 @@
             <td style='text-align: center;border:1px solid black;'></td>
 
         </tr>
+        <tr>
+            <td colspan="3" style='text-align: center;border:1px solid black;'> <b><i>Tanda Tangan Dosen</i></b></td>
+            <td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td>
+        </tr>
+        <tr>
+            <td colspan="3" style='text-align: center;border:1px solid black;'> <b><i>Jumlah Jam</i></b></td>
+            <td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td>
+        </tr>
 
-        {{-- @foreach ($dosens as $dsn)
-            <tr>
-                <td style='text-align: center;border:1px solid black;' style='text-align: center;border:1px solid black;'>{{ $loop->iteration ?? '' }}</td>
-                <td style='text-align: center;border:1px solid black;' style='text-align: center;border:1px solid black;'>{{ $dsn->nip }}</td>
-                <td style='text-align: center;border:1px solid black;' style='text-align: center;border:1px solid black;'>{{ $dsn->nidn }}</td>
-                <td style='text-align: center;border:1px solid black;' style='border:1px solid black;'>{{ $dsn->nama }}</td>
-                <td style='text-align: center;border:1px solid black;' style='text-align: center;border:1px solid black;'>{{ $dsn->jenis_kelamin }}</td>
-                <td style='text-align: center;border:1px solid black;' style='text-align: center;border:1px solid black;'>
-                    @php
-                        $data = DB::table('program_studies')->where('id', $dsn->program_studi)->select('program_studies.*', 'program_studi')->first();
-                        echo $data->program_studi;
-                    @endphp
-                </td>
-                <td style='text-align: center;border:1px solid black;' style='text-align: center;border:1px solid black;'>{{ $dsn->status_aktif }}</td>
-                <td style='text-align: center;border:1px solid black;' style='text-align: center;border:1px solid black;'>{{ $dsn->no_hp }}</td>
-            </tr>
-        @endforeach --}}
     </tbody>
 </table>
-{{--
-</body>
-
-</html> --}}

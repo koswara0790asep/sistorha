@@ -86,7 +86,7 @@
                         <tbody>
                             @foreach($ruangans as $key => $ruang)
                             <tr>
-                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $ruang->id }}</td>
                                 <td class="text-center">
                                     {{ $ruang->lantai }}
                                 </td>

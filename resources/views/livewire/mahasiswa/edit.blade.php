@@ -3,7 +3,7 @@
         <ol class="breadcrumb breadcrumb-arrwo">
             <li class="breadcrumb-item">Olah Data</li>
             <li class="breadcrumb-item">Mahasiswa</li>
-            <li class="breadcrumb-item active">Edit Data</li>
+            <li class="breadcrumb-item active">Ubah Data</li>
         </ol>
     </div>
     <div class="col-md-12 stretch-card">

@@ -14,12 +14,15 @@ class Mhs extends Component
     public $kelasSelect;
     public $jadwalId;
 
+    public $statusAbsen;
+
     public function mount(DfKelas $dfkelas, DfMatkul $dfmatkul, Jadwal $jadwal)
     {
         $this->kelasSelect = $dfkelas->id;
         $this->matkulSelect = $dfmatkul->id;
         $this->jadwalId = $jadwal->id;
         // dd([$this->kelasSelect, $this->matkulSelect]);
+
     }
 
     public function render()

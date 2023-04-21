@@ -96,7 +96,7 @@
                         <tbody>
                             @foreach($jadwals as $jadw)
                             <tr>
-                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $jadw->id }}</td>
                                 <td class="text-center">
                                     @php
                                         $dataKls = DB::table('df_kelases')->where('id',

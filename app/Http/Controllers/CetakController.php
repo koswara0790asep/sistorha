@@ -113,6 +113,24 @@ class CetakController extends Controller
         ]);
     }
 
+    public function rekapAbsenMhs(Jadwal $jadwal)
+    {
+        $kelasSelect = $jadwal->kelas_id;
+        $matkulSelect = $jadwal->matkul_id;
+        $jadwalId = $jadwal->id;
+
+        // $jadwals = Jadwal::get();
+        return view('livewire.absen.rekap', [
+            'jadwalId' => $jadwalId,
+            'kelasSelect' => $kelasSelect,
+            'matkulSelect' => $matkulSelect,
+            'absensis' => $matkulSelect == null && $kelasSelect == null ?
+            ''
+            :
+            Absensi::first()->where('kelas_id', 'like', '%' . $kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $matkulSelect . '%')->get(),
+        ]);
+    }
+
     public function exportPDF()
     {
         $mahasiswas = Mahasiswa::all();

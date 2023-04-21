@@ -87,7 +87,7 @@
                         <tbody>
                             @foreach($matkuls as $mk)
                             <tr>
-                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $mk->id }}</td>
                                 <td class="text-center">
                                     @php
                                         $data = DB::table('df_matkuls')->where('id',
