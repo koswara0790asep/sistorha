@@ -136,11 +136,35 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     Route::livewire('/jadwal/edit/{id}', 'jadwal.edit')->name('jadwal.edit');
     Route::get('/jadwals/cetak', [CetakController::class, 'cetakJadwal'])->name('jadwal.cetak');
 
+    // absensi
+    Route::livewire('/absensis', 'absen.index')->name('absen.index');
+    // Route::livewire('/absen/create', 'absen.create')->name('absen.create');
+    // Route::livewire('/absen/edit/{jadwal}/{id}', 'absen.edit')->name('absen.edit');
+    // Route::get('/absensis/cetak/{jadwal}/{dfkelas}/{dfmatkul}', [CetakController::class, 'cetakAbsenMhs'])->name('absen.cetak');
+    // Route::get('/absensis/rekap/{jadwal}/{dfkelas}/{dfmatkul}', [CetakController::class, 'rekapAbsenMhs'])->name('absen.rekap');
+
     // absen->search
-    Route::livewire('/absensis/{jadwal}/{dfkelas}/{dfmatkul}', 'absen.mhs')->name('absen.mhs');
+    // Route::livewire('/absensis/{jadwal}/{dfkelas}/{dfmatkul}', 'absen.mhs')->name('absen.mhs');
 
 });
 
+Route::middleware(['auth', 'role:akademik,dosen'])->group(function () {
+    // jadwal
+    Route::livewire('/jadwals/{dosen:nidn}', 'jadwal.index')->name('jadwal.indexDosen');
+    // Route::livewire('/jadwal/create', 'jadwal.create')->name('jadwal.create');
+    // Route::livewire('/jadwal/edit/{id}', 'jadwal.edit')->name('jadwal.edit');
+    Route::get('/jadwals/cetak', [CetakController::class, 'cetakJadwal'])->name('jadwal.cetak');
+
+    // absensi
+    // Route::livewire('/absensis', 'absen.index')->name('absen.index');
+    // Route::livewire('/absen/create', 'absen.create')->name('absen.create');
+    Route::livewire('/absen/edit/{jadwal}/{id}', 'absen.edit')->name('absen.edit');
+    Route::get('/absensis/cetak/{jadwal}/{dfkelas}/{dfmatkul}', [CetakController::class, 'cetakAbsenMhs'])->name('absen.cetak');
+    Route::get('/absensis/rekap/{jadwal}/{dfkelas}/{dfmatkul}', [CetakController::class, 'rekapAbsenMhs'])->name('absen.rekap');
+
+    // absen->search
+    Route::livewire('/absensis/{jadwal}/{dfkelas}/{dfmatkul}', 'absen.mhs')->name('absen.mhs');
+});
 
 Auth::routes();
 

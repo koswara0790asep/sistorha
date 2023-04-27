@@ -85,7 +85,13 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 href="/absensis/rekap/{{ $jadwalId }}/{{ $kelasSelect }}/{{ $matkulSelect }}" target="_blank">Rekap
                                 Absen</a>
                         </div>
+                        @if (Auth::user()->role == 'dosen')
+
+                        <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}" class="btn btn-danger btn-icon-text">
+                        @else
+
                         <a href="{{ route('jadwal.index') }}" class="btn btn-danger btn-icon-text">
+                        @endif
                             <i class="btn-icon-prepend" data-feather="arrow-left"></i>
                             KEMBALI
                         </a>
@@ -289,13 +295,6 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                         $data = DB::table('mahasiswas')->where('nim', $absen->nim)->select('mahasiswas.*', 'nama',
                         'status_aktif', 'no_hp')->first();
                         @endphp
-                        {{-- @if ($alfas == 3)
-                                    <tr class="table-danger"> --}}
-                        {{-- @elseif ($alfas == '3')
-                                    <tr id="alfas"> --}}
-                        {{-- @else
-                                    <tr id="tidak_aktif">
-                                @endif --}}
 
                         <tr class="{{ $data->status_aktif == 'Aktif' ? '' : 'table-danger' }}">
                             <td>{{ $loop->iteration }}</td>
@@ -329,18 +328,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat1 ?? '00:00:00';
+                                @if ($absen->telat1 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat1 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -369,19 +373,24 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat2 ?? '00:00:00';
+                                @if ($absen->telat2 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
-                                <p></p>
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat2 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -410,18 +419,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat3 ?? '00:00:00';
+                                @if ($absen->telat3 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat3 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -450,18 +464,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat4 ?? '00:00:00';
+                                @if ($absen->telat4 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat4 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -490,18 +509,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat5 ?? '00:00:00';
+                                @if ($absen->telat5 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat5 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -530,18 +554,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat6 ?? '00:00:00';
+                                @if ($absen->telat6 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat6 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -570,18 +599,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat7 ?? '00:00:00';
+                                @if ($absen->telat7 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat7 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -610,18 +644,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat8 ?? '00:00:00';
+                                @if ($absen->telat8 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat8 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -650,18 +689,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat9 ?? '00:00:00';
+                                @if ($absen->telat9 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat9 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -690,18 +734,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat10 ?? '00:00:00';
+                                @if ($absen->telat10 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat10 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -730,18 +779,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat11 ?? '00:00:00';
+                                @if ($absen->telat11 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat11 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -770,18 +824,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat12 ?? '00:00:00';
+                                @if ($absen->telat12 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat12 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -810,18 +869,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat13 ?? '00:00:00';
+                                @if ($absen->telat13 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat13 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -850,18 +914,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat14 ?? '00:00:00';
+                                @if ($absen->telat14 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat14 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -890,18 +959,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat15 ?? '00:00:00';
+                                @if ($absen->telat15 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat15 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -930,18 +1004,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat16 ?? '00:00:00';
+                                @if ($absen->telat16 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat16 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -970,18 +1049,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat17 ?? '00:00:00';
+                                @if ($absen->telat17 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat17 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -1010,39 +1094,34 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 @endif
                             </td>
                             <td>
-                                @php
-                                $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                                $datang = $absen->telat18 ?? '00:00:00';
+                                @if ($absen->telat18 == null)
 
-                                $wkawal = new DateTime($awal ?? '00:00:00');
-                                $wkdatang = new DateTime($datang ?? '00:00:00');
-                                $wktelat = $wkdatang->diff($wkawal);
-                                @endphp
-                                @if ($wktelat->format('%i') != '0')
-                                {{ $wktelat->format('%i') ?? '' }}
                                 @else
 
+                                    @php
+                                    $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                    $datang = $absen->telat18 ?? '00:00:00';
+
+                                    $wkawal = new DateTime($awal ?? '00:00:00');
+                                    $wkdatang = new DateTime($datang ?? '00:00:00');
+                                    $wktelat = $wkdatang->diff($wkawal);
+                                    @endphp
+                                    @if ($wktelat->format('%i') != '0')
+                                    {{ $wktelat->format('%i') ?? '' }}
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                             @php
-                            $jmlHadirMhs =
-                            $h1+$h2+$h3+$h4+$h5+$h6+$h7+$h8+$h9+$h10+$h11+$h12+$h13+$h14+$h15+$h16+$h17+$h18;
-                            $persentase = 100 * ($jmlHadirMhs/18);
-                            // $jmlAlfa = 18 - $jmlHadirMhs;
-
-                            // dd($jmlSakit);
+                                $jmlHadirMhs = $h1+$h2+$h3+$h4+$h5+$h6+$h7+$h8+$h9+$h10+$h11+$h12+$h13+$h14+$h15+$h16+$h17+$h18;
+                                $persentase = 100 * ($jmlHadirMhs/18);
                             @endphp
                             <td>
-                                {{-- {{ $statusAbsen->hadir }} --}}
                                 {{ $jmlHadirMhs }}
                             </td>
                             <td>
-                                {{-- @if ($alfas == '0')
 
-                                        @else
-                                        {{ $alfas }}
-
-                                @endif --}}
                                 <a href="#" class="{{ $alfas >= '3' ? 'btn btn-warning' : ''}}" disable>{{ $alfas }}</a>
                             </td>
                             <td>
@@ -1061,7 +1140,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                             </td>
 
                             <td>{{ number_format($persentase, 2) ?? '' }}%</td>
-                            {{-- @if (Auth::user()->role == 'dosen') --}}
+                            @if (Auth::user()->role == 'dosen')
                             <td>
                                 <a href="{{ $data->status_aktif == 'Aktif' ? '/absen/edit/'.$jadwalId.'/'.$absen->id.'' : '#' }}"
                                     class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
@@ -1070,8 +1149,6 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AAnda sudah tidak mengikuti perkuliahan saya sebanyak 3x. Mohon diperhatikan lagi kehadirannya!&type=phone_number&app_absent=0"
                                     class="btn btn-sm btn-secondary btn-icon" target="_blank"><i
                                         class="mdi mdi-whatsapp"></i></a>
-                                {{-- <a onclick="tegurMhs({{ $absen->id }})" class="btn btn-sm btn-secondary
-                                btn-icon"><i class="mdi mdi-whatsapp"></i></a> --}}
 
                                 @elseif ($alfas >= '3')
                                 <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AAnda sudah tidak mengikuti perkuliahan saya sudah lebih dari 3x. Anda sudah tidak dapat mengikuti ujian!&type=phone_number&app_absent=0"
@@ -1080,167 +1157,41 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @endif
                             </td>
+                            @endif
 
-                            {{-- @endif --}}
                         </tr>
-                        {{-- @php
-                                    $jmlHadir1 = 0;
-                                    foreach ($absen->pertemuan1 as $hadir) {
-                                        if ($hadir == 'Hadir') {
-                                            $jmlHadir1++;
-                                        }
-                                    }
-                                @endphp --}}
-                        {{-- @if (DB::table('mahasiswas')->where('status_aktif', 'Tidak Aktif')->first())
-                                    {{-- @php
-                                        $alfas = 0;
-                                    @endphp --}}
-                        {{-- <style>
-                                        #tidak_aktif {
-                                            background-color: red;
-                                        }
-                                    </style>
-                                @else
-                                @endif --}}
+
                         @endforeach
                         @endif
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            @for ($i = 1; $i < 45; $i++)
+                                <td></td>
+                            @endfor
+
                             @if (Auth::user()->role == 'dosen')
                             <td></td>
                             @endif
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            @for ($i = 1; $i < 45; $i++)
+                                <td></td>
+                            @endfor
+
                             @if (Auth::user()->role == 'dosen')
                             <td></td>
                             @endif
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            @for ($i = 1; $i < 45; $i++)
+                                <td></td>
+                            @endfor
+
                             @if (Auth::user()->role == 'dosen')
                             <td></td>
                             @endif
                         </tr>
-                        <tr>
-                            <td colspan="3" class="text-center">Jumlah Mahasiswa Hadir</td>
+                        <tr class="text-center">
+                            <td colspan="3">Jumlah Mahasiswa Hadir</td>
                             <td>{{ $jmlHadir1 }}</td>
                             <td></td>
                             <td>{{ $jmlHadir2  }} </td>
@@ -1276,8 +1227,9 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                             <td>{{ $jmlHadir17 }} </td>
                             <td></td>
                             <td>{{ $jmlHadir18 }} </td>
-                            <td></td>
-                            <td></td>
+                            @for ($i = 1; $i < 7; $i++)
+                                <td></td>
+                            @endfor
                             @if (Auth::user()->role == 'dosen')
                             <td></td>
                             @endif

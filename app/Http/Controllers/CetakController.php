@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 // use Barryvdh\DomPDF\Facade\Pdf;
 use Barryvdh\DomPDF\Facade\PDF;
 use FontLib\Table\Type\post;
+use Illuminate\Support\Facades\Auth;
 
 class CetakController extends Controller
 {
@@ -24,16 +25,12 @@ class CetakController extends Controller
         $mahasiswas = Mahasiswa::get();
         $mahasiswas = Mahasiswa::orderBy('nim','asc')->get();
         return view('livewire.mahasiswa.cetak', compact('mahasiswas'));
-
-        return redirect()->route('mahasiswa.index');
     }
 
     public function cetakProdi()
     {
         $programstudies = ProgramStudi::get();
         return view('livewire.programstudi.cetak', compact('programstudies'));
-
-        return redirect()->route('programstudi.index');
     }
 
     public function cetakDFkelas()
@@ -41,8 +38,6 @@ class CetakController extends Controller
         $dfkelases = DfKelas::get();
         $dfkelases = DfKelas::orderBy('kode','asc')->get();
         return view('livewire.dfkelas.cetak', compact('dfkelases'));
-
-        return redirect()->route('dfkelas.index');
     }
 
     public function cetakKelas()
@@ -51,8 +46,6 @@ class CetakController extends Controller
         $kelases = Kelas::get();
         // $dosens = DfKelas::orderBy('kode','asc')->get();
         return view('livewire.kelas.cetak', compact(['dosens', 'kelases']));
-
-        return redirect()->route('kelas.index');
     }
 
     public function cetakKelasmhsw()
@@ -62,8 +55,6 @@ class CetakController extends Controller
         $kelasmhsws = KelasMhsw::get();
         // $dosens = DfKelas::orderBy('kode','asc')->get();
         return view('livewire.kelasmhs.cetak', compact(['mahasiswas', 'kelases', 'kelasmhsws']));
-
-        return redirect()->route('kelasmhs.index');
     }
 
     public function cetakRuangan()
@@ -71,24 +62,31 @@ class CetakController extends Controller
         $ruangans = Ruangan::get();
         $ruangans = Ruangan::orderBy('kode','asc')->get();
         return view('livewire.ruangan.cetak', compact('ruangans'));
-
-        return redirect()->route('ruangan.index');
     }
 
     public function cetakDFmatkul()
     {
         $dfmatkuls = DfMatkul::get();
         return view('livewire.dfmatkul.cetak', compact('dfmatkuls'));
-
-        return redirect()->route('dfmatkul.index');
     }
 
     public function cetakJadwal()
     {
-        $jadwals = Jadwal::get();
-        return view('livewire.jadwal.cetak', compact('jadwals'));
+        $dosenId = null;
 
-        return redirect()->route('dfmatkul.index');
+        if (Auth::user()->role == 'dosen') {
+            $dosen = Dosen::where('nidn', Auth::user()->username)->first();
+            if ($dosen) {
+                $dosenId = $dosen->id;
+            }
+        }
+        // dd($dosenId);
+
+        return view('livewire.jadwal.cetak', [
+            'jadwals' => $dosenId == null ?
+            Jadwal::get() :
+            Jadwal::first()->where('dosen_id', 'like', '%' . $dosenId . '%')->get(),
+        ]);
     }
 
     public $matkulSelect;

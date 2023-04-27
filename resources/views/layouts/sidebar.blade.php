@@ -88,7 +88,7 @@
                     <span class="link-title">Manual Book / Tutorial</span>
                 </a>
             </li>
-            {{-- @elseif (Auth::user()->role == 'dosen')
+            @elseif (Auth::user()->role == 'dosen')
             <li class="nav-item nav-category">Main</li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -98,27 +98,14 @@
             </li>
             <li class="nav-item nav-category">web apps</li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"
-                    aria-controls="emails">
-                    <i class="link-icon" data-feather="mail"></i>
-                    <span class="link-title">Email</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="emails">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="pages/email/inbox.html" class="nav-link">Inbox</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/email/read.html" class="nav-link">Read</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/email/compose.html" class="nav-link">Compose</a>
-                        </li>
-                    </ul>
-                </div>
+                <li class="nav-item">
+                    <a href="/jadwals/{{ Auth::user()->username }}" class="nav-link">
+                        <i class="link-icon" data-feather="book"></i>
+                        <span class="link-title">Jadwal Saya</span>
+                    </a>
+                </li>
             </li>
-            @elseif (Auth::user()->role == 'akademik')
+            {{-- @elseif (Auth::user()->role == 'akademik')
             <li class="nav-item nav-category">Main</li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
