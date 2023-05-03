@@ -240,18 +240,23 @@
                     {{ $h1 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat1 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat1 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -270,18 +275,23 @@
                     {{ $h2 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat2 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat2 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -300,18 +310,23 @@
                     {{ $h3 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat3 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat3 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -330,18 +345,23 @@
                     {{ $h4 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat4 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat4 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -360,18 +380,23 @@
                     {{ $h5 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat5 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat5 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -390,18 +415,23 @@
                     {{ $h6 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat6 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat6 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -420,18 +450,23 @@
                     {{ $h7 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat7 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat7 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -450,18 +485,23 @@
                     {{ $h8 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat8 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat8 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -480,18 +520,23 @@
                     {{ $h9 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat9 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat9 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -510,18 +555,23 @@
                     {{ $h10 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat10 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat10 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -540,18 +590,23 @@
                     {{ $h11 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat11 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat11 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -570,18 +625,23 @@
                     {{ $h12 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat12 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat12 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -600,18 +660,23 @@
                     {{ $h13 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat13 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat13 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -630,18 +695,23 @@
                     {{ $h14 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat14 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat14 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -660,18 +730,23 @@
                     {{ $h15 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat15 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat15 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -690,18 +765,23 @@
                     {{ $h16 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat16 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat16 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -720,18 +800,23 @@
                     {{ $h17 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat17 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat17 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -750,18 +835,23 @@
                     {{ $h18 }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
-                    @php
+                    @if ($absen->telat18 == null)
+
+                    @else
+
+                        @php
                         $awal = $dtJadwal->jam_awal ?? '00:00:00';
                         $datang = $absen->telat18 ?? '00:00:00';
 
                         $wkawal = new DateTime($awal ?? '00:00:00');
                         $wkdatang = new DateTime($datang ?? '00:00:00');
                         $wktelat = $wkdatang->diff($wkawal);
-                    @endphp
-                    @if ($wktelat->format('%i') != '0')
+                        @endphp
+                        @if ($wktelat->format('%i') != '0')
                         {{ $wktelat->format('%i') ?? '' }}
-                    @else
+                        @else
 
+                        @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>{{ $absen->keterangan }}</td>

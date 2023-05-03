@@ -105,6 +105,7 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     Route::livewire('/dfkelas/create', 'dfkelas.create')->name('dfkelas.create');
     Route::livewire('/dfkelas/edit/{id}', 'dfkelas.edit')->name('dfkelas.edit');
     Route::get('/dfkelases/cetak', [CetakController::class, 'cetakDFkelas'])->name('dfkelas.cetak');
+    Route::get('/absensis/kelas/{dfkelas}/rekap', [CetakController::class, 'rekapAbsenKelas'])->name('dfkelas.rekap');
 
     //kelas
     Route::livewire('/kelass', 'kelas.index')->name('kelas.index');

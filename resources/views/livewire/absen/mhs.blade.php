@@ -17,51 +17,8 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                     <li class="breadcrumb-item active" aria-current="page"> Kelas {{ $dfKelas->kode }}</li>
                 </ol>
             </div>
-            {{-- <div class="col-md-4" style="text-align: right;">
-                <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
-                    <i class="mdi mdi-printer"></i> Cetak</a> --}}
-            {{-- <a href="/absen/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
-                    <i class="mdi mdi-account-plus"></i> Tambah Data</a> --}}
-            <!-- Button trigger modal -->
-            {{-- <button type="button" onclick="toggle()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
-                    <i class="mdi mdi-file-import"></i> Import XLSX</button> --}}
-            {{-- </div> --}}
         </div>
     </div>
-
-    {{-- Toggle --}}
-    {{-- <div id="content" class="mb-3" style="display: block;">
-        <div class="card">
-
-            <div class="card-header">
-                <div class="card-title mt-3">
-                    <h4>
-                        <i class="mdi mdi-file-import"></i> Impor Absen Dari Exel
-                    </h4>
-                </div>
-            </div>
-            <div class="card-body">
-                <form action="">
-                    <div>
-                        <input type="file" name="importFile" id="importFile" wire:model="importFile" class="form-control @error('importFile') is-invalid @enderror">
-                        {{-- <span class="input-group-text"><i class="mdi mdi-file"></i></span> --}}
-    {{-- @error('importFile')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-    </span>
-    @enderror
-</div>
-<br>
-<button class="btn {{ $importFile != null ? 'btn-success' : 'btn-secondary' }} btn-sm" type="submit"
-    wire:click.prevent="import"><i class="mdi mdi-content-save"></i> Impor Data</button> --}}
-{{-- <button class="btn btn-primary btn-sm" type="submit" wire:click="download"><i class="mdi mdi-download"></i> Unduh Contoh</button> --}}
-{{-- <a href="{{ asset('/sheets/ex-mhs.xlsx') }}" class="btn btn-secondary btn-sm" @disabled(true)><i
-    class="mdi mdi-download"></i> Unduh Contoh</a> --}}
-{{--
-                </form>
-            </div>
-        </div>
-    </div> --}}
 
 <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
@@ -69,8 +26,6 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
             <div class="card-title mt-3">
                 <h4 style="margin-top: 10px;"><b><i class="mdi mdi-file-document"></i> Tabel Absen</b></h4>
                 <div style="text-align: right; margin-top: -30px;">
-                    {{-- <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend">
-                            <i class="mdi mdi-printer"></i> Cetak</a> --}}
                     <div class="dropdown">
                         <button class="btn btn-primary btn-icon-text btn-icon-prepend dropdown-toggle" type="button"
                             id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -1117,23 +1072,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 $jmlHadirMhs = $h1+$h2+$h3+$h4+$h5+$h6+$h7+$h8+$h9+$h10+$h11+$h12+$h13+$h14+$h15+$h16+$h17+$h18;
                                 $persentase = 100 * ($jmlHadirMhs/18);
                             @endphp
-                            <td>
-                                {{ $jmlHadirMhs }}
+                            <td class="text-center">
+                                {{ $jmlHadirMhs == 0 ? '-' : $jmlHadirMhs }}
                             </td>
-                            <td>
+                            <td class="text-center">
 
-                                <a href="#" class="{{ $alfas >= '3' ? 'btn btn-warning' : ''}}" disable>{{ $alfas }}</a>
+                                <a href="#" class="{{ $alfas >= '3' ? 'btn btn-warning' : ''}}" disable>{{ $alfas == 0 ? '-' : $alfas}}</a>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @if ($izins == '0')
-
+                                -
                                 @else
                                 {{ $izins }}
                                 @endif
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @if ($sakits == '0')
-
+                                -
                                 @else
                                 {{ $sakits }}
                                 @endif

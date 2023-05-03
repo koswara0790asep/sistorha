@@ -103,13 +103,13 @@
                                     @php
                                         $prodi = DB::table('program_studies')->where('id', $dfKelas->prodi_id ?? '')->select('program_studies.*', 'program_studi')->first();
                                     @endphp
-                                    {{ $prodi->program_studi ?? ''  }}
+                                    {{ $prodi->program_studi ?? '..............................................................................................'  }}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Mata Kuliah</td>
                                 <td>:</td>
-                                <td>{{ $dfMatkul->nama_matkul ?? '' }}</td>
+                                <td>{{ $dfMatkul->nama_matkul ?? '..............................................................................................' }}</td>
                             </tr>
                             <tr>
                                 <td>Nama Dosen</td>
@@ -118,7 +118,7 @@
                                     @php
                                         $dosen = DB::table('dosens')->where('id', $dfMatkul->dosen ?? '')->select('dosens.*', 'nama')->first();
                                     @endphp
-                                    {{ $dosen->nama ?? '' }}
+                                    {{ $dosen->nama ?? '..............................................................................................' }}
                                 </td>
                             </tr>
                         </table>
@@ -128,17 +128,17 @@
                             <tr>
                                 <td>Kelas</td>
                                 <td>:</td>
-                                <td>{{ $dfKelas->nama_kelas ?? '' }}</td>
+                                <td>{{ $dfKelas->nama_kelas ?? '..............................................................................................' }}</td>
                             </tr>
                             <tr>
                                 <td>Periode</td>
                                 <td>:</td>
-                                <td>{{ $dfKelas->periode ?? '' }}</td>
+                                <td>{{ $dfKelas->periode ?? '..............................................................................................' }}</td>
                             </tr>
                             <tr>
                                 <td>Semester</td>
                                 <td>:</td>
-                                <td>{{ $dfMatkul->semester ?? '' }}</td>
+                                <td>{{ $dfMatkul->semester ?? '..............................................................................................' }}</td>
                             </tr>
                         </table>
                     </div>

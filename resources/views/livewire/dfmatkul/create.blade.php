@@ -34,7 +34,7 @@
                     <div class="col-sm-6">
                         <label for="nama_matkul">Nama Mata Kuliah: </label>
                         <div class="mb-3 input-group">
-                            <input type="text" id="nama_matkul" name="nama_matkul" wire:model="nama_matkul" class="form-control @error('nama_matkul') is-invalid @enderror" placeholder="Masukkan Nama Kelas || Con: IF2019-C">
+                            <input type="text" id="nama_matkul" name="nama_matkul" wire:model="nama_matkul" class="form-control @error('nama_matkul') is-invalid @enderror" placeholder="Masukkan Nama Mata Kuliah">
                             <span class="input-group-text"><h4><i class="mdi mdi-account"></i></h4></span>
                             @error('nama_matkul')
                             <span class="invalid-feedback">

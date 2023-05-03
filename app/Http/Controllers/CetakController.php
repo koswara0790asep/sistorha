@@ -40,6 +40,20 @@ class CetakController extends Controller
         return view('livewire.dfkelas.cetak', compact('dfkelases'));
     }
 
+    public function rekapAbsenKelas(DfKelas $dfkelas)
+    {
+        $kelas = $dfkelas->id;
+        // dd($kelas);
+        // $dfkelases = DfKelas::get();
+        // $dfkelases = DfKelas::orderBy('kode','asc')->get();
+        return view('livewire.dfkelas.rekap', [
+            'kelas' => $kelas,
+            'absens' => $kelas == null ?
+            '' :
+            Absensi::firstOrFail()->where('kelas_id', 'like', '%' . $kelas . '%')->get(),
+        ]);
+    }
+
     public function cetakKelas()
     {
         $dosens = Dosen::get();

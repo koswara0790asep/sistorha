@@ -84,7 +84,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
             <th style='text-align: center;border:1px solid black;' rowspan="2">NIM</th>
             <th style='text-align: center;border:1px solid black;' rowspan="2">NAMA</th>
             <th style='text-align: center;border:1px solid black;' colspan="18">PERTEMUAN KE-</th>
-            <th style='text-align: center;border:1px solid black;' colspan="5">KET.</th>
+            <th style='text-align: center;border:1px solid black;' colspan="2">KET.</th>
         </tr>
         <tr>
             <td style='text-align: center;border:1px solid black;'>1</td>
@@ -105,11 +105,11 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
             <td style='text-align: center;border:1px solid black;'>16</td>
             <td style='text-align: center;border:1px solid black;'>17</td>
             <td style='text-align: center;border:1px solid black;'>18</td>
-            <th style='text-align: center;border:1px solid black;'>H</th>
-            <th style='text-align: center;border:1px solid black;'>A</th>
+            <th style='text-align: center;border:1px solid black;'>Total Masuk</th>
+            {{-- <th style='text-align: center;border:1px solid black;'>A</th>
             <th style='text-align: center;border:1px solid black;'>I</th>
-            <th style='text-align: center;border:1px solid black;'>S</th>
-            <th style='text-align: center;border:1px solid black;'>(%)</th>
+            <th style='text-align: center;border:1px solid black;'>S</th> --}}
+            <th style='text-align: center;border:1px solid black;'>Persentase</th>
         </tr>
     </thead>
     <tbody>
@@ -636,23 +636,23 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 $persentase = 100 * ($jmlHadirMhs/18);
             @endphp
             <td style='text-align: center;border:1px solid black;'>{{ $jmlHadirMhs }}</td>
-            <td style='text-align: center;border:1px solid black;{{ $alfas >= '3' ? 'background-color: yellow;' : '' }}'>{{ $alfas }}</td>
+            {{-- <td style='text-align: center;border:1px solid black;{{ $alfas >= '3' ? 'background-color: yellow;' : '' }}'>{{ $alfas }}</td>
             <td style='text-align: center;border:1px solid black;'>{{ $izins }}</td>
-            <td style='text-align: center;border:1px solid black;'>{{ $sakits }}</td>
+            <td style='text-align: center;border:1px solid black;'>{{ $sakits }}</td> --}}
             <td style='text-align: center;border:1px solid black;'>{{ number_format($persentase, 2) ?? '' }}%</td>
         </tr>
 
         @endforeach
         @endif
 
-        @for ($j = 0; $j < 3; $j++)
+        {{-- @for ($j = 0; $j < 3; $j++)
             <tr>
                 <td style='text-align: center;border:1px solid black; color: white;'> .</td>
                 @for ($i = 0; $i < 25; $i++)
                     <td style='text-align: center;border:1px solid black;'></td>
                 @endfor
             </tr>
-        @endfor
+        @endfor --}}
 
         <tr>
             <td style='text-align: center;border:1px solid black;' colspan="3"><b><i>Jumlah Mhs</i></b></td>
@@ -676,19 +676,18 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
             <td style='text-align: center;border:1px solid black;'>{{ $jmlHadir18 ?? '' }} </td>
             <td style='text-align: center;border:1px solid black;'></td>
             <td style='text-align: center;border:1px solid black;'></td>
+            {{-- <td style='text-align: center;border:1px solid black;'></td>
             <td style='text-align: center;border:1px solid black;'></td>
-            <td style='text-align: center;border:1px solid black;'></td>
-            <td style='text-align: center;border:1px solid black;'></td>
-
+            <td style='text-align: center;border:1px solid black;'></td> --}}
         </tr>
-        <tr>
+        {{-- <tr>
             <td colspan="3" style='text-align: center;border:1px solid black;'> <b><i>Tanda Tangan Dosen</i></b></td>
             @for ($i = 0; $i < 23; $i++)
                 <td style='text-align: center;border:1px solid black;'></td>
             @endfor
 
-        </tr>
-        <tr>
+        </tr> --}}
+        {{-- <tr>
             <td colspan="3" style='text-align: center;border:1px solid black;'> <b><i>Jumlah Jam</i></b></td>
             @for ($i = 0; $i < 18; $i++)
                 <td style='text-align: center;border:1px solid black;'>{{ $dtJadwal->jml_jam }}</td>
@@ -699,7 +698,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
             <td style='text-align: center;border:1px solid black;'></td>
             <td style='text-align: center;border:1px solid black;'></td>
 
-        </tr>
+        </tr> --}}
 
     </tbody>
 </table>

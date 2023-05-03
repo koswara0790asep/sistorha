@@ -139,7 +139,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <br>
+                                    <a href="/absensis/kelas/{{ $kls->id }}/rekap" class="btn btn-sm btn-info btn-icon" target="_blank"><i
+                                        class="mdi mdi-file-document"></i></a>
                                     {{-- <a href="{{ route('dosen.show', $kls->id) }}" class="shadow btn btn-info"><i
                                         class="icon-eye"></i> SHOW</a> --}}
                                     {{-- <div class="mt-1">
