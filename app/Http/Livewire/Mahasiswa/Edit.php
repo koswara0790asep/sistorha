@@ -89,8 +89,8 @@ class Edit extends Component
         }
 
         //flash message
-        // session()->flash('message', 'Data Mahasiswa ' . $this->nama . ' Berhasil Diperbaharui!');
         Alert::success('BERHASIL!','Data Mahasiswa ' . $this->nama . ' Berhasil Diperbaharui!');
+
         // redirect
         return redirect()->route('mahasiswa.index');
     }

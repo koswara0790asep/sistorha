@@ -39,17 +39,9 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role }}</td>
                                 <td>{{ \Carbon\Carbon::parse($user->updated_at)->isoFormat('dddd, D MMMM YYYY') }}
-                                    {{-- @php
-                                        // setlocale(LC_TIME, 'id_ID.UTF-8');
-                                        // echo $user->updated_at->format('l, d F Y');
-
-                                        echo $user->updated_at->translatedFormat('l, j F Y');
-                                    @endphp --}}
                                 </td>
                                 <td>
-                                    {{-- <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-info"><i class="link-icon" data-feather="eye"></i></a> --}}
                                     <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-warning btn-icon"><i data-feather="edit"></i></a>
-                                    {{-- <a href="" class="btn btn-sm btn-danger btn-icon"><i data-feather="trash"></i></a> --}}
                                     <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
                                         data-bs-target="#id_{{ $user->id }}">
                                         <i data-feather="trash"></i>

@@ -22,13 +22,12 @@ class Index extends Component
     public function render()
     {
         return view('livewire.absen.index', [
-            // 'absensis' => Absensi::all(),
             'matkuls' => DfMatkul::all(),
             'kelases' => DfKelas::all(),
             'absensis' => $this->matkulSelect == null || $this->kelasSelect == null ?
             ''
             :
-            Absensi::first()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $this->matkulSelect . '%')->get(),
+            Absensi::first()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where('matkul_id', 'like', '%' . $this->matkulSelect . '%')->get(),
         ]);
     }
 
@@ -38,7 +37,6 @@ class Index extends Component
             'importFile' => 'required|mimes:xlsx'
         ]);
 
-        // dd($this->importFile);
         $file = $this->importFile;
         $reader = IOFactory::createReader('Xlsx');
         $spreadsheet = $reader->load($file->getRealPath());
@@ -58,7 +56,6 @@ class Index extends Component
 
         // Simpan data ke database
         foreach ($rows as $row){
-            // dd($row);
             Absensi::firstOrCreate(
                 [
                     'nim' => $row[3],
@@ -71,7 +68,7 @@ class Index extends Component
 
         // Reset form dan property
         $this->importFile = null;
-        // session()->flash('message', 'Data mahasiswa berhasil diimport.');
+
         Alert::success('BERHASIL!','Data absen berhasil diimport');
 
         return redirect()->route('absen.index');

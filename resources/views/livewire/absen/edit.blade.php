@@ -1,3 +1,5 @@
+@if (Auth::user()->role == 'dosen')
+
 @php
     $dfKelas = DB::table('df_kelases')->where('id', $this->kelas_id ?? '')->select('df_kelases.*', 'id', 'prodi_id', 'kode', 'periode')->first();
     $dfMatkul = DB::table('df_matkuls')->where('id', $this->matkul_id ?? '')->select('df_matkuls.*', 'id', 'kode_matkul', 'nama_matkul', 'dosen')->first();
@@ -89,3 +91,4 @@
         </div>
     </div>
 </div>
+@endif

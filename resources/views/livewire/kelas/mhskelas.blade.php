@@ -20,7 +20,6 @@
         </table>
     </h6>
     <hr>
-        {{-- <a href="{{ route('kelas.create') }}" class="shadow btn btn-success mb-3"><i class="icon-add"></i> TAMBAH KELAS</a> --}}
         <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
@@ -51,6 +50,5 @@
     </div>
     <div class="buttons mt-3">
         <button onclick="window.history.back()" class="btn btn-danger shadow"><i class="icon-close"></i> Kembali</button>
-        {{-- <a href="{{ route('mahasiswa.index') }}" class="btn btn-primary shadow"><i class="fa fa-close"></i> Kembali</a> --}}
     </div>
 </div>

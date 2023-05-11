@@ -35,7 +35,6 @@
                 <form action="">
                     <div>
                         <input type="file" name="importFile" id="importFile" wire:model="importFile" class="form-control @error('importFile') is-invalid @enderror">
-                        {{-- <span class="input-group-text"><i class="mdi mdi-file"></i></span> --}}
                         @error('importFile')
                         <span class="invalid-feedback">
                             {{ $message }}
@@ -44,7 +43,6 @@
                     </div>
                     <br>
                     <button class="btn {{ $importFile != null ? 'btn-success' : 'btn-secondary' }} btn-sm" type="submit" wire:click.prevent="import"><i class="mdi mdi-content-save"></i> Impor Data</button>
-                    {{-- <button class="btn btn-primary btn-sm" type="submit" wire:click="download"><i class="mdi mdi-download"></i> Unduh Contoh</button> --}}
                     <a href="{{ asset('/sheets/ex-mhs.xlsx') }}" class="btn btn-info btn-sm" download><i class="mdi mdi-download"></i> Unduh Contoh</a>
 
                 </form>
@@ -84,7 +82,6 @@
                                 <td>{{ $mhs->nim }}</td>
                                 <td>{{ $mhs->nama }}</td>
                                 <td>
-                                    {{-- {{ $mhs->program_studi }} --}}
                                 @php
                                     $data = DB::table('program_studies')->where('id', $mhs->program_studi)->select('program_studies.*', 'program_studi')->first();
                                     echo $data->program_studi;
@@ -98,13 +95,7 @@
                                 </td>
                                 <td>+62{{ $mhs->no_hp }}</td>
                                 <td class="text text-center">
-                                    {{-- <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-info"><i class="link-icon" data-feather="eye"></i></a> --}}
                                     <a href="{{ route('mahasiswa.edit', $mhs->id) }}" class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
-                                    {{-- <button wire:click="destroy" class="btn btn-sm btn-danger btn-icon"><i data-feather="trash"></i></button> --}}
-                                    {{-- <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
-                                        data-bs-target="#id_{{ $mhs->id }}">
-                                        <i class="mdi mdi-delete"></i>
-                                    </button> --}}
 
                                     <!-- Modal -->
                                     <div class="modal fade text-center text-wrap" id="id_{{ $mhs->id }}" tabindex="-1" aria-labelledby="id_{{ $mhs->id }}Label"

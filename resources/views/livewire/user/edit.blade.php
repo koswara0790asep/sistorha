@@ -16,7 +16,6 @@
             </h4>
         </div>
         <div class="card-body">
-    {{-- <link rel="stylesheet" href="{{ asset('/assets/vendors/sweetalert2/sweetalert2.min.css') }}"> --}}
             @if ($this->userId == null || $this->username == null)
             <div class="main-wrapper">
                 <div class="page-wrapper full-page">

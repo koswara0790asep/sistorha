@@ -16,7 +16,6 @@
             </h4>
         </div>
         <div class="card-body">
-    {{-- <link rel="stylesheet" href="{{ asset('/assets/vendors/sweetalert2/sweetalert2.min.css') }}"> --}}
             @if ($userId != Auth::user()->id)
 
                 <div class="main-wrapper">
@@ -48,7 +47,6 @@
                             <div class="input-group">
                                 <input id="oldpassword" name="oldpassword" type="password" wire:model="oldpassword" class="form-control @error('oldpassword') is-invalid @enderror" placeholder="Masukkan Kode Unik (NIM/NIDN)">
                                 <a class="input-group-text toggle-password" onclick="oldPasswordToggle()" id="toggle-old" ><h4><i class="mdi mdi-eye-off"></h4></i></a>
-                                {{-- <span class="input-group-text"><h4><i class="mdi mdi-eye"></i></h4></span> --}}
                                 @error('oldpassword')
                                     <span class="invalid-feedback">
                                         {{ $message }}
@@ -65,7 +63,6 @@
                             <div class="input-group">
                                 <input id="newpassword" name="newpassword" type="password" wire:model="newpassword" class="form-control @error('newpassword') is-invalid @enderror" placeholder="Masukkan Nama Lengkap">
                                 <a class="input-group-text toggle-password" onclick="newPasswordToggle()" id="toggle-new" ><h4><i class="mdi mdi-eye-off"></h4></i></a>
-                                {{-- <span class="input-group-text"><h4><i class="mdi mdi-eye"></i></h4></span> --}}
                                 @error('newpassword')
                                     <span class="invalid-feedback">
                                         {{ $message }}
@@ -82,7 +79,6 @@
                             <div class="input-group">
                                 <input id="confirmpassword" name="confirmpassword" type="password" wire:model="confirmpassword" class="form-control @error('confirmpassword') is-invalid @enderror" placeholder="Masukkan Alamat E-mail">
                                 <a class="input-group-text toggle-password" onclick="conPasswordToggle()" id="toggle-con" ><h4><i class="mdi mdi-eye-off"></h4></i></a>
-                                {{-- <span class="input-group-text"><h4><i class="mdi mdi-eye"></i></h4></span> --}}
                                 @error('confirmpassword')
                                     <span class="invalid-feedback">
                                         {{ $message }}

@@ -113,13 +113,6 @@ class Edit extends Component
 
     public function update()
     {
-        // $this->validate([
-        //     'matkul_id' => 'required',
-        //     'kelas_id' => 'required',
-        //     'nim' => 'required',
-        //     'semester' => 'required',
-
-        // ]);
 
         if ($this->absenId) {
             $absen = Absent::find($this->absenId);
@@ -172,11 +165,9 @@ class Edit extends Component
         }
 
         //flash message
-        // session()->flash('message', 'Data absen ' . $this->nama . ' Berhasil Diperbaharui!');
         Alert::success('BERHASIL!', 'Absen berhasil diinputkan!');
 
         // redirect
-        // return redirect()->back();
         return redirect('/absensis/'.$this->jadwalId.'/'.$this->kelas_id.'/'.$this->matkul_id.'');
     }
 

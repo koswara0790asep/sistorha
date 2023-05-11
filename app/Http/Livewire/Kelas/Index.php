@@ -23,7 +23,6 @@ class Index extends Component
 
     public function render()
     {
-        // $dosens = Dosen::all();
         $kelases = Kelas::all();
         return view('livewire.kelas.index', compact(['kelases']));
     }

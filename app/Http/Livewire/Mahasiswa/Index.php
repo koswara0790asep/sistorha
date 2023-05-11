@@ -77,9 +77,6 @@ class Index extends Component
             $mahasiswa->delete();
         }
 
-        // $user->delete();
-        // $mahasiswa->delete();
-
         //flash message
         Alert::success('Berhasil!','Data mahasiswa berhasil terhapus!');
 
@@ -154,7 +151,6 @@ class Index extends Component
 
         // Simpan data ke database
         foreach ($rows as $row){
-            // dd($row);
             Mahasiswa::firstOrCreate(
                 [
                     'nim' => $row[0],
@@ -178,7 +174,7 @@ class Index extends Component
 
         // Reset form dan property
         $this->importFile = null;
-        // session()->flash('message', 'Data mahasiswa berhasil diimport.');
+
         Alert::success('BERHASIL!','Data mahasiswa berhasil diimport');
 
         return redirect()->route('mahasiswa.index');

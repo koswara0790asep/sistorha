@@ -385,7 +385,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 @php
                 if ($absen->pertemuan9 == 'Hadir'){
                 $h9 = 1;
-                $jmlHadir1++;
+                $jmlHadir9++;
                 } elseif ($absen->pertemuan9 == 'Alfa') {
                 $h9 = 0;
                 $alfas++;
@@ -654,7 +654,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
             </tr>
         @endfor --}}
 
-        <tr>
+        <tr style="background-color: yellow">
             <td style='text-align: center;border:1px solid black;' colspan="3"><b><i>Jumlah Mhs</i></b></td>
             <td style='text-align: center;border:1px solid black;'>{{ $jmlHadir1 ?? '' }}</td>
             <td style='text-align: center;border:1px solid black;'>{{ $jmlHadir2  ?? '' }} </td>
@@ -676,29 +676,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
             <td style='text-align: center;border:1px solid black;'>{{ $jmlHadir18 ?? '' }} </td>
             <td style='text-align: center;border:1px solid black;'></td>
             <td style='text-align: center;border:1px solid black;'></td>
-            {{-- <td style='text-align: center;border:1px solid black;'></td>
-            <td style='text-align: center;border:1px solid black;'></td>
-            <td style='text-align: center;border:1px solid black;'></td> --}}
         </tr>
-        {{-- <tr>
-            <td colspan="3" style='text-align: center;border:1px solid black;'> <b><i>Tanda Tangan Dosen</i></b></td>
-            @for ($i = 0; $i < 23; $i++)
-                <td style='text-align: center;border:1px solid black;'></td>
-            @endfor
-
-        </tr> --}}
-        {{-- <tr>
-            <td colspan="3" style='text-align: center;border:1px solid black;'> <b><i>Jumlah Jam</i></b></td>
-            @for ($i = 0; $i < 18; $i++)
-                <td style='text-align: center;border:1px solid black;'>{{ $dtJadwal->jml_jam }}</td>
-            @endfor
-            <td style='text-align: center;border:1px solid black;'></td>
-            <td style='text-align: center;border:1px solid black;'></td>
-            <td style='text-align: center;border:1px solid black;'></td>
-            <td style='text-align: center;border:1px solid black;'></td>
-            <td style='text-align: center;border:1px solid black;'></td>
-
-        </tr> --}}
 
     </tbody>
 </table>

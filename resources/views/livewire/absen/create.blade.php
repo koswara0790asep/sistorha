@@ -1,3 +1,5 @@
+@if (Auth::user()->role == 'akademik' || Auth::user()->role == 'prodi' )
+
 <div>
     <div aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-arrwo">
@@ -106,3 +108,4 @@
     </div>
 </div>
 
+@endif

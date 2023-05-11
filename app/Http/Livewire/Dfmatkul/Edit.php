@@ -20,7 +20,6 @@ class Edit extends Component
     public function mount($id)
     {
         $matkul = DfMatkul::find($id);
-        // dd($program_studi);
 
         if ($matkul) {
             $this->dfmatkulId = $matkul->id;

@@ -64,7 +64,6 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                             <td>Program Studi</td>
                             <td>:</td>
                             <td>
-                                {{-- {{ $dfKelas->kode ?? '' }} --}}
                                 @php
                                 $prodi = DB::table('program_studies')->where('id', $dfKelas->prodi_id ??
                                 '')->select('program_studies.*', 'program_studi')->first();
@@ -1096,22 +1095,29 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                             <td>{{ number_format($persentase, 2) ?? '' }}%</td>
                             @if (Auth::user()->role == 'dosen')
-                            <td>
-                                <a href="{{ $data->status_aktif == 'Aktif' ? '/absen/edit/'.$jadwalId.'/'.$absen->id.'' : '#' }}"
-                                    class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
-                                @if ($alfas == '3')
+                                <td>
+                                    <a href="{{ $data->status_aktif == 'Aktif' ? '/absen/edit/'.$jadwalId.'/'.$absen->id.'' : '#' }}"
+                                        class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
+                                    @if ($alfas == '3')
 
-                                <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AAnda sudah tidak mengikuti perkuliahan saya sebanyak 3x. Mohon diperhatikan lagi kehadirannya!&type=phone_number&app_absent=0"
-                                    class="btn btn-sm btn-secondary btn-icon" target="_blank"><i
-                                        class="mdi mdi-whatsapp"></i></a>
+                                    <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AAnda sudah tidak mengikuti perkuliahan saya sebanyak 3x. Mohon diperhatikan lagi kehadirannya!&type=phone_number&app_absent=0"
+                                        class="btn btn-sm btn-secondary btn-icon" target="_blank"><i
+                                            class="mdi mdi-whatsapp"></i></a>
 
-                                @elseif ($alfas >= '3')
-                                <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AAnda sudah tidak mengikuti perkuliahan saya sudah lebih dari 3x. Anda sudah tidak dapat mengikuti ujian!&type=phone_number&app_absent=0"
-                                    class="btn btn-sm btn-danger btn-icon" target="_blank"><i
-                                        class="mdi mdi-whatsapp"></i></a>
+                                    @elseif ($alfas >= '4')
+                                    <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AAnda sudah tidak mengikuti perkuliahan saya sudah lebih dari 3x. Anda sudah tidak dapat mengikuti ujian!&type=phone_number&app_absent=0"
+                                        class="btn btn-sm btn-danger btn-icon" target="_blank"><i
+                                            class="mdi mdi-whatsapp"></i></a>
 
+                                    @endif
+                                </td>
+                            @endif
+                            @if (Auth::user()->role == 'prodi')
+                                @if ($alfas >= '3')
+                                    <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AKami dari Program Studi mengingatkan Anda. Bahwa Anda sudah tidak mengikuti perkuliahan sebanyak {{ $alfas }}. Perbaiki atau tidak dapat melaksanakan ujian-ujian!&type=phone_number&app_absent=0"
+                                        class="btn btn-sm btn-danger btn-icon" target="_blank"><i
+                                            class="mdi mdi-whatsapp"></i></a>
                                 @endif
-                            </td>
                             @endif
 
                         </tr>
@@ -1209,11 +1215,3 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
     </div>
 </div>
 </div>
-{{--
-
-<script>
-    function openNewWindow() {
-        window.open("/absensis/cetak/{{ $jadwalId }}/{{ $kelasSelect }}/{{ $matkulSelect }}", "_blank");
-    }
-
-</script> --}}

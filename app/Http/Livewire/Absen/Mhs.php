@@ -21,14 +21,10 @@ class Mhs extends Component
         $this->kelasSelect = $dfkelas->id;
         $this->matkulSelect = $dfmatkul->id;
         $this->jadwalId = $jadwal->id;
-        // dd([$this->kelasSelect, $this->matkulSelect]);
-
     }
 
     public function render()
     {
-        // dd($this->kelasSelect);
-
         return view('livewire.absen.mhs', [
             'absensis' => $this->matkulSelect == null && $this->kelasSelect == null ?
             ''

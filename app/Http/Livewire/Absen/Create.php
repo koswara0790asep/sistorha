@@ -29,35 +29,17 @@ class Create extends Component
 
         ]);
 
-        $dataExists = Absensi::where('matkul_id', $this->matkul_id)
-                            ->where('kelas_id', $this->kelas_id)
-                            ->where('semester', $this->semester)
-                            ->where('nim', $this->nim)
-                            ->exists();
-
-        if (!$dataExists) {
-            foreach ($this->selectedMhsw as $mhs) {
-                Absensi::firstOrCreate([
-                    'matkul_id' => $this->matkul_id,
-                    'kelas_id' => $this->kelas_id,
-                    'semester' => $this->semester,
-                    'nim' => $mhs,
-                ]);
-            }
+        foreach ($this->selectedMhsw as $mhs) {
+            Absensi::updateOrCreate([
+                'matkul_id' => $this->matkul_id,
+                'kelas_id' => $this->kelas_id,
+                'semester' => $this->semester,
+                'nim' => $mhs,
+            ]);
         }
 
-        Alert::success('BERHASIL!', 'Data absen berhasil ditambahkan!');
-        // Absent::create([
-        //     'matkul_id' => $this->matkul_id,
-        //     'kelas_id' => $this->kelas_id,
-        //     'semester' => $this->semester,
-        //     'nim' => $this->nim,
-
-        // ]);
-
         //flash message
-        // session()->flash('message', 'Data absen ' .$this->nama. ' Berhasil Disimpan!');
-
+        Alert::success('BERHASIL!', 'Data absen berhasil ditambahkan!');
         // redirect
         return redirect()->route('absen.index');
     }

@@ -68,7 +68,7 @@ class Create extends Component
                                         ->where('jam_awal', $this->jam_awal)
                                         ->where('ruang_id', $this->ruang_id)
                                         ->exists();
-            // dd($existingTimeSlot);
+                                        
             if ($existingTimeSlot) {
                 // Jika ada, tampilkan pesan error
                 Alert::warning('GAGAL!','Jadwal Hari, Jam, dan Ruangan Sudah Terisi!');

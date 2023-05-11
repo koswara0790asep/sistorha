@@ -85,7 +85,7 @@ class Edit extends Component
                                         ->where('jam_awal', $this->jam_awal)
                                         ->where('ruang_id', $this->ruang_id)
                                         ->exists();
-            // dd($existingTimeSlot);
+
             if ($existingTimeSlot) {
                 // Jika ada, tampilkan pesan error
                 Alert::warning('GAGAL!','Jadwal Hari, Jam, dan Ruangan Sudah Terisi!');
@@ -105,12 +105,10 @@ class Edit extends Component
                     'jam_akhir' => $this->jam_akhir,
                     'ruang_id' => $this->ruang_id,
                 ]);
+                //flash message
                 Alert::success('BERHASIL!', 'Data Jadwal Mata Kuliah ini Berhasil Diperbaharui!');
             }
         }
-
-        //flash message
-        // session()->flash('message', 'Anda berhasil absen hari ini!');
 
         // redirect
         return redirect()->route('jadwal.index');

@@ -21,8 +21,6 @@ class Create extends Component
         $dataExists = Ruangan::where('kode', 'L' .$this->lantai. '-' .$this->ruang)
                             ->exists();
 
-        // dd($dataExists);
-
         if (!$dataExists) {
             Ruangan::create(
                 [
@@ -31,15 +29,11 @@ class Create extends Component
                     'kode' => 'L' .$this->lantai. '-' .$this->ruang,
                 ]
             );
+            //flash message
             Alert::success('BERHASIL!','Data Ruangan L'.$this->lantai. '-' .$this->ruang. ' Berhasil Disimpan!');
         } else {
             Alert::warning('GAGAL!','Data Ruangan Sudah Ada!');
         }
-
-        // $this->reset('selectedKelases');
-
-        //flash message
-
 
         // redirect
         return redirect()->route('ruangan.index');

@@ -90,8 +90,8 @@ class Edit extends Component
         }
 
         //flash message
-        // session()->flash('message', 'Data Dosen ' . $this->nama . ' Berhasil Diperbaharui!');
         Alert::success('BERHASIL!','Data Dosen ' . $this->nama . ' Berhasil Diperbaharui!');
+
         // redirect
         return redirect()->route('dosen.index');
     }

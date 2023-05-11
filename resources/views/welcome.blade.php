@@ -87,13 +87,6 @@
             <div class="nav-menu">
                 <ul>
                     <li><a href="/"><span class="icon-dashboard mr-3"></span>Dashboard</a></li>
-                    {{-- <li><a href="{{ route('mahasiswa.index') }}"><span class="icon-users mr-3"></span>Mahasiswa</a>
-                    </li>
-                    <li><a href="{{ route('dosen.index') }}"><span class="icon-users mr-3"></span>Dosen</a></li>
-                    <li><a href="{{ route('matkul.index') }}"><span class="icon-library_books mr-3"></span>Matkul</a>
-                    </li> --}}
-                    {{-- <li><a href="{{ route('kelas.index') }}"><span class="icon-location_city mr-3"></span>Kelas</a>
-                    </li> --}}
                     <li><a href="{{ route('jadwal.index') }}"><span class="icon-calendar mr-3"></span>Jadwal Saya</a>
                     </li>
                     <li><a href="{{ route('prodi.index') }}"><span class="icon-school mr-3"></span>Prodi</a></li>
@@ -111,13 +104,6 @@
             <div class="nav-menu">
                 <ul>
                     <li><a href="/"><span class="icon-dashboard mr-3"></span>Dashboard</a></li>
-                    {{-- <li><a href="{{ route('mahasiswa.index') }}"><span class="icon-users mr-3"></span>Mahasiswa</a>
-                    </li>
-                    <li><a href="{{ route('dosen.index') }}"><span class="icon-users mr-3"></span>Dosen</a></li>
-                    <li><a href="{{ route('matkul.index') }}"><span class="icon-library_books mr-3"></span>Matkul</a>
-                    </li> --}}
-                    {{-- <li><a href="{{ route('kelas.index') }}"><span class="icon-location_city mr-3"></span>Kelas</a>
-                    </li> --}}
                     <li><a href="{{ route('prodi.index') }}"><span class="icon-school mr-3"></span>Prodi</a></li>
 
                 </ul>

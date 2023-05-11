@@ -37,7 +37,6 @@
                     <div>
                         <input type="file" name="importDosen" id="importDosen" wire:model="importDosen"
                             class="form-control @error('importDosen') is-invalid @enderror">
-                        {{-- <span class="input-group-text"><i class="mdi mdi-file"></i></span> --}}
                         @error('importDosen')
                         <span class="invalid-feedback">
                             {{ $message }}
@@ -47,7 +46,6 @@
                     <br>
                     <button class="btn {{ $importDosen != null ? 'btn-success' : 'btn-secondary' }} btn-sm" type="submit" wire:click.prevent="importDsn"><i
                             class="mdi mdi-content-save"></i> Impor Data</button>
-                    {{-- <button class="btn btn-primary btn-sm" type="submit" wire:click="download"><i class="mdi mdi-download"></i> Unduh Contoh</button> --}}
                     <a href="{{ asset('/sheets/ex-dsn.xlsx') }}" class="btn btn-info btn-sm" download><i
                             class="mdi mdi-download"></i> Unduh Contoh</a>
 
@@ -104,11 +102,6 @@
                                     <a href="{{ route('dosen.edit', $dsn->id) }}"
                                         class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
 
-                                    {{-- <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
-                                        data-bs-target="#id_{{ $dsn->id }}">
-                                        <i class="mdi mdi-delete"></i>
-                                    </button> --}}
-
                                     <!-- Modal -->
                                     <div class="modal fade text-center text-wrap" id="id_{{ $dsn->id }}" tabindex="-1"
                                         aria-labelledby="id_{{ $dsn->id }}Label" aria-hidden="true">
@@ -131,8 +124,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <a href="{{ route('dosen.show', $dsn->id) }}" class="shadow btn btn-info"><i
-                                        class="icon-eye"></i> SHOW</a> --}}
                                     <button wire:click="genAkun({{ $dsn->id }})"
                                         class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
                                     <a href="{{ route('dosen.show', $dsn->id) }}"

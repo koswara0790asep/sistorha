@@ -40,7 +40,6 @@
                         <label for="selectedMhsw">Pilih Mahasiswa yang di kelas: </label>
                         <div class="mb-3 input-group">
                             <select id="selectedMhsw" name="selectedMhsw" wire:model="selectedMhsw" class="form-control @error('selectedMhsw') is-invalid @enderror" multiple>
-                                {{-- <option value="" hidden>--- Pilih Daftar Kelas ---</option> --}}
                                 @foreach ($mahasiswas as $mhs)
                                     <option value="{{ $mhs->id }}">{{ $mhs->nim }} - {{ $mhs->nama }} - {{ $mhs->status_aktif }}</option>
                                 @endforeach

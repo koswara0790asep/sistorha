@@ -21,16 +21,15 @@ class Create extends Component
             'selectedMhsw' => 'required',
         ]);
 
-        $dataExists = KelasMhsw::where('mahasiswa_id', $this->selectedMhsw)->exists();
+        $dataExists = KelasMhsw::where('mahasiswa_id', $this->selectedMhsw)
+                                ->where('kelas_id', $this->kelas_id)
+                                ->exists();
 
-        // dd($this->selectedMhsw);
         if (!$dataExists) {
             foreach ($this->selectedMhsw as $mhs) {
-                KelasMhsw::firstOrCreate(
+                KelasMhsw::updateOrCreate(
                     [
                         'mahasiswa_id' => $mhs,
-                    ],
-                    [
                         'kelas_id' => $this->kelas_id,
                     ]
                 );

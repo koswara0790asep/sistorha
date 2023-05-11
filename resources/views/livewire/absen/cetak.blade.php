@@ -72,24 +72,7 @@
         <td>:</td>
         <td>{{ $dfMatkul->semester ?? '' }}</td>
     </tr>
-    {{-- <tr>
-        <td style='border:1px solid black;' style=" padding-left: 550px"></td>
-        <tr>
-            <td style='border:1px solid black;'>Kelas</td>
-            <td style='border:1px solid black;'>:</td>
-            <td style='border:1px solid black;'>{{ $dfKelas->nama_kelas ?? '' }}</td>
-        </tr>
-        <tr>
-            <td style='border:1px solid black;'>Periode</td>
-            <td style='border:1px solid black;'>:</td>
-            <td style='border:1px solid black;'>{{ $dfKelas->periode ?? '' }}</td>
-        </tr>
-        <tr>
-            <td style='border:1px solid black;'>Semester</td>
-            <td style='border:1px solid black;'>:</td>
-            <td style='border:1px solid black;'>{{ $dfMatkul->semester ?? '' }}</td>
-        </tr>
-    </tr> --}}
+
 </table>
 <table style='width:100%;border:1px solid black;margin-top: 10px; border-collapse: collapse;'>
     <thead>
@@ -543,7 +526,7 @@
                     @php
                         if ($absen->pertemuan10 == 'Hadir'){
                             $h10 = 1;
-                            $jmlHadir0++;
+                            $jmlHadir10++;
                         } elseif ($absen->pertemuan10  == 'Alfa') {
                             $h10 = 0;
                         } elseif ($absen->pertemuan10  == null) {
@@ -578,7 +561,7 @@
                     @php
                         if ($absen->pertemuan11 == 'Hadir'){
                             $h11 = 1;
-                            $jmlHadir1++;
+                            $jmlHadir11++;
                         } elseif ($absen->pertemuan11  == 'Alfa') {
                             $h11 = 0;
                         } elseif ($absen->pertemuan11  == null) {
@@ -613,7 +596,7 @@
                     @php
                         if ($absen->pertemuan12 == 'Hadir'){
                             $h12 = 1;
-                            $jmlHadir2++;
+                            $jmlHadir12++;
                         } elseif ($absen->pertemuan12  == 'Alfa') {
                             $h12 = 0;
                         } elseif ($absen->pertemuan12  == null) {
@@ -648,7 +631,7 @@
                     @php
                         if ($absen->pertemuan13 == 'Hadir'){
                             $h13 = 1;
-                            $jmlHadir3++;
+                            $jmlHadir13++;
                         } elseif ($absen->pertemuan13  == 'Alfa') {
                             $h13 = 0;
                         } elseif ($absen->pertemuan13  == null) {
@@ -683,7 +666,7 @@
                     @php
                         if ($absen->pertemuan14 == 'Hadir'){
                             $h14 = 1;
-                            $jmlHadir4++;
+                            $jmlHadir14++;
                         } elseif ($absen->pertemuan14  == 'Alfa') {
                             $h14 = 0;
                         } elseif ($absen->pertemuan14  == null) {
@@ -718,7 +701,7 @@
                     @php
                         if ($absen->pertemuan15 == 'Hadir'){
                             $h15 = 1;
-                            $jmlHadir5++;
+                            $jmlHadir15++;
                         } elseif ($absen->pertemuan15  == 'Alfa') {
                             $h15 = 0;
                         } elseif ($absen->pertemuan15  == null) {
@@ -753,7 +736,7 @@
                     @php
                         if ($absen->pertemuan16 == 'Hadir'){
                             $h16 = 1;
-                            $jmlHadir6++;
+                            $jmlHadir16++;
                         } elseif ($absen->pertemuan16  == 'Alfa') {
                             $h16 = 0;
                         } elseif ($absen->pertemuan16  == null) {
@@ -788,7 +771,7 @@
                     @php
                         if ($absen->pertemuan17 == 'Hadir'){
                             $h17 = 1;
-                            $jmlHadir7++;
+                            $jmlHadir17++;
                         } elseif ($absen->pertemuan17  == 'Alfa') {
                             $h17 = 0;
                         } elseif ($absen->pertemuan17  == null) {
@@ -823,7 +806,7 @@
                     @php
                         if ($absen->pertemuan18 == 'Hadir'){
                             $h18 = 1;
-                            $jmlHadir8++;
+                            $jmlHadir18++;
                         } elseif ($absen->pertemuan18  == 'Alfa') {
                             $h18 = 0;
                         } elseif ($absen->pertemuan18  == null) {
@@ -855,18 +838,7 @@
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>{{ $absen->keterangan }}</td>
-                {{-- <td style='text-align: center;border:1px solid black;'>
-                    <a href="{{ $data->status_aktif == 'Aktif' ? '/absen/edit/'.$jadwalId.'/'.$absen->id.'' : '#' }}" class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
-                </td> --}}
             </tr>
-            {{-- @php
-                $jmlHadir1 = 0;
-                foreach ($absen->pertemuan1 as $hadir) {
-                    if ($hadir == 'Hadir') {
-                        $jmlHadir1++;
-                    }
-                }
-            @endphp --}}
         @endforeach
         @endif
         <tr>

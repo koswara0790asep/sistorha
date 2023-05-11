@@ -23,7 +23,7 @@ class Create extends Component
         $df_mtk = DfMatkul::find($this->matkul_id)->first();
 
         if ($df_mtk) {
-            
+
         }
 
         Matkul::create([
@@ -34,7 +34,6 @@ class Create extends Component
         ]);
 
         //flash message
-        // session()->flash('message', 'Data Matakuliah ' .$this->prodi_id. ' Berhasil Disimpan!');
         Alert::success('BERHASIL!', 'Data Matakuliah Berhasil Disimpan!');
 
         // redirect

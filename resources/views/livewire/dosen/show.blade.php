@@ -37,7 +37,6 @@
 
             <div class="col-md-8">
                 <div class="text-center mt-3">
-                    {{-- <span class="bg-secondary p-1 px-4 rounded text-white shadow">{{ $mahasiswa->nama }} ({{ $mahasiswa->nim }})</span> --}}
                     <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                         <label class="btn btn-sm btn-outline-primary">
                             <i class="mdi mdi-account"></i> {{ $dosen->nama }} ({{ $dosen->nip }}/{{ $dosen->nidn }})

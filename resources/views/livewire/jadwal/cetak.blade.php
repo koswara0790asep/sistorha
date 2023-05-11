@@ -104,7 +104,3 @@
         @endforeach
     </tbody>
 </table>
-{{--
-</body>
-
-</html> --}}

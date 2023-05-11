@@ -20,7 +20,6 @@ class Edit extends Component
     public function mount($id)
     {
         $kelas = DfKelas::find($id);
-        // dd($program_studi);
 
         if ($kelas) {
             $this->dfkelasId = $kelas->id;

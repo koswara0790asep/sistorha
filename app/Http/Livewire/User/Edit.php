@@ -22,7 +22,6 @@ class Edit extends Component
     public function mount($id)
     {
         $user = User::find($id);
-        // dd($user);
 
         if ($user) {
             $this->userId = $user->id;
@@ -57,7 +56,6 @@ class Edit extends Component
                     'username' => $this->username,
                     'email' => $this->email,
                     'role' => $this->role,
-                    // 'password' => Hash::make($this->password),
                     'password' => $this->password == $user->getOriginal('password') ? $user->getOriginal('password') : Hash::make($this->password),
                     'updated_at' => now(),
                 ]);

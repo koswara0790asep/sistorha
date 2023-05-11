@@ -39,8 +39,6 @@ class Create extends Component
                 'kode' => $this->kode,
             ]);
 
-            // dd($kelas);
-
             Alert::success('BERHASIL!','Data Program Studi ' .$this->nama_kelas. ' Berhasil Disimpan!');
         }
 

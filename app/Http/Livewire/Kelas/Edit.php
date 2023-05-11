@@ -52,7 +52,6 @@ class Edit extends Component
 
         //flash message
         Alert::success('BERHASIL!','Data Kelas Berhasil Diperbaharui!');
-        // session()->flash('message', 'Data Kelas Berhasil Diperbaharui!');
 
         // redirect
         return redirect()->route('kelas.index');

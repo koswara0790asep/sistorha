@@ -147,6 +147,14 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     // absen->search
     // Route::livewire('/absensis/{jadwal}/{dfkelas}/{dfmatkul}', 'absen.mhs')->name('absen.mhs');
 
+    // berita acara
+    Route::livewire('/beritaacaras', 'beritaacara.index')->name('beritaacara.index');
+    Route::livewire('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}/create', 'beritaacara.create')->name('beritaacara.create');
+    Route::livewire('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}/edit/{id}', 'beritaacara.edit')->name('beritaacara.edit');
+    Route::livewire('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}', 'beritaacara.index')->name('dsnBeritaAcara.index');
+    // Route::livewire('/jadwal/create', 'jadwal.create')->name('jadwal.create');
+    // Route::livewire('/jadwal/edit/{jadwal}/{id}', 'jadwal.edit')->name('jadwal.edit');
+
 });
 
 Route::middleware(['auth', 'role:akademik,dosen'])->group(function () {
@@ -165,6 +173,13 @@ Route::middleware(['auth', 'role:akademik,dosen'])->group(function () {
 
     // absen->search
     Route::livewire('/absensis/{jadwal}/{dfkelas}/{dfmatkul}', 'absen.mhs')->name('absen.mhs');
+
+    // berita acara
+    Route::livewire('/beritaacaras', 'beritaacara.index')->name('beritaacara.index');
+    Route::livewire('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}/create', 'beritaacara.create')->name('beritaacara.create');
+    Route::livewire('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}/edit/{id}', 'beritaacara.edit')->name('beritaacara.edit');
+    Route::livewire('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}', 'beritaacara.index')->name('dsnBeritaAcara.index');
+    Route::get('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}/cetak', [CetakController::class, 'cetakBAP'])->name('beritaacara.cetak');
 });
 
 Auth::routes();

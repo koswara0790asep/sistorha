@@ -25,7 +25,6 @@ class Index extends Component
             $matkul->delete();
         }
         //flash message
-        // session()->flash('message', 'Data Matakuliah Berhasil Dihapus!');
         Alert::success('BERHASIL!', 'Data Matakuliah Berhasil Dihapus!');
 
         // redirect

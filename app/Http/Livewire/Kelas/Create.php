@@ -24,27 +24,6 @@ class Create extends Component
             'selectedKelases' => 'required',
         ]);
 
-        // if ((Kelas::where('dosen_id', $this->dosen_id)->exists()) && (Kelas::where('daftar_kelas_id', $this->daftar_kelas_id)->exists())) {
-        //     Alert::warning('GAGAL!','Data Kelas Sudah Ada!');
-        // } else {
-        // if (Kelas::where('dosen_id', $this->dosen_id)->exists()) {
-        //     if (Kelas::where('daftar_kelas_id', $this->daftar_kelas_id)->exists()) {
-        //         Alert::warning('GAGAL!','Data Kelas Sudah Ada!');
-        //     }
-        // } else {
-        //     foreach ($this->selectedKelases as $kelas) {
-        //         Kelas::firstOrCreate(
-        //             [
-        //                 'dosen_id' => $this->dosen_id,
-        //                 'daftar_kelas_id' => $kelas,
-        //             ],
-        //             [
-        //                 'prodi_id' => $this->prodi_id,
-        //             ]
-        //         );
-        //     }
-        // }
-
         $dataExists = Kelas::where('dosen_id', $this->dosen_id)
                             ->where('daftar_kelas_id', $this->selectedKelases)
                             ->exists();
@@ -63,14 +42,12 @@ class Create extends Component
                     ]
                 );
             }
+            //flash message
             Alert::success('BERHASIL!','Data Kelas Berhasil Disimpan!');
         } else {
             Alert::warning('GAGAL!','Data Kelas Sudah Ada!');
         }
 
-        // $this->reset('selectedKelases');
-
-        //flash message
 
 
         // redirect

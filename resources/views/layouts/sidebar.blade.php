@@ -38,47 +38,47 @@
                 <div class="collapse" id="olah">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="/users" class="nav-link">User</a>
+                            <a href="{{ route('user.index') }}" class="nav-link">User</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/mahasiswas" class="nav-link">Mahasiswa</a>
+                            <a href="{{ route('mahasiswa.index') }}" class="nav-link">Mahasiswa</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/dosens" class="nav-link">Dosen</a>
+                            <a href="{{ route('dosen.index') }}" class="nav-link">Dosen</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/programstudies" class="nav-link">Program Studi</a>
+                            <a href="{{ route('programstudi.index') }}" class="nav-link">Program Studi</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/dfkelases" class="nav-link">Daftar Kelas</a>
+                            <a href="{{ route('dfkelas.index') }}" class="nav-link">Daftar Kelas</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/kelass" class="nav-link">Kelas</a>
+                            <a href="{{ route('kelas.index') }}" class="nav-link">Kelas</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/kelasmhsws" class="nav-link">Kelas Mahasiswa</a>
+                            <a href="{{ route('kelasmhs.index') }}" class="nav-link">Kelas Mahasiswa</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/ruangans" class="nav-link">Ruangan</a>
+                            <a href="{{ route('ruangan.index') }}" class="nav-link">Ruangan</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/dfmatkuls" class="nav-link">Daftar Matakuliah</a>
+                            <a href="{{ route('dfmatkul.index') }}" class="nav-link">Daftar Matakuliah</a>
                         </li>
                         {{-- <li class="nav-item">
                             <a href="/matkuls" class="nav-link">Matakuliah</a>
                         </li> --}}
                         <li class="nav-item">
-                            <a href="/jadwals" class="nav-link">Jadwal</a>
+                            <a href="{{ route('jadwal.index') }}" class="nav-link">Jadwal</a>
                         </li>
                         {{-- <li class="nav-item">
                             <a href="/jadwalkuliahs" class="nav-link">Jadwal Kuliah</a>
                         </li> --}}
                         <li class="nav-item">
-                            <a href="/absensis" class="nav-link">Absensi</a>
+                            <a href="{{ route('absen.index') }}" class="nav-link">Absensi</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="/beritaacaras" class="nav-link">Berita Acara</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </li>

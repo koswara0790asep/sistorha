@@ -7,59 +7,57 @@
                     <li class="breadcrumb-item active" aria-current="page"> Daftar Jadwal</li>
                 </ol>
             </div>
-            <div class="col-sm-2"></div>
-            <div class="col-sm-3 d-flex">
-                <p style="color: #F9FAFB">.........</p>
-                <div class="col">
+            <div class="col-md-5" style="text-align: right;">
+                @if (Auth::user()->role == 'akademik')
 
                     <a href="/jadwal/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-account-plus"></i> Tambah Data</a>
-                    <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
-                        <i class="mdi mdi-printer"></i> Cetak</a>
-                </div>
-                <!-- Button trigger modal -->
-                {{-- <button type="button" onclick="toggle()"
-                    class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
-                    <i class="mdi mdi-file-import"></i> Import XLSX</button> --}}
+                    <!-- Button trigger modal -->
+                    <button type="button" onclick="toggle()"
+                        class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                        <i class="mdi mdi-file-import"></i> Import XLSX</button>
+                @endif
+                <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                    <i class="mdi mdi-printer"></i> Cetak</a>
             </div>
         </div>
     </div>
 
+    @if (Auth::user()->role == 'akademik')
+        {{-- Toggle --}}
+        <div id="content" class="mb-3" style="display: block;">
+            <div class="card">
 
-    {{-- Toggle --}}
-    {{-- <div id="content" class="mb-3" style="display: block;">
-        <div class="card">
+                <div class="card-header">
+                    <div class="card-title mt-3">
+                        <h4>
+                            <i class="mdi mdi-file-import"></i> Impor Data Dari Exel
+                        </h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="">
+                        <div>
+                            <input type="file" name="importJadwal" id="importJadwal" wire:model="importJadwal"
+                                class="form-control @error('importJadwal') is-invalid @enderror">
+                            @error('importJadwal')
+                            <span class="invalid-feedback">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
+                        <br>
+                        <button class="btn {{ $importJadwal != null ? 'btn-success' : 'btn-secondary' }} btn-sm" type="submit" wire:click.prevent="importJadw"><i
+                                class="mdi mdi-content-save"></i> Impor Data</button>
+                        <a href="{{ asset('/sheets/ex-jadwal.xlsx') }}" class="btn btn-info btn-sm" download><i
+                                class="mdi mdi-download"></i> Unduh Contoh</a>
 
-            <div class="card-header">
-                <div class="card-title mt-3">
-                    <h4>
-                        <i class="mdi mdi-file-import"></i> Impor Data Dari Exel
-                    </h4>
+                    </form>
                 </div>
             </div>
-            <div class="card-body">
-                <form action="">
-                    <div>
-                        <input type="file" name="importDosen" id="importDosen" wire:model="importDosen"
-                            class="form-control @error('importDosen') is-invalid @enderror">
-                        {{-- <span class="input-group-text"><i class="mdi mdi-file"></i></span> --}}
-                        {{-- @error('importDosen')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <br>
-                    <button class="btn btn-secondary btn-sm" type="submit" wire:click.prevent="importmk"><i
-                            class="mdi mdi-content-save"></i> Impor Data</button>
-                    {{-- <button class="btn btn-primary btn-sm" type="submit" wire:click="download"><i class="mdi mdi-download"></i> Unduh Contoh</button> --}}
-                    {{-- <a href="{{ asset('/sheets/ex-mk.xlsx') }}" class="btn btn-info btn-sm" download><i
-                            class="mdi mdi-download"></i> Unduh Contoh</a>
-
-                </form>
-            </div>
         </div>
-    </div> --}}
+    @endif
+
 
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
@@ -90,6 +88,7 @@
                                 <th class="text-light">JAM <br>AWAL</th>
                                 <th class="text-light">JAM <br>AKHIR</th>
                                 <th class="text-light">RUANGAN</th>
+                                <th class="text-light">BERITA <br>ACARA</th>
                                 <th class="text-light">AKSI</th>
                             </tr>
                         </thead>
@@ -141,49 +140,45 @@
                                     @endphp
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('jadwal.edit', $jadw->id) }}"
-                                        class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
+                                    <a href="{{ route('dsnBeritaAcara.index', [$jadw->id, $jadw->matkul_id, $jadw->kelas_id, $jadw->dosen_id]) }}"
+                                        class="btn btn-success btn-sm btn-icon-text"><i class="mdi mdi-archive"></i> Lihat</a>
+                                </td>
+                                <td class="text-center">
                                     <a href="/absensis/{{ $jadw->id }}/{{ $jadw->kelas_id }}/{{ $jadw->matkul_id }}"
-                                        class="btn btn-sm btn-primary btn-icon"><i class="mdi mdi-file-document"></i></a>
+                                        class="btn btn-sm btn-primary btn-icon-text"><i class="mdi mdi-file-document"></i> Absen</a>
 
-                                    {{-- <button wire:click="genAkun({{ $jadw->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button> --}}
+                                    @if (Auth::user()->role == 'akademik')
+                                        <a href="{{ route('jadwal.edit', $jadw->id) }}"
+                                            class="btn btn-warning btn-icon-text"><i class="mdi mdi-lead-pencil"></i></a>
+                                        <button type="button" class="btn btn-danger btn-icon-text" data-bs-toggle="modal"
+                                            data-bs-target="#id_{{ $jadw->id }}">
+                                            <i class="mdi mdi-delete"></i>
+                                        </button>
 
-                                    <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
-                                        data-bs-target="#id_{{ $jadw->id }}">
-                                        <i class="mdi mdi-delete"></i>
-                                    </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade text-center text-wrap" id="id_{{ $jadw->id }}" tabindex="-1"
+                                            aria-labelledby="id_{{ $jadw->id }}Label" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <p class="text text-secondary" style="font-size: 100px"><i
+                                                                class="mdi mdi-alert-circle-outline"></i></p>
+                                                        <br>
+                                                        <h3>Apakah anda yakin?</h3>
+                                                        <p>Data {{ $jadw->nama_matkul }} dari Daftar Jadwal yang dihapus
+                                                            tidak dapat dikembalikan.</p>
+                                                        <br>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade text-center text-wrap" id="id_{{ $jadw->id }}" tabindex="-1"
-                                        aria-labelledby="id_{{ $jadw->id }}Label" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <p class="text text-secondary" style="font-size: 100px"><i
-                                                            class="mdi mdi-alert-circle-outline"></i></p>
-                                                    <br>
-                                                    <h3>Apakah anda yakin?</h3>
-                                                    <p>Data {{ $jadw->nama_matkul }} dari Daftar Jadwal yang dihapus
-                                                        tidak dapat dikembalikan.</p>
-                                                    <br>
-
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal"><i class="mdi mdi-window-close"></i> Batalkan</button>
-                                                    <button wire:click="destroy({{ $jadw->id }})"
-                                                        class="btn btn-danger"><i class="mdi mdi-delete"></i> Ya, Hapus</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal"><i class="mdi mdi-window-close"></i> Batalkan</button>
+                                                        <button wire:click="destroy({{ $jadw->id }})"
+                                                            class="btn btn-danger"><i class="mdi mdi-delete"></i> Ya, Hapus</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <br>
-                                    {{-- <a href="{{ route('dosen.show', $jadw->id) }}" class="shadow btn btn-info"><i
-                                        class="icon-eye"></i> SHOW</a> --}}
-                                    {{-- <div class="mt-1">
-                                        <button wire:click="genAkun({{ $jadw->id }})"
-                                            class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
-                                        <a href="{{ route('dosen.show', $jadw->id) }}"
-                                            class="btn btn-sm btn-info btn-icon"><i class="mdi mdi-eye"></i></a>
-                                    </div> --}}
+                                    @endif
+
                                 </td>
                             </tr>
                             @endforeach

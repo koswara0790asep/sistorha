@@ -151,8 +151,10 @@
                                 <th class="text-light" rowspan="3">NIM</th>
                                 <th class="text-light" rowspan="3">NAMA</th>
                                 <th class="text-light" colspan="36">PERTEMUAN KE-</th>
-                                <th class="text-light" rowspan="3">KETERANGAN</th>
-                                {{-- <th class="text-light" rowspan="3">AKSI</th> --}}
+                                <th class="text-light" rowspan="2" colspan="5">KETERANGAN</th>
+                                @if (Auth::user()->role == 'prodi')
+                                    <th class="text-light" rowspan="3">AKSI</th>
+                                @endif
                             </tr>
                             <tr class="text-center">
 
@@ -213,6 +215,11 @@
                                 <td>Telat</td>
                                 <td>Telat</td>
                                 <td>Telat</td>
+                                <td>H</td>
+                                <td>A</td>
+                                <td>I</td>
+                                <td>S</td>
+                                <td>(%)</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -271,316 +278,885 @@
                             @endphp
 
                             @foreach ($absensis as $absen)
-                                @php
-                                    $data = DB::table('mahasiswas')->where('nim', $absen->nim)->select('mahasiswas.*', 'nama', 'status_aktif')->first();
-                                @endphp
-                                <tr class="{{ $data->status_aktif == 'Aktif' ? '' : 'table-danger' }}">
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $absen->nim }}</td>
-                                    <td>
-                                        {{ $data->nama }}
-                                    </td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan1 == 'Hadir'){
-                                                $h1 = 1;
-                                                $jmlHadir1++;
-                                            } elseif ($absen->pertemuan1  == 'Alfa') {
-                                                $h1 = 0;
-                                            } elseif ($absen->pertemuan1  == null) {
-                                                $h1 = '';
-                                            } else {
-                                                $h1 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h1 }}
-                                    </td>
-                                    <td>{{ $absen->telat1 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan2 == 'Hadir'){
-                                                $h2 = 1;
-                                                $jmlHadir2++;
-                                            } elseif ($absen->pertemuan2  == 'Alfa') {
-                                                $h2 = 0;
-                                            } elseif ($absen->pertemuan2  == null) {
-                                                $h2 = '';
-                                            } else {
-                                                $h2 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h2 }}
-                                    </td>
-                                    <td>{{ $absen->telat2 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan3 == 'Hadir'){
-                                                $h3 = 1;
-                                                $jmlHadir3++;
-                                            } elseif ($absen->pertemuan3  == 'Alfa') {
-                                                $h3 = 0;
-                                            } elseif ($absen->pertemuan3  == null) {
-                                                $h3 = '';
-                                            } else {
-                                                $h3 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h3 }}
-                                    </td>
-                                    <td>{{ $absen->telat3 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan4 == 'Hadir'){
-                                                $h4 = 1;
-                                                $jmlHadir4++;
-                                            } elseif ($absen->pertemuan4  == 'Alfa') {
-                                                $h4 = 0;
-                                            } elseif ($absen->pertemuan4  == null) {
-                                                $h4 = '';
-                                            } else {
-                                                $h4 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h4 }}
-                                    </td>
-                                    <td>{{ $absen->telat4 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan5 == 'Hadir'){
-                                                $h5 = 1;
-                                                $jmlHadir5++;
-                                            } elseif ($absen->pertemuan5  == 'Alfa') {
-                                                $h5 = 0;
-                                            } elseif ($absen->pertemuan5  == null) {
-                                                $h5 = '';
-                                            } else {
-                                                $h5 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h5 }}
-                                    </td>
-                                    <td>{{ $absen->telat5 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan6 == 'Hadir'){
-                                                $h6 = 1;
-                                                $jmlHadir6++;
-                                            } elseif ($absen->pertemuan6  == 'Alfa') {
-                                                $h6 = 0;
-                                            } elseif ($absen->pertemuan6  == null) {
-                                                $h6 = '';
-                                            } else {
-                                                $h6 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h6 }}
-                                    </td>
-                                    <td>{{ $absen->telat6 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan7 == 'Hadir'){
-                                                $h7 = 1;
-                                                $jmlHadir7++;
-                                            } elseif ($absen->pertemuan7  == 'Alfa') {
-                                                $h7 = 0;
-                                            } elseif ($absen->pertemuan7  == null) {
-                                                $h7 = '';
-                                            } else {
-                                                $h7 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h7 }}
-                                    </td>
-                                    <td>{{ $absen->telat7 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan8 == 'Hadir'){
-                                                $h8 = 1;
-                                                $jmlHadir8++;
-                                            } elseif ($absen->pertemuan8  == 'Alfa') {
-                                                $h8 = 0;
-                                            } elseif ($absen->pertemuan8  == null) {
-                                                $h8 = '';
-                                            } else {
-                                                $h8 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h8 }}
-                                    </td>
-                                    <td>{{ $absen->telat8 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan9 == 'Hadir'){
-                                                $h9 = 1;
-                                                $jmlHadir9++;
-                                            } elseif ($absen->pertemuan9  == 'Alfa') {
-                                                $h9 = 0;
-                                            } elseif ($absen->pertemuan9  == null) {
-                                                $h9 = '';
-                                            } else {
-                                                $h9 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h9 }}
-                                    </td>
-                                    <td>{{ $absen->telat9 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan10 == 'Hadir'){
-                                                $h10 = 1;
-                                                $jmlHadir0++;
-                                            } elseif ($absen->pertemuan10  == 'Alfa') {
-                                                $h10 = 0;
-                                            } elseif ($absen->pertemuan10  == null) {
-                                                $h10 = '';
-                                            } else {
-                                                $h10 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h10 }}
-                                    </td>
-                                    <td>{{ $absen->telat10 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan11 == 'Hadir'){
-                                                $h11 = 1;
-                                                $jmlHadir1++;
-                                            } elseif ($absen->pertemuan11  == 'Alfa') {
-                                                $h11 = 0;
-                                            } elseif ($absen->pertemuan11  == null) {
-                                                $h11 = '';
-                                            } else {
-                                                $h11 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h11 }}
-                                    </td>
-                                    <td>{{ $absen->telat11 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan12 == 'Hadir'){
-                                                $h12 = 1;
-                                                $jmlHadir2++;
-                                            } elseif ($absen->pertemuan12  == 'Alfa') {
-                                                $h12 = 0;
-                                            } elseif ($absen->pertemuan12  == null) {
-                                                $h12 = '';
-                                            } else {
-                                                $h12 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h12 }}
-                                    </td>
-                                    <td>{{ $absen->telat12 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan13 == 'Hadir'){
-                                                $h13 = 1;
-                                                $jmlHadir3++;
-                                            } elseif ($absen->pertemuan13  == 'Alfa') {
-                                                $h13 = 0;
-                                            } elseif ($absen->pertemuan13  == null) {
-                                                $h13 = '';
-                                            } else {
-                                                $h13 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h13 }}
-                                    </td>
-                                    <td>{{ $absen->telat13 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan14 == 'Hadir'){
-                                                $h14 = 1;
-                                                $jmlHadir4++;
-                                            } elseif ($absen->pertemuan14  == 'Alfa') {
-                                                $h14 = 0;
-                                            } elseif ($absen->pertemuan14  == null) {
-                                                $h14 = '';
-                                            } else {
-                                                $h14 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h14 }}
-                                    </td>
-                                    <td>{{ $absen->telat14 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan15 == 'Hadir'){
-                                                $h15 = 1;
-                                                $jmlHadir5++;
-                                            } elseif ($absen->pertemuan15  == 'Alfa') {
-                                                $h15 = 0;
-                                            } elseif ($absen->pertemuan15  == null) {
-                                                $h15 = '';
-                                            } else {
-                                                $h15 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h15 }}
-                                    </td>
-                                    <td>{{ $absen->telat15 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan16 == 'Hadir'){
-                                                $h16 = 1;
-                                                $jmlHadir6++;
-                                            } elseif ($absen->pertemuan16  == 'Alfa') {
-                                                $h16 = 0;
-                                            } elseif ($absen->pertemuan16  == null) {
-                                                $h16 = '';
-                                            } else {
-                                                $h16 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h16 }}
-                                    </td>
-                                    <td>{{ $absen->telat16 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan17 == 'Hadir'){
-                                                $h17 = 1;
-                                                $jmlHadir7++;
-                                            } elseif ($absen->pertemuan17  == 'Alfa') {
-                                                $h17 = 0;
-                                            } elseif ($absen->pertemuan17  == null) {
-                                                $h17 = '';
-                                            } else {
-                                                $h17 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h17 }}
-                                    </td>
-                                    <td>{{ $absen->telat17 }}</td>
-                                    <td>
-                                        @php
-                                            if ($absen->pertemuan18 == 'Hadir'){
-                                                $h18 = 1;
-                                                $jmlHadir8++;
-                                            } elseif ($absen->pertemuan18  == 'Alfa') {
-                                                $h18 = 0;
-                                            } elseif ($absen->pertemuan18  == null) {
-                                                $h18 = '';
-                                            } else {
-                                                $h18 = 0.5;
-                                            }
-                                        @endphp
-                                        {{ $h18 }}
-                                    </td>
-                                    <td>{{ $absen->telat18 }}</td>
-                                    <td>{{ $absen->keterangan }}</td>
-                                    {{-- <td> --}}
-                                        {{-- <a href="{{ $data->status_aktif == 'Aktif' ? '/absen/edit/'.$jadwalId.'/'.$absen->id.'' : '#' }}" class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a> --}}
-                                    {{-- </td> --}}
-                                </tr>
-                                {{-- @php
-                                    $jmlHadir1 = 0;
-                                    foreach ($absen->pertemuan1 as $hadir) {
-                                        if ($hadir == 'Hadir') {
-                                            $jmlHadir1++;
-                                        }
+                            @php
+                            $alfas = 0;
+                            $izins = 0;
+                            $sakits = 0;
+                            $data = DB::table('mahasiswas')->where('nim', $absen->nim)->select('mahasiswas.*', 'nama',
+                            'status_aktif', 'no_hp')->first();
+                            @endphp
+
+                            <tr class="{{ $data->status_aktif == 'Aktif' ? '' : 'table-danger' }}">
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $absen->nim }}</td>
+                                <td>
+                                    {{ $data->nama }}
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan1 == 'Hadir'){
+                                    $h1 = 1;
+                                    $jmlHadir1++;
+                                    } elseif ($absen->pertemuan1 == 'Alfa') {
+                                    $h1 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan1 == null) {
+                                    $h1 = 0;
+                                    } elseif ($absen->pertemuan1 == 'Sakit'){
+                                    $h1 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h1 = 0.5;
+                                    $izins++;
                                     }
-                                @endphp --}}
+                                    @endphp
+                                    @if ($absen->pertemuan1 == null)
+
+                                    @else
+
+                                    {{ $h1 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat1 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat1 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan2 == 'Hadir'){
+                                    $h2 = 1;
+                                    $jmlHadir2++;
+                                    } elseif ($absen->pertemuan2 == 'Alfa') {
+                                    $h2 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan2 == null) {
+                                    $h2 = 0;
+                                    } elseif ($absen->pertemuan2 == 'Sakit'){
+                                    $h2 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h2 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan2 == null)
+
+                                    @else
+
+                                    {{ $h2 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat2 == null)
+
+                                    @else
+
+                                            @php
+                                            $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                            $datang = $absen->telat2 ?? '00:00:00';
+
+                                            $wkawal = new DateTime($awal ?? '00:00:00');
+                                            $wkdatang = new DateTime($datang ?? '00:00:00');
+                                            $wktelat = $wkdatang->diff($wkawal);
+
+                                            @endphp
+                                            @if ($wktelat->format('%i') != '0')
+                                            {{ $wktelat->format('%i') ?? '' }}
+                                            @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan3 == 'Hadir'){
+                                    $h3 = 1;
+                                    $jmlHadir3++;
+                                    } elseif ($absen->pertemuan3 == 'Alfa') {
+                                    $h3 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan3 == null) {
+                                    $h3 = 0;
+                                    } elseif ($absen->pertemuan3 == 'Sakit'){
+                                    $h3 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h3 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan3 == null)
+
+                                    @else
+
+                                    {{ $h3 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat3 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat3 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan4 == 'Hadir'){
+                                    $h4 = 1;
+                                    $jmlHadir4++;
+                                    } elseif ($absen->pertemuan4 == 'Alfa') {
+                                    $h4 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan4 == null) {
+                                    $h4 = 0;
+                                    } elseif ($absen->pertemuan4 == 'Sakit'){
+                                    $h4 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h4 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan4 == null)
+
+                                    @else
+
+                                    {{ $h4 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat4 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat4 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan5 == 'Hadir'){
+                                    $h5 = 1;
+                                    $jmlHadir5++;
+                                    } elseif ($absen->pertemuan5 == 'Alfa') {
+                                    $h5 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan5 == null) {
+                                    $h5 = 0;
+                                    } elseif ($absen->pertemuan5 == 'Sakit'){
+                                    $h5 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h5 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan5 == null)
+
+                                    @else
+
+                                    {{ $h5 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat5 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat5 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan6 == 'Hadir'){
+                                    $h6 = 1;
+                                    $jmlHadir6++;
+                                    } elseif ($absen->pertemuan6 == 'Alfa') {
+                                    $h6 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan6 == null) {
+                                    $h6 = 0;
+                                    } elseif ($absen->pertemuan6 == 'Sakit'){
+                                    $h6 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h6 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan6 == null)
+
+                                    @else
+
+                                    {{ $h6 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat6 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat6 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan7 == 'Hadir'){
+                                    $h7 = 1;
+                                    $jmlHadir7++;
+                                    } elseif ($absen->pertemuan7 == 'Alfa') {
+                                    $h7 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan7 == null) {
+                                    $h7 = 0;
+                                    } elseif ($absen->pertemuan7 == 'Sakit'){
+                                    $h7 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h7 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan7 == null)
+
+                                    @else
+
+                                    {{ $h7 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat7 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat7 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan8 == 'Hadir'){
+                                    $h8 = 1;
+                                    $jmlHadir8++;
+                                    } elseif ($absen->pertemuan8 == 'Alfa') {
+                                    $h8 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan8 == null) {
+                                    $h8 = 0;
+                                    } elseif ($absen->pertemuan8 == 'Sakit'){
+                                    $h8 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h8 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan8 == null)
+
+                                    @else
+
+                                    {{ $h8 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat8 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat8 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan9 == 'Hadir'){
+                                    $h9 = 1;
+                                    $jmlHadir9++;
+                                    } elseif ($absen->pertemuan9 == 'Alfa') {
+                                    $h9 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan9 == null) {
+                                    $h9 = 0;
+                                    } elseif ($absen->pertemuan9 == 'Sakit'){
+                                    $h9 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h9 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan9 == null)
+
+                                    @else
+
+                                    {{ $h9 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat9 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat9 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan10 == 'Hadir'){
+                                    $h10 = 1;
+                                    $jmlHadir10++;
+                                    } elseif ($absen->pertemuan10 == 'Alfa') {
+                                    $h10 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan10 == null) {
+                                    $h10 = 0;
+                                    } elseif ($absen->pertemuan10 == 'Sakit'){
+                                    $h10 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h10 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan10 == null)
+
+                                    @else
+
+                                    {{ $h10 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat10 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat10 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan11 == 'Hadir'){
+                                    $h11 = 1;
+                                    $jmlHadir11++;
+                                    } elseif ($absen->pertemuan11 == 'Alfa') {
+                                    $h11 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan11 == null) {
+                                    $h11 = 0;
+                                    } elseif ($absen->pertemuan11 == 'Sakit'){
+                                    $h11 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h11 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan11 == null)
+
+                                    @else
+
+                                    {{ $h11 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat11 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat11 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan12 == 'Hadir'){
+                                    $h12 = 1;
+                                    $jmlHadir12++;
+                                    } elseif ($absen->pertemuan12 == 'Alfa') {
+                                    $h12 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan12 == null) {
+                                    $h12 = 0;
+                                    } elseif ($absen->pertemuan12 == 'Sakit'){
+                                    $h12 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h12 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan12 == null)
+
+                                    @else
+
+                                    {{ $h12 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat12 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat12 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan13 == 'Hadir'){
+                                    $h13 = 1;
+                                    $jmlHadir13++;
+                                    } elseif ($absen->pertemuan13 == 'Alfa') {
+                                    $h13 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan13 == null) {
+                                    $h13 = 0;
+                                    } elseif ($absen->pertemuan13 == 'Sakit'){
+                                    $h13 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h13 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan13 == null)
+
+                                    @else
+
+                                    {{ $h13 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat13 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat13 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan14 == 'Hadir'){
+                                    $h14 = 1;
+                                    $jmlHadir14++;
+                                    } elseif ($absen->pertemuan14 == 'Alfa') {
+                                    $h14 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan14 == null) {
+                                    $h14 = 0;
+                                    } elseif ($absen->pertemuan14 == 'Sakit'){
+                                    $h14 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h14 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan14 == null)
+
+                                    @else
+
+                                    {{ $h14 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat14 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat14 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan15 == 'Hadir'){
+                                    $h15 = 1;
+                                    $jmlHadir15++;
+                                    } elseif ($absen->pertemuan15 == 'Alfa') {
+                                    $h15 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan15 == null) {
+                                    $h15 = 0;
+                                    } elseif ($absen->pertemuan15 == 'Sakit'){
+                                    $h15 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h15 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan15 == null)
+
+                                    @else
+
+                                    {{ $h15 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat15 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat15 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan16 == 'Hadir'){
+                                    $h16 = 1;
+                                    $jmlHadir16++;
+                                    } elseif ($absen->pertemuan16 == 'Alfa') {
+                                    $h16 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan16 == null) {
+                                    $h16 = 0;
+                                    } elseif ($absen->pertemuan16 == 'Sakit'){
+                                    $h16 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h16 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan16 == null)
+
+                                    @else
+
+                                    {{ $h16 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat16 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat16 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan17 == 'Hadir'){
+                                    $h17 = 1;
+                                    $jmlHadir17++;
+                                    } elseif ($absen->pertemuan17 == 'Alfa') {
+                                    $h17 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan17 == null) {
+                                    $h17 = 0;
+                                    } elseif ($absen->pertemuan17 == 'Sakit'){
+                                    $h17 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h17 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan17 == null)
+
+                                    @else
+
+                                    {{ $h17 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat17 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat17 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                    if ($absen->pertemuan18 == 'Hadir'){
+                                    $h18 = 1;
+                                    $jmlHadir18++;
+                                    } elseif ($absen->pertemuan18 == 'Alfa') {
+                                    $h18 = 0;
+                                    $alfas++;
+                                    } elseif ($absen->pertemuan18 == null) {
+                                    $h18 = 0;
+                                    } elseif ($absen->pertemuan18 == 'Sakit'){
+                                    $h18 = 0.5;
+                                    $sakits++;
+                                    }else {
+                                    $h18 = 0.5;
+                                    $izins++;
+                                    }
+                                    @endphp
+                                    @if ($absen->pertemuan18 == null)
+
+                                    @else
+
+                                    {{ $h18 }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($absen->telat18 == null)
+
+                                    @else
+
+                                        @php
+                                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                                        $datang = $absen->telat18 ?? '00:00:00';
+
+                                        $wkawal = new DateTime($awal ?? '00:00:00');
+                                        $wkdatang = new DateTime($datang ?? '00:00:00');
+                                        $wktelat = $wkdatang->diff($wkawal);
+                                        @endphp
+                                        @if ($wktelat->format('%i') != '0')
+                                        {{ $wktelat->format('%i') ?? '' }}
+                                        @else
+
+                                        @endif
+                                    @endif
+                                </td>
+                                @php
+                                    $jmlHadirMhs = $h1+$h2+$h3+$h4+$h5+$h6+$h7+$h8+$h9+$h10+$h11+$h12+$h13+$h14+$h15+$h16+$h17+$h18;
+                                    $persentase = 100 * ($jmlHadirMhs/18);
+                                @endphp
+                                <td class="text-center">
+                                    {{ $jmlHadirMhs == 0 ? '-' : $jmlHadirMhs }}
+                                </td>
+                                <td class="text-center">
+
+                                    <a href="#" class="{{ $alfas >= '3' ? 'btn btn-warning' : ''}}" disable>{{ $alfas == 0 ? '-' : $alfas}}</a>
+                                </td>
+                                <td class="text-center">
+                                    @if ($izins == '0')
+                                    -
+                                    @else
+                                    {{ $izins }}
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if ($sakits == '0')
+                                    -
+                                    @else
+                                    {{ $sakits }}
+                                    @endif
+                                </td>
+
+                                <td>{{ number_format($persentase, 2) ?? '' }}%</td>
+                                @if (Auth::user()->role == 'dosen')
+                                <td>
+                                    <a href="{{ $data->status_aktif == 'Aktif' ? '/absen/edit/'.$jadwalId.'/'.$absen->id.'' : '#' }}"
+                                        class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
+                                    @if ($alfas == '3')
+
+                                    <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AAnda sudah tidak mengikuti perkuliahan saya sebanyak 3x. Mohon diperhatikan lagi kehadirannya!&type=phone_number&app_absent=0"
+                                        class="btn btn-sm btn-secondary btn-icon" target="_blank"><i
+                                            class="mdi mdi-whatsapp"></i></a>
+
+                                    @elseif ($alfas >= '4')
+                                    <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AAnda sudah tidak mengikuti perkuliahan saya sudah lebih dari 3x. Anda sudah tidak dapat mengikuti ujian!&type=phone_number&app_absent=0"
+                                        class="btn btn-sm btn-danger btn-icon" target="_blank"><i
+                                            class="mdi mdi-whatsapp"></i></a>
+
+                                    @endif
+                                </td>
+                                @endif
+                                @if (Auth::user()->role == 'prodi')
+                                    @if ($alfas >= '3')
+                                        <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AKami dari Program Studi mengingatkan Anda. Bahwa Anda sudah tidak mengikuti perkuliahan sebanyak {{ $alfas }}. Perbaiki atau tidak dapat melaksanakan ujian-ujian!&type=phone_number&app_absent=0"
+                                            class="btn btn-sm btn-danger btn-icon" target="_blank"><i
+                                                class="mdi mdi-whatsapp"></i></a>
+                                    @endif
+                                @endif
+                            </tr>
+
                             @endforeach
                             @endif
 
@@ -592,8 +1168,3 @@
     </div>
 </div>
 
-{{-- <script>
-    function openNewWindow() {
-        window.open("/absensis/cetak/{{ $jadwalId }}/{{ $kelasSelect }}/{{ $matkulSelect }}", "_blank");
-    }
-</script> --}}

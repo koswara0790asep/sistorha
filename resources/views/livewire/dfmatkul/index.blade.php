@@ -17,49 +17,9 @@
                     <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-printer"></i> Cetak</a>
                 </div>
-                <!-- Button trigger modal -->
-                {{-- <button type="button" onclick="toggle()"
-                    class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
-                    <i class="mdi mdi-file-import"></i> Import XLSX</button> --}}
             </div>
         </div>
     </div>
-
-
-    {{-- Toggle --}}
-    {{-- <div id="content" class="mb-3" style="display: block;">
-        <div class="card">
-
-            <div class="card-header">
-                <div class="card-title mt-3">
-                    <h4>
-                        <i class="mdi mdi-file-import"></i> Impor Data Dari Exel
-                    </h4>
-                </div>
-            </div>
-            <div class="card-body">
-                <form action="">
-                    <div>
-                        <input type="file" name="importDosen" id="importDosen" wire:model="importDosen"
-                            class="form-control @error('importDosen') is-invalid @enderror">
-                        {{-- <span class="input-group-text"><i class="mdi mdi-file"></i></span> --}}
-                        {{-- @error('importDosen')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <br>
-                    <button class="btn btn-secondary btn-sm" type="submit" wire:click.prevent="importmk"><i
-                            class="mdi mdi-content-save"></i> Impor Data</button>
-                    {{-- <button class="btn btn-primary btn-sm" type="submit" wire:click="download"><i class="mdi mdi-download"></i> Unduh Contoh</button> --}}
-                    {{-- <a href="{{ asset('/sheets/ex-mk.xlsx') }}" class="btn btn-info btn-sm" download><i
-                            class="mdi mdi-download"></i> Unduh Contoh</a>
-
-                </form>
-            </div>
-        </div>
-    </div> --}}
 
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
@@ -110,8 +70,6 @@
                                     <a href="{{ route('dfmatkul.edit', $mk->id) }}"
                                         class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
 
-                                    {{-- <button wire:click="genAkun({{ $mk->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button> --}}
-
                                     <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
                                         data-bs-target="#id_{{ $mk->id }}">
                                         <i class="mdi mdi-delete"></i>
@@ -140,14 +98,6 @@
                                         </div>
                                     </div>
                                     <br>
-                                    {{-- <a href="{{ route('dosen.show', $mk->id) }}" class="shadow btn btn-info"><i
-                                        class="icon-eye"></i> SHOW</a> --}}
-                                    {{-- <div class="mt-1">
-                                        <button wire:click="genAkun({{ $mk->id }})"
-                                            class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
-                                        <a href="{{ route('dosen.show', $mk->id) }}"
-                                            class="btn btn-sm btn-info btn-icon"><i class="mdi mdi-eye"></i></a>
-                                    </div> --}}
                                 </td>
                             </tr>
                             @endforeach

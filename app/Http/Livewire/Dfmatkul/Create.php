@@ -26,21 +26,6 @@ class Create extends Component
             'dosen' => 'required',
         ]);
 
-        // if (DfMatkul::where('dosen', $this->dosen)->exists()) {
-        //     Alert::warning('GAGAL!','Data Dosen di Mata Kuliah Tersebut Sudah Ada Dalam Daftar!');
-        // } else {
-
-        //     DfMatkul::create([
-        //         'kode_matkul' => $this->kode_matkul,
-        //         'nama_matkul' => $this->nama_matkul,
-        //         'program_studi' => $this->program_studi,
-        //         'semester' => $this->semester,
-        //         'dosen' => $this->dosen,
-        //     ]);
-
-        //     Alert::success('BERHASIL!','Data Mata Kuliah ' .$this->nama_matkul. ' Berhasil Disimpan Dalam Daftar!');
-        // }
-
         $dataExists = DfMatkul::where('dosen', $this->dosen)
                             ->where('kode_matkul', $this->kode_matkul)
                             ->exists();

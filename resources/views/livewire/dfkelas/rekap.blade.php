@@ -3,9 +3,6 @@
     $mahasiswas = DB::table('kelas_mhsws')->where('kelas_id', $kelas ?? '')->select('kelas_mhsws.*', 'kelas_id', 'mahasiswa_id')->get();
     $prodi = DB::table('program_studies')->where('id', $dfKelas->prodi_id ?? '')->select('program_studies.*', 'program_studi')->first();
     $absen = DB::table('absensis')->where('kelas_id', $kelas ?? '')->select('absensis.*', 'matkul_id', 'semester', 'nim', 'pertemuan1', 'pertemuan2', 'pertemuan3', 'pertemuan4', 'pertemuan5', 'pertemuan6', 'pertemuan7', 'pertemuan8', 'pertemuan9', 'pertemuan10', 'pertemuan11', 'pertemuan12', 'pertemuan13', 'pertemuan14', 'pertemuan15', 'pertemuan16', 'pertemuan17', 'pertemuan18')->first();
-    // dd($absen);
-    // $dfMatkul = DB::table('df_matkuls')->where('id', $matkulSelect ?? '')->select('df_matkuls.*', 'id', 'kode_matkul', 'nama_matkul', 'dosen')->first();
-    // $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.*', 'sks', 'jml_jam', 'hari', 'jam_awal', 'jam_akhir')->first();
 @endphp
 
 <center>
@@ -83,7 +80,6 @@
             @foreach ($dtJadwals as $jadwal)
             @php
                 $dtMatkul = DB::table('df_matkuls')->where('id', $jadwal->matkul_id ?? '')->select('df_matkuls.*', 'id', 'kode_matkul', 'nama_matkul')->first();
-                // $dtDosen = DB::table('dosens')->where('id', $jadwal->dosen_id ?? '')->select('dosens.*', 'nama')->first();
             @endphp
                 <th style='text-align: center;border:1px solid black;' colspan="2">{{ $dtMatkul->nama_matkul }}</th>
             @endforeach
@@ -95,7 +91,6 @@
             @endphp
             @foreach ($dtJadwals as $jadwal)
             @php
-                // $dtMatkul = DB::table('df_matkuls')->where('id', $jadwal->matkul_id ?? '')->select('df_matkuls.*', 'id', 'kode_matkul', 'nama_matkul')->first();
                 $dtDosen = DB::table('dosens')->where('id', $jadwal->dosen_id ?? '')->select('dosens.*', 'nama')->first();
                 $ulang++;
             @endphp
@@ -107,22 +102,17 @@
                 <td style='text-align: center;border:1px solid black;'><b>KHD</b></td>
                 <td style='text-align: center;border:1px solid black;'><b>%</b></td>
             @endforeach
-        {{-- @for ($i = 1; $i < $ulang; $i++)
-            <td style='text-align: center;border:1px solid black;'><b>KHD</b></td>
-            <td style='text-align: center;border:1px solid black;'><b>%</b></td>
-        @endfor --}}
         </tr>
     </thead>
     <tbody>
         @foreach ($mahasiswas as $mhs)
-        <tr>
-            <td  style='text-align: center;border:1px solid black;'>{{ $loop->iteration }}</td>
             @php
-                $dtMhs = DB::table('mahasiswas')->where('id', $mhs->mahasiswa_id ?? '')->select('mahasiswas.*', 'nama', 'nim')->first();
+                $dtMhs = DB::table('mahasiswas')->where('id', $mhs->mahasiswa_id ?? '')->select('mahasiswas.*', 'nama', 'nim', 'status_aktif')->first();
                 $jmlHadir = 0;
-                // dd($dtMhs);
             @endphp
-            <td  style='border:1px solid black;'>
+        <tr style="{{ $dtMhs->status_aktif == 'Aktif' ? '' : 'background-color: red;' }}">
+            <td  style='text-align: center;border:1px solid black;'>{{ $loop->iteration }}</td>
+            <td  style='text-align: center;border:1px solid black;'>
                 {{ $dtMhs->nim }}
             </td>
             <td  style='border:1px solid black;'>
@@ -132,145 +122,163 @@
                 @php
                     $khd = DB::table('absensis')->where('nim', $dtMhs->nim ?? '')->where('matkul_id', $jadwal->matkul_id ?? '')->select('absensis.*', 'id', 'kelas_id', 'matkul_id', 'semester', 'nim', 'pertemuan1', 'pertemuan2', 'pertemuan3', 'pertemuan4', 'pertemuan5', 'pertemuan6', 'pertemuan7', 'pertemuan8', 'pertemuan9', 'pertemuan10', 'pertemuan11', 'pertemuan12', 'pertemuan13', 'pertemuan14', 'pertemuan15', 'pertemuan16', 'pertemuan17', 'pertemuan18')->first();
                     $jmlHadir = 0;
-                        if ($khd->pertemuan1 == 'Hadir') {
+                    $hadir1 = $khd->pertemuan1 ?? '';
+                    $hadir2 = $khd->pertemuan2 ?? '';
+                    $hadir3 = $khd->pertemuan3 ?? '';
+                    $hadir4 = $khd->pertemuan4 ?? '';
+                    $hadir5 = $khd->pertemuan5 ?? '';
+                    $hadir6 = $khd->pertemuan6 ?? '';
+                    $hadir7 = $khd->pertemuan7 ?? '';
+                    $hadir8 = $khd->pertemuan8 ?? '';
+                    $hadir9 = $khd->pertemuan9 ?? '';
+                    $hadir10 = $khd->pertemuan10 ?? '';
+                    $hadir11 = $khd->pertemuan11 ?? '';
+                    $hadir12 = $khd->pertemuan12 ?? '';
+                    $hadir13 = $khd->pertemuan13 ?? '';
+                    $hadir14 = $khd->pertemuan14 ?? '';
+                    $hadir15 = $khd->pertemuan15 ?? '';
+                    $hadir16 = $khd->pertemuan16 ?? '';
+                    $hadir17 = $khd->pertemuan17 ?? '';
+                    $hadir18 = $khd->pertemuan18 ?? '';
+                        if ($hadir1 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan1 == 'Izin' || $khd->pertemuan1 == 'Sakit'){
+                        } elseif ($hadir1 == 'Izin' || $hadir1 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan2 == 'Hadir') {
+                        if ($hadir2 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan2 == 'Izin' || $khd->pertemuan2 == 'Sakit'){
+                        } elseif ($hadir2 == 'Izin' || $hadir2 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan3 == 'Hadir') {
+                        if ($hadir3 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan3 == 'Izin' || $khd->pertemuan3 == 'Sakit'){
+                        } elseif ($hadir3 == 'Izin' || $hadir3 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan4 == 'Hadir') {
+                        if ($hadir4 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan4 == 'Izin' || $khd->pertemuan4 == 'Sakit'){
+                        } elseif ($hadir4 == 'Izin' || $hadir4 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan5 == 'Hadir') {
+                        if ($hadir5 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan5 == 'Izin' || $khd->pertemuan5 == 'Sakit'){
+                        } elseif ($hadir5 == 'Izin' || $hadir5 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan6 == 'Hadir') {
+                        if ($hadir6 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan6 == 'Izin' || $khd->pertemuan6 == 'Sakit'){
+                        } elseif ($hadir6 == 'Izin' || $hadir6 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan7 == 'Hadir') {
+                        if ($hadir7 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan7 == 'Izin' || $khd->pertemuan7 == 'Sakit'){
+                        } elseif ($hadir7 == 'Izin' || $hadir7 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan8 == 'Hadir') {
+                        if ($hadir8 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan8 == 'Izin' || $khd->pertemuan8 == 'Sakit'){
+                        } elseif ($hadir8 == 'Izin' || $hadir8 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan9 == 'Hadir') {
+                        if ($hadir9 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan9 == 'Izin' || $khd->pertemuan9 == 'Sakit'){
+                        } elseif ($hadir9 == 'Izin' || $hadir9 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan10 == 'Hadir') {
+                        if ($hadir10 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan10 == 'Izin' || $khd->pertemuan10 == 'Sakit'){
+                        } elseif ($hadir10 == 'Izin' || $hadir10 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan11 == 'Hadir') {
+                        if ($hadir11 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan11 == 'Izin' || $khd->pertemuan11 == 'Sakit'){
+                        } elseif ($hadir11 == 'Izin' || $hadir11 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan12 == 'Hadir') {
+                        if ($hadir12 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan12 == 'Izin' || $khd->pertemuan12 == 'Sakit'){
+                        } elseif ($hadir12 == 'Izin' || $hadir12 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan13 == 'Hadir') {
+                        if ($hadir13 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan13 == 'Izin' || $khd->pertemuan13 == 'Sakit'){
+                        } elseif ($hadir13 == 'Izin' || $hadir13 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan14 == 'Hadir') {
+                        if ($hadir14 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan14 == 'Izin' || $khd->pertemuan14 == 'Sakit'){
+                        } elseif ($hadir14 == 'Izin' || $hadir14 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan15 == 'Hadir') {
+                        if ($hadir15 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan15 == 'Izin' || $khd->pertemuan15 == 'Sakit'){
+                        } elseif ($hadir15 == 'Izin' || $hadir15 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan16 == 'Hadir') {
+                        if ($hadir16 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan16 == 'Izin' || $khd->pertemuan16 == 'Sakit'){
+                        } elseif ($hadir16 == 'Izin' || $hadir16 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan17 == 'Hadir') {
+                        if ($hadir17 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan17 == 'Izin' || $khd->pertemuan17 == 'Sakit'){
+                        } elseif ($hadir17 == 'Izin' || $hadir17 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
                         }
 
-                        if ($khd->pertemuan18 == 'Hadir') {
+                        if ($hadir18 == 'Hadir') {
                             $jmlHadir++;
-                        } elseif ($khd->pertemuan18 == 'Izin' || $khd->pertemuan18 == 'Sakit'){
+                        } elseif ($hadir18 == 'Izin' || $hadir18 == 'Sakit'){
                             $jmlHadir += 0.5;
                         } else {
 
@@ -279,157 +287,173 @@
                         $persen = 100 * ($jmlHadir/18);
                         @endphp
                     <td style='text-align: center;border:1px solid black;'>{{ $jmlHadir == 0 ? '-' : $jmlHadir  }}</td>
-                    <td style='text-align: center;border:1px solid black;'>{{ number_format($persen, 2) ?? '' }}</</td>
+                    <td style='text-align: center;border:1px solid black;'>{{ number_format($persen, 2) == 0 ? '0' : number_format($persen, 2) }}%</</td>
                 @endforeach
 
                 <td style='text-align: center;border:1px solid black;'>
-                    {{-- {{ count($mahasiswas)  }} --}}
                     @php
                         $jmlHadir = 0;
                     @endphp
                     @foreach ($dtJadwals as $jadwal)
                         @php
                             $khd = DB::table('absensis')->where('nim', $dtMhs->nim ?? '')->where('matkul_id', $jadwal->matkul_id ?? '')->select('absensis.*', 'id', 'kelas_id', 'matkul_id', 'semester', 'nim', 'pertemuan1', 'pertemuan2', 'pertemuan3', 'pertemuan4', 'pertemuan5', 'pertemuan6', 'pertemuan7', 'pertemuan8', 'pertemuan9', 'pertemuan10', 'pertemuan11', 'pertemuan12', 'pertemuan13', 'pertemuan14', 'pertemuan15', 'pertemuan16', 'pertemuan17', 'pertemuan18')->first();
-                            // $jmlHadir = 0;
-                                if ($khd->pertemuan1 == 'Hadir') {
+                            $hadir1 = $khd->pertemuan1 ?? '';
+                            $hadir2 = $khd->pertemuan2 ?? '';
+                            $hadir3 = $khd->pertemuan3 ?? '';
+                            $hadir4 = $khd->pertemuan4 ?? '';
+                            $hadir5 = $khd->pertemuan5 ?? '';
+                            $hadir6 = $khd->pertemuan6 ?? '';
+                            $hadir7 = $khd->pertemuan7 ?? '';
+                            $hadir8 = $khd->pertemuan8 ?? '';
+                            $hadir9 = $khd->pertemuan9 ?? '';
+                            $hadir10 = $khd->pertemuan10 ?? '';
+                            $hadir11 = $khd->pertemuan11 ?? '';
+                            $hadir12 = $khd->pertemuan12 ?? '';
+                            $hadir13 = $khd->pertemuan13 ?? '';
+                            $hadir14 = $khd->pertemuan14 ?? '';
+                            $hadir15 = $khd->pertemuan15 ?? '';
+                            $hadir16 = $khd->pertemuan16 ?? '';
+                            $hadir17 = $khd->pertemuan17 ?? '';
+                            $hadir18 = $khd->pertemuan18 ?? '';
+                                if ($hadir1 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan1 == 'Izin' || $khd->pertemuan1 == 'Sakit'){
+                                } elseif ($hadir1 == 'Izin' || $hadir1 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan2 == 'Hadir') {
+                                if ($hadir2 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan2 == 'Izin' || $khd->pertemuan2 == 'Sakit'){
+                                } elseif ($hadir2 == 'Izin' || $hadir2 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan3 == 'Hadir') {
+                                if ($hadir3 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan3 == 'Izin' || $khd->pertemuan3 == 'Sakit'){
+                                } elseif ($hadir3 == 'Izin' || $hadir3 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan4 == 'Hadir') {
+                                if ($hadir4 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan4 == 'Izin' || $khd->pertemuan4 == 'Sakit'){
+                                } elseif ($hadir4 == 'Izin' || $hadir4 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan5 == 'Hadir') {
+                                if ($hadir5 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan5 == 'Izin' || $khd->pertemuan5 == 'Sakit'){
+                                } elseif ($hadir5 == 'Izin' || $hadir5 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan6 == 'Hadir') {
+                                if ($hadir6 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan6 == 'Izin' || $khd->pertemuan6 == 'Sakit'){
+                                } elseif ($hadir6 == 'Izin' || $hadir6 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan7 == 'Hadir') {
+                                if ($hadir7 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan7 == 'Izin' || $khd->pertemuan7 == 'Sakit'){
+                                } elseif ($hadir7 == 'Izin' || $hadir7 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan8 == 'Hadir') {
+                                if ($hadir8 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan8 == 'Izin' || $khd->pertemuan8 == 'Sakit'){
+                                } elseif ($hadir8 == 'Izin' || $hadir8 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan9 == 'Hadir') {
+                                if ($hadir9 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan9 == 'Izin' || $khd->pertemuan9 == 'Sakit'){
+                                } elseif ($hadir9 == 'Izin' || $hadir9 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan10 == 'Hadir') {
+                                if ($hadir10 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan10 == 'Izin' || $khd->pertemuan10 == 'Sakit'){
+                                } elseif ($hadir10 == 'Izin' || $hadir10 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan11 == 'Hadir') {
+                                if ($hadir11 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan11 == 'Izin' || $khd->pertemuan11 == 'Sakit'){
+                                } elseif ($hadir11 == 'Izin' || $hadir11 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan12 == 'Hadir') {
+                                if ($hadir12 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan12 == 'Izin' || $khd->pertemuan12 == 'Sakit'){
+                                } elseif ($hadir12 == 'Izin' || $hadir12 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan13 == 'Hadir') {
+                                if ($hadir13 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan13 == 'Izin' || $khd->pertemuan13 == 'Sakit'){
+                                } elseif ($hadir13 == 'Izin' || $hadir13 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan14 == 'Hadir') {
+                                if ($hadir14 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan14 == 'Izin' || $khd->pertemuan14 == 'Sakit'){
+                                } elseif ($hadir14 == 'Izin' || $hadir14 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan15 == 'Hadir') {
+                                if ($hadir15 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan15 == 'Izin' || $khd->pertemuan15 == 'Sakit'){
+                                } elseif ($hadir15 == 'Izin' || $hadir15 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan16 == 'Hadir') {
+                                if ($hadir16 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan16 == 'Izin' || $khd->pertemuan16 == 'Sakit'){
+                                } elseif ($hadir16 == 'Izin' || $hadir16 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan17 == 'Hadir') {
+                                if ($hadir17 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan17 == 'Izin' || $khd->pertemuan17 == 'Sakit'){
+                                } elseif ($hadir17 == 'Izin' || $hadir17 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
                                 }
 
-                                if ($khd->pertemuan18 == 'Hadir') {
+                                if ($hadir18 == 'Hadir') {
                                     $jmlHadir++;
-                                } elseif ($khd->pertemuan18 == 'Izin' || $khd->pertemuan18 == 'Sakit'){
+                                } elseif ($hadir18 == 'Izin' || $hadir18 == 'Sakit'){
                                     $jmlHadir += 0.5;
                                 } else {
 
@@ -438,7 +462,7 @@
                                 $persen = 100 * ($jmlHadir/(count($dtJadwals) * 18));
                         @endphp
                     @endforeach
-                    {{ number_format($persen, 2) == 0 ? '-' : number_format($persen, 2)  }}
+                    {{ number_format($persen, 2) == 0 ? '0' : number_format($persen, 2)  }}%
                 </td>
             </tr>
         @endforeach

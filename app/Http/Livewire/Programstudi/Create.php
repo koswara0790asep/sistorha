@@ -11,8 +11,6 @@ class Create extends Component
     public $program_studi;
     public $kode;
     public $status;
-    // public $created_at;
-    // public $updated_at;
 
     public function store()
     {
@@ -30,11 +28,7 @@ class Create extends Component
                 'program_studi' => $this->program_studi,
                 'kode' => $this->kode,
                 'status' => $this->status,
-                // 'created_at' => now(),
-                // 'updated_at' => now(),
             ]);
-
-            // dd($prodi);
 
             Alert::success('BERHASIL!','Data Program Studi ' .$this->program_studi. ' Berhasil Disimpan!');
         }

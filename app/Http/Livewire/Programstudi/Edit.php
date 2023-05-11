@@ -17,7 +17,6 @@ class Edit extends Component
     public function mount($id)
     {
         $prodi = ProgramStudi::find($id);
-        // dd($program_studi);
 
         if ($prodi) {
             $this->programstudiId = $prodi->id;

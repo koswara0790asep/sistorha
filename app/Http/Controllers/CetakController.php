@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absensi;
+use App\Models\BeritaAcara;
 use App\Models\DfKelas;
 use App\Models\DfMatkul;
 use App\Models\Dosen;
@@ -17,6 +18,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\PDF;
 use FontLib\Table\Type\post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CetakController extends Controller
 {
@@ -106,6 +108,7 @@ class CetakController extends Controller
     public $matkulSelect;
     public $kelasSelect;
     public $jadwalId;
+    public $dosenID;
 
     public function cetakAbsenMhs(Jadwal $jadwal)
     {
@@ -140,6 +143,25 @@ class CetakController extends Controller
             ''
             :
             Absensi::first()->where('kelas_id', 'like', '%' . $kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $matkulSelect . '%')->get(),
+        ]);
+    }
+
+    public function cetakBAP(Jadwal $jadwal)
+    {
+        $kelasSelect = $jadwal->kelas_id;
+        $matkulSelect = $jadwal->matkul_id;
+        $jadwalId = $jadwal->id;
+
+
+        // $jadwals = Jadwal::get();
+        return view('livewire.beritaacara.cetak', [
+            'jadwalId' => $jadwalId,
+            'kelasSelect' => $kelasSelect,
+            'matkulSelect' => $matkulSelect,
+            'beritaacaras' => $matkulSelect == null && $kelasSelect == null ?
+            ''
+            :
+            BeritaAcara::first()->where('kelas_id', 'like', '%' . $kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $matkulSelect . '%')->get(),
         ]);
     }
 

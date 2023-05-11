@@ -45,7 +45,6 @@ class Index extends Component
     {
         return view('livewire.dosen.index', [
             'dosens' => Dosen::all(),
-            // 'kelas' => Kelas::all(),
         ]);
     }
 
@@ -80,7 +79,6 @@ class Index extends Component
         }
 
         //flash message
-        // session()->flash('message', 'Data Dosen '.$this->nama.' Berhasil Dihapus!');
         Alert::success('Berhasil!','Data dosen berhasil terhapus!');
 
         // redirect
@@ -108,8 +106,6 @@ class Index extends Component
             $this->jenis_kelamin = $dosen->jenis_kelamin;
         }
 
-        // dd($dosen);
-
         $user = User::where('username', $this->nidn)->first();
         if ($user) {
             Alert::warning('GAGAL!','Data user sudah ada!');
@@ -133,11 +129,10 @@ class Index extends Component
 
     public function importDsn()
     {
-        // $this->validate([
-        //     'importDosen' => 'required|mimes:xlsx'
-        // ]);
+        $this->validate([
+            'importDosen' => 'required|mimes:xlsx'
+        ]);
 
-        // dd($this->importDosen);
         $file = $this->importDosen;
         $reader = IOFactory::createReader('Xlsx');
         $spreadsheet = $reader->load($file->getRealPath());
@@ -180,7 +175,7 @@ class Index extends Component
 
         // Reset form dan property
         $this->importDosen = null;
-        // session()->flash('message', 'Data mahasiswa berhasil diimport.');
+
         Alert::success('BERHASIL!','Data dosen berhasil diimport');
 
         return redirect()->route('dosen.index');

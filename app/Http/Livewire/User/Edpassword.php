@@ -19,12 +19,9 @@ class Edpassword extends Component
     public function mount($id)
     {
         $user = User::find($id);
-        // dd($user);
-        // $this->oldpassword = $user->password;
 
         if ($user) {
             $this->userId = $user->id;
-            // $this->oldpassword = $user->getOriginal('password');
         } elseif ($this->userId != Auth::user()->id) {
             Alert::error('Woops!','Data yang kamu cari tidak ada!');
         }

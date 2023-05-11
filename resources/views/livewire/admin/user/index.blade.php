@@ -33,7 +33,6 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role }}</td>
                                 <td>
-                                    {{-- <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-info"><i class="link-icon" data-feather="eye"></i></a> --}}
                                     <a href="" class="btn btn-sm btn-warning btn-icon"><i data-feather="edit"></i></a>
                                     <a href="" class="btn btn-sm btn-danger btn-icon"><i data-feather="trash"></i></a>
                                 </td>
