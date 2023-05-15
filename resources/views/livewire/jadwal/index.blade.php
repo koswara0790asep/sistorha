@@ -64,7 +64,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-account-multiple"></i> Data Table Jadwal
+                        <i class="mdi mdi-calendar-text"></i> Data Table Jadwal
                     </h4>
                 </div>
             </div>

@@ -6,6 +6,7 @@ $dfMatkul = DB::table('df_matkuls')->where('id', $matkulSelect ?? '')->select('d
 $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.*', 'sks', 'jml_jam', 'hari',
 'jam_awal', 'jam_akhir')->first();
 $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 'nama')->first();
+// dd($beritaacaras);
 @endphp
 
 <div class="row">
@@ -25,28 +26,29 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
         <div class="card">
             <div class="card-header">
                 <div class="card-title mt-3">
-                    <h4 style="margin-top: 10px;"><b><i class="mdi mdi-file-document"></i> Tabel Absen</b></h4>
+                    <h4 style="margin-top: 10px;"><b><i class="mdi mdi-file-document"></i> Berita Acara</b></h4>
                     <div style="text-align: right; margin-top: -30px;">
-                        <div class="dropdown">
-                            <a href="{{ route('beritaacara.create', [$jadwalId, $matkulSelect, $kelasSelect, $dosenID]) }}"
-                                class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend">
-                                <i class="mdi mdi-account-plus"></i> TAMBAH DATA</a>
-                            <a href="{{ route('beritaacara.cetak', [$jadwalId, $matkulSelect, $kelasSelect, $dosenID]) }}"
-                                class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend" target="_blank"><i
-                                    class="mdi mdi-printer"></i> CETAK</a>
+                        @if (count($beritaacaras) != 16)
+                        <a href="{{ route('beritaacara.create', [$jadwalId, $matkulSelect, $kelasSelect, $dosenID]) }}"
+                            class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend">
+                            <i class="mdi mdi-account-plus"></i> TAMBAH DATA</a>
+                        @else
+                        @endif
+                        <a href="{{ route('beritaacara.cetak', [$jadwalId, $matkulSelect, $kelasSelect, $dosenID]) }}"
+                            class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend" target="_blank"><i
+                                class="mdi mdi-printer"></i> CETAK</a>
 
-                            @if (Auth::user()->role == 'dosen')
+                    @if (Auth::user()->role == 'dosen')
 
-                            <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}"
-                                class="btn btn-danger btn-icon-text">
-                                @else
+                        <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}"
+                            class="btn btn-danger btn-icon-text">
+                    @else
 
-                                <a href="{{ route('jadwal.index') }}" class="btn btn-danger btn-icon-text">
-                                    @endif
-                                    <i class="btn-icon-prepend" data-feather="arrow-left"></i>
-                                    KEMBALI
-                                </a>
-                        </div>
+                        <a href="{{ route('jadwal.index') }}" class="btn btn-danger btn-icon-text">
+                            @endif
+                            <i class="btn-icon-prepend" data-feather="arrow-left"></i>
+                            KEMBALI
+                        </a>
                     </div>
                 </div>
             </div>
@@ -121,13 +123,13 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                         </table>
                     </div>
                     @if (Auth::user()->role == 'akademik' || Auth::user()->role == 'prodi')
-                    @if($lastMeetingDate->lte($twoWeeksAgo))
-                    <div class="d-grid gap-2">
-                        <a href="https://api.whatsapp.com/send/?phone=62{{ $dosen->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $dosen->nama }}%0A%0AAnda sudah tidak tidak mengadakan perkuliahan selama 2 Minggu (2 Pertemuan), segera jadwalkan ulang perkuliahan kembali!&type=phone_number&app_absent=0"
-                            class="btn btn-warning mt-2 mb-2" target="_blank"><i class="mdi mdi-whatsapp"></i> Hubungi
-                            Dosen</a>
-                    </div>
-                    @endif
+                        @if($lastMeetingDate->lte($twoWeeksAgo))
+                        <div class="d-grid gap-2">
+                            <a href="https://api.whatsapp.com/send/?phone=62{{ $dosen->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $dosen->nama }}%0A%0AAnda sudah tidak tidak mengadakan perkuliahan selama 2 Minggu (2 Pertemuan), segera jadwalkan ulang perkuliahan kembali!&type=phone_number&app_absent=0"
+                                class="btn btn-warning mt-2 mb-2" target="_blank"><i class="mdi mdi-whatsapp"></i> Hubungi
+                                Dosen</a>
+                        </div>
+                        @endif
                     @endif
                 </div>
                 <div class="table-responsive">

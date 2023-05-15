@@ -23,7 +23,7 @@
             @if (Auth::user()->role == 'akademik')
             <li class="nav-item nav-category">Main Menu {{ Auth::user()->role }}</li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('dashboard.akademik') }}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Dashboard</span>
                 </a>

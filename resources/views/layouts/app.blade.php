@@ -39,6 +39,8 @@
     <link rel="shortcut icon" href="{{ asset('/assets/images/logotedc.png') }}" />
 
     @livewireStyles
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
 </head>
 <body>
 	<div class="main-wrapper">
@@ -109,7 +111,7 @@
     <script src="{{ asset('/assets/js/data-table.js') }}"></script>
     <script src="{{ asset('/assets/vendors/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
-
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script> --}}
     {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.15/dist/sweetalert2.all.min.js"></script> --}}
 	<!-- End custom js for this page -->
     {{-- <script>

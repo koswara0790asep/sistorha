@@ -57,7 +57,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-account-multiple"></i> Data Table Absen Mahasiswa
+                        <i class="mdi mdi-archive"></i> Data Table Absen Mahasiswa
                     </h4>
                 </div>
             </div>
@@ -225,16 +225,16 @@
                         <tbody>
                             @if ($this->matkulSelect == null && $this->kelasSelect == null)
                             <tr>
-                                <td colspan="41" class="text-center">Tentukan data terlebih dahulu!</td>
+                                <td colspan="44" class="text-center">Tentukan data terlebih dahulu!</td>
                             </tr>
                             @elseif ($this->matkulSelect == null && $this->kelasSelect != null)
                             <tr>
-                                <td colspan="41" class="text-center">Tidak ada mata kuliah ini dalam kelas tersebut!</td>
+                                <td colspan="44" class="text-center">Tidak ada mata kuliah ini dalam kelas tersebut!</td>
                             </tr>
 
                             @elseif ($this->matkulSelect != null && $this->kelasSelect == null)
                             <tr>
-                                <td colspan="41" class="text-center">Tidak ada kelas untuk mata kuliah tersebut!</td>
+                                <td colspan="44" class="text-center">Tidak ada kelas untuk mata kuliah tersebut!</td>
                             </tr>
                             @else
 

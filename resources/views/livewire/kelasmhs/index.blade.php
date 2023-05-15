@@ -26,7 +26,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-account-multiple"></i> Data Table Kelas Mahasiswa
+                        <i class="mdi mdi-shape"></i> Data Table Kelas Mahasiswa
                     </h4>
                 </div>
             </div>

@@ -164,6 +164,7 @@ return [
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Livewire\LivewireServiceProvider::class,
+        // ConsoleTVs\Charts\ChartsServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -234,6 +235,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Livewire' => Livewire\Livewire::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        // 'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
     ],
 

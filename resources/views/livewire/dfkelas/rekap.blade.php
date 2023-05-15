@@ -466,6 +466,30 @@
                 </td>
             </tr>
         @endforeach
+        <tr style="background-color: orange;">
+            <td colspan="3" style='text-align: center;border:1px solid black;'><b>RATA-RATA KEHADIRAN DOSEN</b></td>
+            @foreach ($dtJadwals as $jadwal)
+                @php
+                    $beritaacaras = DB::table('berita_acaras')->where('kelas_id', $jadwal->kelas_id ?? '')->where('matkul_id', $jadwal->matkul_id ?? '')->select('berita_acaras.*', 'kelas_id', 'matkul_id')->get();
+                @endphp
+                <td style='text-align: center;border:1px solid black;'>
+                    @if (count($beritaacaras) == 16)
+                        @php
+                            $beritaacaras = count($beritaacaras) + 2;
+                            $persentaseDsn = 100 * ($beritaacaras/18);
+                        @endphp
+                        {{ $beritaacaras }}
+                    @else
+                        @php
+                            $persentaseDsn = 100 * (count($beritaacaras)/18);
+                        @endphp
+                        {{ count($beritaacaras) }}
+                    @endif
+                </td>
+                <td style='text-align: center;border:1px solid black;'>{{ number_format($persentaseDsn, 2) == 0 ? '0' : number_format($persentaseDsn, 2)  }}%</td>
+            @endforeach
+            <td></td>
+        </tr>
 
     </tbody>
 </table>

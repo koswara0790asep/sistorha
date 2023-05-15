@@ -180,6 +180,13 @@ Route::middleware(['auth', 'role:akademik,dosen'])->group(function () {
     Route::livewire('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}/edit/{id}', 'beritaacara.edit')->name('beritaacara.edit');
     Route::livewire('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}', 'beritaacara.index')->name('dsnBeritaAcara.index');
     Route::get('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}/cetak', [CetakController::class, 'cetakBAP'])->name('beritaacara.cetak');
+
+    
+    // mahasiswa
+    Route::livewire('/dashboard/akademik', 'dashboard.akademik')->name('dashboard.akademik');
+    Route::livewire('/dashboard/prodi', 'dashboard.prodi')->name('dashboard.prodi');
+    Route::livewire('/dashboard/dosen', 'dashboard.dosen')->name('dashboard.dosen');
+    Route::livewire('/dashboard/mahasiswa', 'dashboard.mahasiswa')->name('dashboard.mahasiswa');
 });
 
 Auth::routes();

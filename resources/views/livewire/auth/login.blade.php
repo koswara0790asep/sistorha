@@ -41,48 +41,138 @@
 
     @livewireStyles
     <style>
+        body {
+            background-image: url('/assets/images/bg-tedc.png');
+            background-size: cover;
+            background-position: center;
+        }
+
         button i.mdi-eye {
-        display: none;
+            display: none;
         }
 
         button.active i.mdi-eye {
-        display: block;
+            display: block;
         }
 
         button.active i.mdi-eye-off {
-        display: none;
+            display: none;
         }
+
     </style>
 </head>
+
 <body>
 
     <div class="container" style="margin-top: 50px">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-header">{{ __('Halaman Login') }}</div>
-
                     <div class="card-body">
-                        <div class="text-center">
+                        <div class="row">
+                            <div class="col">
+                                <img src="{{ asset('/assets/images/imglogin.png') }}"
+                                class="align-content-center wd-300 wd-sm-140 me-3 mt-5" alt="...">
+                            </div>
+                            <div class="col">
+                                <form method="POST" action="{{ route('login') }}" style="col-lg-6">
+                                    @csrf
+
+                                    <div class="row mb-3">
+                                        <label for="username"
+                                            class="col-form-label">{{ __('Username') }}</label>
+                                        <div class="col">
+                                            <div class="input-group">
+                                                <input id="text" type="username"
+                                                    class="form-control @error('username') is-invalid @enderror" name="username"
+                                                    value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                                <span class="input-group-text">
+                                                    <h4><i class="mdi mdi-account-box"></i></h4>
+                                                </span>
+
+                                                @error('username')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+
+                                            </div>
+                                    </div>
+                                </div>
+                                        <div class="row mt-3">
+                                            <label for="password"
+                                                class="col-form-label">{{ __('Kata Sandi') }}</label>
+
+                                            <div class="col">
+                                                <div class="input-group">
+                                                    <input id="password" type="password"
+                                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                                        required autocomplete="current-password">
+                                                        <span class="input-group-text">
+                                                            <a class="toggle-password" onclick="togglePassword()"
+                                                                id="toggle-button">
+                                                                <h4><i class="mdi mdi-eye-off"></h4></i>
+                                                            </a>
+                                                        </span>
+
+                                                    @error('password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                                        {{ old('remember') ? 'checked' : '' }}>
+
+                                                    <label class="form-check-label" for="remember">
+                                                        {{ __('Ingat Saya') }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-2">
+                                            <div class="col">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="link-icon" data-feather="log-in"></i> {{ __('Masuk') }}
+                                                </button>
+                                            </div>
+                                        </div>
+                                </form>
+                            </div>
+                          </div>
+                    </div>
+
+                    {{-- <div class="card-body">
+                        <div class="text-center col-lg-6">
                             <img src="{{ asset('/assets/images/imglogin.png') }}"
                                 class="align-content-center wd-300 wd-sm-140 me-3" alt="...">
                             <div>
 
                             </div>
                         </div>
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('login') }}" style="col-lg-6">
                             @csrf
 
                             <div class="row mb-3" style="margin-left: -100px">
                                 <label for="username"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
+                                    class="col-md-4 col-form-label">{{ __('Username') }}</label>
 
-                                <div class="col-md-7">
+                                <div class="col-lg-6">
                                     <div class="input-group">
                                         <input id="text" type="username"
                                             class="form-control @error('username') is-invalid @enderror" name="username"
                                             value="{{ old('username') }}" required autocomplete="username" autofocus>
-                                        <span class="input-group-text"><h4><i class="mdi mdi-account-box"></i></h4></span>
+                                        <span class="input-group-text">
+                                            <h4><i class="mdi mdi-account-box"></i></h4>
+                                        </span>
 
                                         @error('username')
                                         <span class="invalid-feedback" role="alert">
@@ -98,12 +188,15 @@
                                 <label for="password"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Kata Sandi') }}</label>
 
-                                <div class="col-md-7">
+                                <div class="col-lg-6">
                                     <div class="input-group">
                                         <input id="password" type="password"
                                             class="form-control @error('password') is-invalid @enderror" name="password"
                                             required autocomplete="current-password">
-                                        <a class="input-group-text toggle-password" onclick="togglePassword()" id="toggle-button" ><h4><i class="mdi mdi-eye-off"></h4></i></a>
+                                        <a class="input-group-text toggle-password" onclick="togglePassword()"
+                                            id="toggle-button">
+                                            <h4><i class="mdi mdi-eye-off"></h4></i>
+                                        </a>
 
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -136,7 +229,7 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </div> --}}
                     <div class="card-footer text text-center">
                         <h4>
 
@@ -179,40 +272,54 @@
     <!-- End custom js for this page -->
     <script>
         function updateTime() {
-          var today = new Date();
-          var day = today.toLocaleDateString('id-ID', { weekday: 'long' });
-          var date = today.toLocaleDateString('id-ID', { month: 'long', day: 'numeric', year: 'numeric' });
-          var time = today.toLocaleTimeString('id-ID', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour24: true });
-          var dateTime = day + ', ' + date + ' - ' + time;
-          document.getElementById('datetime').innerHTML = dateTime;
+            var today = new Date();
+            var day = today.toLocaleDateString('id-ID', {
+                weekday: 'long'
+            });
+            var date = today.toLocaleDateString('id-ID', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+            });
+            var time = today.toLocaleTimeString('id-ID', {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour24: true
+            });
+            var dateTime = day + ', ' + date + ' - ' + time;
+            document.getElementById('datetime').innerHTML = dateTime;
         }
 
         setInterval(updateTime, 1000);
+
     </script>
     <script>
         function togglePassword() {
-          var passwordInput = document.getElementById('password');
-          if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-          } else {
-            passwordInput.type = 'password';
-          }
+            var passwordInput = document.getElementById('password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
         }
+
     </script>
     <script>
         var button = document.getElementById("toggle-button");
 
-        button.addEventListener("click", function() {
-        this.classList.toggle("active");
+        button.addEventListener("click", function () {
+            this.classList.toggle("active");
 
-        if (this.classList.contains("active")) {
-            this.innerHTML = '<h4><i class="mdi mdi-eye"></h4></i>';
-        } else {
-            this.innerHTML = '<h4><i class="mdi mdi-eye-off"></h4></i>';
-        }
+            if (this.classList.contains("active")) {
+                this.innerHTML = '<h4><i class="mdi mdi-eye"></h4></i>';
+            } else {
+                this.innerHTML = '<h4><i class="mdi mdi-eye-off"></h4></i>';
+            }
         });
+
     </script>
-    
+
 </body>
 
 </html>
