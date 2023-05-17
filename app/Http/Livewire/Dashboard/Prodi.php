@@ -6,8 +6,21 @@ use Livewire\Component;
 
 class Prodi extends Component
 {
+    public $colors;
+
     public function render()
     {
-        return view('livewire.dashboard.prodi');
+        $this->colors = [
+            'success' => 'success',
+            'danger' => 'danger',
+            'warning' => 'warning',
+            'info' => 'info',
+            'primary' => 'primary',
+            'secondary' => 'secondary',
+        ];
+
+        return view('livewire.dashboard.prodi', [
+            'colors' => $this->colors,
+        ]);
     }
 }

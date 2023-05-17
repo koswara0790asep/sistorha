@@ -89,20 +89,39 @@ class CetakController extends Controller
     public function cetakJadwal()
     {
         $dosenId = null;
+        $klsId = null;
 
         if (Auth::user()->role == 'dosen') {
             $dosen = Dosen::where('nidn', Auth::user()->username)->first();
             if ($dosen) {
                 $dosenId = $dosen->id;
             }
-        }
-        // dd($dosenId);
+            // dd($dosenId);
 
-        return view('livewire.jadwal.cetak', [
-            'jadwals' => $dosenId == null ?
-            Jadwal::get() :
-            Jadwal::first()->where('dosen_id', 'like', '%' . $dosenId . '%')->get(),
-        ]);
+            return view('livewire.jadwal.cetak', [
+                'jadwals' => $dosenId == null ?
+                Jadwal::get() :
+                Jadwal::first()->where('dosen_id', 'like', '%' . $dosenId . '%')->get(),
+            ]);
+        }
+        if (Auth::user()->role == 'mahasiswa') {
+            $mahasiswa = Mahasiswa::where('nim', Auth::user()->username)->first();
+            if ($mahasiswa) {
+               $mhsId = $mahasiswa->id;
+               $klsMhsw = KelasMhsw::where('mahasiswa_id', $mhsId)->select('kelas_mhsws.*', 'kelas_id')->orderBy('created_at', 'desc')->first();
+               $klsId = $klsMhsw->kelas_id;
+            }
+            return view('livewire.jadwal.cetak', [
+                'jadwals' => $klsId == null ?
+                Jadwal::get() :
+                Jadwal::first()->where('kelas_id', 'like', '%' . $klsId . '%')->get(),
+            ]);
+        }
+        if (Auth::user()->role == 'akademik') {
+            return view('livewire.jadwal.cetak', [
+                'jadwals' => Jadwal::get(),
+            ]);
+        }
     }
 
     public $matkulSelect;

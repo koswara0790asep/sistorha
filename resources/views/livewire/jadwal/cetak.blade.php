@@ -30,7 +30,7 @@
 ">
 <center>
     <h1>
-        DATA-DATA JADWAL MATA KULIAH
+        DATA JADWAL MATA KULIAH
     </h1>
 </center>
 
@@ -68,9 +68,9 @@
                 <td style='text-align: center;border:1px solid black;'>
                     @php
                         $dataProd = DB::table('program_studies')->where('id',
-                        $dataKls->prodi_id)->select('program_studies.*', 'program_studi')->first();
-                        echo $dataProd->program_studi;
+                        $jadw->prodi_id)->select('program_studies.*', 'program_studi')->first();
                     @endphp
+                    {{ $dataProd->program_studi }}
                 </td>
                 <td style='text-align: center;border:1px solid black;'>{{ $jadw->semester }}</td>
                 <td style='text-align: center;border:1px solid black;'>

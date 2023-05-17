@@ -28,24 +28,27 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                 <div class="card-title mt-3">
                     <h4 style="margin-top: 10px;"><b><i class="mdi mdi-file-document"></i> Berita Acara</b></h4>
                     <div style="text-align: right; margin-top: -30px;">
-                        @if (count($beritaacaras) != 16)
-                        <a href="{{ route('beritaacara.create', [$jadwalId, $matkulSelect, $kelasSelect, $dosenID]) }}"
-                            class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend">
-                            <i class="mdi mdi-account-plus"></i> TAMBAH DATA</a>
-                        @else
+                        @if (Auth::user()->role == 'dosen')
+                            @if (count($beritaacaras) != 16)
+                            <a href="{{ route('beritaacara.create', [$jadwalId, $matkulSelect, $kelasSelect, $dosenID]) }}"
+                                class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend">
+                                <i class="mdi mdi-account-plus"></i> TAMBAH DATA</a>
+                            @else
+
+                            @endif
                         @endif
                         <a href="{{ route('beritaacara.cetak', [$jadwalId, $matkulSelect, $kelasSelect, $dosenID]) }}"
                             class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend" target="_blank"><i
                                 class="mdi mdi-printer"></i> CETAK</a>
 
-                    @if (Auth::user()->role == 'dosen')
+                        @if (Auth::user()->role == 'dosen')
 
-                        <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}"
-                            class="btn btn-danger btn-icon-text">
-                    @else
+                            <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}"
+                                class="btn btn-danger btn-icon-text">
+                        @else
 
-                        <a href="{{ route('jadwal.index') }}" class="btn btn-danger btn-icon-text">
-                            @endif
+                            <a href="{{ route('jadwal.index') }}" class="btn btn-danger btn-icon-text">
+                        @endif
                             <i class="btn-icon-prepend" data-feather="arrow-left"></i>
                             KEMBALI
                         </a>
@@ -55,17 +58,17 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
             <div class="card-body">
                 @foreach ($beritaacaras as $bap)
                 @php
-                $tanggal = $bap->tanggal;
+                    $tanggal = $bap->tanggal;
                 @endphp
                 @endforeach
                 @php
-                $lastMeetingDate = Carbon\Carbon::parse($tanggal ?? '');
-                $twoWeeksAgo = Carbon\Carbon::now()->subWeeks(2);
+                    $lastMeetingDate = Carbon\Carbon::parse($tanggal ?? '');
+                    $twoWeeksAgo = Carbon\Carbon::now()->subWeeks(2);
                 @endphp
                 @if($lastMeetingDate->lte($twoWeeksAgo))
-                <div class="alert alert-danger" role="alert">
-                    <p><i>Perkuliahan ini sudah tidak ada pertemuan semenjak 2 minggu kebelakang.</i></p>
-                </div>
+                    <div class="alert alert-danger" role="alert">
+                        <p><i>Perkuliahan ini sudah tidak ada pertemuan semenjak 2 minggu kebelakang.</i></p>
+                    </div>
                 @endif
                 <div class="row">
                     <div class="col-md-6">
@@ -143,7 +146,9 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                                 <th class="text-light">JML HADIR<br>MAHASISWA</th>
                                 <th class="text-light">TTD DOSEN</th>
                                 <th class="text-light">TTD KETUA<br>KELAS</th>
+                            @if (Auth::user()->role == 'dosen')
                                 <th class="text-light">AKSI</th>
+                            @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -170,6 +175,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                                 <td class="text-center">{{ $bap->jumlah_mhs }}</td>
                                 <td></td>
                                 <td></td>
+                            @if (Auth::user()->role == 'dosen')
                                 <td class="text-center">
                                     <a href="{{ route('beritaacara.edit', [$jadwalId, $matkulSelect, $kelasSelect, $dosenID, $bap->id]) }}"
                                         class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
@@ -203,6 +209,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                                         </div>
                                     </div>
                                 </td>
+                            @endif
                                 @if ($bap->pertemuan == 8)
                             <tr>
                                 <td class="text-center">{{ $bap->pertemuan + 1 }}</td>

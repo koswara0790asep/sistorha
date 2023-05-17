@@ -76,6 +76,9 @@
                             <label for="selectedMhsw">Pilih Mahasiswa Yang Berada Dalam kelas: </label>
                             <div class="mb-3 input-group">
                                 <select id="selectedMhsw" name="selectedMhsw" wire:model="selectedMhsw" class="form-select @error('selectedMhsw') is-invalid @enderror" multiple>
+                                    @php
+                                        
+                                    @endphp
                                     @foreach ($dfkelases as $dfkls)
                                         <optgroup label="{{ $dfkls->kode }}">
                                             @foreach ($klsmhses as $klsmhs)

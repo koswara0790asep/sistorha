@@ -38,12 +38,32 @@
             <form action="" wire:submit.prevent="update">
 
                 <div class="row">
-                    <div class="col-sm-6">
+                        <div class="col-sm-4">
+                            <label for="prodi_id">Program Studi: </label>
+                            <div class="mb-3 input-group">
+                                <select id="prodi_id" name="prodi_id" wire:model="prodi_id" class="form-select @error('prodi_id') is-invalid @enderror">
+                                    <option value="" hidden>--- Pilih Program Studi ---</option>
+                                    @foreach ($prodis as $prd)
+                                        <option value="{{ $prd->id }}">{{ $prd->program_studi }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="input-group-text"><h4><i class="mdi mdi-heart-box-outline"></i></h4></span>
+                                @error('prodi_id')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                                @enderror
+                            </div>
+                        </div><!-- Col -->
+                    <div class="col-sm-4">
                         <label for="kelas_id">Kelas: </label>
                         <div class="mb-3 input-group">
                             <select id="kelas_id" name="kelas_id" wire:model="kelas_id" class="form-select @error('kelas_id') is-invalid @enderror">
                                 <option value="" hidden>--- Pilih Kelas ---</option>
-                                @foreach ($kelases as $kls)
+                                @php
+                                    $dtKelases = DB::table('df_kelases')->where('prodi_id', $prodi_id)->select('df_kelases.*', 'id', 'kode', 'prodi_id')->get();
+                                @endphp
+                                @foreach ($dtKelases as $kls)
                                     <option value="{{ $kls->id }}">{{ $kls->kode }}</option>
                                 @endforeach
                             </select>
@@ -55,7 +75,7 @@
                             @enderror
                         </div>
                     </div><!-- Col -->
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <label for="semester">Semester: </label>
                         <div class="mb-3 input-group">
                             <input type="number" id="semester" name="semester" min="1" max="8" wire:model="semester" class="form-control @error('semester') is-invalid @enderror" placeholder="Masukkan Semester">

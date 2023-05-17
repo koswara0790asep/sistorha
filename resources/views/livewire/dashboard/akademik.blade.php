@@ -100,7 +100,7 @@ foreach ($dosens as $dsn) {
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-between align-items-center">
-                        Lihat Data <a href="{{ route('prodi.index') }}" class="text-white btn-icon-prepend"><span class="mdi mdi-eye-arrow-right mdi-18px"></span></a>
+                        Lihat Data <a href="{{ route('programstudi.index') }}" class="text-white btn-icon-prepend"><span class="mdi mdi-eye-arrow-right mdi-18px"></span></a>
                     </div>
                 </div>
             </div>

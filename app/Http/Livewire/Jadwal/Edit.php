@@ -6,6 +6,7 @@ use App\Models\DfKelas;
 use App\Models\DfMatkul;
 use App\Models\Dosen;
 use App\Models\Jadwal;
+use App\Models\ProgramStudi;
 use App\Models\Ruangan;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -14,6 +15,7 @@ class Edit extends Component
 {
 
     public $jadwalId;
+    public $prodi_id;
     public $kelas_id;
     public $semester;
     public $matkul_id;
@@ -31,6 +33,7 @@ class Edit extends Component
 
         if ($jadwal) {
             $this->jadwalId = $jadwal->id;
+            $this->prodi_id = $jadwal->prodi_id;
             $this->kelas_id = $jadwal->kelas_id;
             $this->semester = $jadwal->semester;
             $this->matkul_id = $jadwal->matkul_id;
@@ -49,6 +52,7 @@ class Edit extends Component
     public function update()
     {
         $this->validate([
+            'prodi_id' => 'required',
             'kelas_id' => 'required',
             'semester' => 'required',
             'matkul_id' => 'required',
@@ -93,6 +97,7 @@ class Edit extends Component
 
             if ($jadwal) {
                 $jadwal->update([
+                    'prodi_id' => $this->prodi_id,
                     'kelas_id' => $this->kelas_id,
                     'semester' => $this->semester,
                     'matkul_id' => $this->matkul_id,
@@ -116,10 +121,11 @@ class Edit extends Component
 
     public function render()
     {
+        $prodis = ProgramStudi::all();
         $kelases = DfKelas::all();
         $df_matkuls = DfMatkul::all();
         $dosens = Dosen::all();
         $ruangans = Ruangan::all();
-        return view('livewire.jadwal.edit', compact(['kelases', 'df_matkuls', 'dosens', 'ruangans']));
+        return view('livewire.jadwal.edit', compact(['prodis', 'kelases', 'df_matkuls', 'dosens', 'ruangans']));
     }
 }

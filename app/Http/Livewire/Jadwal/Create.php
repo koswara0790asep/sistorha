@@ -6,12 +6,14 @@ use App\Models\DfKelas;
 use App\Models\DfMatkul;
 use App\Models\Dosen;
 use App\Models\Jadwal;
+use App\Models\ProgramStudi;
 use App\Models\Ruangan;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class Create extends Component
 {
+    public $prodi_id;
     public $kelas_id;
     public $semester;
     public $matkul_id;
@@ -26,6 +28,7 @@ class Create extends Component
     public function store()
     {
         $this->validate([
+            'prodi_id' => 'required',
             'kelas_id' => 'required',
             'semester' => 'required',
             'matkul_id' => 'required',
@@ -68,13 +71,14 @@ class Create extends Component
                                         ->where('jam_awal', $this->jam_awal)
                                         ->where('ruang_id', $this->ruang_id)
                                         ->exists();
-                                        
+
             if ($existingTimeSlot) {
                 // Jika ada, tampilkan pesan error
                 Alert::warning('GAGAL!','Jadwal Hari, Jam, dan Ruangan Sudah Terisi!');
             } else {
 
                 Jadwal::create([
+                    'prodi_id' => $this->prodi_id,
                     'kelas_id' => $this->kelas_id,
                     'semester' => $this->semester,
                     'matkul_id' => $this->matkul_id,
@@ -97,10 +101,11 @@ class Create extends Component
 
     public function render()
     {
+        $prodis = ProgramStudi::all();
         $kelases = DfKelas::all();
         $df_matkuls = DfMatkul::all();
         $dosens = Dosen::all();
         $ruangans = Ruangan::all();
-        return view('livewire.jadwal.create', compact(['kelases', 'df_matkuls', 'dosens', 'ruangans']));
+        return view('livewire.jadwal.create', compact(['prodis','kelases', 'df_matkuls', 'dosens', 'ruangans']));
     }
 }

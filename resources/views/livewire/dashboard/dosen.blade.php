@@ -1,3 +1,27 @@
-<div>
-    {{-- Care about people's approval and you will be their prisoner. --}}
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card text-white bg-{{ array_rand($colors) }} mb-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="mdi mdi-format-list-bulleted-type mdi-36px"></span>
+                    <div class="text-end">
+                        <h4 class="card-title mb-0">
+                        @php
+                            $dtDosen = DB::table('dosens')->where('nidn', Auth::user()->username ?? '')->select('dosens.*', 'id')->first();
+                            // dd(Auth::user()->username);
+                            $jml_jadwal = DB::table('jadwals')->where('dosen_id', $dtDosen->id ?? '')->select('jadwals.*')->get();
+                        @endphp
+                        {{ count($jml_jadwal) }}
+                        </h4>
+                        <p class="card-text">Jadwal Saya</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-between align-items-center">
+                    Lihat Data <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}" class="text-white btn-icon-prepend"><span class="mdi mdi-eye-arrow-right mdi-18px"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

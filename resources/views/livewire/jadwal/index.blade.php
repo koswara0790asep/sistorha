@@ -89,7 +89,9 @@
                                 <th class="text-light">JAM <br>AKHIR</th>
                                 <th class="text-light">RUANGAN</th>
                                 <th class="text-light">BERITA <br>ACARA</th>
+                            {{-- @if (Auth::user()->role == 'akademik') --}}
                                 <th class="text-light">AKSI</th>
+                            {{-- @endif --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -107,9 +109,9 @@
                                 <td class="text-center">
                                     @php
                                         $dataProd = DB::table('program_studies')->where('id',
-                                        $dataKls->prodi_id)->select('program_studies.*', 'program_studi')->first();
-                                        echo $dataProd->program_studi;
+                                        $jadw->prodi_id)->select('program_studies.*', 'program_studi')->first();
                                     @endphp
+                                    {{ $dataProd->program_studi }}
                                 </td>
                                 <td class="text-center">{{ $jadw->semester }}</td>
                                 <td class="text-center">
