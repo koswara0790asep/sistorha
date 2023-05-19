@@ -41,14 +41,24 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                             class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend" target="_blank"><i
                                 class="mdi mdi-printer"></i> CETAK</a>
 
-                        @if (Auth::user()->role == 'dosen')
+                                @if (Auth::user()->role == 'dosen')
 
-                            <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}"
-                                class="btn btn-danger btn-icon-text">
-                        @else
+                                <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}" class="btn btn-danger btn-icon-text">
 
-                            <a href="{{ route('jadwal.index') }}" class="btn btn-danger btn-icon-text">
-                        @endif
+                                @elseif (Auth::user()->role == 'prodi')
+
+                                <a href="{{ route('jadwal.indexProdi', $dfKelas->prodi_id) }}" class="btn btn-danger btn-icon-text">
+
+                                @elseif (Auth::user()->role == 'mahasiswa')
+
+                                <a href="{{ route('jadwal.indexMhs', $dfKelas->id) }}" class="btn btn-danger btn-icon-text">
+
+                                @elseif (Auth::user()->role == 'akademik')
+
+                                <a href="{{ route('jadwal.index') }}" class="btn btn-danger btn-icon-text">
+
+                                @endif
+
                             <i class="btn-icon-prepend" data-feather="arrow-left"></i>
                             KEMBALI
                         </a>

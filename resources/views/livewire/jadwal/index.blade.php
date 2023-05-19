@@ -17,7 +17,7 @@
                         class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-file-import"></i> Import XLSX</button>
                 @endif
-                <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                <a href="{{ route('jadwal.cetak') }}" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2" target="_blank">
                     <i class="mdi mdi-printer"></i> Cetak</a>
             </div>
         </div>
@@ -191,8 +191,8 @@
         </div>
     </div>
 </div>
-<script>
+{{-- <script>
     function openNewWindow() {
         window.open("/jadwals/cetak", "_blank");
     }
-</script>
+</script> --}}

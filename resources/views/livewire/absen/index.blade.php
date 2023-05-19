@@ -8,7 +8,7 @@
                     <li class="breadcrumb-item active" aria-current="page"> Halaman Absen</li>
                 </ol>
             </div>
-            <div class="col-md-auto">
+            <div class="col-md-4" style="text-align: right;">
                 <a href="/absen/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                     <i class="mdi mdi-account-plus"></i> Tambah Data</a>
                 {{-- <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
@@ -1149,11 +1149,13 @@
                                 </td>
                                 @endif
                                 @if (Auth::user()->role == 'prodi')
+                                <td>
                                     @if ($alfas >= '3')
                                         <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AKami dari Program Studi mengingatkan Anda. Bahwa Anda sudah tidak mengikuti perkuliahan sebanyak {{ $alfas }}. Perbaiki atau tidak dapat melaksanakan ujian-ujian!&type=phone_number&app_absent=0"
                                             class="btn btn-sm btn-danger btn-icon" target="_blank"><i
                                                 class="mdi mdi-whatsapp"></i></a>
                                     @endif
+                                </td>
                                 @endif
                             </tr>
 

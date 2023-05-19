@@ -146,7 +146,7 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     Route::livewire('/jadwals', 'jadwal.index')->name('jadwal.index');
     Route::livewire('/jadwal/create', 'jadwal.create')->name('jadwal.create');
     Route::livewire('/jadwal/edit/{id}', 'jadwal.edit')->name('jadwal.edit');
-    // Route::get('/jadwals/cetak', [CetakController::class, 'cetakJadwal'])->name('jadwal.cetak');
+    Route::get('/jadwals/cetak', [CetakController::class, 'cetakJadwal'])->name('jadwal.cetak');
 
     // absensi
     // Route::livewire('/absensis', 'absen.index')->name('absen.index');
@@ -185,7 +185,7 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::livewire('/dashboard/dosen', 'dashboard.dosen')->name('dashboard.dosen');
 
     // jadwal
-    Route::livewire('/jadwals/{dosen:nidn}', 'jadwal.index')->name('jadwal.indexDosen');
+    Route::livewire('/jadwals/matkul/{dosen:nidn}', 'jadwal.index')->name('jadwal.indexDosen');
 
     // berita acara
     Route::livewire('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}/create', 'beritaacara.create')->name('beritaacara.create');
@@ -210,7 +210,7 @@ Route::middleware(['auth', 'role:akademik,dosen'])->group(function () {
     // jadwal
     // Route::livewire('/jadwal/create', 'jadwal.create')->name('jadwal.create');
     // Route::livewire('/jadwal/edit/{id}', 'jadwal.edit')->name('jadwal.edit');
-    Route::get('/jadwals/cetak', [CetakController::class, 'cetakJadwal'])->name('jadwal.cetak');
+    // Route::get('/jadwals/cetak', [CetakController::class, 'cetakJadwal'])->name('jadwal.cetak');
 
     // absensi
     // Route::livewire('/absensis', 'absen.index')->name('absen.index');
@@ -245,7 +245,6 @@ Route::middleware(['auth', 'role:akademik,prodi'])->group(function () {
     Route::livewire('/dosen/edit/{id}', 'dosen.edit')->name('dosen.edit');
     Route::livewire('/dosen/show/{id}', 'dosen.show')->name('dosen.show');
     Route::get('/dosens/cetak', [CetakDosenController::class, 'index'])->name('dosen.cetak');
-
 
     // daftar kelas
     Route::livewire('/dfkelases', 'dfkelas.index')->name('dfkelas.index');

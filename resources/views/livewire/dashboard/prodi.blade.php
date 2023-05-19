@@ -16,7 +16,7 @@ $data = [
     'Perempuan' => $perempuan,
 ];
 
-echo json_encode($data);
+// echo json_encode($data);
 
 $mahasiswas = DB::table('mahasiswas')
                 ->where('program_studi', $dtProdi->id)
@@ -47,7 +47,7 @@ $dataDsn = [
     'Perempuan' => $perempuanDsn,
 ];
 
-echo json_encode($dataDsn);
+// echo json_encode($dataDsn);
 
 $statusDsn = [];
 $dataStatusDsn = [];
@@ -188,7 +188,7 @@ foreach ($dosens as $dsn) {
                 <div class="card-header">
                     <div class="card-title mt-2">
                         <h5>
-                            <i class="mdi mdi-chart-bar"></i> Grafik Jumlah Dosen Setiap Program Studi
+                            <i class="mdi mdi-chart-bar"></i> Grafik Jumlah Dosen Prodi {{ $dtProdi->program_studi }}
                         </h5>
                     </div>
                 </div>
@@ -206,7 +206,7 @@ foreach ($dosens as $dsn) {
             <div class="card-header">
                 <div class="card-title mt-2">
                     <h5>
-                        <i class="mdi mdi-chart-bar"></i> Grafik Jumlah Mahasiswa Setiap Program Studi
+                        <i class="mdi mdi-chart-bar"></i> Grafik Jumlah Mahasiswa Prodi {{ $dtProdi->program_studi }}
                     </h5>
                 </div>
             </div>
@@ -227,8 +227,8 @@ foreach ($dosens as $dsn) {
             <div class="card-body">
                 <div class="text-center">
                     <div class="btn-group btn-group-sm" role="group">
-                        <button type="button" class="btn btn-outline-success btn-icon-text"><i class="mdi mdi-check"></i> Aktif : {{ $dataStatus[0] }}</button>
-                        <button type="button" class="btn btn-outline-danger btn-icon-text">Tidak Aktif : {{ $dataStatus[1] }} <i class="mdi mdi-close"></i></button>
+                        <button type="button" class="btn btn-outline-success btn-icon-text"><i class="mdi mdi-check"></i> Aktif : {{ $dataStatus[0] ?? 0 }}</button>
+                        <button type="button" class="btn btn-outline-danger btn-icon-text">Tidak Aktif : {{ $dataStatus[1] ?? 0 }} <i class="mdi mdi-close"></i></button>
                     </div>
                 </div>
                 <canvas id="pieChartMhs"></canvas>

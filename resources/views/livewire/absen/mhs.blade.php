@@ -43,9 +43,19 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                         @if (Auth::user()->role == 'dosen')
 
                         <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}" class="btn btn-danger btn-icon-text">
-                        @else
+
+                        @elseif (Auth::user()->role == 'prodi')
+
+                        <a href="{{ route('jadwal.indexProdi', $dfKelas->prodi_id) }}" class="btn btn-danger btn-icon-text">
+
+                        @elseif (Auth::user()->role == 'mahasiswa')
+
+                        <a href="{{ route('jadwal.indexMhs', $dfKelas->id) }}" class="btn btn-danger btn-icon-text">
+
+                        @elseif (Auth::user()->role == 'akademik')
 
                         <a href="{{ route('jadwal.index') }}" class="btn btn-danger btn-icon-text">
+
                         @endif
                             <i class="btn-icon-prepend" data-feather="arrow-left"></i>
                             KEMBALI
@@ -118,7 +128,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                             <th class="text-light" rowspan="3">NAMA</th>
                             <th class="text-light" colspan="36">PERTEMUAN KE-</th>
                             <th class="text-light" rowspan="2" colspan="5">KETERANGAN</th>
-                            @if (Auth::user()->role == 'dosen')
+                            @if (Auth::user()->role == 'dosen' || Auth::user()->role == 'prodi')
                             <th class="text-light" rowspan="3">AKSI</th>
                             @endif
                         </tr>
@@ -1112,12 +1122,14 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                     @endif
                                 </td>
                             @endif
-                            @if (Auth::user()->role == 'prodi')
-                                @if ($alfas >= '3')
-                                    <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AKami dari Program Studi mengingatkan Anda. Bahwa Anda sudah tidak mengikuti perkuliahan sebanyak {{ $alfas }}. Perbaiki atau tidak dapat melaksanakan ujian-ujian!&type=phone_number&app_absent=0"
-                                        class="btn btn-sm btn-danger btn-icon" target="_blank"><i
-                                            class="mdi mdi-whatsapp"></i></a>
-                                @endif
+                            <td>
+                                @if (Auth::user()->role == 'prodi')
+                                    @if ($alfas >= '3')
+                                        <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AKami dari Program Studi mengingatkan Anda. Bahwa Anda sudah tidak mengikuti perkuliahan sebanyak {{ $alfas }}. Perbaiki atau tidak dapat melaksanakan ujian-ujian!&type=phone_number&app_absent=0"
+                                            class="btn btn-sm btn-danger btn-icon" target="_blank"><i
+                                                class="mdi mdi-whatsapp"></i></a>
+                                    @endif
+                            </td>
                             @endif
 
                         </tr>

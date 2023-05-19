@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Mahasiswa;
 
 use App\Models\Mahasiswa;
+use App\Models\ProgramStudi;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -39,12 +41,17 @@ class Index extends Component
 
     public $importFile;
 
+    public $prodiId;
+
     use WithPagination, WithFileUploads;
 
     public function render()
     {
+        $prodi = ProgramStudi::where('kode', Auth::user()->username)->first();
+        $this->prodiId = $prodi->id ?? null;
+
         return view('livewire.mahasiswa.index', [
-            'mahasiswas' => Mahasiswa::all(),
+            'mahasiswas' => $this->prodiId == null ? Mahasiswa::all() : Mahasiswa::where('program_studi', $this->prodiId)->get(),
         ]);
     }
 

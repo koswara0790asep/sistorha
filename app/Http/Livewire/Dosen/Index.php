@@ -5,7 +5,9 @@ namespace App\Http\Livewire\Dosen;
 use App\Models\Dosen;
 use App\Models\Kelas;
 use App\Models\Mahasiswa;
+use App\Models\ProgramStudi;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -39,12 +41,17 @@ class Index extends Component
 
     public $importDosen;
 
+    public $prodiId;
+
     use WithPagination, WithFileUploads;
 
     public function render()
     {
+        $prodi = ProgramStudi::where('kode', Auth::user()->username)->first();
+        $this->prodiId = $prodi->id ?? null;
+
         return view('livewire.dosen.index', [
-            'dosens' => Dosen::all(),
+            'dosens' => $this->prodiId == null ? Dosen::all() : Dosen::where('program_studi', $this->prodiId)->get(),
         ]);
     }
 

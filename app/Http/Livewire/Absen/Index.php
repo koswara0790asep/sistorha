@@ -6,6 +6,8 @@ use App\Models\Absensi;
 use App\Models\Absent;
 use App\Models\DfKelas;
 use App\Models\DfMatkul;
+use App\Models\ProgramStudi;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -17,18 +19,35 @@ class Index extends Component
     public $matkulSelect;
     public $kelasSelect;
 
+    // public $prodiId;
+
     use WithFileUploads;
 
     public function render()
     {
-        return view('livewire.absen.index', [
-            'matkuls' => DfMatkul::all(),
-            'kelases' => DfKelas::all(),
-            'absensis' => $this->matkulSelect == null || $this->kelasSelect == null ?
-            ''
-            :
-            Absensi::first()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where('matkul_id', 'like', '%' . $this->matkulSelect . '%')->get(),
-        ]);
+        if (Auth::user()->role == 'prodi') {
+            $dtProdi = ProgramStudi::where('kode', Auth::user()->username)->first();
+            $matkuls = DfMatkul::where('program_studi', $dtProdi->id)->select('df_matkuls.*')->get();
+            $kelases = DfKelas::where('prodi_id', $dtProdi->id)->get();
+            // dd($matkuls);
+            return view('livewire.absen.index', [
+                'matkuls' => $matkuls,
+                'kelases' => $kelases,
+                'absensis' => $this->matkulSelect == null || $this->kelasSelect == null ?
+                ''
+                :
+                Absensi::first()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where('matkul_id', 'like', '%' . $this->matkulSelect . '%')->get(),
+            ]);
+        } else {
+            return view('livewire.absen.index', [
+                'matkuls' => DfMatkul::all(),
+                'kelases' => DfKelas::all(),
+                'absensis' => $this->matkulSelect == null || $this->kelasSelect == null ?
+                ''
+                :
+                Absensi::first()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where('matkul_id', 'like', '%' . $this->matkulSelect . '%')->get(),
+            ]);
+        }
     }
 
     public function import()

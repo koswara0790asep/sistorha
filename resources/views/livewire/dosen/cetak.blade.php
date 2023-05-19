@@ -63,7 +63,7 @@
                     @endphp
                 </td>
                 <td style='text-align: center;border:1px solid black;'>{{ $dsn->status_aktif }}</td>
-                <td style='text-align: center;border:1px solid black;'>{{ $dsn->no_hp }}</td>
+                <td style='text-align: center;border:1px solid black;'>+62{{ $dsn->no_hp }}</td>
             </tr>
         @endforeach
     </tbody>

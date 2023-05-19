@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Dfkelas;
 
 use App\Models\DfKelas;
+use App\Models\ProgramStudi;
 use App\Models\Ruangan;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -11,10 +13,15 @@ class Index extends Component
 {
     public $dfkelasId;
 
+    public $prodiId;
+
     public function render()
     {
+        $prodi = ProgramStudi::where('kode', Auth::user()->username)->first();
+        $this->prodiId = $prodi->id ?? null;
+
         return view('livewire.dfkelas.index', [
-            'df_kelases' => DfKelas::all(),
+            'df_kelases' => $this->prodiId == null ? DfKelas::all() : DfKelas::where('prodi_id', $this->prodiId)->get(),
         ]);
     }
 

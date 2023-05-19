@@ -24,8 +24,10 @@ class CetakController extends Controller
 {
     public function cetakMhs()
     {
-        $mahasiswas = Mahasiswa::get();
-        $mahasiswas = Mahasiswa::orderBy('nim','asc')->get();
+        $prodi = ProgramStudi::where('kode', Auth::user()->username)->first();
+        $prodiID = $prodi->id ?? null;
+
+        $mahasiswas = $prodiID == null ? Mahasiswa::orderBy('program_studi','asc')->orderBy('nim','asc')->get() : Mahasiswa::where('program_studi', $prodiID)->orderBy('nim','asc')->get();
         return view('livewire.mahasiswa.cetak', compact('mahasiswas'));
     }
 
@@ -37,8 +39,10 @@ class CetakController extends Controller
 
     public function cetakDFkelas()
     {
-        $dfkelases = DfKelas::get();
-        $dfkelases = DfKelas::orderBy('kode','asc')->get();
+        $prodi = ProgramStudi::where('kode', Auth::user()->username)->first();
+        $prodiID = $prodi->id ?? null;
+
+        $dfkelases = $prodiID == null ? DfKelas::orderBy('kode','asc')->get() : DfKelas::where('prodi_id', $prodiID)->orderBy('kode','asc')->get();
         return view('livewire.dfkelas.cetak', compact('dfkelases'));
     }
 
@@ -66,11 +70,25 @@ class CetakController extends Controller
 
     public function cetakKelasmhsw()
     {
-        $mahasiswas = Mahasiswa::get();
-        $kelases = DfKelas::get();
-        $kelasmhsws = KelasMhsw::get();
-        // $dosens = DfKelas::orderBy('kode','asc')->get();
-        return view('livewire.kelasmhs.cetak', compact(['mahasiswas', 'kelases', 'kelasmhsws']));
+        if (Auth::user()->role == 'prodi') {
+            $prodiId = null;
+            $kelasID = null;
+            $prodi = ProgramStudi::where('kode', Auth::user()->username)->first();
+            $prodiId = $prodi->id ?? null;
+
+            $mahasiswas = Mahasiswa::get();
+            $kelases = $prodiId == null ? DfKelas::get() : DfKelas::where('prodi_id', $prodi->id)->get();
+
+            $kelasmhsws = $prodiId == null ? KelasMhsw::all() : DfKelas::where('prodi_id', $prodiId)->join('kelas_mhsws', 'df_kelases.id', '=', 'kelas_mhsws.kelas_id')->get();
+            return view('livewire.kelasmhs.cetak', compact(['mahasiswas', 'kelases', 'kelasmhsws']));
+        } else {
+            $mahasiswas = Mahasiswa::get();
+            $kelases = DfKelas::get();
+            $kelasmhsws = KelasMhsw::get();
+            // $dosens = DfKelas::orderBy('kode','asc')->get();
+            return view('livewire.kelasmhs.cetak', compact(['mahasiswas', 'kelases', 'kelasmhsws']));
+        }
+
     }
 
     public function cetakRuangan()
@@ -82,7 +100,10 @@ class CetakController extends Controller
 
     public function cetakDFmatkul()
     {
-        $dfmatkuls = DfMatkul::get();
+        $prodiId = null;
+        $prodi = ProgramStudi::where('kode', Auth::user()->username)->first();
+        $prodiId = $prodi->id ?? null;
+        $dfmatkuls = $prodiId == null ? DfMatkul::get() : DfMatkul::first()->where('program_studi', 'like', '%' . $prodiId . '%')->get();
         return view('livewire.dfmatkul.cetak', compact('dfmatkuls'));
     }
 
@@ -90,14 +111,13 @@ class CetakController extends Controller
     {
         $dosenId = null;
         $klsId = null;
+        $prodiId = null;
 
         if (Auth::user()->role == 'dosen') {
             $dosen = Dosen::where('nidn', Auth::user()->username)->first();
             if ($dosen) {
                 $dosenId = $dosen->id;
             }
-            // dd($dosenId);
-
             return view('livewire.jadwal.cetak', [
                 'jadwals' => $dosenId == null ?
                 Jadwal::get() :
@@ -120,6 +140,17 @@ class CetakController extends Controller
         if (Auth::user()->role == 'akademik') {
             return view('livewire.jadwal.cetak', [
                 'jadwals' => Jadwal::get(),
+            ]);
+        }
+        if (Auth::user()->role == 'prodi') {
+            $prodi = ProgramStudi::where('kode', Auth::user()->username)->first();
+            if ($prodi) {
+                $prodiId = $prodi->id;
+            }
+            return view('livewire.jadwal.cetak', [
+                'jadwals' => $prodiId == null ?
+                Jadwal::get() :
+                Jadwal::first()->where('prodi_id', 'like', '%' . $prodiId . '%')->get(),
             ]);
         }
     }
