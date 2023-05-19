@@ -77,9 +77,9 @@
                             <div class="mb-3 input-group">
                                 <select id="selectedMhsw" name="selectedMhsw" wire:model="selectedMhsw" class="form-select @error('selectedMhsw') is-invalid @enderror" multiple>
                                     @php
-                                        
+                                        $dtKelases = DB::table('df_kelases')->where('id', $kelas_id)->select('df_kelases.*', 'id', 'kode')->get();
                                     @endphp
-                                    @foreach ($dfkelases as $dfkls)
+                                    @foreach ($dtKelases as $dfkls)
                                         <optgroup label="{{ $dfkls->kode }}">
                                             @foreach ($klsmhses as $klsmhs)
                                                 @if ($dfkls->id == $klsmhs->kelas_id)

@@ -8,6 +8,8 @@ use App\Models\DfKelas;
 use App\Models\DfMatkul;
 use App\Models\KelasMhsw;
 use App\Models\Mahasiswa;
+use App\Models\ProgramStudi;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,8 +48,12 @@ class Create extends Component
 
     public function render()
     {
+        if (Auth::user()->role == 'prodi') {
+            $dtProdi = ProgramStudi::where('kode', Auth::user()->username)->first();
+        }
+
         $dfmatkuls = DfMatkul::get();
-        $dfkelases = DfKelas::get();
+        $dfkelases = $dtProdi == null ? DfKelas::get() : DfKelas::where('prodi_id', $dtProdi->id)->get();
         $klsmhses = KelasMhsw::get();
         return view('livewire.absen.create', compact(['dfmatkuls', 'dfkelases', 'klsmhses']));
     }

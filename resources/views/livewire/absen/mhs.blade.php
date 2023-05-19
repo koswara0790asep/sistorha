@@ -1122,14 +1122,14 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                     @endif
                                 </td>
                             @endif
+                            @if (Auth::user()->role == 'prodi')
                             <td>
-                                @if (Auth::user()->role == 'prodi')
                                     @if ($alfas >= '3')
                                         <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AKami dari Program Studi mengingatkan Anda. Bahwa Anda sudah tidak mengikuti perkuliahan sebanyak {{ $alfas }}. Perbaiki atau tidak dapat melaksanakan ujian-ujian!&type=phone_number&app_absent=0"
                                             class="btn btn-sm btn-danger btn-icon" target="_blank"><i
                                                 class="mdi mdi-whatsapp"></i></a>
-                                    @endif
                             </td>
+                                    @endif
                             @endif
 
                         </tr>

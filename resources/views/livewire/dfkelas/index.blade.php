@@ -75,34 +75,37 @@
                                     <a href="{{ route('dfkelas.edit', $kls->id) }}"
                                         class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
 
-                                    <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
-                                        data-bs-target="#id_{{ $kls->id }}">
-                                        <i class="mdi mdi-delete"></i>
-                                    </button>
+                                    @if (Auth::user()->role == 'akademik')
+                                        {{-- <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
+                                            data-bs-target="#id_{{ $kls->id }}">
+                                            <i class="mdi mdi-delete"></i>
+                                        </button>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade text-center text-wrap" id="id_{{ $kls->id }}" tabindex="-1"
-                                        aria-labelledby="id_{{ $kls->id }}Label" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <p class="text text-secondary" style="font-size: 100px"><i
-                                                            class="mdi mdi-alert-circle-outline"></i></p>
-                                                    <br>
-                                                    <h3>Apakah anda yakin?</h3>
-                                                    <p>Data Kelas {{ $kls->nama_kelas }} yang dihapus
-                                                        tidak dapat dikembalikan.</p>
-                                                    <br>
+                                        <!-- Modal -->
+                                        <div class="modal fade text-center text-wrap" id="id_{{ $kls->id }}" tabindex="-1"
+                                            aria-labelledby="id_{{ $kls->id }}Label" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <p class="text text-secondary" style="font-size: 100px"><i
+                                                                class="mdi mdi-alert-circle-outline"></i></p>
+                                                        <br>
+                                                        <h3>Apakah anda yakin?</h3>
+                                                        <p>Data Kelas {{ $kls->nama_kelas }} yang dihapus
+                                                            tidak dapat dikembalikan.</p>
+                                                        <br>
 
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal"><i class="mdi mdi-window-close"></i> Batalkan</button>
-                                                    <button wire:click="destroy({{ $kls->id }})"
-                                                        class="btn btn-danger"><i class="mdi mdi-delete"></i> Ya, Hapus</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal"><i class="mdi mdi-window-close"></i> Batalkan</button>
+                                                        <button wire:click="destroy({{ $kls->id }})"
+                                                            class="btn btn-danger"><i class="mdi mdi-delete"></i> Ya, Hapus</button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </td>
+                                        </div> --}}
+                                    @endif
+                                    </td>
+
                             </tr>
                             @endforeach
                         </tbody>

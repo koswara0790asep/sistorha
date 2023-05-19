@@ -116,7 +116,7 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     // Route::livewire('/dfkelas/create', 'dfkelas.create')->name('dfkelas.create');
     // Route::livewire('/dfkelas/edit/{id}', 'dfkelas.edit')->name('dfkelas.edit');
     // Route::get('/dfkelases/cetak', [CetakController::class, 'cetakDFkelas'])->name('dfkelas.cetak');
-    // Route::get('/absensis/kelas/{dfkelas}/rekap', [CetakController::class, 'rekapAbsenKelas'])->name('dfkelas.rekap');
+    Route::get('/absensis/kelas/{dfkelas}/rekap', [CetakController::class, 'rekapAbsenKelas'])->name('dfkelas.rekap');
 
     // //kelas
     // Route::livewire('/kelass', 'kelas.index')->name('kelas.index');
@@ -286,6 +286,7 @@ Route::middleware(['auth', 'role:akademik,prodi,dosen,mahasiswa'])->group(functi
     // absen
     Route::get('/absensis/cetak/{jadwal}/{dfkelas}/{dfmatkul}', [CetakController::class, 'cetakAbsenMhs'])->name('absen.cetak');
     Route::get('/absensis/rekap/{jadwal}/{dfkelas}/{dfmatkul}', [CetakController::class, 'rekapAbsenMhs'])->name('absen.rekap');
+    // Route::get('/absensis/kelas/{dfkelas}/rekap', [CetakController::class, 'rekapAbsenKelas'])->name('dfkelas.rekap');
 
     // absen->search
     Route::livewire('/absensis/{jadwal}/{dfkelas}/{dfmatkul}', 'absen.mhs')->name('absen.mhs');

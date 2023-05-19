@@ -1,22 +1,24 @@
-<table style="margin-left: 280px">
-    <tr>
-        <td>
-            <img src="{{ asset('assets/images/logotedc.png') }}" width="100px" alt="...">
-        </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td colspan="2">
+<center>
+    <table>
+        <tr>
+            <td>
+                <img src="{{ asset('assets/images/logotedc.png') }}" width="100px" alt="...">
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="2">
 
-            <center>
-                <h1 style="color: rgb(25, 0, 255)">POLITEKNIK TEDC BANDUNG</h1>
-                Jl. Politeknik - Pasantren Km. 2 Cibabat – Cimahi Utara 40513 Telp/ Fax. (022) 6645951,<br>
-                Email : info@poltektedc.ac.id Website : http://www.poltektedc.ac.id
-            </center>
-        </td>
-        <td></td>
-    </tr>
-</table>
+                <center>
+                    <h1 style="color: rgb(25, 0, 255)">POLITEKNIK TEDC BANDUNG</h1>
+                    Jl. Politeknik - Pasantren Km. 2 Cibabat – Cimahi Utara 40513 Telp/ Fax. (022) 6645951,<br>
+                    Email : info@poltektedc.ac.id Website : http://www.poltektedc.ac.id
+                </center>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</center>
 
 <!-- Garis pembatas -->
 <hr style="

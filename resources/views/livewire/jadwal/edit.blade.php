@@ -138,9 +138,16 @@
                         <label for="dosen_id">Dosen Pengampu: </label>
                         <div class="mb-3 input-group">
                             <select id="dosen_id" name="dosen_id" wire:model="dosen_id" class="form-select @error('dosen_id') is-invalid @enderror">
+                                @php
+                                    $kdMatkuls = DB::table('df_matkuls')->where('id', $matkul_id)->select('df_matkuls.*', 'id', 'dosen', 'kode_matkul')->first();
+                                    $dtMatkuls = DB::table('df_matkuls')->where('kode_matkul', $kdMatkuls->kode_matkul)->select('df_matkuls.*', 'id', 'dosen')->get();
+                                @endphp
                                 <option value="" hidden>--- Pilih Dosen Pengampu ---</option>
-                                @foreach ($dosens as $dsn)
-                                    <option value="{{ $dsn->id }}">{{ $dsn->nidn }} - {{ $dsn->nama }}</option>
+                                @foreach ($dtMatkuls as $dsn)
+                                @php
+                                    $dtDosen = DB::table('dosens')->where('id', $dsn->dosen)->select('dosens.*', 'id', 'nidn', 'nama')->first();
+                                @endphp
+                                    <option value="{{ $dtDosen->id }}">{{ $dtDosen->nidn }} - {{ $dtDosen->nama }}</option>
                                 @endforeach
                             </select>
                             <span class="input-group-text"><h4><i class="mdi mdi-account-star"></i></h4></span>
