@@ -9,8 +9,8 @@
             </div>
             <div class="col-sm-2"></div>
             <div class="col-sm-3 d-flex">
-                <p style="color: #F9FAFB">.........</p>
-                <div class="col">
+                {{-- <p style="color: #F9FAFB">.........</p> --}}
+                <div class="col" style="text-align: right;">
 
                     <a href="/ruangan/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-account-plus"></i> Tambah Data</a>
@@ -70,7 +70,7 @@
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-body">
-                                                    <p class="text text-secondary" style="font-size: 100px"><i
+                                                    <p class="text text-warning" style="font-size: 100px"><i
                                                             class="mdi mdi-alert-circle-outline"></i></p>
                                                     <br>
                                                     <h3>Apakah anda yakin?</h3>

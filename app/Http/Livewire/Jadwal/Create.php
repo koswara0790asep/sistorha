@@ -64,7 +64,7 @@ class Create extends Component
                               ->exists();
 
         if ($existingData) {
-            Alert::warning('GAGAL!','Data Jadwal Sudah Ada!');
+            Alert::error('GAGAL!','Data Jadwal Sudah Ada!');
         } else {
 
             $existingTimeSlot = Jadwal::where('hari', $hari)
@@ -74,7 +74,7 @@ class Create extends Component
 
             if ($existingTimeSlot) {
                 // Jika ada, tampilkan pesan error
-                Alert::warning('GAGAL!','Jadwal Hari, Jam, dan Ruangan Sudah Terisi!');
+                Alert::error('GAGAL!','Jadwal Hari, Jam, dan Ruangan Sudah Terisi!');
             } else {
 
                 Jadwal::create([

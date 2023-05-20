@@ -38,7 +38,7 @@ class Create extends Component
             Alert::success('BERHASIL!','Data Mahasiswa berhasil disimpan di Kelas yang dipilih!');
         } else {
             //flash message
-            Alert::warning('GAGAL!','Data Mahasiswa sudah tercantum di satu Kelas!');
+            Alert::error('GAGAL!','Data Mahasiswa sudah tercantum di satu Kelas!');
         }
 
         // redirect

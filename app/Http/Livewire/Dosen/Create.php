@@ -42,7 +42,7 @@ class Create extends Component
         ]);
 
         if (Dosen::where('nidn', $this->nidn)->exists()) {
-            Alert::warning('GAGAL!','Data Mahasiswa Sudah Ada!');
+            Alert::error('GAGAL!','Data Mahasiswa Sudah Ada!');
         } else {
             Dosen::create([
                 'nama' => $this->nama,

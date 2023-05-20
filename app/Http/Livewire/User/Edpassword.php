@@ -53,11 +53,11 @@ class Edpassword extends Component
                         Alert::error('GAGAL!','Password kamu gagal diperbaharui!');
                     }
                 } else {
-                    Alert::error('GAGAL!','Password lama yang kamu masukkan salah!');
+                    Alert::warning('GAGAL!','Password lama yang kamu masukkan salah!');
                 }
 
             } else {
-                Alert::error('GAGAL!','Password yang kamu masukkan tidak sama!');
+                Alert::warning('GAGAL!','Password yang kamu masukkan tidak sama!');
             }
         }
 

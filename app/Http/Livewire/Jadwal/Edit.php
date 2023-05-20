@@ -45,7 +45,7 @@ class Edit extends Component
             $this->jam_akhir = $jadwal->jam_akhir;
             $this->ruang_id = $jadwal->ruang_id;
         } elseif ($this->matkul_id == null) {
-            Alert::error('Woops!','Data yang kamu cari tidak ada!');
+            Alert::warning('Woops!','Data yang kamu cari tidak ada!');
         }
     }
 
@@ -92,7 +92,7 @@ class Edit extends Component
 
             if ($existingTimeSlot) {
                 // Jika ada, tampilkan pesan error
-                Alert::warning('GAGAL!','Jadwal Hari, Jam, dan Ruangan Sudah Terisi!');
+                Alert::error('GAGAL!','Jadwal Hari, Jam, dan Ruangan Sudah Terisi!');
             }
 
             if ($jadwal) {

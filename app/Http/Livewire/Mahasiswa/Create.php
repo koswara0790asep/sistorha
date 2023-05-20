@@ -42,7 +42,7 @@ class Create extends Component
         ]);
 
         if (Mahasiswa::where('nim', $this->nim)->exists()) {
-            Alert::warning('GAGAL!','Data Mahasiswa Sudah Ada!');
+            Alert::error('GAGAL!','Data Mahasiswa Sudah Ada!');
         } else {
 
             Mahasiswa::create([

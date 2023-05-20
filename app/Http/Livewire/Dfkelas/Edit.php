@@ -30,7 +30,7 @@ class Edit extends Component
             $this->kode = $kelas->kode;
 
         } elseif ($this->kode == null) {
-            Alert::error('Woops!','Data yang kamu cari tidak ada!');
+            Alert::warning('Woops!','Data yang kamu cari tidak ada!');
         }
     }
 

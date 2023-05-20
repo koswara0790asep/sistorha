@@ -74,7 +74,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('manualbook.akademik') }}" class="nav-link">
                     <i class="link-icon" data-feather="book"></i>
                     <span class="link-title">Manual Book / Tutorial</span>
                 </a>

@@ -107,7 +107,7 @@ class Edit extends Component
             $this->keterangan = $absen->keterangan;
 
         } elseif ($this->jadwalId == null) {
-            Alert::error('Woops!','Data yang kamu cari tidak ada!');
+            Alert::warning('Woops!','Data yang kamu cari tidak ada!');
         }
     }
 

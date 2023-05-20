@@ -17,7 +17,7 @@ class Show extends Component
         $this->dosen = Dosen::find($id);
 
         if (!$this->dosen) {
-            Alert::error('Woops!','Data yang kamu cari tidak ada!');
+            Alert::warning('Woops!','Data yang kamu cari tidak ada!');
         }
     }
 

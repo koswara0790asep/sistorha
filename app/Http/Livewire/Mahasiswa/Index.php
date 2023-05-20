@@ -114,7 +114,7 @@ class Index extends Component
 
         $user = User::where('username', $this->nim)->first();
         if ($user) {
-            Alert::warning('GAGAL!','Data user sudah ada!');
+            Alert::error('GAGAL!','Data user sudah ada!');
         } else {
             User::create([
                 'name' => $this->nama,

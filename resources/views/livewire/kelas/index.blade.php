@@ -81,7 +81,7 @@
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-body">
-                                                    <p class="text text-secondary" style="font-size: 100px"><i
+                                                    <p class="text text-warning" style="font-size: 100px"><i
                                                             class="mdi mdi-alert-circle-outline"></i></p>
                                                     <br>
                                                     <h3>Apakah anda yakin?</h3>

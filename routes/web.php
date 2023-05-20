@@ -166,6 +166,9 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     // Route::livewire('/jadwal/create', 'jadwal.create')->name('jadwal.create');
     // Route::livewire('/jadwal/edit/{jadwal}/{id}', 'jadwal.edit')->name('jadwal.edit');
 
+    // manualbook
+    Route::livewire('/manualbook/bag-akademik', 'manualbook.akademik')->name('manualbook.akademik');
+
 });
 
 

@@ -25,7 +25,7 @@ class Edit extends Component
             $this->status = $prodi->status;
 
         } elseif ($this->kode == null) {
-            Alert::error('Woops!','Data yang kamu cari tidak ada!');
+            Alert::warning('Woops!','Data yang kamu cari tidak ada!');
         }
     }
 

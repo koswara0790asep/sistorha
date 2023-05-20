@@ -48,11 +48,13 @@ class Create extends Component
 
     public function render()
     {
+        $dtProdi = null;
+
         if (Auth::user()->role == 'prodi') {
             $dtProdi = ProgramStudi::where('kode', Auth::user()->username)->first();
         }
 
-        $dfmatkuls = DfMatkul::get();
+        $dfmatkuls = $dtProdi == null ? DfMatkul::get() : DfMatkul::where('program_studi', $dtProdi->id)->get();
         $dfkelases = $dtProdi == null ? DfKelas::get() : DfKelas::where('prodi_id', $dtProdi->id)->get();
         $klsmhses = KelasMhsw::get();
         return view('livewire.absen.create', compact(['dfmatkuls', 'dfkelases', 'klsmhses']));

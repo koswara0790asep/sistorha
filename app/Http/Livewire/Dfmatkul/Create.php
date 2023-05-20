@@ -40,7 +40,7 @@ class Create extends Component
             ]);
             Alert::success('BERHASIL!','Data Mata Kuliah ' .$this->nama_matkul. ' Berhasil Disimpan Dalam Daftar!');
         } else {
-            Alert::warning('GAGAL!','Data Mata Kuliah Tersebut Sudah Ada Dalam Daftar!');
+            Alert::error('GAGAL!','Data Mata Kuliah Tersebut Sudah Ada Dalam Daftar!');
         }
 
         // redirect

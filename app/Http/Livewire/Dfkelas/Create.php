@@ -28,7 +28,7 @@ class Create extends Component
         ]);
 
         if (DfKelas::where('kode', $this->kode)->exists()) {
-            Alert::warning('GAGAL!','Data Program Studi Sudah Ada!');
+            Alert::error('GAGAL!','Data Program Studi Sudah Ada!');
         } else {
 
             DfKelas::create([

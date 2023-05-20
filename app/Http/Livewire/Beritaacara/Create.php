@@ -78,7 +78,7 @@ class Create extends Component
             Alert::success('BERHASIL!','Data pertemuan berhasil disimpan!');
         } else {
             //flash message
-            Alert::warning('GAGAL!','Data pertemuan sudah ada, dimohon untuk mengeceknya kembali!');
+            Alert::error('GAGAL!','Data pertemuan sudah ada, dimohon untuk mengeceknya kembali!');
         }
         // redirect
         return redirect('/beritaacara/'.$this->jadwalId.'/'.$this->matkul_id.'/'.$this->kelas_id.'/'.$this->dosenID.'');
