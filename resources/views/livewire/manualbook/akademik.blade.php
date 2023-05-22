@@ -4,7 +4,7 @@
         <div data-bs-spy="scroll" data-bs-target="#navbar-example" data-bs-offset="0" class="scrollspy-example">
             <div class="card" id="halaman">
                 <div class="card-header">
-                    <div class="card-title"><h3>HALAMAN-HALAMAN</h3></div>
+                    <div class="card-title"><h3>HALAMAN DAN ALAT</h3></div>
                 </div>
                 <div class="card-body">
                     <h4 id="index">INDEX PAGE (HALAMAN BACA DATA)</h4>
@@ -28,6 +28,19 @@
                         <p class="text-muted">Halaman Cetak Data</p>
                     </center>
                     <p>Saat sudah di halaman cetak data, Anda diperlukan untuk menekan <b class="btn btn-sm btn-info">Ctrl + P</b> untuk melanjutkan opsi untuk menyimpan atau cetak data tersebut. Sebagai penyesuaian, Anda dapat mengubah pengaturan pada hasil cetak atau simpan pada menu bagian kanan.</p>
+                    <hr>
+                    <h4 id="impor">TOOL IMPORT DATA (ALAT IMPOR DATA)</h4>
+                    <center>
+                        <img src="{{ asset('manualbook-asset/user/importData.png') }}" alt="...." width="720px">
+                        <p class="text-muted">Alat Impor Data</p>
+                    </center>
+                    <p>Alat impor data ini hanya suport dengan file .xlsx yang dimana contohnya dapat diunduh langsung pada tombol <button class="btn btn-sm btn-info"><i class="mdi mdi-download"></i> Unduh Contoh</button>. Nantinya akan terunduh contohnya dan filenya dapat diubah untuk melanjutkan mengisi data pada tabel (data sebelumnya dapat dihapus atau tidak menyesuaikan dengan data yang ada).</p>
+                    <br>
+                    <center>
+                        <img src="{{ asset('manualbook-asset/user/ex-Jadwal.png') }}" alt="...." width="720px">
+                        <p class="text-muted">Contoh Data dari Hasil Unduh</p>
+                    </center>
+                    <p>Data diatas merupakan contoh data yang diunduh untuk keperluan impor data kedalam sistem. terdapat kolom-kolom dan keterangan untuk kolom tersebut sebagai contoh isian agar dapat masuk kedalam database. Setelah pemilihan file, tunggu tombol <button class="btn btn-sm btn-secondary"><i class="mdi mdi-content-save"></i> Impor Data</button> menjadi berwana hijau <button class="btn btn-sm btn-success"><i class="mdi mdi-content-save"></i> Impor Data</button>.</p>
                 </div>
             </div>
             <div class="card mt-4" id="alert">
@@ -35,7 +48,7 @@
                     <div class="card-title"><h3>TANDA-TANDA</h3></div>
                 </div>
                 <div class="card-body">
-                    <h4 id="berhasil">SUCCESS ALERT (TANDAN PERINGATAN BERHASIL)</h4>
+                    <h4 id="berhasil">SUCCESS ALERT (TANDA PERINGATAN BERHASIL)</h4>
                     <center>
                         <img src="{{ asset('manualbook-asset/user/success-alert.png') }}" alt="...." width="480px">
                         <p class="text-muted">Peringatan Berhasil</p>
@@ -67,19 +80,20 @@
                     <nav id="navbar-example">
                         <ul class="nav nav-pills flex-column">
                           <li class="nav-item">
-                            <a class="nav-link" href="#halaman">HALAMAN-HALAMAN</a>
+                            <a class="nav-link" href="#halaman">HALAMAN DAN ALAT</a>
                             <ul class="nav nav-pills flex-column">
                                 <li class="nav-item"><a href="#index" class="nav-link">HALAMAN INDEX</a></li>
                                 <li class="nav-item"><a href="#cupage" class="nav-link">HALAMAN TAMBAH/UBAH</a></li>
                                 <li class="nav-item"><a href="#print" class="nav-link">HALAMAN CETAK</a></li>
+                                <li class="nav-item"><a href="#impor" class="nav-link">ALAT IMPOR DATA</a></li>
                             </ul>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" href="#alert">TANDA-TANDA</a>
                             <ul class="nav nav-pills flex-column">
-                                <li class="nav-item"><a href="#berhasil" class="nav-link">TANDAN PERINGATAN BERHASIL</a></li>
-                                <li class="nav-item"><a href="#peringatan" class="nav-link">TANDA PERINGATAN TEGURAN</a></li>
-                                <li class="nav-item"><a href="#bahaya" class="nav-link">TANDA PERINGATAN BAHAYA</a></li>
+                                <li class="nav-item"><a href="#berhasil" class="nav-link">PERINGATAN BERHASIL</a></li>
+                                <li class="nav-item"><a href="#peringatan" class="nav-link">PERINGATAN TEGURAN</a></li>
+                                <li class="nav-item"><a href="#bahaya" class="nav-link">PERINGATAN BAHAYA</a></li>
                             </ul>
                           </li>
                         </ul>

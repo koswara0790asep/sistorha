@@ -1,4 +1,14 @@
 <div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <p>
+                <b><i class="mdi mdi-alert"></i> Peringatan!</b> <br>Sebaiknya anda mengganti password anda jika masih menggunakan password awal!
+            </p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card text-white bg-{{ array_rand($colors) }} mb-3">
             <div class="card-body">

@@ -11,7 +11,7 @@
                 @if (Auth::user()->role == 'akademik')
 
                     <a href="/jadwal/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
-                        <i class="mdi mdi-account-plus"></i> Tambah Data</a>
+                        <i class="mdi mdi-table-column"></i> Tambah Data</a>
                     <!-- Button trigger modal -->
                     <button type="button" onclick="toggle()"
                         class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
@@ -138,8 +138,8 @@
                                     @php
                                         $dataRn = DB::table('ruangans')->where('id',
                                         $jadw->ruang_id)->select('ruangans.*', 'kode')->first();
-                                        echo $dataRn->kode;
                                     @endphp
+                                    {{ $dataRn->kode ?? '' }}
                                 </td>
                                 <td class="text-center">
                                     <a href="{{ route('dsnBeritaAcara.index', [$jadw->id, $jadw->matkul_id, $jadw->kelas_id, $jadw->dosen_id]) }}"
@@ -152,10 +152,10 @@
                                     @if (Auth::user()->role == 'akademik')
                                         <a href="{{ route('jadwal.edit', $jadw->id) }}"
                                             class="btn btn-warning btn-icon-text"><i class="mdi mdi-lead-pencil"></i></a>
-                                        <button type="button" class="btn btn-danger btn-icon-text" data-bs-toggle="modal"
+                                        {{-- <button type="button" class="btn btn-danger btn-icon-text" data-bs-toggle="modal"
                                             data-bs-target="#id_{{ $jadw->id }}">
                                             <i class="mdi mdi-delete"></i>
-                                        </button>
+                                        </button> --}}
 
                                         <!-- Modal -->
                                         <div class="modal fade text-center text-wrap" id="id_{{ $jadw->id }}" tabindex="-1"

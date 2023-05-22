@@ -32,7 +32,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                             @if (count($beritaacaras) != 16)
                             <a href="{{ route('beritaacara.create', [$jadwalId, $matkulSelect, $kelasSelect, $dosenID]) }}"
                                 class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend">
-                                <i class="mdi mdi-account-plus"></i> TAMBAH DATA</a>
+                                <i class="mdi mdi-table-column"></i> TAMBAH DATA</a>
                             @else
 
                             @endif
@@ -77,7 +77,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                 @endphp
                 @if($lastMeetingDate->lte($twoWeeksAgo))
                     <div class="alert alert-danger" role="alert">
-                        <p><i>Perkuliahan ini sudah tidak ada pertemuan semenjak 2 minggu kebelakang.</i></p>
+                        <p><i>Perkuliahan ini sudah tidak ada pertemuan semenjak 2 minggu atau lebih kebelakang.</i></p>
                     </div>
                 @endif
                 <div class="row">

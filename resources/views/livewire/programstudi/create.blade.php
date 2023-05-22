@@ -11,7 +11,7 @@
             <h4 class="card-title">
                 <a href="{{ route('programstudi.index') }}" class="btn btn-danger btn-sm shadow"><i
                         class="mdi mdi-close"></i></a>
-                <i class="mdi mdi-account-plus"></i>
+                <i class="mdi mdi-table-column-plus-after"></i>
                 TAMBAH DATA PROGRAM STUDI
             </h4>
         </div>

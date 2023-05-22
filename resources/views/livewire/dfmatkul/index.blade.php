@@ -70,10 +70,10 @@
                                     <a href="{{ route('dfmatkul.edit', $mk->id) }}"
                                         class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
 
-                                    <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
+                                    {{-- <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
                                         data-bs-target="#id_{{ $mk->id }}">
                                         <i class="mdi mdi-delete"></i>
-                                    </button>
+                                    </button> --}}
 
                                     <!-- Modal -->
                                     <div class="modal fade text-center text-wrap" id="id_{{ $mk->id }}" tabindex="-1"

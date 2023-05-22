@@ -10,7 +10,7 @@
             </div>
             <div class="col-md-4" style="text-align: right;">
                 <a href="/absen/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
-                    <i class="mdi mdi-account-plus"></i> Tambah Data</a>
+                    <i class="mdi mdi-table-column"></i> Tambah Data</a>
                 {{-- <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                     <i class="mdi mdi-printer"></i> Cetak</a> --}}
                 <!-- Button trigger modal -->
@@ -45,7 +45,7 @@
                     <br>
                     <button class="btn {{ $importFile != null ? 'btn-success' : 'btn-secondary' }} btn-sm" type="submit" wire:click.prevent="import"><i class="mdi mdi-content-save"></i> Impor Data</button>
                     {{-- <button class="btn btn-primary btn-sm" type="submit" wire:click="download"><i class="mdi mdi-download"></i> Unduh Contoh</button> --}}
-                    <a href="{{ asset('/sheets/ex-absen.xlsx') }}" class="btn btn-secondary btn-sm" @disabled(true)><i class="mdi mdi-download"></i> Unduh Contoh</a>
+                    <a href="{{ asset('/sheets/ex-absen.xlsx') }}" class="btn btn-info btn-sm" @disabled(true)><i class="mdi mdi-download"></i> Unduh Contoh</a>
 
                 </form>
             </div>

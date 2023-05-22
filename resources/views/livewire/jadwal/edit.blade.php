@@ -11,7 +11,7 @@
             <h4 class="card-title">
                 <a href="{{ route('jadwal.index') }}" class="btn btn-danger btn-sm shadow"><i
                         class="mdi mdi-close"></i></a>
-                <i class="mdi mdi-account-plus"></i>
+                <i class="mdi mdi-table-column-plus-after"></i>
                 UBAH DATA JADWAL
             </h4>
         </div>

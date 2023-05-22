@@ -21,7 +21,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
             <h4 class="card-title">
                 <a href="{{ route('dsnBeritaAcara.index', [$jadwalId, $matkulSelect, $kelasSelect, $dosenID]) }}" class="btn btn-danger btn-sm shadow"><i
                         class="mdi mdi-close"></i></a>
-                <i class="mdi mdi-account-plus"></i>
+                <i class="mdi mdi-table-column-plus-after"></i>
                 TAMBAH DATA PERTEMUAN {{ $dfMatkul->nama_matkul ?? '' }} ({{ $dfKelas->kode ?? '' }})
             </h4>
         </div>

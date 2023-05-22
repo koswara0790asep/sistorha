@@ -167,7 +167,7 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     // Route::livewire('/jadwal/edit/{jadwal}/{id}', 'jadwal.edit')->name('jadwal.edit');
 
     // manualbook
-    Route::livewire('/manualbook/bag-akademik', 'manualbook.akademik')->name('manualbook.akademik');
+    Route::livewire('/manualbook/bag-aka', 'manualbook.akademik')->name('manualbook.akademik');
 
 });
 
@@ -179,6 +179,9 @@ Route::middleware(['auth', 'role:prodi'])->group(function () {
 
     // jadwal
     Route::livewire('/jadwals/{program_studi}', 'jadwal.index')->name('jadwal.indexProdi');
+
+    // manualbook
+    Route::livewire('/manualbook/bag-programstudi', 'manualbook.prodi')->name('manualbook.prodi');
 });
 
 
@@ -194,6 +197,9 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::livewire('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}/create', 'beritaacara.create')->name('beritaacara.create');
     Route::livewire('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}/edit/{id}', 'beritaacara.edit')->name('beritaacara.edit');
 
+    // manualbook
+    Route::livewire('/manualbook/bag-dsn', 'manualbook.dosen')->name('manualbook.dosen');
+
 });
 
 
@@ -205,6 +211,8 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     // jadwal
     Route::livewire('/jadwals/kelas/{kelas_mhsw:kelas_id}', 'jadwal.index')->name('jadwal.indexMhs');
 
+    // manualbook
+    Route::livewire('/manualbook/bag-mhsw', 'manualbook.mahasiswa')->name('manualbook.mahasiswa');
 });
 
 
