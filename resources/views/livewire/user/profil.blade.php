@@ -13,10 +13,19 @@
                         <i class="mdi mdi-account-box"></i> Profil User
                     </h3>
                     <div style="text-align: right; margin-top: -35px;">
-                        <button onclick="window.history.back()" class="btn btn-danger btn-sm btn-icon-text">
+                        @if (Auth::user()->role == 'akademik')
+                            <a href="/dashboard/akademik" class="btn btn-danger btn-sm btn-icon-text">
+                        @elseif (Auth::user()->role == 'prodi')
+                            <a href="/dashboard/prodi" class="btn btn-danger btn-sm btn-icon-text">
+                        @elseif (Auth::user()->role == 'dosen')
+                            <a href="/dashboard/dosen" class="btn btn-danger btn-sm btn-icon-text">
+                        @elseif (Auth::user()->role == 'mahasiswa')
+                            <a href="/dashboard/mahasiswa" class="btn btn-danger btn-sm btn-icon-text">
+                        @endif
+                        {{-- <a href="/dashboard/{{ Auth::user()->role == 'akademik' ? 'akademik' : Auth::user()->role == 'prodi' ? 'prodi' : Auth::user()->role == 'dosen' ? 'dosen' : Auth::user()->role == 'mahasiswa' ? 'mahasiswa' : '#' }}" class="btn btn-danger btn-sm btn-icon-text"> --}}
                             <i class="mdi mdi-arrow-left"></i>
                             Kembali
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

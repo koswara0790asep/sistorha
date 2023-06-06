@@ -17,9 +17,9 @@
                     <div class="text-end">
                         <h4 class="card-title mb-0">
                         @php
-                            $dtDosen = DB::table('dosens')->where('nidn', Auth::user()->username ?? '')->select('dosens.*', 'id')->first();
+                            $dtDosen = DB::table('dosens')->where('nidn', Auth::user()->username ?? null)->select('dosens.*', 'id')->first();
                             // dd(Auth::user()->username);
-                            $jml_jadwal = DB::table('jadwals')->where('dosen_id', $dtDosen->id ?? '')->select('jadwals.*')->get();
+                            $jml_jadwal = DB::table('jadwals')->where('dosen_id', $dtDosen->id ?? null)->select('jadwals.*')->get();
                         @endphp
                         {{ count($jml_jadwal) }}
                         </h4>
@@ -29,7 +29,13 @@
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-between align-items-center">
+                    @if (count($jml_jadwal) == 0)
+                    Belum Ada Data <a href="#" class="text-white btn-icon-prepend"><span class="mdi mdi-eye-arrow-right mdi-18px"></span></a>
+
+                    @else
+
                     Lihat Data <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}" class="text-white btn-icon-prepend"><span class="mdi mdi-eye-arrow-right mdi-18px"></span></a>
+                    @endif
                 </div>
             </div>
         </div>

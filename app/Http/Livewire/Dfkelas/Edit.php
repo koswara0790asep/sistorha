@@ -29,7 +29,7 @@ class Edit extends Component
             $this->periode = $kelas->periode;
             $this->kode = $kelas->kode;
 
-        } elseif ($this->kode == null) {
+        } elseif ($this->dfkelasId == null) {
             Alert::warning('Woops!','Data yang kamu cari tidak ada!');
         }
     }

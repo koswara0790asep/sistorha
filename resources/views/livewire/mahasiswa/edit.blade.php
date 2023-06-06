@@ -46,7 +46,7 @@
                             <div class="mb-3 input-group">
                                 <input type="text" id="nama" name="nama" wire:model="nama"
                                     class="form-control @error('nama') is-invalid @enderror"
-                                    placeholder="Masukkan Nama Lengkap">
+                                    placeholder="Masukkan Nama Lengkap" disabled>
                                 <span class="input-group-text">
                                     <h4><i class="mdi mdi-account"></i></h4>
                                 </span>
@@ -78,7 +78,7 @@
                             <label for="nim">NIM: </label>
                             <div class="mb-3 input-group">
                                 <input type="text" id="nim" name="nim" wire:model="nim"
-                                    class="form-control @error('nim') is-invalid @enderror" placeholder="Masukkan NIM">
+                                    class="form-control @error('nim') is-invalid @enderror" placeholder="Masukkan NIM" disabled>
                                 <span class="input-group-text">
                                     <h4><i class="mdi mdi-barcode"></i></h4>
                                 </span>
@@ -187,7 +187,7 @@
                             <label for="status_aktif">Program Studi: </label>
                             <div class="mb-3 input-group">
                                 <select id="program_studi" name="program_studi" wire:model="program_studi"
-                                    class="form-select @error('program_studi') is-invalid @enderror">
+                                    class="form-select @error('program_studi') is-invalid @enderror" {{ Auth::user()->role == 'akademik' ? '' : 'disabled' }}>
                                     <option value="" hidden>--- Pilih Program Studi ---</option>
                                     @foreach ($prodis as $prodi)
                                     <option value="{{ $prodi->id }}">{{ $prodi->kode }} - {{ $prodi->program_studi }}
@@ -244,7 +244,7 @@
                         <div class="col-sm-6">
                             <label for="email">Email: </label>
                             <div class="mb-3 input-group">
-                                <input type="text" id="email" name="email" wire:model="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Alamat Email Aktif"">
+                                <input type="text" id="email" name="email" wire:model="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Alamat Email Aktif" disabled>
                                 <span class="input-group-text"><h4><i class="mdi mdi-email"></i></h4></span>
                                 @error('email')
                                 <span class="invalid-feedback">

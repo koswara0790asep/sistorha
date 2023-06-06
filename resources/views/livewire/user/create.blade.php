@@ -9,11 +9,11 @@
     </div>
     <div class="card shadow col-lg-12 grid-margin stretch-card">
         <div class="card-title m-3 d-flex">
-            <h4 class="card-title">
+            <h3>
             <a href="{{ route('user.index') }}" class="btn btn-danger btn-sm shadow"><i class="mdi mdi-close"></i></a>
                 <i class="mdi mdi-account-plus"></i>
                 TAMBAH DATA USER
-            </h4>
+            </h3>
         </div>
         <div class="card-body">
             <form action="" wire:submit.prevent="store">

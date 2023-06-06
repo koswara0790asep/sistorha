@@ -8,12 +8,12 @@
     </div>
     <div class="card shadow col-lg-12 grid-margin stretch-card">
         <div class="card-title m-3 d-flex">
-            <h4 class="card-title">
+            <h3>
                 <a href="{{ route('jadwal.index') }}" class="btn btn-danger btn-sm shadow"><i
                         class="mdi mdi-close"></i></a>
                 <i class="mdi mdi-table-column-plus-after"></i>
                 TAMBAH DATA JADWAL
-            </h4>
+            </h3>
         </div>
         <div class="card-body">
             <form action="" wire:submit.prevent="store">
@@ -45,7 +45,7 @@
                                 @endphp
                                 <option value="" hidden>--- Pilih Kelas ---</option>
                                 @foreach ($dtKelases as $kls)
-                                    <option value="{{ $kls->id }}">{{ $kls->kode }}</option>
+                                    <option value="{{ $kls->id }}">{{ $kls->kode }} ({{ $kls->nama_kelas }})</option>
                                 @endforeach
                             </select>
                             <span class="input-group-text"><h4><i class="mdi mdi-home-variant"></i></h4></span>

@@ -4,7 +4,7 @@ $dfKelas = DB::table('df_kelases')->where('id', $kelasSelect ?? '')->select('df_
 $dfMatkul = DB::table('df_matkuls')->where('id', $matkulSelect ?? '')->select('df_matkuls.*', 'id', 'kode_matkul',
 'nama_matkul', 'dosen')->first();
 $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.*', 'sks', 'jml_jam', 'hari',
-'jam_awal', 'jam_akhir')->first();
+'jam_awal', 'jam_akhir', 'dosen_id')->first();
 $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 'nama')->first();
 // dd($beritaacaras);
 @endphp
@@ -106,7 +106,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                                 <td>:</td>
                                 <td>
                                     @php
-                                    $dosen = DB::table('dosens')->where('id', $dfMatkul->dosen ??
+                                    $dosen = DB::table('dosens')->where('id', $dtJadwal->dosen_id ??
                                     '')->select('dosens.*',
                                     'nama', 'no_hp')->first();
                                     @endphp
@@ -135,7 +135,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                             </tr>
                         </table>
                     </div>
-                    @if (Auth::user()->role == 'akademik' || Auth::user()->role == 'prodi')
+                    @if (Auth::user()->role == 'prodi')
                         @if($lastMeetingDate->lte($twoWeeksAgo))
                         <div class="d-grid gap-2">
                             <a href="https://api.whatsapp.com/send/?phone=62{{ $dosen->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $dosen->nama }}%0A%0AAnda sudah tidak tidak mengadakan perkuliahan selama 2 Minggu (2 Pertemuan), segera jadwalkan ulang perkuliahan kembali!&type=phone_number&app_absent=0"

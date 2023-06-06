@@ -13,20 +13,20 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
             <li class="breadcrumb-item" aria-current="page"> Halaman Berita Acara</li>
             <li class="breadcrumb-item" aria-current="page"> Mata Kuliah {{ $dfMatkul->nama_matkul ?? '' }}</li>
             <li class="breadcrumb-item" aria-current="page"> Kelas {{ $dfKelas->kode ?? '' }}</li>
-            <li class="breadcrumb-item active" aria-current="page"> Tambah Data Pertemuan</li>
+            <li class="breadcrumb-item active" aria-current="page"> Ubah Data Pertemuan</li>
         </ol>
     </div>
     <div class="card shadow col-lg-12 grid-margin stretch-card">
         <div class="card-title m-3 d-flex">
-            <h4 class="card-title">
+            <h3>
                 <a href="{{ route('dsnBeritaAcara.index', [$jadwalId, $matkulSelect, $kelasSelect, $dosenID]) }}" class="btn btn-danger btn-sm shadow"><i
                         class="mdi mdi-close"></i></a>
                 <i class="mdi mdi-table-column-plus-after"></i>
-                TAMBAH DATA PERTEMUAN {{ $dfMatkul->nama_matkul ?? '' }} ({{ $dfKelas->kode ?? '' }})
-            </h4>
+                UBAH DATA PERTEMUAN {{ $dfMatkul->nama_matkul ?? '' }} ({{ $dfKelas->kode ?? '' }})
+            </h3>
         </div>
         <div class="card-body">
-            @if ($this->bapId == null || $this->pembahasan == null)
+            @if ($this->bapId == null)
                 <div class="main-wrapper">
                     <div class="page-wrapper full-page">
                         <div class="page-content d-flex align-items-center justify-content-center">

@@ -37,7 +37,7 @@
     margin-top: -5px;
 ">
 
-<table style='width:20%; margin-top: 20px;'>
+<table style='width:50%; margin-top: 20px;'>
 
     <tr>
         <td><b>PROGRAM STUDI</b></td>

@@ -4,7 +4,7 @@ $dfKelas = DB::table('df_kelases')->where('id', $kelasSelect ?? '')->select('df_
 $dfMatkul = DB::table('df_matkuls')->where('id', $matkulSelect ?? '')->select('df_matkuls.*', 'id', 'kode_matkul',
 'nama_matkul', 'dosen')->first();
 $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.*', 'sks', 'jml_jam', 'hari',
-'jam_awal', 'jam_akhir')->first();
+'jam_awal', 'jam_akhir', 'dosen_id')->first();
 @endphp
 <center>
     <table>
@@ -68,7 +68,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
         <td>:</td>
         <td>
             @php
-            $dosen = DB::table('dosens')->where('id', $dfMatkul->dosen ?? '')->select('dosens.*', 'nama')->first();
+            $dosen = DB::table('dosens')->where('id', $dtJadwal->dosen_id ?? '')->select('dosens.*', 'nama')->first();
             @endphp
             {{ $dosen->nama ?? '' }}
         </td>

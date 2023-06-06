@@ -1,9 +1,10 @@
 @foreach ($kelases as $kls)
 @if ($kls->id != 5)
-<table style="margin-left: 280px; margin-top: 150px;">
+<center>
+<table style="margin-top: 150px;">
     @else
     <center>
-        <table>
+    <table>
     @endif
             <tr>
                 <td>
@@ -47,7 +48,7 @@
             <td>Kelas</td>
             <td>:</td>
             <td>{{ $kls->nama_kelas }} ({{ $kls->kode }})</td>
-            <td style=" padding-left: 550px"></td>
+            <td style=" padding-left: 500px"></td>
             <td>Program Studi</td>
             <td>:</td>
             <td>
@@ -68,7 +69,7 @@
                 echo $dataDsn->nama;
                 @endphp
             </td>
-            <td style=" padding-left: 550px"></td>
+            <td style=" padding-left: 500px"></td>
             <td>Periode</td>
             <td>:</td>
             <td>{{ $kls->periode }}</td>

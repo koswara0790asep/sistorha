@@ -36,7 +36,7 @@ class Create extends Component
                 'username' => $this->username,
                 'email' => $this->email,
                 'role' => $this->role,
-                'password' => encrypt($this->password),
+                'password' => Hash::make($this->password),
             ]);
             Alert::success('BERHASIL','User '.$this->name.' Berhasil Disimpan!');
 

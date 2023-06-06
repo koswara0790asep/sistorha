@@ -93,14 +93,14 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
 
     // mahasiswa
     // Route::livewire('/mahasiswas', 'mahasiswa.index')->name('mahasiswa.index');
-    // Route::livewire('/mahasiswa/create', 'mahasiswa.create')->name('mahasiswa.create');
+    Route::livewire('/mahasiswa/create', 'mahasiswa.create')->name('mahasiswa.create');
     // Route::livewire('/mahasiswa/edit/{id}', 'mahasiswa.edit')->name('mahasiswa.edit');
     // Route::livewire('/mahasiswa/show/{id}', 'mahasiswa.show')->name('mahasiswa.show');
     // Route::get('/mahasiswas/cetak', [CetakController::class, 'cetakMhs'])->name('mahasiswa.cetak');
 
     // dosen
     // Route::livewire('/dosens', 'dosen.index')->name('dosen.index');
-    // Route::livewire('/dosen/create', 'dosen.create')->name('dosen.create');
+    Route::livewire('/dosen/create', 'dosen.create')->name('dosen.create');
     // Route::livewire('/dosen/edit/{id}', 'dosen.edit')->name('dosen.edit');
     // Route::livewire('/dosen/show/{id}', 'dosen.show')->name('dosen.show');
     // Route::get('/dosens/cetak', [CetakDosenController::class, 'index'])->name('dosen.cetak');
@@ -113,7 +113,7 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
 
     // // daftar kelas
     // Route::livewire('/dfkelases', 'dfkelas.index')->name('dfkelas.index');
-    // Route::livewire('/dfkelas/create', 'dfkelas.create')->name('dfkelas.create');
+    Route::livewire('/dfkelas/create', 'dfkelas.create')->name('dfkelas.create');
     // Route::livewire('/dfkelas/edit/{id}', 'dfkelas.edit')->name('dfkelas.edit');
     // Route::get('/dfkelases/cetak', [CetakController::class, 'cetakDFkelas'])->name('dfkelas.cetak');
     Route::get('/absensis/kelas/{dfkelas}/rekap', [CetakController::class, 'rekapAbsenKelas'])->name('dfkelas.rekap');
@@ -136,9 +136,9 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     // Route::livewire('/ruangan/edit/{id}', 'ruangan.edit')->name('ruangan.edit');
     Route::get('/ruangans/cetak', [CetakController::class, 'cetakRuangan'])->name('ruangan.cetak');
 
-    // // daftar matakuliah
+    // daftar matakuliah
     // Route::livewire('/dfmatkuls', 'dfmatkul.index')->name('dfmatkul.index');
-    // Route::livewire('/dfmatkul/create', 'dfmatkul.create')->name('dfmatkul.create');
+    Route::livewire('/dfmatkul/create', 'dfmatkul.create')->name('dfmatkul.create');
     // Route::livewire('/dfmatkul/edit/{id}', 'dfmatkul.edit')->name('dfmatkul.edit');
     // Route::get('/dfmatkuls/cetak', [CetakController::class, 'cetakDFmatkul'])->name('dfmatkul.cetak');
 
@@ -245,28 +245,28 @@ Route::middleware(['auth', 'role:akademik,dosen'])->group(function () {
 Route::middleware(['auth', 'role:akademik,prodi'])->group(function () {
     // mahasiswa
     Route::livewire('/mahasiswas', 'mahasiswa.index')->name('mahasiswa.index');
-    Route::livewire('/mahasiswa/create', 'mahasiswa.create')->name('mahasiswa.create');
+    // Route::livewire('/mahasiswa/create', 'mahasiswa.create')->name('mahasiswa.create');
     Route::livewire('/mahasiswa/edit/{id}', 'mahasiswa.edit')->name('mahasiswa.edit');
     Route::livewire('/mahasiswa/show/{id}', 'mahasiswa.show')->name('mahasiswa.show');
     Route::get('/mahasiswas/cetak', [CetakController::class, 'cetakMhs'])->name('mahasiswa.cetak');
 
     // dosen
     Route::livewire('/dosens', 'dosen.index')->name('dosen.index');
-    Route::livewire('/dosen/create', 'dosen.create')->name('dosen.create');
+    // Route::livewire('/dosen/create', 'dosen.create')->name('dosen.create');
     Route::livewire('/dosen/edit/{id}', 'dosen.edit')->name('dosen.edit');
     Route::livewire('/dosen/show/{id}', 'dosen.show')->name('dosen.show');
     Route::get('/dosens/cetak', [CetakDosenController::class, 'index'])->name('dosen.cetak');
 
     // daftar kelas
     Route::livewire('/dfkelases', 'dfkelas.index')->name('dfkelas.index');
-    Route::livewire('/dfkelas/create', 'dfkelas.create')->name('dfkelas.create');
+    // Route::livewire('/dfkelas/create', 'dfkelas.create')->name('dfkelas.create');
     Route::livewire('/dfkelas/edit/{id}', 'dfkelas.edit')->name('dfkelas.edit');
     Route::get('/dfkelases/cetak', [CetakController::class, 'cetakDFkelas'])->name('dfkelas.cetak');
     Route::get('/absensis/kelas/{dfkelas}/rekap', [CetakController::class, 'rekapAbsenKelas'])->name('dfkelas.rekap');
 
     // daftar matakuliah
     Route::livewire('/dfmatkuls', 'dfmatkul.index')->name('dfmatkul.index');
-    Route::livewire('/dfmatkul/create', 'dfmatkul.create')->name('dfmatkul.create');
+    // Route::livewire('/dfmatkul/create', 'dfmatkul.create')->name('dfmatkul.create');
     Route::livewire('/dfmatkul/edit/{id}', 'dfmatkul.edit')->name('dfmatkul.edit');
     Route::get('/dfmatkuls/cetak', [CetakController::class, 'cetakDFmatkul'])->name('dfmatkul.cetak');
 

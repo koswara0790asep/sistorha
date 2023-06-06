@@ -10,7 +10,7 @@
     </div>
     <div class="card shadow col-lg-12 grid-margin stretch-card">
         <div class="card-title m-3 d-flex">
-            <h4 class="card-title">
+            <h4>
                 <a href="{{ route('absen.index') }}" class="btn btn-danger btn-sm shadow"><i
                         class="mdi mdi-close"></i></a>
                 <i class="mdi mdi-table-column-plus-after"></i>
@@ -60,7 +60,7 @@
                             <select id="kelas_id" name="kelas_id" wire:model="kelas_id" class="form-select @error('kelas_id') is-invalid @enderror">
                                 <option value="" hidden>--- Pilih Kelas ---</option>
                                 @foreach ($dfkelases as $dfkls)
-                                    <option value="{{ $dfkls->id }}">{{ $dfkls->kode }}</option>
+                                    <option value="{{ $dfkls->id }}">{{ $dfkls->kode }} ({{ $dfkls->nama_kelas }})</option>
                                 @endforeach
                             </select>
                             <span class="input-group-text"><h4><i class="mdi mdi-home-variant"></i></h4></span>

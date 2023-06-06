@@ -80,7 +80,7 @@
                             <select id="kelasSelect" name="kelasSelect" wire:model="kelasSelect" class="form-select">
                                 <option value="" hidden>--- Pilih Kelas ---</option>
                                 @foreach ($kelases as $kls)
-                                    <option value="{{ $kls->id }}">{{ $kls->kode }}</option>
+                                    <option value="{{ $kls->id }}">{{ $kls->kode }} ({{ $kls->nama_kelas }})</option>
                                 @endforeach
                             </select>
                             <span class="input-group-text"><h4><i class="mdi mdi-home-variant"></i></h4></span>
@@ -225,16 +225,16 @@
                         <tbody>
                             @if ($this->matkulSelect == null && $this->kelasSelect == null)
                             <tr>
-                                <td colspan="44" class="text-center">Tentukan data terlebih dahulu!</td>
+                                <td colspan="{{ Auth::user()->role == 'prodi' ? 45 : 44 }}" class="text-center">Tentukan data terlebih dahulu!</td>
                             </tr>
                             @elseif ($this->matkulSelect == null && $this->kelasSelect != null)
                             <tr>
-                                <td colspan="44" class="text-center">Tidak ada mata kuliah ini dalam kelas tersebut!</td>
+                                <td colspan="{{ Auth::user()->role == 'prodi' ? 45 : 44 }}" class="text-center">Tidak ada mata kuliah ini dalam kelas tersebut!</td>
                             </tr>
 
                             @elseif ($this->matkulSelect != null && $this->kelasSelect == null)
                             <tr>
-                                <td colspan="44" class="text-center">Tidak ada kelas untuk mata kuliah tersebut!</td>
+                                <td colspan="{{ Auth::user()->role == 'prodi' ? 45 : 44 }}" class="text-center">Tidak ada kelas untuk mata kuliah tersebut!</td>
                             </tr>
                             @else
 

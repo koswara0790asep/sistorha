@@ -9,10 +9,10 @@
     </div>
     <div class="card shadow col-lg-12 grid-margin stretch-card">
         <div class="card-title m-3">
-            <h4 class="card-title">
+            <h4>
                 <a href="{{ route('user.profil', Auth::user()->id) }}" class="btn btn-danger btn-sm shadow"><i class="mdi mdi-close"></i></a>
                 <i class="mdi mdi-pencil-box"></i>
-                UBAH DATA USER
+                UBAH PASSWORD
             </h4>
         </div>
         <div class="card-body">
@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="input-group">
-                                <input id="oldpassword" name="oldpassword" type="password" wire:model="oldpassword" class="form-control @error('oldpassword') is-invalid @enderror" placeholder="Masukkan Kode Unik (NIM/NIDN)">
+                                <input id="oldpassword" name="oldpassword" type="password" wire:model="oldpassword" class="form-control @error('oldpassword') is-invalid @enderror" placeholder="Masukkan Password Lama">
                                 <a class="input-group-text toggle-password" onclick="oldPasswordToggle()" id="toggle-old" ><h4><i class="mdi mdi-eye-off"></h4></i></a>
                                 @error('oldpassword')
                                     <span class="invalid-feedback">
@@ -61,7 +61,7 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="input-group">
-                                <input id="newpassword" name="newpassword" type="password" wire:model="newpassword" class="form-control @error('newpassword') is-invalid @enderror" placeholder="Masukkan Nama Lengkap">
+                                <input id="newpassword" name="newpassword" type="password" wire:model="newpassword" class="form-control @error('newpassword') is-invalid @enderror" placeholder="Masukkan Password Baru">
                                 <a class="input-group-text toggle-password" onclick="newPasswordToggle()" id="toggle-new" ><h4><i class="mdi mdi-eye-off"></h4></i></a>
                                 @error('newpassword')
                                     <span class="invalid-feedback">
@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="input-group">
-                                <input id="confirmpassword" name="confirmpassword" type="password" wire:model="confirmpassword" class="form-control @error('confirmpassword') is-invalid @enderror" placeholder="Masukkan Alamat E-mail">
+                                <input id="confirmpassword" name="confirmpassword" type="password" wire:model="confirmpassword" class="form-control @error('confirmpassword') is-invalid @enderror" placeholder="Masukkan Kembali Password Baru">
                                 <a class="input-group-text toggle-password" onclick="conPasswordToggle()" id="toggle-con" ><h4><i class="mdi mdi-eye-off"></h4></i></a>
                                 @error('confirmpassword')
                                     <span class="invalid-feedback">

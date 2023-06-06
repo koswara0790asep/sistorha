@@ -155,8 +155,8 @@
             </li>
             @elseif (Auth::user()->role == 'mahasiswa')
             @php
-                $dtMhs = DB::table('mahasiswas')->where('nim', Auth::user()->username ?? '')->select('mahasiswas.*', 'id')->first();
-                $dtKls = DB::table('kelas_mhsws')->where('mahasiswa_id', $dtMhs->id ?? '')->select('kelas_mhsws.*', 'kelas_id')->orderBy('created_at', 'desc')->first();
+                $dtMhs = DB::table('mahasiswas')->where('nim', Auth::user()->username ?? null)->select('mahasiswas.*', 'id')->first();
+                $dtKls = DB::table('kelas_mhsws')->where('mahasiswa_id', $dtMhs->id ?? null)->select('kelas_mhsws.*', 'kelas_id')->orderBy('created_at', 'desc')->first();
             @endphp
             <li class="nav-item nav-category">Main Menu Mahasiswa</li>
             <li class="nav-item">
@@ -168,12 +168,22 @@
 
             <li class="nav-item nav-category">web apps</li>
             <li class="nav-item">
+                @if ($dtKls == null)
                 <li class="nav-item">
-                        <a href="{{ route('jadwal.indexMhs', $dtKls->kelas_id) }}" class="nav-link">
+                    <a href="#" class="nav-link">
+                        <i class="link-icon" data-feather="book"></i>
+                        <span class="link-title">Tidak Ada Kelas</span>
+                    </a>
+                </li>
+                @else
+
+                <li class="nav-item">
+                    <a href="{{ route('jadwal.indexMhs', $dtKls->kelas_id) }}" class="nav-link">
                         <i class="link-icon" data-feather="book"></i>
                         <span class="link-title">Jadwal Saya</span>
                     </a>
                 </li>
+                @endif
             </li>
             <li class="nav-item">
                 <a href="{{ route('manualbook.mahasiswa') }}" class="nav-link">

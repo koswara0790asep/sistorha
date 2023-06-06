@@ -5,6 +5,9 @@ namespace App\Http\Livewire\Kelasmhs;
 use App\Models\DfKelas;
 use App\Models\KelasMhsw;
 use App\Models\Mahasiswa;
+use App\Models\ProgramStudi;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -13,6 +16,8 @@ class Create extends Component
     public $kelas_id;
     public $mahasiswa_id;
     public $selectedMhsw = [];
+
+    public $prodiId;
 
     public function store()
     {
@@ -47,8 +52,14 @@ class Create extends Component
 
     public function render()
     {
+        $prodi = ProgramStudi::where('kode', Auth::user()->username)->first();
+        $this->prodiId = $prodi->id ?? null;
+
         $kelases = DfKelas::all();
         $mahasiswas = Mahasiswa::all();
-        return view('livewire.kelasmhs.create', compact(['kelases', 'mahasiswas']));
+        return view('livewire.kelasmhs.create', [
+            'kelases' => $kelases,
+            'mahasiswas' => $this->prodiId == null ? $mahasiswas : Mahasiswa::where('program_studi', $this->prodiId)->get(),
+        ]);
     }
 }

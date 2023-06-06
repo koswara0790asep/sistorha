@@ -8,12 +8,12 @@
     </div>
     <div class="card shadow col-lg-12 grid-margin stretch-card">
         <div class="card-title m-3 d-flex">
-            <h4 class="card-title">
+            <h3>
                 <a href="{{ route('dfmatkul.index') }}" class="btn btn-danger btn-sm shadow"><i
                         class="mdi mdi-close"></i></a>
                 <i class="mdi mdi-table-column-plus-after"></i>
                 TAMBAH DATA DAFTAR MATA KULIAH
-            </h4>
+            </h3>
         </div>
         <div class="card-body">
             <form action="" wire:submit.prevent="store">
@@ -35,7 +35,7 @@
                         <label for="nama_matkul">Nama Mata Kuliah: </label>
                         <div class="mb-3 input-group">
                             <input type="text" id="nama_matkul" name="nama_matkul" wire:model="nama_matkul" class="form-control @error('nama_matkul') is-invalid @enderror" placeholder="Masukkan Nama Mata Kuliah">
-                            <span class="input-group-text"><h4><i class="mdi mdi-account"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-tag"></i></h4></span>
                             @error('nama_matkul')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -55,7 +55,7 @@
                                     <option value="{{ $prodi->id }}">{{ $prodi->kode }} - {{ $prodi->program_studi }}</option>
                                 @endforeach
                             </select>
-                            <span class="input-group-text"><h4><i class="mdi mdi-human-male-female"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-heart-box-outline"></i></h4></span>
                             @error('program_studi')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -72,7 +72,7 @@
                                     <option value="{{ $dsn->id }}">{{ $dsn->nidn }} - {{ $dsn->nama }}</option>
                                 @endforeach
                             </select>
-                            <span class="input-group-text"><h4><i class="mdi mdi-google-circles-communities"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-account"></i></h4></span>
                             @error('dosen')
                             <span class="invalid-feedback">
                                 {{ $message }}

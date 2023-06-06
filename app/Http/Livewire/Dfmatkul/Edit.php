@@ -29,7 +29,7 @@ class Edit extends Component
             $this->semester = $matkul->semester;
             $this->dosen = $matkul->dosen;
 
-        } elseif ($this->kode_matkul == null) {
+        } elseif ($this->dfmatkulId == null) {
             Alert::warning('Woops!','Data yang kamu cari tidak ada!');
         }
     }

@@ -46,7 +46,7 @@ class Edit extends Component
             $this->pembahasan = $bap->pembahasan;
             $this->jumlah_mhs = $bap->jumlah_mhs;
             $this->pertemuan = $bap->pertemuan;
-        } elseif ($this->pembahasan == null) {
+        } elseif ($this->bapId == null) {
             Alert::warning('Woops!','Data yang kamu cari tidak ada!');
         }
     }

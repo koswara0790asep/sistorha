@@ -40,7 +40,7 @@
                         <div class="col-sm-6">
                             <label for="nama">Nama Lengkap: </label>
                             <div class="mb-3 input-group">
-                                <input type="text" id="nama" name="nama" wire:model="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Masukkan Nama Lengkap Beserta Gelar || Con: Dr. Jhon Doe, M.Pd.">
+                                <input type="text" id="nama" name="nama" wire:model="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Masukkan Nama Lengkap Beserta Gelar || Con: Dr. Jhon Doe, M.Pd." disabled>
                                 <span class="input-group-text"><h4><i class="mdi mdi-account"></i></h4></span>
                                 @error('nama')
                                 <span class="invalid-feedback">
@@ -66,7 +66,7 @@
                         <div class="col-sm-6">
                             <label for="nip">NIP: </label>
                             <div class="mb-3 input-group">
-                                <input type="text" id="nip" name="nip" wire:model="nip" class="form-control @error('nip') is-invalid @enderror" placeholder="Masukkan NIP">
+                                <input type="text" id="nip" name="nip" wire:model="nip" class="form-control @error('nip') is-invalid @enderror" placeholder="Masukkan NIP" disabled>
                                 <span class="input-group-text"><h4><i class="mdi mdi-barcode"></i></h4></span>
                                 @error('nip')
                                 <span class="invalid-feedback">
@@ -78,7 +78,7 @@
                         <div class="col-sm-6">
                             <label for="nidn">NIDN: </label>
                             <div class="mb-3 input-group">
-                                <input type="text" id="nidn" name="nidn" wire:model="nidn" class="form-control @error('nidn') is-invalid @enderror" placeholder="Masukkan NIDN">
+                                <input type="text" id="nidn" name="nidn" wire:model="nidn" class="form-control @error('nidn') is-invalid @enderror" placeholder="Masukkan NIDN" disabled>
                                 <span class="input-group-text"><h4><i class="mdi mdi-barcode"></i></h4></span>
                                 @error('nidn')
                                 <span class="invalid-feedback">
@@ -154,7 +154,7 @@
                         <div class="col-sm-4">
                             <label for="status_aktif">Program Studi: </label>
                             <div class="mb-3 input-group">
-                                <select id="program_studi" name="program_studi" wire:model="program_studi" class="form-select @error('program_studi') is-invalid @enderror">
+                                <select id="program_studi" name="program_studi" wire:model="program_studi" class="form-select @error('program_studi') is-invalid @enderror" {{ Auth::user()->role == 'akademik' ? '' : 'disabled' }}>
                                     <option value="" hidden>--- Pilih Program Studi ---</option>
                                     @foreach ($prodis as $prodi)
                                         <option value="{{ $prodi->id }}">{{ $prodi->kode }} - {{ $prodi->program_studi }}</option>
@@ -203,7 +203,7 @@
                         <div class="col-sm-6">
                             <label for="email">Email: </label>
                             <div class="mb-3 input-group">
-                                <input type="text" id="email" name="email" wire:model="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Alamat Email Aktif"">
+                                <input type="text" id="email" name="email" wire:model="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Alamat Email Aktif" disabled>
                                 <span class="input-group-text"><h4><i class="mdi mdi-email"></i></h4></span>
                                 @error('email')
                                 <span class="invalid-feedback">

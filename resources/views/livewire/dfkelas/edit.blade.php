@@ -8,15 +8,15 @@
     </div>
     <div class="card shadow col-lg-12 grid-margin stretch-card">
         <div class="card-title m-3 d-flex">
-            <h4 class="card-title">
+            <h3>
                 <a href="{{ route('dfkelas.index') }}" class="btn btn-danger btn-sm shadow"><i
                         class="mdi mdi-close"></i></a>
                 <i class="mdi mdi-table-column-plus-after"></i>
                 UBAH DATA DAFTAR KELAS
-            </h4>
+            </h3>
         </div>
         <div class="card-body">
-            @if ($this->kode == null)
+            @if ($this->dfkelasId == null)
                 <div class="main-wrapper">
                     <div class="page-wrapper full-page">
                         <div class="page-content d-flex align-items-center justify-content-center">
@@ -68,7 +68,7 @@
                     <div class="col-sm-4">
                         <label for="prodi_id">Program Studi: </label>
                         <div class="mb-3 input-group">
-                            <select id="prodi_id" name="prodi_id" wire:model="prodi_id" class="form-select @error('prodi_id') is-invalid @enderror">
+                            <select id="prodi_id" name="prodi_id" wire:model="prodi_id" class="form-select @error('prodi_id') is-invalid @enderror" {{ Auth::user()->role == 'akademik' ? '' : 'disabled' }}>
                                 <option value="" hidden>--- Pilih Program Studi ---</option>
                                 @foreach ($prodis as $prodi)
                                     <option value="{{ $prodi->id }}">{{ $prodi->kode }} - {{ $prodi->program_studi }}</option>

@@ -8,15 +8,15 @@
     </div>
     <div class="card shadow col-lg-12 grid-margin stretch-card">
         <div class="card-title m-3 d-flex">
-            <h4 class="card-title">
+            <h3>
                 <a href="{{ route('programstudi.index') }}" class="btn btn-danger btn-sm shadow"><i
                         class="mdi mdi-close"></i></a>
                 <i class="mdi mdi-table-column-plus-after"></i>
                 TAMBAH DATA PROGRAM STUDI
-            </h4>
+            </h3>
         </div>
         <div class="card-body">
-            @if ($this->programstudiId == null || $this->kode == null)
+            @if ($this->programstudiId == null)
                 <div class="main-wrapper">
                     <div class="page-wrapper full-page">
                         <div class="page-content d-flex align-items-center justify-content-center">

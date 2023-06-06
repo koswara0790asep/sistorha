@@ -3,20 +3,20 @@
         <ol class="breadcrumb breadcrumb-arrwo">
             <li class="breadcrumb-item">Olah Data</li>
             <li class="breadcrumb-item">Daftar Mata Kuliah</li>
-            <li class="breadcrumb-item active">Tambah Data</li>
+            <li class="breadcrumb-item active">Ubah Data</li>
         </ol>
     </div>
     <div class="card shadow col-lg-12 grid-margin stretch-card">
         <div class="card-title m-3 d-flex">
-            <h4 class="card-title">
+            <h3>
                 <a href="{{ route('dfmatkul.index') }}" class="btn btn-danger btn-sm shadow"><i
                         class="mdi mdi-close"></i></a>
                 <i class="mdi mdi-table-column-plus-after"></i>
-                TAMBAH DATA DAFTAR MATA KULIAH
-            </h4>
+                UBAH DATA DAFTAR MATA KULIAH
+            </h3>
         </div>
         <div class="card-body">
-            @if ($this->kode_matkul == null)
+            @if ($this->dfmatkulId == null)
                 <div class="main-wrapper">
                     <div class="page-wrapper full-page">
                         <div class="page-content d-flex align-items-center justify-content-center">
@@ -54,7 +54,7 @@
                         <label for="nama_matkul">Nama Mata Kuliah: </label>
                         <div class="mb-3 input-group">
                             <input type="text" id="nama_matkul" name="nama_matkul" wire:model="nama_matkul" class="form-control @error('nama_matkul') is-invalid @enderror" placeholder="Masukkan Nama Mata Kuliah">
-                            <span class="input-group-text"><h4><i class="mdi mdi-account"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-tag"></i></h4></span>
                             @error('nama_matkul')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -68,13 +68,13 @@
                     <div class="col-sm-4">
                         <label for="program_studi">Program Studi: </label>
                         <div class="mb-3 input-group">
-                            <select id="program_studi" name="program_studi" wire:model="program_studi" class="form-select @error('program_studi') is-invalid @enderror">
+                            <select id="program_studi" name="program_studi" wire:model="program_studi" class="form-select @error('program_studi') is-invalid @enderror" {{ Auth::user()->role == 'akademik' ? '' : 'disabled' }}>
                                 <option value="" hidden>--- Pilih Program Studi ---</option>
                                 @foreach ($prodis as $prodi)
                                     <option value="{{ $prodi->id }}">{{ $prodi->kode }} - {{ $prodi->program_studi }}</option>
                                 @endforeach
                             </select>
-                            <span class="input-group-text"><h4><i class="mdi mdi-human-male-female"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-heart-box-outline"></i></h4></span>
                             @error('program_studi')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -91,7 +91,7 @@
                                     <option value="{{ $dsn->id }}">{{ $dsn->nidn }} - {{ $dsn->nama }}</option>
                                 @endforeach
                             </select>
-                            <span class="input-group-text"><h4><i class="mdi mdi-google-circles-communities"></i></h4></span>
+                            <span class="input-group-text"><h4><i class="mdi mdi-account"></i></h4></span>
                             @error('dosen')
                             <span class="invalid-feedback">
                                 {{ $message }}

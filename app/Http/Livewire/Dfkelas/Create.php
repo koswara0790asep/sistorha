@@ -27,8 +27,8 @@ class Create extends Component
             'kode' => 'required',
         ]);
 
-        if (DfKelas::where('kode', $this->kode)->exists()) {
-            Alert::error('GAGAL!','Data Program Studi Sudah Ada!');
+        if (DfKelas::where('kode', $this->kode)->where('nama_kelas', $this->nama_kelas)->exists()) {
+            Alert::error('GAGAL!','Data Kelas Sudah Ada!');
         } else {
 
             DfKelas::create([
@@ -39,7 +39,7 @@ class Create extends Component
                 'kode' => $this->kode,
             ]);
 
-            Alert::success('BERHASIL!','Data Program Studi ' .$this->nama_kelas. ' Berhasil Disimpan!');
+            Alert::success('BERHASIL!','Data Kelas ' .$this->nama_kelas. ' Berhasil Disimpan!');
         }
 
         // redirect
