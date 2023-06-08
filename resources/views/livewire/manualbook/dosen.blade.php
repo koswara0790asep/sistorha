@@ -29,7 +29,7 @@
                     </center>
                     <p>Halaman Berita Acara Perkuliahan (BAP) ini mirip-mirip seperti halaman index. Memiliki tombol-tombol untuk menambahkan, cetak, dan kembali dari data BAP. Ada pemberitahuan juga jika perkuliahan tidak terlaksana selama 2 Minggu atau lebih, yang artinya dosen harus memenuhi berita acaranya. Ada aksi untuk mengubah dan menghapus data. Ditampilkan juga agenda jadwal matakuliahnya.</p>
                     <hr>
-                    <h4 id="bap">CREATE OR EDIT DATA (TAMBAH/UBAH DATA)</h4>
+                    <h4 id="credit">CREATE OR EDIT DATA (TAMBAH/UBAH DATA)</h4>
                     <center>
                         <img src="{{ asset('manualbook-asset/dsn/credit-page.png') }}" alt="...." width="720px">
                         <p class="text-muted">Halaman Tambah atau Ubah Data</p>

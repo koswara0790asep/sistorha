@@ -1,3 +1,4 @@
+@if (Auth::user()->created_at == Auth::user()->updated_at)
 <div class="row">
     <div class="col-md-12">
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -8,6 +9,7 @@
           </div>
     </div>
 </div>
+@endif
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card text-white bg-{{ array_rand($colors) }} mb-3">

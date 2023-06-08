@@ -147,7 +147,7 @@
                                 </td>
                                 <td class="text-center">
                                     <a href="/absensis/{{ $jadw->id }}/{{ $jadw->kelas_id }}/{{ $jadw->matkul_id }}"
-                                        class="btn btn-sm btn-primary btn-icon-text"><i class="mdi mdi-file-document"></i> Absen</a>
+                                        class="btn btn-sm btn-info btn-icon-text"><i class="mdi mdi-file-document"></i> Absen</a>
 
                                     @if (Auth::user()->role == 'akademik')
                                         <a href="{{ route('jadwal.edit', $jadw->id) }}"
