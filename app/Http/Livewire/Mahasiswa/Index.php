@@ -135,29 +135,96 @@ class Index extends Component
 
     public function import()
     {
-        $this->validate([
-            'importFile' => 'required|mimes:xlsx'
-        ]);
+        // $this->validate([
+        //     'importFile' => 'required|mimes:xlsx'
+        // ]);
 
         $file = $this->importFile;
         $reader = IOFactory::createReader('Xlsx');
+        if ($file->getClientOriginalExtension() !== 'xlsx') {
+            Alert::error('Gagal!','Data yang diimport harus dalam bentuk .xlsx! Unduh contoh yang sudah ada.');
+            return redirect()->route('mahasiswa.index');
+        }
         $spreadsheet = $reader->load($file->getRealPath());
         $worksheet = $spreadsheet->getActiveSheet();
 
+        $headerRow = $worksheet->getRowIterator(1)->current();
 
-        $rows = [];
-        foreach ($worksheet->getRowIterator() as $row) {
+        // Mendapatkan sel-sel pada baris pertama
+        $cellIterator = $headerRow->getCellIterator();
+        $cellIterator->setIterateOnlyExistingCells(true);
+
+        // Array untuk menyimpan header
+        $header = [];
+
+        // Mengiterasi setiap sel pada baris pertama
+        foreach ($cellIterator as $cell) {
+            $header[] = $cell->getValue();
+        }
+
+        $expectedHeader = [
+            "nim",
+            "nik",
+            "nama",
+            "tp_l",
+            "tg_l",
+            "agama",
+            "email",
+            "no_hp",
+            "alamat",
+            "pd_id",
+            "periode",
+            "status",
+            "gender"
+        ];
+
+        // dd($expectedHeader);
+        if ($expectedHeader != $header) {
+            Alert::error('Gagal!','Data yang diimport tidak sesuai! Unduh contoh yang sudah ada.');
+            return redirect()->route('mahasiswa.index');
+        }
+
+        // Mendapatkan iterator untuk baris-baris berikutnya (mulai dari baris kedua)
+        $dataRows = $worksheet->getRowIterator(2);
+        // dd($dataRows);
+
+        // Array untuk menyimpan data yang akan diimpor
+        $data = [];
+
+        // Mengiterasi setiap baris mulai dari baris kedua
+        foreach ($dataRows as $row) {
+            // Mendapatkan sel-sel pada baris saat ini
             $cellIterator = $row->getCellIterator();
-            $cellIterator->setIterateOnlyExistingCells(false);
+            $cellIterator->setIterateOnlyExistingCells(true);
+
+            // Array untuk menyimpan data pada baris saat ini
             $rowData = [];
+
+            // Mengiterasi setiap sel pada baris saat ini
             foreach ($cellIterator as $cell) {
                 $rowData[] = $cell->getValue();
             }
-            $rows[] = $rowData;
+
+            // Menambahkan data pada baris saat ini ke dalam array data
+            $data[] = $rowData;
         }
 
+        // dd($data);
+        // $rows = [];
+        // foreach ($worksheet->getRowIterator() as $row) {
+        //     $cellIterator = $row->getCellIterator();
+        //     $cellIterator->setIterateOnlyExistingCells(false);
+        //     $rowData = [];
+        //     foreach ($cellIterator as $cell) {
+        //         $rowData[] = $cell->getValue();
+        //     }
+        //     $rows[] = $rowData;
+        // }
+
+
+
         // Simpan data ke database
-        foreach ($rows as $row){
+        foreach ($data as $row){
             Mahasiswa::firstOrCreate(
                 [
                     'nim' => $row[0],

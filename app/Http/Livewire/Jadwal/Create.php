@@ -50,7 +50,7 @@ class Create extends Component
         } elseif ($this->hari == 4) {
             $hari = 'Kamis';
         } elseif ($this->hari == 5) {
-            $hari = 'Jum.at';
+            $hari = "Jum'at";
         } elseif ($this->hari == 6) {
             $hari = 'Sabtu';
         } elseif ($this->hari == 7) {

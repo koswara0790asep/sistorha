@@ -118,22 +118,73 @@ class Index extends Component
 
         $file = $this->importJadwal;
         $reader = IOFactory::createReader('Xlsx');
+        if ($file->getClientOriginalExtension() !== 'xlsx') {
+            Alert::error('Gagal!','Data yang diimport harus dalam bentuk .xlsx! Unduh contoh yang sudah ada.');
+            return redirect()->route('jadwal.index');
+        }
         $spreadsheet = $reader->load($file->getRealPath());
         $worksheet = $spreadsheet->getActiveSheet();
 
-        $rows = [];
-        foreach ($worksheet->getRowIterator() as $row) {
+        $headerRow = $worksheet->getRowIterator(1)->current();
+
+        // Mendapatkan sel-sel pada baris pertama
+        $cellIterator = $headerRow->getCellIterator();
+        $cellIterator->setIterateOnlyExistingCells(true);
+
+        // Array untuk menyimpan header
+        $header = [];
+
+        // Mengiterasi setiap sel pada baris pertama
+        foreach ($cellIterator as $cell) {
+            $header[] = $cell->getValue();
+        }
+
+        $expectedHeader = [
+            "prodi_id",
+            "kelas_id",
+            "matkul_id",
+            "dosen_id",
+            "ruang_id",
+            "semester",
+            "sks",
+            "jml_jam",
+            "hr",
+            "jam_awal",
+            "jam_akhir",
+        ];
+
+        // dd($expectedHeader);
+        if ($expectedHeader != $header) {
+            Alert::error('Gagal!','Data yang diimport tidak sesuai! Unduh contoh yang sudah ada.');
+            return redirect()->route('jadwal.index');
+        }
+
+        // Mendapatkan iterator untuk baris-baris berikutnya (mulai dari baris kedua)
+        $dataRows = $worksheet->getRowIterator(2);
+
+        // Array untuk menyimpan data yang akan diimpor
+        $data = [];
+
+        // Mengiterasi setiap baris mulai dari baris kedua
+        foreach ($dataRows as $row) {
+            // Mendapatkan sel-sel pada baris saat ini
             $cellIterator = $row->getCellIterator();
-            $cellIterator->setIterateOnlyExistingCells(false);
+            $cellIterator->setIterateOnlyExistingCells(true);
+
+            // Array untuk menyimpan data pada baris saat ini
             $rowData = [];
+
+            // Mengiterasi setiap sel pada baris saat ini
             foreach ($cellIterator as $cell) {
                 $rowData[] = $cell->getValue();
             }
-            $rows[] = $rowData;
+
+            // Menambahkan data pada baris saat ini ke dalam array data
+            $data[] = $rowData;
         }
 
         // Simpan data ke database
-        foreach ($rows as $row){
+        foreach ($data as $row){
             if ($row[8] == 1) {
                 $hari = 'Senin';
             } elseif ($row[8] == 2) {
@@ -143,7 +194,7 @@ class Index extends Component
             } elseif ($row[8] == 4) {
                 $hari = 'Kamis';
             } elseif ($row[8] == 5) {
-                $hari = 'Jum.at';
+                $hari = "Jum'at";
             } elseif ($row[8] == 6) {
                 $hari = 'Sabtu';
             } elseif ($row[8] == 7) {
