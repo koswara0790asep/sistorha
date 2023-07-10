@@ -118,7 +118,6 @@
                                             $data = DB::table('dosens')->where('nidn',
                                             Auth::user()->username)->select('dosens.*', 'status_aktif', 'nik', 'nidn', 'nip', 'alamat', 'agama', 'no_hp', 'program_studi', 'jenis_kelamin')->first();
                                         @endphp
-                                        <button class="btn btn-sm {{ $data->status_aktif == 'Aktif' ? 'btn-outline-success' : 'btn-outline-danger' }}">{{ $data->status_aktif }}</button>
                                         </b>
                                     </h4>
                                     <p>{{ Auth::user()->name }}</p>
@@ -136,8 +135,10 @@
                                             $dataProd = DB::table('program_studies')->where('id',
                                             $data->program_studi)->select('program_studies.*', 'program_studi')->first();
                                         @endphp
-                                        {{ $dataProd->program_studi }}
                                     </p>
+                                    <hr>
+                                    <h4><b> Dosen Program Studi: </b><button class="btn btn-sm {{ $data->status_aktif == 'Aktif' ? 'btn-outline-success' : 'btn-outline-danger' }}">{{ $data->status_aktif }}</button></h4>
+                                    <p>{{ $dataProd->program_studi }}</p>
                                     <hr>
                                     <h4><b> Data User Tersimpan: </b></h4>
                                     <p>{{ \Carbon\Carbon::parse(Auth::user()->created_at)->isoFormat('dddd, D MMMM YYYY') }}</p>
@@ -180,7 +181,6 @@
                                             $data = DB::table('mahasiswas')->where('nim',
                                             Auth::user()->username)->select('mahasiswas.*', 'status_aktif', 'nik', 'nim', 'alamat', 'agama', 'no_hp', 'program_studi', 'jenis_kelamin', 'periode')->first();
                                         @endphp
-                                        <button class="btn btn-sm {{ $data->status_aktif == 'Aktif' ? 'btn-outline-success' : 'btn-outline-danger' }}">{{ $data->status_aktif }}</button>
                                         </b>
                                     </h4>
                                     <p>{{ Auth::user()->name }}</p>
@@ -198,8 +198,11 @@
                                             $dataProd = DB::table('program_studies')->where('id',
                                             $data->program_studi)->select('program_studies.*', 'program_studi')->first();
                                         @endphp
-                                        {{ $dataProd->program_studi }}
                                     </p>
+                                    <hr>
+
+                                    <h4><b> Mahasiswa Program Studi: </b><button class="btn btn-sm {{ $data->status_aktif == 'Aktif' ? 'btn-outline-success' : 'btn-outline-danger' }}">{{ $data->status_aktif }}</button></h4>
+                                    <p>{{ $dataProd->program_studi }}</p>
                                     <hr>
                                     <h4><b> Data User Tersimpan: </b></h4>
                                     <p>{{ \Carbon\Carbon::parse(Auth::user()->created_at)->isoFormat('dddd, D MMMM YYYY') }}</p>

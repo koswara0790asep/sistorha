@@ -33,12 +33,13 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                     <div class="col-sm-4">
                         <label for="pertemuan">Pertemuan: </label>
                         <div class="mb-3 input-group">
-                            <select id="pertemuan" name="pertemuan" wire:model="pertemuan" class="form-select @error('pertemuan') is-invalid @enderror">
+                            <input type="number" min="0" max="17" id="pertemuan" name="pertemuan" wire:model="pertemuan" class="form-control @error('pertemuan') is-invalid @enderror" disabled>
+                            {{-- <select id="pertemuan" name="pertemuan" wire:model="pertemuan" class="form-select @error('pertemuan') is-invalid @enderror">
                                 <option value="" hidden>--- Pilih Angka Pertemuan ---</option>
                                 @for ($i = 1; $i < 18; $i++)
                                     <option value="{{ $i }}" {{ $i == 9 || $i == 18 ? 'hidden' : '' }}>{{ $i }}</option>
                                 @endfor
-                            </select>
+                            </select> --}}
                             <span class="input-group-text"><h4><i class="mdi mdi-file-check"></i></h4></span>
                             @error('pertemuan')
                             <span class="invalid-feedback">
@@ -110,7 +111,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                     <div class="col-sm-4">
                         <label for="jumlah_mhs">Jumlah Mahasiswa Hadir: </label>
                         <div class="mb-3 input-group">
-                            <input type="number" id="jumlah_mhs" name="jumlah_mhs" wire:model="jumlah_mhs" class="form-control @error('jumlah_mhs') is-invalid @enderror" placeholder="Masukkan Jumlah Mahasiswa Hadir">
+                            <input type="number" id="jumlah_mhs" name="jumlah_mhs" wire:model="jumlah_mhs" class="form-control @error('jumlah_mhs') is-invalid @enderror" disabled>
                             <span class="input-group-text"><h4><i class="mdi mdi-account-multiple-plus"></i></h4></span>
                             @error('jumlah_mhs')
                             <span class="invalid-feedback">
@@ -140,6 +141,17 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                 <button type="submit" class="btn btn-primary shadow"><i class="mdi mdi-content-save"></i>
                     SIMPAN</button>
             </form>
+        </div>
+        <div class="card-footer text-center">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Mata Kuliah Hari {{ $dtJadwal->hari ?? '' }}</h5>
+                </div>
+                <div class="col-md-6">
+                    <h5>Pukul: {{ $dtJadwal->jam_awal ?? '' }}-{{ $dtJadwal->jam_akhir ?? '' }}</h5>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -9,19 +9,22 @@
                 </ol>
             </div>
             <div class="col-md-4" style="text-align: right;">
-                <a href="/absen/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
-                    <i class="mdi mdi-table-column"></i> Tambah Data</a>
-                {{-- <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
-                    <i class="mdi mdi-printer"></i> Cetak</a> --}}
-                <!-- Button trigger modal -->
-                <button type="button" onclick="toggle()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
-                    <i class="mdi mdi-file-import"></i> Import XLSX</button>
+                @if (Auth::user()->role == 'akademik')
+                    <a href="/absen/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                        <i class="mdi mdi-table-column"></i> Tambah Data</a>
+                    {{-- <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                        <i class="mdi mdi-printer"></i> Cetak</a> --}}
+                    <!-- Button trigger modal -->
+
+                    <button type="button" onclick="toggle()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                        <i class="mdi mdi-file-import"></i> Import XLSX</button>
+                @endif
             </div>
         </div>
     </div>
 
     {{-- Toggle --}}
-    <div id="content" class="mb-3" style="display: block;">
+    <div id="content" class="mb-3" style="display: {{ Auth::user()->role == 'akademik' ? 'block' : 'none' }};">
         <div class="card">
 
             <div class="card-header">
@@ -303,10 +306,10 @@
                                     } elseif ($absen->pertemuan1 == null) {
                                     $h1 = 0;
                                     } elseif ($absen->pertemuan1 == 'Sakit'){
-                                    $h1 = 0.5;
+                                    $h1 = 0;
                                     $sakits++;
                                     }else {
-                                    $h1 = 0.5;
+                                    $h1 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -314,7 +317,7 @@
 
                                     @else
 
-                                    {{ $h1 }}
+                                    {{ $h1 == '1' ? "√" : strtoupper(substr($absen->pertemuan1, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -348,10 +351,10 @@
                                     } elseif ($absen->pertemuan2 == null) {
                                     $h2 = 0;
                                     } elseif ($absen->pertemuan2 == 'Sakit'){
-                                    $h2 = 0.5;
+                                    $h2 = 0;
                                     $sakits++;
                                     }else {
-                                    $h2 = 0.5;
+                                    $h2 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -359,7 +362,7 @@
 
                                     @else
 
-                                    {{ $h2 }}
+                                    {{ $h2 == '1' ? "√" : strtoupper(substr($absen->pertemuan2, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -394,10 +397,10 @@
                                     } elseif ($absen->pertemuan3 == null) {
                                     $h3 = 0;
                                     } elseif ($absen->pertemuan3 == 'Sakit'){
-                                    $h3 = 0.5;
+                                    $h3 = 0;
                                     $sakits++;
                                     }else {
-                                    $h3 = 0.5;
+                                    $h3 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -405,7 +408,7 @@
 
                                     @else
 
-                                    {{ $h3 }}
+                                    {{ $h3 == '1' ? "√" : strtoupper(substr($absen->pertemuan3, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -439,10 +442,10 @@
                                     } elseif ($absen->pertemuan4 == null) {
                                     $h4 = 0;
                                     } elseif ($absen->pertemuan4 == 'Sakit'){
-                                    $h4 = 0.5;
+                                    $h4 = 0;
                                     $sakits++;
                                     }else {
-                                    $h4 = 0.5;
+                                    $h4 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -450,7 +453,7 @@
 
                                     @else
 
-                                    {{ $h4 }}
+                                    {{ $h4 == '1' ? "√" : strtoupper(substr($absen->pertemuan4, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -484,10 +487,10 @@
                                     } elseif ($absen->pertemuan5 == null) {
                                     $h5 = 0;
                                     } elseif ($absen->pertemuan5 == 'Sakit'){
-                                    $h5 = 0.5;
+                                    $h5 = 0;
                                     $sakits++;
                                     }else {
-                                    $h5 = 0.5;
+                                    $h5 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -495,7 +498,7 @@
 
                                     @else
 
-                                    {{ $h5 }}
+                                    {{ $h5 == '1' ? "√" : strtoupper(substr($absen->pertemuan5, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -529,10 +532,10 @@
                                     } elseif ($absen->pertemuan6 == null) {
                                     $h6 = 0;
                                     } elseif ($absen->pertemuan6 == 'Sakit'){
-                                    $h6 = 0.5;
+                                    $h6 = 0;
                                     $sakits++;
                                     }else {
-                                    $h6 = 0.5;
+                                    $h6 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -540,7 +543,7 @@
 
                                     @else
 
-                                    {{ $h6 }}
+                                    {{ $h6 == '1' ? "√" : strtoupper(substr($absen->pertemuan6, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -574,10 +577,10 @@
                                     } elseif ($absen->pertemuan7 == null) {
                                     $h7 = 0;
                                     } elseif ($absen->pertemuan7 == 'Sakit'){
-                                    $h7 = 0.5;
+                                    $h7 = 0;
                                     $sakits++;
                                     }else {
-                                    $h7 = 0.5;
+                                    $h7 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -585,7 +588,7 @@
 
                                     @else
 
-                                    {{ $h7 }}
+                                    {{ $h7 == '1' ? "√" : strtoupper(substr($absen->pertemuan7, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -619,10 +622,10 @@
                                     } elseif ($absen->pertemuan8 == null) {
                                     $h8 = 0;
                                     } elseif ($absen->pertemuan8 == 'Sakit'){
-                                    $h8 = 0.5;
+                                    $h8 = 0;
                                     $sakits++;
                                     }else {
-                                    $h8 = 0.5;
+                                    $h8 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -630,7 +633,7 @@
 
                                     @else
 
-                                    {{ $h8 }}
+                                    {{ $h8 == '1' ? "√" : strtoupper(substr($absen->pertemuan8, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -664,10 +667,10 @@
                                     } elseif ($absen->pertemuan9 == null) {
                                     $h9 = 0;
                                     } elseif ($absen->pertemuan9 == 'Sakit'){
-                                    $h9 = 0.5;
+                                    $h9 = 0;
                                     $sakits++;
                                     }else {
-                                    $h9 = 0.5;
+                                    $h9 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -675,7 +678,7 @@
 
                                     @else
 
-                                    {{ $h9 }}
+                                    {{ $h9 == '1' ? "√" : strtoupper(substr($absen->pertemuan9, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -709,10 +712,10 @@
                                     } elseif ($absen->pertemuan10 == null) {
                                     $h10 = 0;
                                     } elseif ($absen->pertemuan10 == 'Sakit'){
-                                    $h10 = 0.5;
+                                    $h10 = 0;
                                     $sakits++;
                                     }else {
-                                    $h10 = 0.5;
+                                    $h10 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -720,7 +723,7 @@
 
                                     @else
 
-                                    {{ $h10 }}
+                                    {{ $h10 == '1' ? "√" : strtoupper(substr($absen->pertemuan10, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -754,10 +757,10 @@
                                     } elseif ($absen->pertemuan11 == null) {
                                     $h11 = 0;
                                     } elseif ($absen->pertemuan11 == 'Sakit'){
-                                    $h11 = 0.5;
+                                    $h11 = 0;
                                     $sakits++;
                                     }else {
-                                    $h11 = 0.5;
+                                    $h11 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -765,7 +768,7 @@
 
                                     @else
 
-                                    {{ $h11 }}
+                                    {{ $h11 == '1' ? "√" : strtoupper(substr($absen->pertemuan11, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -799,10 +802,10 @@
                                     } elseif ($absen->pertemuan12 == null) {
                                     $h12 = 0;
                                     } elseif ($absen->pertemuan12 == 'Sakit'){
-                                    $h12 = 0.5;
+                                    $h12 = 0;
                                     $sakits++;
                                     }else {
-                                    $h12 = 0.5;
+                                    $h12 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -810,7 +813,7 @@
 
                                     @else
 
-                                    {{ $h12 }}
+                                    {{ $h12 == '1' ? "√" : strtoupper(substr($absen->pertemuan12, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -844,10 +847,10 @@
                                     } elseif ($absen->pertemuan13 == null) {
                                     $h13 = 0;
                                     } elseif ($absen->pertemuan13 == 'Sakit'){
-                                    $h13 = 0.5;
+                                    $h13 = 0;
                                     $sakits++;
                                     }else {
-                                    $h13 = 0.5;
+                                    $h13 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -855,7 +858,7 @@
 
                                     @else
 
-                                    {{ $h13 }}
+                                    {{ $h13 == '1' ? "√" : strtoupper(substr($absen->pertemuan13, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -889,10 +892,10 @@
                                     } elseif ($absen->pertemuan14 == null) {
                                     $h14 = 0;
                                     } elseif ($absen->pertemuan14 == 'Sakit'){
-                                    $h14 = 0.5;
+                                    $h14 = 0;
                                     $sakits++;
                                     }else {
-                                    $h14 = 0.5;
+                                    $h14 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -900,7 +903,7 @@
 
                                     @else
 
-                                    {{ $h14 }}
+                                    {{ $h14 == '1' ? "√" : strtoupper(substr($absen->pertemuan14, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -934,10 +937,10 @@
                                     } elseif ($absen->pertemuan15 == null) {
                                     $h15 = 0;
                                     } elseif ($absen->pertemuan15 == 'Sakit'){
-                                    $h15 = 0.5;
+                                    $h15 = 0;
                                     $sakits++;
                                     }else {
-                                    $h15 = 0.5;
+                                    $h15 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -945,7 +948,7 @@
 
                                     @else
 
-                                    {{ $h15 }}
+                                    {{ $h15 == '1' ? "√" : strtoupper(substr($absen->pertemuan15, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -979,10 +982,10 @@
                                     } elseif ($absen->pertemuan16 == null) {
                                     $h16 = 0;
                                     } elseif ($absen->pertemuan16 == 'Sakit'){
-                                    $h16 = 0.5;
+                                    $h16 = 0;
                                     $sakits++;
                                     }else {
-                                    $h16 = 0.5;
+                                    $h16 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -990,7 +993,7 @@
 
                                     @else
 
-                                    {{ $h16 }}
+                                    {{ $h16 == '1' ? "√" : strtoupper(substr($absen->pertemuan16, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1024,10 +1027,10 @@
                                     } elseif ($absen->pertemuan17 == null) {
                                     $h17 = 0;
                                     } elseif ($absen->pertemuan17 == 'Sakit'){
-                                    $h17 = 0.5;
+                                    $h17 = 0;
                                     $sakits++;
                                     }else {
-                                    $h17 = 0.5;
+                                    $h17 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -1035,7 +1038,7 @@
 
                                     @else
 
-                                    {{ $h17 }}
+                                    {{ $h17 == '1' ? "√" : strtoupper(substr($absen->pertemuan17, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1069,10 +1072,10 @@
                                     } elseif ($absen->pertemuan18 == null) {
                                     $h18 = 0;
                                     } elseif ($absen->pertemuan18 == 'Sakit'){
-                                    $h18 = 0.5;
+                                    $h18 = 0;
                                     $sakits++;
                                     }else {
-                                    $h18 = 0.5;
+                                    $h18 = 0;
                                     $izins++;
                                     }
                                     @endphp
@@ -1080,7 +1083,7 @@
 
                                     @else
 
-                                    {{ $h18 }}
+                                    {{ $h18 == '1' ? "√" : strtoupper(substr($absen->pertemuan18, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>

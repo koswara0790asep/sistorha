@@ -84,7 +84,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
             <th style='text-align: center;border:1px solid black;' rowspan="2">NIM</th>
             <th style='text-align: center;border:1px solid black;' rowspan="2">NAMA</th>
             <th style='text-align: center;border:1px solid black;' colspan="18">PERTEMUAN KE-</th>
-            <th style='text-align: center;border:1px solid black;' colspan="2">KET.</th>
+            <th style='text-align: center;border:1px solid black;' colspan="5">KETERANGAN</th>
         </tr>
         <tr>
             <td style='text-align: center;border:1px solid black;'>1</td>
@@ -105,7 +105,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
             <td style='text-align: center;border:1px solid black;'>16</td>
             <td style='text-align: center;border:1px solid black;'>17</td>
             <td style='text-align: center;border:1px solid black;'>18</td>
-            <th style='text-align: center;border:1px solid black;'>Total Masuk</th>
+            <th style='text-align: center;border:1px solid black;'>H</th>
+            <th style='text-align: center;border:1px solid black;'>A</th>
+            <th style='text-align: center;border:1px solid black;'>I</th>
+            <th style='text-align: center;border:1px solid black;'>S</th>
             {{-- <th style='text-align: center;border:1px solid black;'>A</th>
             <th style='text-align: center;border:1px solid black;'>I</th>
             <th style='text-align: center;border:1px solid black;'>S</th> --}}
@@ -192,10 +195,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan1 == null) {
                 $h1 = 0;
                 } elseif ($absen->pertemuan1 == 'Sakit'){
-                $h1 = 0.5;
+                $h1 = 0;
                 $sakits++;
                 }else {
-                $h1 = 0.5;
+                $h1 = 0;
                 $izins++;
                 }
                 @endphp
@@ -203,9 +206,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h1 }}
+                {{ $h1 == '1' ? "√" : strtoupper(substr($absen->pertemuan1, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan2 == 'Hadir'){
@@ -217,10 +221,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan2 == null) {
                 $h2 = 0;
                 } elseif ($absen->pertemuan2 == 'Sakit'){
-                $h2 = 0.5;
+                $h2 = 0;
                 $sakits++;
                 }else {
-                $h2 = 0.5;
+                $h2 = 0;
                 $izins++;
                 }
                 @endphp
@@ -228,9 +232,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h2 }}
+                {{ $h2 == '1' ? "√" : strtoupper(substr($absen->pertemuan2, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan3 == 'Hadir'){
@@ -242,10 +247,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan3 == null) {
                 $h3 = 0;
                 } elseif ($absen->pertemuan3 == 'Sakit'){
-                $h3 = 0.5;
+                $h3 = 0;
                 $sakits++;
                 }else {
-                $h3 = 0.5;
+                $h3 = 0;
                 $izins++;
                 }
                 @endphp
@@ -253,9 +258,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h3 }}
+                {{ $h3 == '1' ? "√" : strtoupper(substr($absen->pertemuan3, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan4 == 'Hadir'){
@@ -267,10 +273,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan4 == null) {
                 $h4 = 0;
                 } elseif ($absen->pertemuan4 == 'Sakit'){
-                $h4 = 0.5;
+                $h4 = 0;
                 $sakits++;
                 }else {
-                $h4 = 0.5;
+                $h4 = 0;
                 $izins++;
                 }
                 @endphp
@@ -278,9 +284,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h4 }}
+                {{ $h4 == '1' ? "√" : strtoupper(substr($absen->pertemuan4, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan5 == 'Hadir'){
@@ -292,10 +299,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan5 == null) {
                 $h5 = 0;
                 } elseif ($absen->pertemuan5 == 'Sakit'){
-                $h5 = 0.5;
+                $h5 = 0;
                 $sakits++;
                 }else {
-                $h5 = 0.5;
+                $h5 = 0;
                 $izins++;
                 }
                 @endphp
@@ -303,9 +310,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h5 }}
+                {{ $h5 == '1' ? "√" : strtoupper(substr($absen->pertemuan5, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan6 == 'Hadir'){
@@ -317,10 +325,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan6 == null) {
                 $h6 = 0;
                 } elseif ($absen->pertemuan6 == 'Sakit'){
-                $h6 = 0.5;
+                $h6 = 0;
                 $sakits++;
                 }else {
-                $h6 = 0.5;
+                $h6 = 0;
                 $izins++;
                 }
                 @endphp
@@ -328,9 +336,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h6 }}
+                {{ $h6 == '1' ? "√" : strtoupper(substr($absen->pertemuan6, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan7 == 'Hadir'){
@@ -342,10 +351,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan7 == null) {
                 $h7 = 0;
                 } elseif ($absen->pertemuan7 == 'Sakit'){
-                $h7 = 0.5;
+                $h7 = 0;
                 $sakits++;
                 }else {
-                $h7 = 0.5;
+                $h7 = 0;
                 $izins++;
                 }
                 @endphp
@@ -353,9 +362,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h7 }}
+                {{ $h7 == '1' ? "√" : strtoupper(substr($absen->pertemuan7, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan8 == 'Hadir'){
@@ -367,10 +377,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan8 == null) {
                 $h8 = 0;
                 } elseif ($absen->pertemuan8 == 'Sakit'){
-                $h8 = 0.5;
+                $h8 = 0;
                 $sakits++;
                 }else {
-                $h8 = 0.5;
+                $h8 = 0;
                 $izins++;
                 }
                 @endphp
@@ -378,9 +388,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h8 }}
+                {{ $h8 == '1' ? "√" : strtoupper(substr($absen->pertemuan8, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan9 == 'Hadir'){
@@ -392,10 +403,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan9 == null) {
                 $h9 = 0;
                 } elseif ($absen->pertemuan9 == 'Sakit'){
-                $h9 = 0.5;
+                $h9 = 0;
                 $sakits++;
                 }else {
-                $h9 = 0.5;
+                $h9 = 0;
                 $izins++;
                 }
                 @endphp
@@ -403,9 +414,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h9 }}
+                {{ $h9 == '1' ? "√" : strtoupper(substr($absen->pertemuan9, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan10 == 'Hadir'){
@@ -417,10 +429,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan10 == null) {
                 $h10 = 0;
                 } elseif ($absen->pertemuan10 == 'Sakit'){
-                $h10 = 0.5;
+                $h10 = 0;
                 $sakits++;
                 }else {
-                $h10 = 0.5;
+                $h10 = 0;
                 $izins++;
                 }
                 @endphp
@@ -428,9 +440,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h10 }}
+                {{ $h10 == '1' ? "√" : strtoupper(substr($absen->pertemuan10, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan11 == 'Hadir'){
@@ -442,10 +455,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan11 == null) {
                 $h11 = 0;
                 } elseif ($absen->pertemuan11 == 'Sakit'){
-                $h11 = 0.5;
+                $h11 = 0;
                 $sakits++;
                 }else {
-                $h11 = 0.5;
+                $h11 = 0;
                 $izins++;
                 }
                 @endphp
@@ -453,9 +466,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h11 }}
+                {{ $h11 == '1' ? "√" : strtoupper(substr($absen->pertemuan11, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan12 == 'Hadir'){
@@ -467,10 +481,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan12 == null) {
                 $h12 = 0;
                 } elseif ($absen->pertemuan12 == 'Sakit'){
-                $h12 = 0.5;
+                $h12 = 0;
                 $sakits++;
                 }else {
-                $h12 = 0.5;
+                $h12 = 0;
                 $izins++;
                 }
                 @endphp
@@ -478,9 +492,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h12 }}
+                {{ $h12 == '1' ? "√" : strtoupper(substr($absen->pertemuan12, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan13 == 'Hadir'){
@@ -492,10 +507,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan13 == null) {
                 $h13 = 0;
                 } elseif ($absen->pertemuan13 == 'Sakit'){
-                $h13 = 0.5;
+                $h13 = 0;
                 $sakits++;
                 }else {
-                $h13 = 0.5;
+                $h13 = 0;
                 $izins++;
                 }
                 @endphp
@@ -503,9 +518,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h13 }}
+                {{ $h13 == '1' ? "√" : strtoupper(substr($absen->pertemuan13, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan14 == 'Hadir'){
@@ -517,10 +533,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan14 == null) {
                 $h14 = 0;
                 } elseif ($absen->pertemuan14 == 'Sakit'){
-                $h14 = 0.5;
+                $h14 = 0;
                 $sakits++;
                 }else {
-                $h14 = 0.5;
+                $h14 = 0;
                 $izins++;
                 }
                 @endphp
@@ -528,9 +544,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h14 }}
+                {{ $h14 == '1' ? "√" : strtoupper(substr($absen->pertemuan14, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan15 == 'Hadir'){
@@ -542,10 +559,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan15 == null) {
                 $h15 = 0;
                 } elseif ($absen->pertemuan15 == 'Sakit'){
-                $h15 = 0.5;
+                $h15 = 0;
                 $sakits++;
                 }else {
-                $h15 = 0.5;
+                $h15 = 0;
                 $izins++;
                 }
                 @endphp
@@ -553,9 +570,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h15 }}
+                {{ $h15 == '1' ? "√" : strtoupper(substr($absen->pertemuan15, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan16 == 'Hadir'){
@@ -567,10 +585,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan16 == null) {
                 $h16 = 0;
                 } elseif ($absen->pertemuan16 == 'Sakit'){
-                $h16 = 0.5;
+                $h16 = 0;
                 $sakits++;
                 }else {
-                $h16 = 0.5;
+                $h16 = 0;
                 $izins++;
                 }
                 @endphp
@@ -578,9 +596,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h16 }}
+                {{ $h16 == '1' ? "√" : strtoupper(substr($absen->pertemuan16, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan17 == 'Hadir'){
@@ -592,10 +611,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan17 == null) {
                 $h17 = 0;
                 } elseif ($absen->pertemuan17 == 'Sakit'){
-                $h17 = 0.5;
+                $h17 = 0;
                 $sakits++;
                 }else {
-                $h17 = 0.5;
+                $h17 = 0;
                 $izins++;
                 }
                 @endphp
@@ -603,9 +622,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h17 }}
+                {{ $h17 == '1' ? "√" : strtoupper(substr($absen->pertemuan17, 0, 1)) }}
                 @endif
             </td>
+
             <td style='text-align: center;border:1px solid black;'>
                 @php
                 if ($absen->pertemuan18 == 'Hadir'){
@@ -617,10 +637,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                 } elseif ($absen->pertemuan18 == null) {
                 $h18 = 0;
                 } elseif ($absen->pertemuan18 == 'Sakit'){
-                $h18 = 0.5;
+                $h18 = 0;
                 $sakits++;
                 }else {
-                $h18 = 0.5;
+                $h18 = 0;
                 $izins++;
                 }
                 @endphp
@@ -628,17 +648,18 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h18 }}
+                {{ $h18 == '1' ? "√" : strtoupper(substr($absen->pertemuan18, 0, 1)) }}
                 @endif
             </td>
+
             @php
                 $jmlHadirMhs = $h1+$h2+$h3+$h4+$h5+$h6+$h7+$h8+$h9+$h10+$h11+$h12+$h13+$h14+$h15+$h16+$h17+$h18;
                 $persentase = 100 * ($jmlHadirMhs/18);
             @endphp
             <td style='text-align: center;border:1px solid black;'>{{ $jmlHadirMhs }}</td>
-            {{-- <td style='text-align: center;border:1px solid black;{{ $alfas >= '3' ? 'background-color: yellow;' : '' }}'>{{ $alfas }}</td>
+            <td style='text-align: center;border:1px solid black;{{ $alfas >= '3' ? 'background-color: yellow;' : '' }}'>{{ $alfas }}</td>
             <td style='text-align: center;border:1px solid black;'>{{ $izins }}</td>
-            <td style='text-align: center;border:1px solid black;'>{{ $sakits }}</td> --}}
+            <td style='text-align: center;border:1px solid black;'>{{ $sakits }}</td>
             <td style='text-align: center;border:1px solid black;'>{{ number_format($persentase, 2) ?? '' }}%</td>
         </tr>
 
@@ -674,8 +695,9 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
             <td style='text-align: center;border:1px solid black;'>{{ $jmlHadir16 ?? '' }} </td>
             <td style='text-align: center;border:1px solid black;'>{{ $jmlHadir17 ?? '' }} </td>
             <td style='text-align: center;border:1px solid black;'>{{ $jmlHadir18 ?? '' }} </td>
-            <td style='text-align: center;border:1px solid black;'></td>
-            <td style='text-align: center;border:1px solid black;'></td>
+            @for ($i = 0; $i < 5; $i++)
+                <td style='text-align: center;border:1px solid black;'></td>
+            @endfor
         </tr>
 
     </tbody>

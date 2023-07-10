@@ -209,18 +209,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan1 == 'Hadir'){
-                            $h1 = 1;
-                            $jmlHadir1++;
-                        } elseif ($absen->pertemuan1  == 'Alfa') {
-                            $h1 = 0;
-                        } elseif ($absen->pertemuan1  == null) {
-                            $h1 = '';
-                        } else {
-                            $h1 = 0.5;
-                        }
+                    if ($absen->pertemuan1 == 'Hadir'){
+                    $h1 = 1;
+                    $jmlHadir1++;
+                    } elseif ($absen->pertemuan1 == 'Alfa') {
+                    $h1 = 0;
+
+                    } elseif ($absen->pertemuan1 == null) {
+                    $h1 = 0;
+                    } elseif ($absen->pertemuan1 == 'Sakit'){
+                    $h1 = 0;
+
+                    }else {
+                    $h1 = 0;
+
+                    }
                     @endphp
-                    {{ $h1 }}
+                    @if ($absen->pertemuan1 == null)
+
+                    @else
+
+                    {{ $h1 == '1' ? "√" : strtoupper(substr($absen->pertemuan1, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat1 == null)
@@ -244,53 +254,74 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan2 == 'Hadir'){
-                            $h2 = 1;
-                            $jmlHadir2++;
-                        } elseif ($absen->pertemuan2  == 'Alfa') {
-                            $h2 = 0;
-                        } elseif ($absen->pertemuan2  == null) {
-                            $h2 = '';
-                        } else {
-                            $h2 = 0.5;
-                        }
+                    if ($absen->pertemuan2 == 'Hadir'){
+                    $h2 = 1;
+                    $jmlHadir2++;
+                    } elseif ($absen->pertemuan2 == 'Alfa') {
+                    $h2 = 0;
+
+                    } elseif ($absen->pertemuan2 == null) {
+                    $h2 = 0;
+                    } elseif ($absen->pertemuan2 == 'Sakit'){
+                    $h2 = 0;
+
+                    }else {
+                    $h2 = 0;
+
+                    }
                     @endphp
-                    {{ $h2 }}
+                    @if ($absen->pertemuan2 == null)
+
+                    @else
+
+                    {{ $h2 == '1' ? "√" : strtoupper(substr($absen->pertemuan2, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat2 == null)
 
                     @else
 
-                        @php
-                        $awal = $dtJadwal->jam_awal ?? '00:00:00';
-                        $datang = $absen->telat2 ?? '00:00:00';
+                            @php
+                            $awal = $dtJadwal->jam_awal ?? '00:00:00';
+                            $datang = $absen->telat2 ?? '00:00:00';
 
-                        $wkawal = new DateTime($awal ?? '00:00:00');
-                        $wkdatang = new DateTime($datang ?? '00:00:00');
-                        $wktelat = $wkdatang->diff($wkawal);
-                        @endphp
-                        @if ($wktelat->format('%i') != '0')
-                        {{ $wktelat->format('%i') ?? '' }}
-                        @else
+                            $wkawal = new DateTime($awal ?? '00:00:00');
+                            $wkdatang = new DateTime($datang ?? '00:00:00');
+                            $wktelat = $wkdatang->diff($wkawal);
+
+                            @endphp
+                            @if ($wktelat->format('%i') != '0')
+                            {{ $wktelat->format('%i') ?? '' }}
+                            @else
 
                         @endif
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan3 == 'Hadir'){
-                            $h3 = 1;
-                            $jmlHadir3++;
-                        } elseif ($absen->pertemuan3  == 'Alfa') {
-                            $h3 = 0;
-                        } elseif ($absen->pertemuan3  == null) {
-                            $h3 = '';
-                        } else {
-                            $h3 = 0.5;
-                        }
+                    if ($absen->pertemuan3 == 'Hadir'){
+                    $h3 = 1;
+                    $jmlHadir3++;
+                    } elseif ($absen->pertemuan3 == 'Alfa') {
+                    $h3 = 0;
+
+                    } elseif ($absen->pertemuan3 == null) {
+                    $h3 = 0;
+                    } elseif ($absen->pertemuan3 == 'Sakit'){
+                    $h3 = 0;
+
+                    }else {
+                    $h3 = 0;
+
+                    }
                     @endphp
-                    {{ $h3 }}
+                    @if ($absen->pertemuan3 == null)
+
+                    @else
+
+                    {{ $h3 == '1' ? "√" : strtoupper(substr($absen->pertemuan3, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat3 == null)
@@ -314,18 +345,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan4 == 'Hadir'){
-                            $h4 = 1;
-                            $jmlHadir4++;
-                        } elseif ($absen->pertemuan4  == 'Alfa') {
-                            $h4 = 0;
-                        } elseif ($absen->pertemuan4  == null) {
-                            $h4 = '';
-                        } else {
-                            $h4 = 0.5;
-                        }
+                    if ($absen->pertemuan4 == 'Hadir'){
+                    $h4 = 1;
+                    $jmlHadir4++;
+                    } elseif ($absen->pertemuan4 == 'Alfa') {
+                    $h4 = 0;
+
+                    } elseif ($absen->pertemuan4 == null) {
+                    $h4 = 0;
+                    } elseif ($absen->pertemuan4 == 'Sakit'){
+                    $h4 = 0;
+
+                    }else {
+                    $h4 = 0;
+
+                    }
                     @endphp
-                    {{ $h4 }}
+                    @if ($absen->pertemuan4 == null)
+
+                    @else
+
+                    {{ $h4 == '1' ? "√" : strtoupper(substr($absen->pertemuan4, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat4 == null)
@@ -349,18 +390,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan5 == 'Hadir'){
-                            $h5 = 1;
-                            $jmlHadir5++;
-                        } elseif ($absen->pertemuan5  == 'Alfa') {
-                            $h5 = 0;
-                        } elseif ($absen->pertemuan5  == null) {
-                            $h5 = '';
-                        } else {
-                            $h5 = 0.5;
-                        }
+                    if ($absen->pertemuan5 == 'Hadir'){
+                    $h5 = 1;
+                    $jmlHadir5++;
+                    } elseif ($absen->pertemuan5 == 'Alfa') {
+                    $h5 = 0;
+
+                    } elseif ($absen->pertemuan5 == null) {
+                    $h5 = 0;
+                    } elseif ($absen->pertemuan5 == 'Sakit'){
+                    $h5 = 0;
+
+                    }else {
+                    $h5 = 0;
+
+                    }
                     @endphp
-                    {{ $h5 }}
+                    @if ($absen->pertemuan5 == null)
+
+                    @else
+
+                    {{ $h5 == '1' ? "√" : strtoupper(substr($absen->pertemuan5, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat5 == null)
@@ -384,18 +435,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan6 == 'Hadir'){
-                            $h6 = 1;
-                            $jmlHadir6++;
-                        } elseif ($absen->pertemuan6  == 'Alfa') {
-                            $h6 = 0;
-                        } elseif ($absen->pertemuan6  == null) {
-                            $h6 = '';
-                        } else {
-                            $h6 = 0.5;
-                        }
+                    if ($absen->pertemuan6 == 'Hadir'){
+                    $h6 = 1;
+                    $jmlHadir6++;
+                    } elseif ($absen->pertemuan6 == 'Alfa') {
+                    $h6 = 0;
+
+                    } elseif ($absen->pertemuan6 == null) {
+                    $h6 = 0;
+                    } elseif ($absen->pertemuan6 == 'Sakit'){
+                    $h6 = 0;
+
+                    }else {
+                    $h6 = 0;
+
+                    }
                     @endphp
-                    {{ $h6 }}
+                    @if ($absen->pertemuan6 == null)
+
+                    @else
+
+                    {{ $h6 == '1' ? "√" : strtoupper(substr($absen->pertemuan6, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat6 == null)
@@ -419,18 +480,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan7 == 'Hadir'){
-                            $h7 = 1;
-                            $jmlHadir7++;
-                        } elseif ($absen->pertemuan7  == 'Alfa') {
-                            $h7 = 0;
-                        } elseif ($absen->pertemuan7  == null) {
-                            $h7 = '';
-                        } else {
-                            $h7 = 0.5;
-                        }
+                    if ($absen->pertemuan7 == 'Hadir'){
+                    $h7 = 1;
+                    $jmlHadir7++;
+                    } elseif ($absen->pertemuan7 == 'Alfa') {
+                    $h7 = 0;
+
+                    } elseif ($absen->pertemuan7 == null) {
+                    $h7 = 0;
+                    } elseif ($absen->pertemuan7 == 'Sakit'){
+                    $h7 = 0;
+
+                    }else {
+                    $h7 = 0;
+
+                    }
                     @endphp
-                    {{ $h7 }}
+                    @if ($absen->pertemuan7 == null)
+
+                    @else
+
+                    {{ $h7 == '1' ? "√" : strtoupper(substr($absen->pertemuan7, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat7 == null)
@@ -454,18 +525,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan8 == 'Hadir'){
-                            $h8 = 1;
-                            $jmlHadir8++;
-                        } elseif ($absen->pertemuan8  == 'Alfa') {
-                            $h8 = 0;
-                        } elseif ($absen->pertemuan8  == null) {
-                            $h8 = '';
-                        } else {
-                            $h8 = 0.5;
-                        }
+                    if ($absen->pertemuan8 == 'Hadir'){
+                    $h8 = 1;
+                    $jmlHadir8++;
+                    } elseif ($absen->pertemuan8 == 'Alfa') {
+                    $h8 = 0;
+
+                    } elseif ($absen->pertemuan8 == null) {
+                    $h8 = 0;
+                    } elseif ($absen->pertemuan8 == 'Sakit'){
+                    $h8 = 0;
+
+                    }else {
+                    $h8 = 0;
+
+                    }
                     @endphp
-                    {{ $h8 }}
+                    @if ($absen->pertemuan8 == null)
+
+                    @else
+
+                    {{ $h8 == '1' ? "√" : strtoupper(substr($absen->pertemuan8, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat8 == null)
@@ -489,18 +570,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan9 == 'Hadir'){
-                            $h9 = 1;
-                            $jmlHadir9++;
-                        } elseif ($absen->pertemuan9  == 'Alfa') {
-                            $h9 = 0;
-                        } elseif ($absen->pertemuan9  == null) {
-                            $h9 = '';
-                        } else {
-                            $h9 = 0.5;
-                        }
+                    if ($absen->pertemuan9 == 'Hadir'){
+                    $h9 = 1;
+                    $jmlHadir9++;
+                    } elseif ($absen->pertemuan9 == 'Alfa') {
+                    $h9 = 0;
+
+                    } elseif ($absen->pertemuan9 == null) {
+                    $h9 = 0;
+                    } elseif ($absen->pertemuan9 == 'Sakit'){
+                    $h9 = 0;
+
+                    }else {
+                    $h9 = 0;
+
+                    }
                     @endphp
-                    {{ $h9 }}
+                    @if ($absen->pertemuan9 == null)
+
+                    @else
+
+                    {{ $h9 == '1' ? "√" : strtoupper(substr($absen->pertemuan9, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat9 == null)
@@ -524,18 +615,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan10 == 'Hadir'){
-                            $h10 = 1;
-                            $jmlHadir10++;
-                        } elseif ($absen->pertemuan10  == 'Alfa') {
-                            $h10 = 0;
-                        } elseif ($absen->pertemuan10  == null) {
-                            $h10 = '';
-                        } else {
-                            $h10 = 0.5;
-                        }
+                    if ($absen->pertemuan10 == 'Hadir'){
+                    $h10 = 1;
+                    $jmlHadir10++;
+                    } elseif ($absen->pertemuan10 == 'Alfa') {
+                    $h10 = 0;
+
+                    } elseif ($absen->pertemuan10 == null) {
+                    $h10 = 0;
+                    } elseif ($absen->pertemuan10 == 'Sakit'){
+                    $h10 = 0;
+
+                    }else {
+                    $h10 = 0;
+
+                    }
                     @endphp
-                    {{ $h10 }}
+                    @if ($absen->pertemuan10 == null)
+
+                    @else
+
+                    {{ $h10 == '1' ? "√" : strtoupper(substr($absen->pertemuan10, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat10 == null)
@@ -559,18 +660,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan11 == 'Hadir'){
-                            $h11 = 1;
-                            $jmlHadir11++;
-                        } elseif ($absen->pertemuan11  == 'Alfa') {
-                            $h11 = 0;
-                        } elseif ($absen->pertemuan11  == null) {
-                            $h11 = '';
-                        } else {
-                            $h11 = 0.5;
-                        }
+                    if ($absen->pertemuan11 == 'Hadir'){
+                    $h11 = 1;
+                    $jmlHadir11++;
+                    } elseif ($absen->pertemuan11 == 'Alfa') {
+                    $h11 = 0;
+
+                    } elseif ($absen->pertemuan11 == null) {
+                    $h11 = 0;
+                    } elseif ($absen->pertemuan11 == 'Sakit'){
+                    $h11 = 0;
+
+                    }else {
+                    $h11 = 0;
+
+                    }
                     @endphp
-                    {{ $h11 }}
+                    @if ($absen->pertemuan11 == null)
+
+                    @else
+
+                    {{ $h11 == '1' ? "√" : strtoupper(substr($absen->pertemuan11, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat11 == null)
@@ -594,18 +705,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan12 == 'Hadir'){
-                            $h12 = 1;
-                            $jmlHadir12++;
-                        } elseif ($absen->pertemuan12  == 'Alfa') {
-                            $h12 = 0;
-                        } elseif ($absen->pertemuan12  == null) {
-                            $h12 = '';
-                        } else {
-                            $h12 = 0.5;
-                        }
+                    if ($absen->pertemuan12 == 'Hadir'){
+                    $h12 = 1;
+                    $jmlHadir12++;
+                    } elseif ($absen->pertemuan12 == 'Alfa') {
+                    $h12 = 0;
+
+                    } elseif ($absen->pertemuan12 == null) {
+                    $h12 = 0;
+                    } elseif ($absen->pertemuan12 == 'Sakit'){
+                    $h12 = 0;
+
+                    }else {
+                    $h12 = 0;
+
+                    }
                     @endphp
-                    {{ $h12 }}
+                    @if ($absen->pertemuan12 == null)
+
+                    @else
+
+                    {{ $h12 == '1' ? "√" : strtoupper(substr($absen->pertemuan12, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat12 == null)
@@ -629,18 +750,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan13 == 'Hadir'){
-                            $h13 = 1;
-                            $jmlHadir13++;
-                        } elseif ($absen->pertemuan13  == 'Alfa') {
-                            $h13 = 0;
-                        } elseif ($absen->pertemuan13  == null) {
-                            $h13 = '';
-                        } else {
-                            $h13 = 0.5;
-                        }
+                    if ($absen->pertemuan13 == 'Hadir'){
+                    $h13 = 1;
+                    $jmlHadir13++;
+                    } elseif ($absen->pertemuan13 == 'Alfa') {
+                    $h13 = 0;
+
+                    } elseif ($absen->pertemuan13 == null) {
+                    $h13 = 0;
+                    } elseif ($absen->pertemuan13 == 'Sakit'){
+                    $h13 = 0;
+
+                    }else {
+                    $h13 = 0;
+
+                    }
                     @endphp
-                    {{ $h13 }}
+                    @if ($absen->pertemuan13 == null)
+
+                    @else
+
+                    {{ $h13 == '1' ? "√" : strtoupper(substr($absen->pertemuan13, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat13 == null)
@@ -664,18 +795,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan14 == 'Hadir'){
-                            $h14 = 1;
-                            $jmlHadir14++;
-                        } elseif ($absen->pertemuan14  == 'Alfa') {
-                            $h14 = 0;
-                        } elseif ($absen->pertemuan14  == null) {
-                            $h14 = '';
-                        } else {
-                            $h14 = 0.5;
-                        }
+                    if ($absen->pertemuan14 == 'Hadir'){
+                    $h14 = 1;
+                    $jmlHadir14++;
+                    } elseif ($absen->pertemuan14 == 'Alfa') {
+                    $h14 = 0;
+
+                    } elseif ($absen->pertemuan14 == null) {
+                    $h14 = 0;
+                    } elseif ($absen->pertemuan14 == 'Sakit'){
+                    $h14 = 0;
+
+                    }else {
+                    $h14 = 0;
+
+                    }
                     @endphp
-                    {{ $h14 }}
+                    @if ($absen->pertemuan14 == null)
+
+                    @else
+
+                    {{ $h14 == '1' ? "√" : strtoupper(substr($absen->pertemuan14, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat14 == null)
@@ -699,18 +840,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan15 == 'Hadir'){
-                            $h15 = 1;
-                            $jmlHadir15++;
-                        } elseif ($absen->pertemuan15  == 'Alfa') {
-                            $h15 = 0;
-                        } elseif ($absen->pertemuan15  == null) {
-                            $h15 = '';
-                        } else {
-                            $h15 = 0.5;
-                        }
+                    if ($absen->pertemuan15 == 'Hadir'){
+                    $h15 = 1;
+                    $jmlHadir15++;
+                    } elseif ($absen->pertemuan15 == 'Alfa') {
+                    $h15 = 0;
+
+                    } elseif ($absen->pertemuan15 == null) {
+                    $h15 = 0;
+                    } elseif ($absen->pertemuan15 == 'Sakit'){
+                    $h15 = 0;
+
+                    }else {
+                    $h15 = 0;
+
+                    }
                     @endphp
-                    {{ $h15 }}
+                    @if ($absen->pertemuan15 == null)
+
+                    @else
+
+                    {{ $h15 == '1' ? "√" : strtoupper(substr($absen->pertemuan15, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat15 == null)
@@ -734,18 +885,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan16 == 'Hadir'){
-                            $h16 = 1;
-                            $jmlHadir16++;
-                        } elseif ($absen->pertemuan16  == 'Alfa') {
-                            $h16 = 0;
-                        } elseif ($absen->pertemuan16  == null) {
-                            $h16 = '';
-                        } else {
-                            $h16 = 0.5;
-                        }
+                    if ($absen->pertemuan16 == 'Hadir'){
+                    $h16 = 1;
+                    $jmlHadir16++;
+                    } elseif ($absen->pertemuan16 == 'Alfa') {
+                    $h16 = 0;
+
+                    } elseif ($absen->pertemuan16 == null) {
+                    $h16 = 0;
+                    } elseif ($absen->pertemuan16 == 'Sakit'){
+                    $h16 = 0;
+
+                    }else {
+                    $h16 = 0;
+
+                    }
                     @endphp
-                    {{ $h16 }}
+                    @if ($absen->pertemuan16 == null)
+
+                    @else
+
+                    {{ $h16 == '1' ? "√" : strtoupper(substr($absen->pertemuan16, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat16 == null)
@@ -769,18 +930,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan17 == 'Hadir'){
-                            $h17 = 1;
-                            $jmlHadir17++;
-                        } elseif ($absen->pertemuan17  == 'Alfa') {
-                            $h17 = 0;
-                        } elseif ($absen->pertemuan17  == null) {
-                            $h17 = '';
-                        } else {
-                            $h17 = 0.5;
-                        }
+                    if ($absen->pertemuan17 == 'Hadir'){
+                    $h17 = 1;
+                    $jmlHadir17++;
+                    } elseif ($absen->pertemuan17 == 'Alfa') {
+                    $h17 = 0;
+
+                    } elseif ($absen->pertemuan17 == null) {
+                    $h17 = 0;
+                    } elseif ($absen->pertemuan17 == 'Sakit'){
+                    $h17 = 0;
+
+                    }else {
+                    $h17 = 0;
+
+                    }
                     @endphp
-                    {{ $h17 }}
+                    @if ($absen->pertemuan17 == null)
+
+                    @else
+
+                    {{ $h17 == '1' ? "√" : strtoupper(substr($absen->pertemuan17, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat17 == null)
@@ -804,18 +975,28 @@
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @php
-                        if ($absen->pertemuan18 == 'Hadir'){
-                            $h18 = 1;
-                            $jmlHadir18++;
-                        } elseif ($absen->pertemuan18  == 'Alfa') {
-                            $h18 = 0;
-                        } elseif ($absen->pertemuan18  == null) {
-                            $h18 = '';
-                        } else {
-                            $h18 = 0.5;
-                        }
+                    if ($absen->pertemuan18 == 'Hadir'){
+                    $h18 = 1;
+                    $jmlHadir18++;
+                    } elseif ($absen->pertemuan18 == 'Alfa') {
+                    $h18 = 0;
+
+                    } elseif ($absen->pertemuan18 == null) {
+                    $h18 = 0;
+                    } elseif ($absen->pertemuan18 == 'Sakit'){
+                    $h18 = 0;
+
+                    }else {
+                    $h18 = 0;
+
+                    }
                     @endphp
-                    {{ $h18 }}
+                    @if ($absen->pertemuan18 == null)
+
+                    @else
+
+                    {{ $h18 == '1' ? "√" : strtoupper(substr($absen->pertemuan18, 0, 1)) }}
+                    @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
                     @if ($absen->telat18 == null)

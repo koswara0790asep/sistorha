@@ -143,7 +143,7 @@
                         if ($hadir1 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir1 == 'Izin' || $hadir1 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -151,7 +151,7 @@
                         if ($hadir2 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir2 == 'Izin' || $hadir2 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -159,7 +159,7 @@
                         if ($hadir3 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir3 == 'Izin' || $hadir3 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -167,7 +167,7 @@
                         if ($hadir4 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir4 == 'Izin' || $hadir4 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -175,7 +175,7 @@
                         if ($hadir5 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir5 == 'Izin' || $hadir5 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -183,7 +183,7 @@
                         if ($hadir6 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir6 == 'Izin' || $hadir6 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -191,7 +191,7 @@
                         if ($hadir7 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir7 == 'Izin' || $hadir7 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -199,7 +199,7 @@
                         if ($hadir8 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir8 == 'Izin' || $hadir8 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -207,7 +207,7 @@
                         if ($hadir9 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir9 == 'Izin' || $hadir9 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -215,7 +215,7 @@
                         if ($hadir10 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir10 == 'Izin' || $hadir10 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -223,7 +223,7 @@
                         if ($hadir11 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir11 == 'Izin' || $hadir11 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -231,7 +231,7 @@
                         if ($hadir12 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir12 == 'Izin' || $hadir12 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -239,7 +239,7 @@
                         if ($hadir13 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir13 == 'Izin' || $hadir13 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -247,7 +247,7 @@
                         if ($hadir14 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir14 == 'Izin' || $hadir14 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -255,7 +255,7 @@
                         if ($hadir15 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir15 == 'Izin' || $hadir15 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -263,7 +263,7 @@
                         if ($hadir16 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir16 == 'Izin' || $hadir16 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -271,7 +271,7 @@
                         if ($hadir17 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir17 == 'Izin' || $hadir17 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -279,7 +279,7 @@
                         if ($hadir18 == 'Hadir') {
                             $jmlHadir++;
                         } elseif ($hadir18 == 'Izin' || $hadir18 == 'Sakit'){
-                            $jmlHadir += 0.5;
+                            $jmlHadir += 0;
                         } else {
 
                         }
@@ -318,7 +318,7 @@
                                 if ($hadir1 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir1 == 'Izin' || $hadir1 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -326,7 +326,7 @@
                                 if ($hadir2 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir2 == 'Izin' || $hadir2 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -334,7 +334,7 @@
                                 if ($hadir3 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir3 == 'Izin' || $hadir3 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -342,7 +342,7 @@
                                 if ($hadir4 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir4 == 'Izin' || $hadir4 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -350,7 +350,7 @@
                                 if ($hadir5 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir5 == 'Izin' || $hadir5 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -358,7 +358,7 @@
                                 if ($hadir6 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir6 == 'Izin' || $hadir6 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -366,7 +366,7 @@
                                 if ($hadir7 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir7 == 'Izin' || $hadir7 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -374,7 +374,7 @@
                                 if ($hadir8 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir8 == 'Izin' || $hadir8 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -382,7 +382,7 @@
                                 if ($hadir9 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir9 == 'Izin' || $hadir9 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -390,7 +390,7 @@
                                 if ($hadir10 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir10 == 'Izin' || $hadir10 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -398,7 +398,7 @@
                                 if ($hadir11 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir11 == 'Izin' || $hadir11 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -406,7 +406,7 @@
                                 if ($hadir12 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir12 == 'Izin' || $hadir12 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -414,7 +414,7 @@
                                 if ($hadir13 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir13 == 'Izin' || $hadir13 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -422,7 +422,7 @@
                                 if ($hadir14 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir14 == 'Izin' || $hadir14 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -430,7 +430,7 @@
                                 if ($hadir15 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir15 == 'Izin' || $hadir15 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -438,7 +438,7 @@
                                 if ($hadir16 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir16 == 'Izin' || $hadir16 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -446,7 +446,7 @@
                                 if ($hadir17 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir17 == 'Izin' || $hadir17 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }
@@ -454,7 +454,7 @@
                                 if ($hadir18 == 'Hadir') {
                                     $jmlHadir++;
                                 } elseif ($hadir18 == 'Izin' || $hadir18 == 'Sakit'){
-                                    $jmlHadir += 0.5;
+                                    $jmlHadir += 0;
                                 } else {
 
                                 }

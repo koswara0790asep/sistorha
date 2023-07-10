@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Absen;
 
 use App\Models\Absent;
+use App\Models\BeritaAcara;
 use App\Models\Jadwal;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Redirector;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -116,13 +118,77 @@ class Edit extends Component
 
         if ($this->absenId) {
             $absen = Absent::find($this->absenId);
+            // dd($absen->pertemuan1);
+            if ($absen->pertemuan1 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '1')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan1 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            }
+            if ($absen->pertemuan2 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '2')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan2 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            }
+            if ($absen->pertemuan3 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '3')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan3 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            }
 
             if ($absen) {
                 $absen->update([
-                    'matkul_id' => $this->matkul_id,
-                    'kelas_id' => $this->kelas_id,
-                    'semester' => $this->semester,
-                    'nim' => $this->nim,
+                    // 'matkul_id' => $this->matkul_id,
+                    // 'kelas_id' => $this->kelas_id,
+                    // 'semester' => $this->semester,
+                    // 'nim' => $this->nim,
                     'pertemuan1' => $this->pertemuan1,
                     'pertemuan2' => $this->pertemuan2,
                     'pertemuan3' => $this->pertemuan3,
@@ -159,10 +225,13 @@ class Edit extends Component
                     'telat16' => $this->telat16,
                     'telat17' => $this->telat17,
                     'telat18' => $this->telat18,
-                    'keterangan' => $this->keterangan,
+                    // 'keterangan' => $this->keterangan,
                 ]);
             }
+            // dd($absen->pertemuan1 != $this->pertemuan1 ? true : false);
+
         }
+
 
         //flash message
         Alert::success('BERHASIL!', 'Absen berhasil diinputkan!');
@@ -173,6 +242,14 @@ class Edit extends Component
 
     public function render()
     {
+        // $beritaacaras = DB::table('berita_acaras')
+        //                     ->where('kelas_id', $this->kelas_id ?? '')
+        //                     ->where('matkul_id', $this->matkul_id ?? '')
+        //                     ->where('pertemuan', '3')
+        //                     ->get();
+
+        // dd($beritaacaras);
+
         return view('livewire.absen.edit');
     }
 }

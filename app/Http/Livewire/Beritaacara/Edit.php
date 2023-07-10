@@ -78,7 +78,6 @@ class Edit extends Component
                     'jumlah_mhs' => $this->jumlah_mhs,
                     'jam_masuk' => $this->jam_masuk,
                     'jam_keluar' => $this->jam_keluar,
-                    'jumlah_mhs' => $this->jumlah_mhs,
                 ]);
             }
         }

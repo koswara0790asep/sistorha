@@ -25,20 +25,27 @@ class Create extends Component
             'password' => 'required',
         ]);
 
-        User::create([
-            'name' => $this->name,
-            'username' => $this->username,
-            'role' => $this->role,
-            'email' => $this->email,
-            'password' => $this->password,
-        ]);
+        $dataExists = User::where('username', $this->username)
+                            ->where('email', $this->email)
+                            ->exists();
+        if (!$dataExists) {
+            User::create([
+                'name' => $this->name,
+                'username' => $this->username,
+                'role' => $this->role,
+                'email' => $this->email,
+                'password' => $this->password,
+            ]);
+            //flash message
+            Alert::success('Tambah Data User','User berhasil ditambahkan!');
+            // session()->flash('message', 'Data User ' .$this->nama. ' Berhasil Disimpan!');
 
-        //flash message
-        Alert::success('Tambah Data User','User berhasil ditambahkan!');
-        // session()->flash('message', 'Data User ' .$this->nama. ' Berhasil Disimpan!');
+            // redirect
+            return redirect()->route('/users');
+        } else {
+            Alert::error('Gagal','User tidak berhasil ditambahkan!');
+        }
 
-        // redirect
-        return redirect()->route('/users');
     }
 
     public function render()

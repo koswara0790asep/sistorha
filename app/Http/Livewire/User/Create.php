@@ -29,7 +29,7 @@ class Create extends Component
 
         if (User::where('username', $this->username)->exists()) {
 
-            Alert::warning('GAGAL!','Data User Sudah Ada!');
+            Alert::error('GAGAL!','Data User Sudah Ada!');
         } else {
             User::create([
                 'name' => $this->name,

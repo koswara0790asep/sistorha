@@ -54,7 +54,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                     <div class="col-sm-4">
                         <label for="pertemuan">Pertemuan: </label>
                         <div class="mb-3 input-group">
-                            <select id="pertemuan" name="pertemuan" wire:model="pertemuan" class="form-select @error('pertemuan') is-invalid @enderror">
+                            <select id="pertemuan" name="pertemuan" wire:model="pertemuan" class="form-select @error('pertemuan') is-invalid @enderror" disabled>
                                 <option value="" hidden>--- Pilih Angka Pertemuan ---</option>
                                 @for ($i = 1; $i < 18; $i++)
                                     <option value="{{ $i }}" {{ $i == 9 || $i == 18 ? 'hidden' : '' }}>{{ $i }}</option>
@@ -131,7 +131,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                     <div class="col-sm-4">
                         <label for="jumlah_mhs">Jumlah Mahasiswa Hadir: </label>
                         <div class="mb-3 input-group">
-                            <input type="number" id="jumlah_mhs" name="jumlah_mhs" wire:model="jumlah_mhs" class="form-control @error('jumlah_mhs') is-invalid @enderror" placeholder="Masukkan Jumlah Mahasiswa Hadir">
+                            <input type="number" id="jumlah_mhs" name="jumlah_mhs" wire:model="jumlah_mhs" class="form-control @error('jumlah_mhs') is-invalid @enderror" placeholder="Masukkan Jumlah Mahasiswa Hadir" disabled>
                             <span class="input-group-text"><h4><i class="mdi mdi-account-multiple-plus"></i></h4></span>
                             @error('jumlah_mhs')
                             <span class="invalid-feedback">

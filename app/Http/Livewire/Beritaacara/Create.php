@@ -33,6 +33,22 @@ class Create extends Component
         $this->matkulSelect = $dfmatkul->id;
         $this->kelasSelect = $dfkelas->id;
         $this->dosenID = $dosen->id;
+        $beritaacara = $this->matkulSelect == null && $this->kelasSelect == null ?
+        ''
+        :
+        BeritaAcara::latest()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $this->matkulSelect . '%')->select('berita_acaras.*', 'id', 'pertemuan')->first();
+        // dd(count($beritaacara));
+
+        $lastMeet = $beritaacara->pertemuan ?? 0;
+        if ($lastMeet == 0) {
+            $this->pertemuan = $lastMeet + 1;
+        } elseif ($beritaacara->pertemuan == 8) {
+            $this->pertemuan = $lastMeet + 2;
+        } else {
+            $this->pertemuan = $lastMeet + 1;
+        }
+        // dd($lastMeet);
+        $this->jumlah_mhs = 0;
     }
 
     public function store()
@@ -44,11 +60,16 @@ class Create extends Component
             'jam_keluar' => 'required',
             'pembahasan' => 'required',
             'jumlah_mhs' => 'required',
-            'pertemuan' => 'required',
+            // 'pertemuan' => 'required',
         ]);
 
         $this->matkul_id = $this->matkulSelect;
         $this->kelas_id = $this->kelasSelect;
+
+        $pertemuanExists = BeritaAcara::where('pertemuan', $this->pertemuan)
+                                    ->where('kelas_id', $this->kelas_id)
+                                    ->where('matkul_id', $this->matkul_id)
+                                    ->exists();
 
         $dataExists = BeritaAcara::where('pertemuan', $this->pertemuan)
                                 ->where('hari', $this->hari)
@@ -57,35 +78,41 @@ class Create extends Component
                                 ->where('kelas_id', $this->kelas_id)
                                 ->where('matkul_id', $this->matkul_id)
                                 ->exists();
-
-        if (!$dataExists) {
-            BeritaAcara::firstOrCreate(
-                [
-                    'pertemuan' => $this->pertemuan,
-                    'hari' => $this->hari,
-                    'tanggal' => $this->tanggal,
-                    'pembahasan' => $this->pembahasan,
-                    'kelas_id' => $this->kelas_id,
-                    'matkul_id' => $this->matkul_id,
-                ],
-                [
-                    'jam_masuk' => $this->jam_masuk,
-                    'jam_keluar' => $this->jam_keluar,
-                    'jumlah_mhs' => $this->jumlah_mhs,
-                ]
-            );
-            //flash message
-            Alert::success('BERHASIL!','Data pertemuan berhasil disimpan!');
-        } else {
-            //flash message
+        if ($pertemuanExists) {
             Alert::error('GAGAL!','Data pertemuan sudah ada, dimohon untuk mengeceknya kembali!');
+            return redirect('/beritaacara/'.$this->jadwalId.'/'.$this->matkul_id.'/'.$this->kelas_id.'/'.$this->dosenID.'');
+        } else {
+            if (!$dataExists) {
+                BeritaAcara::firstOrCreate(
+                    [
+                        'pertemuan' => $this->pertemuan,
+                        'hari' => $this->hari,
+                        'tanggal' => $this->tanggal,
+                        'pembahasan' => $this->pembahasan,
+                        'kelas_id' => $this->kelas_id,
+                        'matkul_id' => $this->matkul_id,
+                    ],
+                    [
+                        'jam_masuk' => $this->jam_masuk,
+                        'jam_keluar' => $this->jam_keluar,
+                        'jumlah_mhs' => $this->jumlah_mhs,
+                    ]
+                );
+                //flash message
+                Alert::success('BERHASIL!','Data pertemuan berhasil disimpan!');
+                return redirect('/absensis/'.$this->jadwalId.'/'.$this->kelasSelect.'/'.$this->matkulSelect.'');
+            } else {
+                //flash message
+                Alert::error('GAGAL!','Data pertemuan sudah ada, dimohon untuk mengeceknya kembali!');
+                // redirect
+                return redirect('/beritaacara/'.$this->jadwalId.'/'.$this->matkul_id.'/'.$this->kelas_id.'/'.$this->dosenID.'');
+            }
         }
-        // redirect
-        return redirect('/beritaacara/'.$this->jadwalId.'/'.$this->matkul_id.'/'.$this->kelas_id.'/'.$this->dosenID.'');
     }
 
     public function render()
     {
+
         return view('livewire.beritaacara.create');
     }
 }

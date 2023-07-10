@@ -1,3 +1,12 @@
+{{-- <style>
+    /* Tambahkan class "sticky-panel" pada panel yang ingin Anda tetapkan */
+    .sticky-panel {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: #fff;
+    }
+</style> --}}
 @php
 $dfKelas = DB::table('df_kelases')->where('id', $kelasSelect ?? '')->select('df_kelases.*', 'id', 'prodi_id', 'kode',
 'periode')->first();
@@ -119,17 +128,31 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                     </table>
                 </div>
             </div>
-            <div class="table-responsive">
+            <style>
+                thead{
+                    position: sticky;
+                    top: 0px;
+                    z-index: 2;
+                }
+            </style>
+            <div class="table-responsive" style="max-width: fit-content; max-height: 70vh; overflow-x: scroll; overflow-y: scroll; height: fit-content; margin-top: 0px">
                 <table class="table table-bordered">
                     <thead class="table table-dark">
                         <tr class="text-center">
-                            <th class="text-light" rowspan="3">NO</th>
-                            <th class="text-light" rowspan="3">NIM</th>
-                            <th class="text-light" rowspan="3">NAMA</th>
+                            @if (Auth::user()->role == 'dosen' || Auth::user()->role == 'prodi')
+                            <th class="text-light" rowspan="3" style="position: sticky; left: 0px;">AKSI</th>
+                            <th class="text-light" rowspan="3" style="position: sticky; left: 65px;">NO</th>
+                            <th class="text-light" rowspan="3" style="position: sticky; left: 112px;">NIM</th>
+                            <th class="text-light" rowspan="3" style="position: sticky; left: 218px;">NAMA</th>
                             <th class="text-light" colspan="36">PERTEMUAN KE-</th>
                             <th class="text-light" rowspan="2" colspan="5">KETERANGAN</th>
-                            @if (Auth::user()->role == 'dosen' || Auth::user()->role == 'prodi')
-                            <th class="text-light" rowspan="3">AKSI</th>
+                            <th class="text-light" rowspan="3">TEGUR</th>
+                            @else
+                            <th class="text-light" rowspan="3" >NO</th>
+                            <th class="text-light" rowspan="3" >NIM</th>
+                            <th class="text-light" rowspan="3" >NAMA</th>
+                            <th class="text-light" colspan="36">PERTEMUAN KE-</th>
+                            <th class="text-light" rowspan="2" colspan="5">KETERANGAN</th>
                             @endif
                         </tr>
                         <tr class="text-center">
@@ -260,12 +283,25 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                         'status_aktif', 'no_hp')->first();
                         @endphp
 
-                        <tr class="{{ $data->status_aktif == 'Aktif' ? '' : 'table-danger' }}">
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $absen->nim }}</td>
-                            <td>
-                                {{ $data->nama }}
-                            </td>
+                        <tr class="{{ $data->status_aktif == 'Aktif' ? 'table-light' : 'table-danger' }}" >
+                            @if (Auth::user()->role == 'dosen' || Auth::user()->role == 'prodi')
+                                <td style="position: sticky; left: 0px;">
+                                    @if (Auth::user()->role == 'dosen')
+                                        <a href="{{ $data->status_aktif == 'Aktif' ? '/absen/edit/'.$jadwalId.'/'.$absen->id.'' : '#' }}"
+                                            class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
+                                    @endif
+                                <td style="position: sticky; left: 65px;">{{ $loop->iteration }}</td>
+                                <td style="position: sticky; left: 112px;">{{ $absen->nim }}</td>
+                                <td style="position: sticky; left: 218px;">
+                                    {{ $data->nama }}
+                                </td>
+                            @else
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $absen->nim }}</td>
+                                <td>
+                                    {{ $data->nama }}
+                                </td>
+                            @endif
                             <td>
                                 @php
                                 if ($absen->pertemuan1 == 'Hadir'){
@@ -277,10 +313,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan1 == null) {
                                 $h1 = 0;
                                 } elseif ($absen->pertemuan1 == 'Sakit'){
-                                $h1 = 0.5;
+                                $h1 = 0;
                                 $sakits++;
                                 }else {
-                                $h1 = 0.5;
+                                $h1 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -288,7 +324,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h1 }}
+                                {{ $h1 == '1' ? "√" : strtoupper(substr($absen->pertemuan1, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -322,10 +358,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan2 == null) {
                                 $h2 = 0;
                                 } elseif ($absen->pertemuan2 == 'Sakit'){
-                                $h2 = 0.5;
+                                $h2 = 0;
                                 $sakits++;
                                 }else {
-                                $h2 = 0.5;
+                                $h2 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -333,7 +369,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h2 }}
+                                {{ $h2 == '1' ? "√" : strtoupper(substr($absen->pertemuan2, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -368,10 +404,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan3 == null) {
                                 $h3 = 0;
                                 } elseif ($absen->pertemuan3 == 'Sakit'){
-                                $h3 = 0.5;
+                                $h3 = 0;
                                 $sakits++;
                                 }else {
-                                $h3 = 0.5;
+                                $h3 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -379,7 +415,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h3 }}
+                                {{ $h3 == '1' ? "√" : strtoupper(substr($absen->pertemuan3, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -413,10 +449,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan4 == null) {
                                 $h4 = 0;
                                 } elseif ($absen->pertemuan4 == 'Sakit'){
-                                $h4 = 0.5;
+                                $h4 = 0;
                                 $sakits++;
                                 }else {
-                                $h4 = 0.5;
+                                $h4 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -424,7 +460,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h4 }}
+                                {{ $h4 == '1' ? "√" : strtoupper(substr($absen->pertemuan4, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -458,10 +494,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan5 == null) {
                                 $h5 = 0;
                                 } elseif ($absen->pertemuan5 == 'Sakit'){
-                                $h5 = 0.5;
+                                $h5 = 0;
                                 $sakits++;
                                 }else {
-                                $h5 = 0.5;
+                                $h5 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -469,7 +505,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h5 }}
+                                {{ $h5 == '1' ? "√" : strtoupper(substr($absen->pertemuan5, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -503,10 +539,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan6 == null) {
                                 $h6 = 0;
                                 } elseif ($absen->pertemuan6 == 'Sakit'){
-                                $h6 = 0.5;
+                                $h6 = 0;
                                 $sakits++;
                                 }else {
-                                $h6 = 0.5;
+                                $h6 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -514,7 +550,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h6 }}
+                                {{ $h6 == '1' ? "√" : strtoupper(substr($absen->pertemuan6, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -548,10 +584,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan7 == null) {
                                 $h7 = 0;
                                 } elseif ($absen->pertemuan7 == 'Sakit'){
-                                $h7 = 0.5;
+                                $h7 = 0;
                                 $sakits++;
                                 }else {
-                                $h7 = 0.5;
+                                $h7 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -559,7 +595,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h7 }}
+                                {{ $h7 == '1' ? "√" : strtoupper(substr($absen->pertemuan7, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -593,10 +629,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan8 == null) {
                                 $h8 = 0;
                                 } elseif ($absen->pertemuan8 == 'Sakit'){
-                                $h8 = 0.5;
+                                $h8 = 0;
                                 $sakits++;
                                 }else {
-                                $h8 = 0.5;
+                                $h8 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -604,7 +640,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h8 }}
+                                {{ $h8 == '1' ? "√" : strtoupper(substr($absen->pertemuan8, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -638,10 +674,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan9 == null) {
                                 $h9 = 0;
                                 } elseif ($absen->pertemuan9 == 'Sakit'){
-                                $h9 = 0.5;
+                                $h9 = 0;
                                 $sakits++;
                                 }else {
-                                $h9 = 0.5;
+                                $h9 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -649,7 +685,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h9 }}
+                                {{ $h9 == '1' ? "√" : strtoupper(substr($absen->pertemuan9, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -683,10 +719,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan10 == null) {
                                 $h10 = 0;
                                 } elseif ($absen->pertemuan10 == 'Sakit'){
-                                $h10 = 0.5;
+                                $h10 = 0;
                                 $sakits++;
                                 }else {
-                                $h10 = 0.5;
+                                $h10 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -694,7 +730,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h10 }}
+                                {{ $h10 == '1' ? "√" : strtoupper(substr($absen->pertemuan10, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -728,10 +764,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan11 == null) {
                                 $h11 = 0;
                                 } elseif ($absen->pertemuan11 == 'Sakit'){
-                                $h11 = 0.5;
+                                $h11 = 0;
                                 $sakits++;
                                 }else {
-                                $h11 = 0.5;
+                                $h11 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -739,7 +775,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h11 }}
+                                {{ $h11 == '1' ? "√" : strtoupper(substr($absen->pertemuan11, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -773,10 +809,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan12 == null) {
                                 $h12 = 0;
                                 } elseif ($absen->pertemuan12 == 'Sakit'){
-                                $h12 = 0.5;
+                                $h12 = 0;
                                 $sakits++;
                                 }else {
-                                $h12 = 0.5;
+                                $h12 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -784,7 +820,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h12 }}
+                                {{ $h12 == '1' ? "√" : strtoupper(substr($absen->pertemuan12, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -818,10 +854,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan13 == null) {
                                 $h13 = 0;
                                 } elseif ($absen->pertemuan13 == 'Sakit'){
-                                $h13 = 0.5;
+                                $h13 = 0;
                                 $sakits++;
                                 }else {
-                                $h13 = 0.5;
+                                $h13 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -829,7 +865,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h13 }}
+                                {{ $h13 == '1' ? "√" : strtoupper(substr($absen->pertemuan13, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -863,10 +899,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan14 == null) {
                                 $h14 = 0;
                                 } elseif ($absen->pertemuan14 == 'Sakit'){
-                                $h14 = 0.5;
+                                $h14 = 0;
                                 $sakits++;
                                 }else {
-                                $h14 = 0.5;
+                                $h14 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -874,7 +910,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h14 }}
+                                {{ $h14 == '1' ? "√" : strtoupper(substr($absen->pertemuan14, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -908,10 +944,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan15 == null) {
                                 $h15 = 0;
                                 } elseif ($absen->pertemuan15 == 'Sakit'){
-                                $h15 = 0.5;
+                                $h15 = 0;
                                 $sakits++;
                                 }else {
-                                $h15 = 0.5;
+                                $h15 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -919,7 +955,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h15 }}
+                                {{ $h15 == '1' ? "√" : strtoupper(substr($absen->pertemuan15, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -953,10 +989,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan16 == null) {
                                 $h16 = 0;
                                 } elseif ($absen->pertemuan16 == 'Sakit'){
-                                $h16 = 0.5;
+                                $h16 = 0;
                                 $sakits++;
                                 }else {
-                                $h16 = 0.5;
+                                $h16 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -964,7 +1000,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h16 }}
+                                {{ $h16 == '1' ? "√" : strtoupper(substr($absen->pertemuan16, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -998,10 +1034,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan17 == null) {
                                 $h17 = 0;
                                 } elseif ($absen->pertemuan17 == 'Sakit'){
-                                $h17 = 0.5;
+                                $h17 = 0;
                                 $sakits++;
                                 }else {
-                                $h17 = 0.5;
+                                $h17 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -1009,7 +1045,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h17 }}
+                                {{ $h17 == '1' ? "√" : strtoupper(substr($absen->pertemuan17, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -1043,10 +1079,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 } elseif ($absen->pertemuan18 == null) {
                                 $h18 = 0;
                                 } elseif ($absen->pertemuan18 == 'Sakit'){
-                                $h18 = 0.5;
+                                $h18 = 0;
                                 $sakits++;
                                 }else {
-                                $h18 = 0.5;
+                                $h18 = 0;
                                 $izins++;
                                 }
                                 @endphp
@@ -1054,7 +1090,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                                 @else
 
-                                {{ $h18 }}
+                                {{ $h18 == '1' ? "√" : strtoupper(substr($absen->pertemuan18, 0, 1)) }}
                                 @endif
                             </td>
                             <td>
@@ -1106,8 +1142,6 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                             <td>{{ number_format($persentase, 2) ?? '' }}%</td>
                             @if (Auth::user()->role == 'dosen')
                                 <td>
-                                    <a href="{{ $data->status_aktif == 'Aktif' ? '/absen/edit/'.$jadwalId.'/'.$absen->id.'' : '#' }}"
-                                        class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
                                     @if ($alfas == '3')
 
                                     <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AAnda sudah tidak mengikuti perkuliahan saya sebanyak 3x. Mohon diperhatikan lagi kehadirannya!&type=phone_number&app_absent=0"
@@ -1122,16 +1156,16 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                     @endif
                                 </td>
                             @endif
-                            @if (Auth::user()->role == 'prodi')
+                        @if (Auth::user()->role == 'prodi')
                             <td>
-                                    @if ($alfas >= '3')
-                                        <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AKami dari Program Studi mengingatkan Anda. Bahwa Anda sudah tidak mengikuti perkuliahan sebanyak {{ $alfas }}. Perbaiki atau tidak dapat melaksanakan ujian-ujian!&type=phone_number&app_absent=0"
-                                            class="btn btn-sm btn-danger btn-icon" target="_blank"><i
-                                                class="mdi mdi-whatsapp"></i></a>
+                                @if ($alfas >= '3')
+                                    <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AKami dari Program Studi mengingatkan Anda. Bahwa Anda sudah tidak mengikuti perkuliahan sebanyak {{ $alfas }}. Perbaiki atau tidak dapat melaksanakan ujian-ujian!&type=phone_number&app_absent=0"
+                                        class="btn btn-sm btn-danger btn-icon" target="_blank"><i
+                                            class="mdi mdi-whatsapp"></i></a>
+                                @endif
                             </td>
-                                    @endif
-                            @endif
-
+                        @endif
+                            </td>
                         </tr>
 
                         @endforeach
@@ -1164,7 +1198,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                             @endif
                         </tr>
                         <tr class="text-center">
-                            <td colspan="3">Jumlah Mahasiswa Hadir</td>
+                            <td colspan="3" style="position: sticky; left: 0px; background-color: yellow">Jumlah Mahasiswa Hadir</td>
+                            @if (Auth::user()->role == 'dosen' || Auth::user()->role == 'prodi')
+                            <td style="position: sticky; left: 218px; background-color: yellow"></td>
+                            @endif
                             <td>{{ $jmlHadir1 }}</td>
                             <td></td>
                             <td>{{ $jmlHadir2  }} </td>
@@ -1203,13 +1240,35 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                             @for ($i = 1; $i < 7; $i++)
                                 <td></td>
                             @endfor
-                            @if (Auth::user()->role == 'dosen')
-                            <td></td>
-                            @endif
 
                         </tr>
 
                     </tbody>
+                </table>
+            </div>
+            <div class="mt-4">
+                <h4>Keterangan: </h4>
+                <table>
+                    <tr>
+                        <td>Hadir</td>
+                        <td>:</td>
+                        <td>√</td>
+                    </tr>
+                    <tr>
+                        <td>Alfa</td>
+                        <td>:</td>
+                        <td>A</td>
+                    </tr>
+                    <tr>
+                        <td>Izin</td>
+                        <td>:</td>
+                        <td>I</td>
+                    </tr>
+                    <tr>
+                        <td>Sakit</td>
+                        <td>:</td>
+                        <td>S</td>
+                    </tr>
                 </table>
             </div>
         </div>

@@ -154,8 +154,8 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                                 <th class="text-light">WAKTU<br>PERKULIAHAN</th>
                                 <th class="text-light">POKOK PEMBAHASAN</th>
                                 <th class="text-light">JML HADIR<br>MAHASISWA</th>
-                                <th class="text-light">TTD DOSEN</th>
-                                <th class="text-light">TTD KETUA<br>KELAS</th>
+                                {{-- <th class="text-light">TTD DOSEN</th>
+                                <th class="text-light">TTD KETUA<br>KELAS</th> --}}
                             @if (Auth::user()->role == 'dosen')
                                 <th class="text-light">AKSI</th>
                             @endif
@@ -183,16 +183,16 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                                 <td class="text-center">{{ $bap->jam_masuk }} s.d. {{ $bap->jam_keluar }}</td>
                                 <td>{{ $bap->pembahasan }}</td>
                                 <td class="text-center">{{ $bap->jumlah_mhs }}</td>
-                                <td></td>
-                                <td></td>
+                                {{-- <td></td>
+                                <td></td> --}}
                             @if (Auth::user()->role == 'dosen')
                                 <td class="text-center">
                                     <a href="{{ route('beritaacara.edit', [$jadwalId, $matkulSelect, $kelasSelect, $dosenID, $bap->id]) }}"
                                         class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
-                                    <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
+                                    {{-- <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
                                         data-bs-target="#id_{{ $bap->id }}">
                                         <i class="mdi mdi-delete"></i>
-                                    </button>
+                                    </button> --}}
 
                                     <!-- Modal -->
                                     <div class="modal fade text-center text-wrap" id="id_{{ $bap->id }}" tabindex="-1"
