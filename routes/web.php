@@ -125,10 +125,10 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     // Route::get('/kelases/cetak', [CetakController::class, 'cetakKelas'])->name('kelas.cetak');
 
     // //kelas mahasiswa
-    // Route::livewire('/kelasmhsws', 'kelasmhs.index')->name('kelasmhs.index');
-    // Route::livewire('/kelasmhsw/create', 'kelasmhs.create')->name('kelasmhs.create');
-    // // Route::livewire('/kelasmhsw/edit/{id}', 'kelasmhs.edit')->name('kelasmhs.edit');
-    // Route::get('/kelasmhsws/cetak', [CetakController::class, 'cetakKelasmhsw'])->name('kelasmhsw.cetak');
+    Route::livewire('/kelasmhsws', 'kelasmhs.index')->name('kelasmhs.index');
+    Route::livewire('/kelasmhsw/create', 'kelasmhs.create')->name('kelasmhs.create');
+    // Route::livewire('/kelasmhsw/edit/{id}', 'kelasmhs.edit')->name('kelasmhs.edit');
+    Route::get('/kelasmhsws/cetak', [CetakController::class, 'cetakKelasmhsw'])->name('kelasmhsw.cetak');
 
     //ruangan
     Route::livewire('/ruangans', 'ruangan.index')->name('ruangan.index');
@@ -253,7 +253,7 @@ Route::middleware(['auth', 'role:akademik,prodi'])->group(function () {
     // dosen
     Route::livewire('/dosens', 'dosen.index')->name('dosen.index');
     // Route::livewire('/dosen/create', 'dosen.create')->name('dosen.create');
-    Route::livewire('/dosen/edit/{id}', 'dosen.edit')->name('dosen.edit');
+    // Route::livewire('/dosen/edit/{id}', 'dosen.edit')->name('dosen.edit');
     Route::livewire('/dosen/show/{id}', 'dosen.show')->name('dosen.show');
     Route::get('/dosens/cetak', [CetakDosenController::class, 'index'])->name('dosen.cetak');
 
@@ -271,10 +271,10 @@ Route::middleware(['auth', 'role:akademik,prodi'])->group(function () {
     Route::get('/dfmatkuls/cetak', [CetakController::class, 'cetakDFmatkul'])->name('dfmatkul.cetak');
 
     //kelas mahasiswa
-    Route::livewire('/kelasmhsws', 'kelasmhs.index')->name('kelasmhs.index');
-    Route::livewire('/kelasmhsw/create', 'kelasmhs.create')->name('kelasmhs.create');
-    // Route::livewire('/kelasmhsw/edit/{id}', 'kelasmhs.edit')->name('kelasmhs.edit');
-    Route::get('/kelasmhsws/cetak', [CetakController::class, 'cetakKelasmhsw'])->name('kelasmhsw.cetak');
+    // Route::livewire('/kelasmhsws', 'kelasmhs.index')->name('kelasmhs.index');
+    // Route::livewire('/kelasmhsw/create', 'kelasmhs.create')->name('kelasmhs.create');
+    // // Route::livewire('/kelasmhsw/edit/{id}', 'kelasmhs.edit')->name('kelasmhs.edit');
+    // Route::get('/kelasmhsws/cetak', [CetakController::class, 'cetakKelasmhsw'])->name('kelasmhsw.cetak');
 
     // absen
     Route::livewire('/absensis', 'absen.index')->name('absen.index');
@@ -301,6 +301,10 @@ Route::middleware(['auth', 'role:akademik,prodi,dosen,mahasiswa'])->group(functi
 
     // absen->search
     Route::livewire('/absensis/{jadwal}/{dfkelas}/{dfmatkul}', 'absen.mhs')->name('absen.mhs');
+
+    // edit profil dosen
+    Route::livewire('/dosen/edit/{id}', 'dosen.edit')->name('dosen.edit');
+
 });
 
 Auth::routes();

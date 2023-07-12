@@ -129,9 +129,9 @@
                         <li class="nav-item">
                             <a href="{{ route('dfkelas.index') }}" class="nav-link">Daftar Kelas</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ route('kelasmhs.index') }}" class="nav-link">Kelas Mahasiswa</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="{{ route('dfmatkul.index') }}" class="nav-link">Daftar Matakuliah</a>
                         </li>

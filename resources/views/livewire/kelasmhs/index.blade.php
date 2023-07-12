@@ -69,10 +69,20 @@
 
                                 <td class="text-center">
 
-                                    <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
-                                        data-bs-target="#id_{{ $klsmhs->id }}">
-                                        <i class="mdi mdi-delete"></i>
-                                    </button>
+                                    @php
+                                        $relasiAbsen = DB::table('absensis')
+                                                            ->where('kelas_id', $klsmhs->kelas_id)
+                                                            ->first();
+                                        // dd($relasiAbsen);
+                                    @endphp
+                                    @if ($relasiAbsen)
+
+                                    @else
+                                        <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
+                                            data-bs-target="#id_{{ $klsmhs->id }}">
+                                            <i class="mdi mdi-delete"></i>
+                                        </button>
+                                    @endif
 
                                     <!-- Modal -->
                                     <div class="modal fade text-center text-wrap" id="id_{{ $klsmhs->id }}" tabindex="-1"

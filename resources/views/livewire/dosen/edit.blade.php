@@ -16,7 +16,7 @@
                         Ubah Data Dosen
                     </h4>
                 </div>
-                @if ($this->dosenId == null || $this->nidn == null)
+                @if ($this->dosenId == null)
                 <div class="main-wrapper">
                     <div class="page-wrapper full-page">
                         <div class="page-content d-flex align-items-center justify-content-center">
@@ -40,7 +40,7 @@
                         <div class="col-sm-6">
                             <label for="nama">Nama Lengkap: </label>
                             <div class="mb-3 input-group">
-                                <input type="text" id="nama" name="nama" wire:model="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Masukkan Nama Lengkap Beserta Gelar || Con: Dr. Jhon Doe, M.Pd." disabled>
+                                <input type="text" id="nama" name="nama" wire:model="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Masukkan Nama Lengkap Beserta Gelar || Con: Dr. Jhon Doe, M.Pd.">
                                 <span class="input-group-text"><h4><i class="mdi mdi-account"></i></h4></span>
                                 @error('nama')
                                 <span class="invalid-feedback">
@@ -66,7 +66,7 @@
                         <div class="col-sm-6">
                             <label for="nip">NIP: </label>
                             <div class="mb-3 input-group">
-                                <input type="text" id="nip" name="nip" wire:model="nip" class="form-control @error('nip') is-invalid @enderror" placeholder="Masukkan NIP" disabled>
+                                <input type="text" id="nip" name="nip" wire:model="nip" class="form-control @error('nip') is-invalid @enderror" placeholder="Masukkan NIP" {{ Auth::user()->role == 'akademik' ? '' : 'disabled' }}>
                                 <span class="input-group-text"><h4><i class="mdi mdi-barcode"></i></h4></span>
                                 @error('nip')
                                 <span class="invalid-feedback">
@@ -78,7 +78,7 @@
                         <div class="col-sm-6">
                             <label for="nidn">NIDN: </label>
                             <div class="mb-3 input-group">
-                                <input type="text" id="nidn" name="nidn" wire:model="nidn" class="form-control @error('nidn') is-invalid @enderror" placeholder="Masukkan NIDN" disabled>
+                                <input type="text" id="nidn" name="nidn" wire:model="nidn" class="form-control @error('nidn') is-invalid @enderror" placeholder="Masukkan NIDN" {{ Auth::user()->role == 'akademik' ? '' : 'disabled' }}>
                                 <span class="input-group-text"><h4><i class="mdi mdi-barcode"></i></h4></span>
                                 @error('nidn')
                                 <span class="invalid-feedback">
@@ -171,7 +171,7 @@
                         <div class="col-sm-4">
                             <label for="status_aktif">Status Aktif: </label>
                             <div class="mb-3 input-group">
-                                <select id="status_aktif" name="status_aktif" wire:model="status_aktif" class="form-control @error('status_aktif') is-invalid @enderror">
+                                <select id="status_aktif" name="status_aktif" wire:model="status_aktif" class="form-control @error('status_aktif') is-invalid @enderror" {{ Auth::user()->role == 'akademik' ? '' : 'disabled' }}>
                                     <option value="" hidden>--- Pilih Status Aktif ---</option>
                                     <option value="Aktif">Aktif</option>
                                     <option value="Tidak Aktif">Tidak Aktif</option>
@@ -203,7 +203,7 @@
                         <div class="col-sm-6">
                             <label for="email">Email: </label>
                             <div class="mb-3 input-group">
-                                <input type="text" id="email" name="email" wire:model="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Alamat Email Aktif" disabled>
+                                <input type="text" id="email" name="email" wire:model="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Alamat Email Aktif" {{ Auth::user()->role == 'akademik' ? '' : 'disabled' }}>
                                 <span class="input-group-text"><h4><i class="mdi mdi-email"></i></h4></span>
                                 @error('email')
                                 <span class="invalid-feedback">

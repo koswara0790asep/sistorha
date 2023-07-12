@@ -19,12 +19,22 @@ class Index extends Component
     public $matkulSelect;
     public $kelasSelect;
 
+    public $colors;
     // public $prodiId;
 
     use WithFileUploads;
 
     public function render()
     {
+        $this->colors = [
+            'success' => 'success',
+            'danger' => 'danger',
+            'warning' => 'warning',
+            'info' => 'info',
+            'primary' => 'primary',
+            'secondary' => 'secondary',
+        ];
+
         if (Auth::user()->role == 'prodi') {
             $dtProdi = ProgramStudi::where('kode', Auth::user()->username)->first();
             $matkuls = DfMatkul::where('program_studi', $dtProdi->id)->select('df_matkuls.*')->get();
@@ -37,6 +47,7 @@ class Index extends Component
                 ''
                 :
                 Absensi::first()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where('matkul_id', 'like', '%' . $this->matkulSelect . '%')->get(),
+                'colors' => $this->colors,
             ]);
         } else {
             return view('livewire.absen.index', [
@@ -46,6 +57,7 @@ class Index extends Component
                 ''
                 :
                 Absensi::first()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where('matkul_id', 'like', '%' . $this->matkulSelect . '%')->get(),
+                'colors' => $this->colors,
             ]);
         }
     }

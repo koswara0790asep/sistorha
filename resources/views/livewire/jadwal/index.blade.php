@@ -147,8 +147,6 @@
                                 </td>
                                 <td class="text-center">
                                     @php
-
-
                                         $beritaacaras = $jadw->matkul_id == null && $jadw->kelas_id == null ?
                                         ''
                                         :

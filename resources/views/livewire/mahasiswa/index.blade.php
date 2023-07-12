@@ -14,15 +14,17 @@
                 @endif
                 <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                     <i class="mdi mdi-printer"></i> Cetak</a>
+                @if (Auth::user()->role == 'akademik')
                 <!-- Button trigger modal -->
                 <button type="button" onclick="toggle()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                     <i class="mdi mdi-file-import"></i> Import XLSX</button>
+                @endif
             </div>
         </div>
     </div>
 
     {{-- Toggle --}}
-    <div id="content" class="mb-3" style="display: block;">
+    <div id="content" class="mb-3" style="display: {{ Auth::user()->role == 'akademik' ? 'block' : 'none' }};">
         <div class="card">
 
             <div class="card-header">

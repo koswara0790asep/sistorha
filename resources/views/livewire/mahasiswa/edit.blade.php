@@ -46,7 +46,7 @@
                             <div class="mb-3 input-group">
                                 <input type="text" id="nama" name="nama" wire:model="nama"
                                     class="form-control @error('nama') is-invalid @enderror"
-                                    placeholder="Masukkan Nama Lengkap" disabled>
+                                    placeholder="Masukkan Nama Lengkap" {{ Auth::user()->role == 'akademik' ? '' : 'disabled' }}>
                                 <span class="input-group-text">
                                     <h4><i class="mdi mdi-account"></i></h4>
                                 </span>
@@ -61,7 +61,7 @@
                             <label for="nik">NIK: </label>
                             <div class="mb-3 input-group">
                                 <input type="text" id="nik" name="nik" wire:model="nik"
-                                    class="form-control @error('nik') is-invalid @enderror" placeholder="Masukkan NIK">
+                                    class="form-control @error('nik') is-invalid @enderror" placeholder="Masukkan NIK" {{ Auth::user()->role == 'akademik' ? '' : 'disabled' }}>
                                 <span class="input-group-text">
                                     <h4><i class="mdi mdi-barcode"></i></h4>
                                 </span>
@@ -78,7 +78,7 @@
                             <label for="nim">NIM: </label>
                             <div class="mb-3 input-group">
                                 <input type="text" id="nim" name="nim" wire:model="nim"
-                                    class="form-control @error('nim') is-invalid @enderror" placeholder="Masukkan NIM" disabled>
+                                    class="form-control @error('nim') is-invalid @enderror" placeholder="Masukkan NIM" {{ Auth::user()->role == 'akademik' ? '' : 'disabled' }}>
                                 <span class="input-group-text">
                                     <h4><i class="mdi mdi-barcode"></i></h4>
                                 </span>
@@ -244,7 +244,7 @@
                         <div class="col-sm-6">
                             <label for="email">Email: </label>
                             <div class="mb-3 input-group">
-                                <input type="text" id="email" name="email" wire:model="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Alamat Email Aktif" disabled>
+                                <input type="text" id="email" name="email" wire:model="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Alamat Email Aktif" {{ Auth::user()->role == 'akademik' ? '' : 'disabled' }}>
                                 <span class="input-group-text"><h4><i class="mdi mdi-email"></i></h4></span>
                                 @error('email')
                                 <span class="invalid-feedback">

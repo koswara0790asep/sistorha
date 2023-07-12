@@ -56,12 +56,23 @@
                                     {{ $ruang->kode }}
                                 </td>
 
+                                @php
+                                    $relasiRuang = DB::table('jadwals')
+                                                        ->where('ruang_id', $ruang->id)
+                                                        ->first();
+                                                        // dd($relasiRuang);
+                                @endphp
+
                                 <td class="text-center">
+                                    @if ($relasiRuang)
+
+                                    @else
 
                                     <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
                                         data-bs-target="#id_{{ $ruang->id }}">
                                         <i class="mdi mdi-delete"></i>
                                     </button>
+                                    @endif
 
                                     <!-- Modal -->
                                     <div class="modal fade text-center text-wrap" id="id_{{ $ruang->id }}" tabindex="-1"

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Dosen;
 
 use App\Models\Dosen;
 use App\Models\ProgramStudi;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -54,8 +55,8 @@ class Edit extends Component
         $this->validate([
             'nama' => 'required',
             'nik' => 'required',
-            'nip' => 'required',
-            'nidn' => 'required',
+            // 'nip' => 'required',
+            // 'nidn' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'agama' => 'required',
@@ -89,11 +90,20 @@ class Edit extends Component
             }
         }
 
-        //flash message
-        Alert::success('BERHASIL!','Data Dosen ' . $this->nama . ' Berhasil Diperbaharui!');
+        $userId = Auth::user()->id;
 
         // redirect
-        return redirect()->route('dosen.index');
+        if (Auth::user()->role == 'dosen') {
+            // dd(Auth::user()->id);
+            //flash message
+            Alert::success('BERHASIL!','Data Anda Berhasil Diperbaharui!');
+            return redirect('/user/profil/'. $userId .'');
+        } else {
+            //flash message
+            Alert::success('BERHASIL!','Data Dosen ' . $this->nama . ' Berhasil Diperbaharui!');
+            return redirect()->route('dosen.index');
+        }
+
     }
 
     public function render()

@@ -36,14 +36,16 @@ class Create extends Component
         $beritaacara = $this->matkulSelect == null && $this->kelasSelect == null ?
         ''
         :
-        BeritaAcara::latest()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $this->matkulSelect . '%')->select('berita_acaras.*', 'id', 'pertemuan')->first();
+        BeritaAcara::first()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $this->matkulSelect . '%')->select('berita_acaras.*', 'id', 'pertemuan')->get();
         // dd(count($beritaacara));
 
-        $lastMeet = $beritaacara->pertemuan ?? 0;
+        $lastMeet = count($beritaacara);
         if ($lastMeet == 0) {
             $this->pertemuan = $lastMeet + 1;
-        } elseif ($beritaacara->pertemuan == 8) {
+        } elseif ($lastMeet == 8) {
             $this->pertemuan = $lastMeet + 2;
+        } elseif ($lastMeet >= 8) {
+            $this->pertemuan = $lastMeet - 1;
         } else {
             $this->pertemuan = $lastMeet + 1;
         }

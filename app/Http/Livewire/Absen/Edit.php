@@ -139,8 +139,7 @@ class Edit extends Component
                         ]);
                     }
                 }
-            }
-            if ($absen->pertemuan2 != 'Hadir') {
+            } elseif ($absen->pertemuan2 != 'Hadir') {
 
                 $beritaacara = DB::table('berita_acaras')
                                 ->where('kelas_id', $this->kelas_id ?? '')
@@ -160,8 +159,7 @@ class Edit extends Component
                         ]);
                     }
                 }
-            }
-            if ($absen->pertemuan3 != 'Hadir') {
+            } elseif ($absen->pertemuan3 != 'Hadir') {
 
                 $beritaacara = DB::table('berita_acaras')
                                 ->where('kelas_id', $this->kelas_id ?? '')
@@ -181,14 +179,274 @@ class Edit extends Component
                         ]);
                     }
                 }
+            } elseif ($absen->pertemuan4 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '4')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan4 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            } elseif ($absen->pertemuan5 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '5')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan5 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            } elseif ($absen->pertemuan6 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '6')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan6 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            } elseif ($absen->pertemuan7 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '7')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan7 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            } elseif ($absen->pertemuan8 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '8')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan8 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            } elseif ($absen->pertemuan10 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '10')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan10 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            } elseif ($absen->pertemuan11 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '11')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan11 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            } elseif ($absen->pertemuan12 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '12')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan12 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            } elseif ($absen->pertemuan13 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '13')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan13 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            } elseif ($absen->pertemuan14 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '14')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan14 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            } elseif ($absen->pertemuan15 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '15')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan15 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            } elseif ($absen->pertemuan16 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '16')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan16 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
+            } elseif ($absen->pertemuan17 != 'Hadir') {
+
+                $beritaacara = DB::table('berita_acaras')
+                                ->where('kelas_id', $this->kelas_id ?? '')
+                                ->where('matkul_id', $this->matkul_id ?? '')
+                                ->where('pertemuan', '17')
+                                ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+                                ->first();
+
+                $bap = BeritaAcara::find($beritaacara->id);
+                // dd($bap);
+                $lastSum = $bap->jumlah_mhs + 1;
+                // dd($lastSum);
+                if ($this->pertemuan17 == 'Hadir') {
+                    if ($bap) {
+                        $bap->update([
+                            'jumlah_mhs' => $lastSum,
+                        ]);
+                    }
+                }
             }
 
             if ($absen) {
                 $absen->update([
-                    // 'matkul_id' => $this->matkul_id,
-                    // 'kelas_id' => $this->kelas_id,
-                    // 'semester' => $this->semester,
-                    // 'nim' => $this->nim,
+                    'matkul_id' => $this->matkul_id,
+                    'kelas_id' => $this->kelas_id,
+                    'semester' => $this->semester,
+                    'nim' => $this->nim,
                     'pertemuan1' => $this->pertemuan1,
                     'pertemuan2' => $this->pertemuan2,
                     'pertemuan3' => $this->pertemuan3,
@@ -225,10 +483,9 @@ class Edit extends Component
                     'telat16' => $this->telat16,
                     'telat17' => $this->telat17,
                     'telat18' => $this->telat18,
-                    // 'keterangan' => $this->keterangan,
+                    'keterangan' => $this->keterangan,
                 ]);
             }
-            // dd($absen->pertemuan1 != $this->pertemuan1 ? true : false);
 
         }
 
@@ -242,13 +499,6 @@ class Edit extends Component
 
     public function render()
     {
-        // $beritaacaras = DB::table('berita_acaras')
-        //                     ->where('kelas_id', $this->kelas_id ?? '')
-        //                     ->where('matkul_id', $this->matkul_id ?? '')
-        //                     ->where('pertemuan', '3')
-        //                     ->get();
-
-        // dd($beritaacaras);
 
         return view('livewire.absen.edit');
     }

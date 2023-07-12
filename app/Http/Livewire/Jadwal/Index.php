@@ -20,7 +20,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class Index extends Component
 {
     public $jadwalId;
-    public $dosenNIDN;
+    public $dosenNIK;
     public $dosenId;
 
     public $mhsNIM;
@@ -50,8 +50,8 @@ class Index extends Component
     public function mount(Dosen $dosen, KelasMhsw $kelasMhsw)
     {
         if (Auth::user()->role == 'dosen') {
-            $this->dosenNIDN = $dosen->nidn;
-            $dosen = Dosen::where('nidn', $this->dosenNIDN)->first();
+            $this->dosenNIK = $dosen->nik;
+            $dosen = Dosen::where('nik', $this->dosenNIK)->first();
             if ($dosen) {
                 $this->dosenId = $dosen->id;
             }

@@ -28,8 +28,8 @@ class Create extends Component
         $this->validate([
             'nama' => 'required',
             'nik' => 'required',
-            'nip' => 'required',
-            'nidn' => 'required',
+            // 'nip' => 'required',
+            // 'nidn' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'agama' => 'required',

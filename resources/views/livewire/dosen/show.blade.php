@@ -39,7 +39,7 @@
                 <div class="text-center mt-3">
                     <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                         <label class="btn btn-sm btn-outline-primary">
-                            <i class="mdi mdi-account"></i> {{ $dosen->nama }} ({{ $dosen->nip }}/{{ $dosen->nidn }})
+                            <i class="mdi mdi-account"></i> {{ $dosen->nama }} ({{ $dosen->nip ?? 'Belum ada NIP' }}/{{ $dosen->nidn ?? 'Belum ada NIDN' }})
                         </label>
                         @if ($dosen->status_aktif == 'Aktif')
                             <label class="btn btn-sm btn-outline-success">

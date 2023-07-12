@@ -1,3 +1,9 @@
+@php
+    $data = DB::table('dosens')->where('nik',
+    Auth::user()->username)->select('dosens.*', 'id', 'status_aktif', 'nik', 'nidn', 'nip', 'alamat', 'agama', 'no_hp', 'program_studi', 'jenis_kelamin')->first() ?? DB::table('dosens')->where('nidn',
+    Auth::user()->username)->select('dosens.*', 'id', 'status_aktif', 'nik', 'nidn', 'nip', 'alamat', 'agama', 'no_hp', 'program_studi', 'jenis_kelamin')->first();
+    // dd($data);
+@endphp
 <div class="row">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-arrwo">
@@ -13,6 +19,9 @@
                         <i class="mdi mdi-account-box"></i> Profil User
                     </h3>
                     <div style="text-align: right; margin-top: -35px;">
+                        @if (Auth::user()->role == 'dosen')
+                            <a href="{{ route('dosen.edit', $data->id) }}" class="btn btn-warning btn-sm btn-icon-text">Edit <i class="mdi mdi-lead-pencil"></i></a>
+                        @endif
                         @if (Auth::user()->role == 'akademik')
                             <a href="/dashboard/akademik" class="btn btn-danger btn-sm btn-icon-text">
                         @elseif (Auth::user()->role == 'prodi')
@@ -26,6 +35,7 @@
                             <i class="mdi mdi-arrow-left"></i>
                             Kembali
                         </a>
+
                     </div>
                 </div>
             </div>
@@ -114,15 +124,12 @@
                                     <h4>
                                         <b>
                                         Nama:
-                                        @php
-                                            $data = DB::table('dosens')->where('nidn',
-                                            Auth::user()->username)->select('dosens.*', 'status_aktif', 'nik', 'nidn', 'nip', 'alamat', 'agama', 'no_hp', 'program_studi', 'jenis_kelamin')->first();
-                                        @endphp
+
                                         </b>
                                     </h4>
                                     <p>{{ Auth::user()->name }}</p>
                                     <hr>
-                                    <h4><b> Username/NIDN: </b></h4>
+                                    <h4><b> Username: </b></h4>
                                     <p>{{ Auth::user()->username }}</p>
                                     <hr>
                                     <h4><b> E-mail: </b></h4>
@@ -151,7 +158,10 @@
                                     <p>{{ $data->nik }}</p>
                                     <hr>
                                     <h4><b> NIP: </b></h4>
-                                    <p>{{ $data->nip }}</p>
+                                    <p>{{ $data->nip ?? 'Belum ada NIP' }}</p>
+                                    <hr>
+                                    <h4><b> NIDN: </b></h4>
+                                    <p>{{ $data->nidn ?? 'Belum ada NIDN' }}</p>
                                     <hr>
                                     <h4><b> Tempat / Tanggal Lahir: </b></h4>
                                     <p>{{ $data->tempat_lahir }} / {{ \Carbon\Carbon::parse($data->tanggal_lahir)->isoFormat('dddd, D MMMM YYYY') }}</p>

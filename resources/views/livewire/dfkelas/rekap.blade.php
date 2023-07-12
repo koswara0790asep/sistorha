@@ -471,11 +471,18 @@
             @foreach ($dtJadwals as $jadwal)
                 @php
                     $beritaacaras = DB::table('berita_acaras')->where('kelas_id', $jadwal->kelas_id ?? '')->where('matkul_id', $jadwal->matkul_id ?? '')->select('berita_acaras.*', 'kelas_id', 'matkul_id')->get();
+                    // dd(count($beritaacaras));
                 @endphp
                 <td style='text-align: center;border:1px solid black;'>
-                    @if (count($beritaacaras) == 16)
+                    @if (count($beritaacaras) == 8 || count($beritaacaras) == 16)
                         @php
                             $beritaacaras = count($beritaacaras) + 2;
+                            $persentaseDsn = 100 * ($beritaacaras/18);
+                        @endphp
+                        {{ $beritaacaras }}
+                    @elseif (count($beritaacaras) >= 8)
+                        @php
+                            $beritaacaras = count($beritaacaras) + 1;
                             $persentaseDsn = 100 * ($beritaacaras/18);
                         @endphp
                         {{ $beritaacaras }}

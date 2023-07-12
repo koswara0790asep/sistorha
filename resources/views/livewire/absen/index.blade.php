@@ -5,7 +5,7 @@
             <div class="col-md-8">
                 <ol class="breadcrumb breadcrumb-arrwo mt-2">
                     <li class="breadcrumb-item" aria-current="page"> Olah Data</li>
-                    <li class="breadcrumb-item active" aria-current="page"> Halaman Absen</li>
+                    <li class="breadcrumb-item active" aria-current="page"> Halaman Monitoring Kehadiran</li>
                 </ol>
             </div>
             <div class="col-md-4" style="text-align: right;">
@@ -64,6 +64,7 @@
                     </h4>
                 </div>
             </div>
+
             <div class="card-body">
 
                 <div class="row">
@@ -88,13 +89,481 @@
                             </select>
                             <span class="input-group-text"><h4><i class="mdi mdi-home-variant"></i></h4></span>
                         </div>
+                        {{-- <p>{{ $this->kelasSelect }} {{ $this->matkulSelect }}</p> --}}
                     </div><!-- Col -->
                 </div><!-- Row -->
+
                 @php
-                    $dfKelas = DB::table('df_kelases')->where('id', $kelasSelect ?? '')->select('df_kelases.*', 'id', 'prodi_id', 'kode', 'periode')->first();
-                    $dfMatkul = DB::table('df_matkuls')->where('id', $matkulSelect ?? '')->select('df_matkuls.*', 'id', 'kode_matkul', 'nama_matkul', 'dosen')->first();
+                    // $dfKelas = DB::table('df_kelases')->where('id', $this->kelasSelect ?? '')->select('df_kelases.*', 'id', 'prodi_id', 'kode', 'periode')->first();
+                    // $dfMatkul = DB::table('df_matkuls')->where('id', $this->matkulSelect ?? '')->select('df_matkuls.*', 'id', 'kode_matkul', 'nama_matkul', 'dosen')->first();
                     // $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.*', 'sks', 'jml_jam', 'hari', 'jam_awal', 'jam_akhir')->first();
+
+                    // $beritaacaras = DB::table('berita_acaras')->where('kelas_id', $this->kelasSelect ?? '')->where('matkul_id', $matkulSelect ?? '')->select('berita_acaras.*', 'kelas_id', 'matkul_id')->get();
+                    // dd($this->kelasSelect);
+                    // if ($beritaacaras) {
+                        // if (count($beritaacaras) == 8 || count($beritaacaras) == 16) {
+                        //     $beritaacaras = count($beritaacaras) + 2;
+                        //     $persentaseDsn = 100 * ($beritaacaras/18);
+                        // } elseif (count($beritaacaras) >= 8) {
+                        //     $beritaacaras = count($beritaacaras) + 1;
+                        //     $persentaseDsn = 100 * ($beritaacaras/18);
+                        // }  else {
+                        //     $persentaseDsn = 100 * (count($beritaacaras)/18);
+                        // }
+                    // }
                 @endphp
+                {{-- <div class="col-md-6">
+
+                    <p>{{ count($beritaacaras) ?? '' }} || {{ $persentaseDsn ?? '' }}</p>
+                    <canvas id="chartDonut"></canvas>
+                </div> --}}
+                @php
+                    $dfKelas = DB::table('df_kelases')->where('id', $kelasSelect ?? null)->select('df_kelases.*', 'id', 'prodi_id', 'kode', 'periode')->first();
+                    $dfMatkul = DB::table('df_matkuls')->where('id', $matkulSelect ?? null)->select('df_matkuls.*', 'id', 'kode_matkul', 'nama_matkul', 'dosen')->first();
+                    // $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.*', 'sks', 'jml_jam', 'hari', 'jam_awal', 'jam_akhir')->first();
+
+                    // $beritaacaras = DB::table('berita_acaras')->where('kelas_id', $this->kelasSelect ?? '')->where('matkul_id', $this->matkulSelect ?? '')->select('berita_acaras.*', 'kelas_id', 'matkul_id')->get();
+                    // // dd($this->kelasSelect);
+                    // if (count($beritaacaras) == 8 || count($beritaacaras) == 16) {
+                    //     $beritaacaras = count($beritaacaras) + 2;
+                    //     $persentaseDsn = 100 * ($beritaacaras/18);
+                    // } elseif (count($beritaacaras) >= 8) {
+                    //     $beritaacaras = count($beritaacaras) + 1;
+                    //     $persentaseDsn = 100 * ($beritaacaras/18);
+                    // }  else {
+                    //     $persentaseDsn = 100 * (count($beritaacaras)/18);
+                    // }
+                @endphp
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card text-white bg-{{ array_rand($colors) }} mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="mdi mdi-chart-arc mdi-36px"></span>
+                                    {{-- @if ($this->kelasSelect != null && $this->matkulSelect != null )
+                                        @php
+                                            $beritaacaras = DB::table('berita_acaras')->where('kelas_id', $this->kelasSelect ?? '')->where('matkul_id', $this->matkulSelect ?? '')->select('berita_acaras.*', 'kelas_id', 'matkul_id')->get();
+                                        @endphp
+                                        @if (count($beritaacaras) == 8 || count($beritaacaras) == 16)
+                                            @php
+                                                $persentaseDsn = 100 * ($beritaacaras/18);
+                                            @endphp
+                                        @elseif (count($beritaacaras) >= 8)
+                                            @php
+                                                $persentaseDsn = 100 * ($beritaacaras/18);
+                                            @endphp
+                                        @else
+                                            @php
+                                                $persentaseDsn = 100 * (count($beritaacaras)/18);
+                                            @endphp
+                                        @endif --}}
+                                    {{-- @endif --}}
+                                    <div class="text-end">
+                                        <h4 class="card-title mb-0">
+                                            Total Pertemuan <span class="badge bg-{{ array_rand($colors) }}">
+                                            {{-- @if ($this->kelasSelect != null && $this->matkulSelect != null ) --}}
+                                            @php
+                                                $beritaacaras = DB::table('berita_acaras')->where('kelas_id', $this->kelasSelect ?? '')->where('matkul_id', $this->matkulSelect ?? '')->select('berita_acaras.*', 'kelas_id', 'matkul_id')->get();
+                                            @endphp
+                                                @if (count($beritaacaras) == 8 || count($beritaacaras) == 16)
+                                                    @php
+                                                        $beritaacaras = count($beritaacaras) + 2;
+                                                        $persentaseDsn = 100 * ($beritaacaras/18);
+                                                    @endphp
+                                                    {{ $beritaacaras }}
+                                                @elseif (count($beritaacaras) >= 8)
+                                                    @php
+                                                        $beritaacaras = count($beritaacaras) + 1;
+                                                        $persentaseDsn = 100 * ($beritaacaras/18);
+                                                    @endphp
+                                                    {{ $beritaacaras }}
+                                                @else
+                                                    @php
+                                                        $persentaseDsn = 100 * (count($beritaacaras)/18);
+                                                    @endphp
+                                                    {{ count($beritaacaras) }}
+                                                @endif
+                                                {{-- {{ count($beritaacaras) >= 8 ? count($beritaacaras) : $beritaacaras }} --}}
+                                            </span>
+                                        </h4>
+                                        <p class="card-text">Dari 18 Pertemuan</p>
+                                        <h4>
+                                            @if ($this->kelasSelect != null && $this->matkulSelect != null )
+                                            {{ number_format($persentaseDsn, 2) == 0 ? '0' : number_format($persentaseDsn, 2) }}
+                                            @else
+                                            0
+                                            @endif
+                                            %
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            @php
+                                $bapnya = DB::table('jadwals')->where('kelas_id', $this->kelasSelect ?? '')->where('matkul_id', $this->matkulSelect ?? '')->where('dosen_id', $dfMatkul->dosen ?? '')->select('jadwals.*', 'id')->first();
+                            @endphp
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    Lihat Data <a href="{{ route('dsnBeritaAcara.index', [$bapnya->id ?? '', $this->matkulSelect ?? '', $this->kelasSelect ?? '', $dfMatkul->dosen ?? '']) }}" class="text-white btn-icon-prepend"><span class="mdi mdi-eye-arrow-right mdi-18px"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead class="table table-dark">
+                                    <tr class="text text-center">
+                                        <th colspan="{{ Auth::user()->role == 'prodi' ? 4 : 3 }}">MAHASISWA YANG ABSENNYA KURANG</th>
+                                    </tr>
+                                    <tr class="text text-center">
+                                        <th>NO</th>
+                                        <th>NAMA</th>
+                                        <th>ALFA</th>
+                                        @if (Auth::user()->role == 'prodi')
+                                            <th>AKSI</th>
+                                        @endif
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if ($this->matkulSelect == null && $this->kelasSelect == null)
+                                    <tr>
+                                        <td colspan="{{ Auth::user()->role == 'prodi' ? 45 : 44 }}" class="text-center">Tentukan data terlebih dahulu!</td>
+                                    </tr>
+                                    @elseif ($this->matkulSelect == null && $this->kelasSelect != null)
+                                    <tr>
+                                        <td colspan="{{ Auth::user()->role == 'prodi' ? 45 : 44 }}" class="text-center">Tidak ada mata kuliah ini dalam kelas tersebut!</td>
+                                    </tr>
+
+                                    @elseif ($this->matkulSelect != null && $this->kelasSelect == null)
+                                    <tr>
+                                        <td colspan="{{ Auth::user()->role == 'prodi' ? 45 : 44 }}" class="text-center">Tidak ada kelas untuk mata kuliah tersebut!</td>
+                                    </tr>
+                                    @else
+
+                                    @php
+                                        $h1 = 0;
+                                        $h2 = 0;
+                                        $h3 = 0;
+                                        $h4 = 0;
+                                        $h5 = 0;
+                                        $h6 = 0;
+                                        $h7 = 0;
+                                        $h8 = 0;
+                                        $h9 = 0;
+                                        $h10 = 0;
+                                        $h11 = 0;
+                                        $h12 = 0;
+                                        $h13 = 0;
+                                        $h14 = 0;
+                                        $h15 = 0;
+                                        $h16 = 0;
+                                        $h17 = 0;
+                                        $h18 = 0;
+                                    @endphp
+
+                                    @foreach ($absensis as $absen)
+                                    @php
+                                    $alfas = 0;
+                                    $izins = 0;
+                                    $sakits = 0;
+                                    $data = DB::table('mahasiswas')->where('nim', $absen->nim)->select('mahasiswas.*', 'nama', 'status_aktif', 'no_hp')->first();
+
+                                            if ($absen->pertemuan1 == 'Hadir'){
+                                            $h1 = 1;
+                                            } elseif ($absen->pertemuan1 == 'Alfa') {
+                                            $h1 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan1 == null) {
+                                            $h1 = 0;
+                                            } elseif ($absen->pertemuan1 == 'Sakit'){
+                                            $h1 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h1 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan2 == 'Hadir'){
+                                            $h2 = 1;
+                                            } elseif ($absen->pertemuan2 == 'Alfa') {
+                                            $h2 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan2 == null) {
+                                            $h2 = 0;
+                                            } elseif ($absen->pertemuan2 == 'Sakit'){
+                                            $h2 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h2 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan3 == 'Hadir'){
+                                            $h3 = 1;
+                                            } elseif ($absen->pertemuan3 == 'Alfa') {
+                                            $h3 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan3 == null) {
+                                            $h3 = 0;
+                                            } elseif ($absen->pertemuan3 == 'Sakit'){
+                                            $h3 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h3 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan4 == 'Hadir'){
+                                            $h4 = 1;
+                                            } elseif ($absen->pertemuan4 == 'Alfa') {
+                                            $h4 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan4 == null) {
+                                            $h4 = 0;
+                                            } elseif ($absen->pertemuan4 == 'Sakit'){
+                                            $h4 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h4 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan5 == 'Hadir'){
+                                            $h5 = 1;
+                                            } elseif ($absen->pertemuan5 == 'Alfa') {
+                                            $h5 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan5 == null) {
+                                            $h5 = 0;
+                                            } elseif ($absen->pertemuan5 == 'Sakit'){
+                                            $h5 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h5 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan6 == 'Hadir'){
+                                            $h6 = 1;
+                                            } elseif ($absen->pertemuan6 == 'Alfa') {
+                                            $h6 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan6 == null) {
+                                            $h6 = 0;
+                                            } elseif ($absen->pertemuan6 == 'Sakit'){
+                                            $h6 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h6 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan7 == 'Hadir'){
+                                            $h7 = 1;
+                                            } elseif ($absen->pertemuan7 == 'Alfa') {
+                                            $h7 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan7 == null) {
+                                            $h7 = 0;
+                                            } elseif ($absen->pertemuan7 == 'Sakit'){
+                                            $h7 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h7 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan8 == 'Hadir'){
+                                            $h8 = 1;
+                                            } elseif ($absen->pertemuan8 == 'Alfa') {
+                                            $h8 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan8 == null) {
+                                            $h8 = 0;
+                                            } elseif ($absen->pertemuan8 == 'Sakit'){
+                                            $h8 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h8 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan9 == 'Hadir'){
+                                            $h9 = 1;
+                                            } elseif ($absen->pertemuan9 == 'Alfa') {
+                                            $h9 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan9 == null) {
+                                            $h9 = 0;
+                                            } elseif ($absen->pertemuan9 == 'Sakit'){
+                                            $h9 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h9 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan10 == 'Hadir'){
+                                            $h10 = 1;
+                                            } elseif ($absen->pertemuan10 == 'Alfa') {
+                                            $h10 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan10 == null) {
+                                            $h10 = 0;
+                                            } elseif ($absen->pertemuan10 == 'Sakit'){
+                                            $h10 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h10 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan11 == 'Hadir'){
+                                            $h11 = 1;
+                                            } elseif ($absen->pertemuan11 == 'Alfa') {
+                                            $h11 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan11 == null) {
+                                            $h11 = 0;
+                                            } elseif ($absen->pertemuan11 == 'Sakit'){
+                                            $h11 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h11 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan12 == 'Hadir'){
+                                            $h12 = 1;
+                                            } elseif ($absen->pertemuan12 == 'Alfa') {
+                                            $h12 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan12 == null) {
+                                            $h12 = 0;
+                                            } elseif ($absen->pertemuan12 == 'Sakit'){
+                                            $h12 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h12 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan13 == 'Hadir'){
+                                            $h13 = 1;
+                                            } elseif ($absen->pertemuan13 == 'Alfa') {
+                                            $h13 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan13 == null) {
+                                            $h13 = 0;
+                                            } elseif ($absen->pertemuan13 == 'Sakit'){
+                                            $h13 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h13 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan14 == 'Hadir'){
+                                            $h14 = 1;
+                                            } elseif ($absen->pertemuan14 == 'Alfa') {
+                                            $h14 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan14 == null) {
+                                            $h14 = 0;
+                                            } elseif ($absen->pertemuan14 == 'Sakit'){
+                                            $h14 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h14 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan15 == 'Hadir'){
+                                            $h15 = 1;
+                                            } elseif ($absen->pertemuan15 == 'Alfa') {
+                                            $h15 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan15 == null) {
+                                            $h15 = 0;
+                                            } elseif ($absen->pertemuan15 == 'Sakit'){
+                                            $h15 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h15 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan16 == 'Hadir'){
+                                            $h16 = 1;
+                                            } elseif ($absen->pertemuan16 == 'Alfa') {
+                                            $h16 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan16 == null) {
+                                            $h16 = 0;
+                                            } elseif ($absen->pertemuan16 == 'Sakit'){
+                                            $h16 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h16 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan17 == 'Hadir'){
+                                            $h17 = 1;
+                                            } elseif ($absen->pertemuan17 == 'Alfa') {
+                                            $h17 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan17 == null) {
+                                            $h17 = 0;
+                                            } elseif ($absen->pertemuan17 == 'Sakit'){
+                                            $h17 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h17 = 0;
+                                            $izins++;
+                                            }
+
+                                            if ($absen->pertemuan18 == 'Hadir'){
+                                            $h18 = 1;
+                                            } elseif ($absen->pertemuan18 == 'Alfa') {
+                                            $h18 = 0;
+                                            $alfas++;
+                                            } elseif ($absen->pertemuan18 == null) {
+                                            $h18 = 0;
+                                            } elseif ($absen->pertemuan18 == 'Sakit'){
+                                            $h18 = 0;
+                                            $sakits++;
+                                            }else {
+                                            $h18 = 0;
+                                            $izins++;
+                                            }
+
+                                        @endphp
+
+                                        @if ($alfas >= 3)
+                                            <tr>
+                                                <td class="text text-center">{{ $loop->iteration }}</td>
+                                                <td>{{ $data->nama }}</td>
+                                                <td class="text text-center">{{ $alfas }}</td>
+                                                @if (Auth::user()->role == 'prodi')
+                                                <td class="text text-center">
+                                                    @if ($alfas >= '3')
+                                                        <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AKami dari Program Studi mengingatkan Anda. Bahwa Anda sudah tidak mengikuti perkuliahan sebanyak {{ $alfas }}. Perbaiki atau tidak dapat melaksanakan ujian-ujian!&type=phone_number&app_absent=0"
+                                                            class="btn btn-sm btn-danger btn-icon" target="_blank"><i
+                                                                class="mdi mdi-whatsapp"></i></a>
+                                                    @endif
+                                                </td>
+                                                @endif
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <table>
@@ -1164,6 +1633,69 @@
 
                             @endforeach
                             @endif
+                            <tr>
+                                @for ($i = 1; $i < 45; $i++)
+                                    <td></td>
+                                @endfor
+
+                                @if (Auth::user()->role == 'prodi')
+                                <td></td>
+                                @endif
+                            </tr>
+                            <tr>
+                                @for ($i = 1; $i < 45; $i++)
+                                    <td></td>
+                                @endfor
+
+                                @if (Auth::user()->role == 'prodi')
+                                <td></td>
+                                @endif
+                            </tr>
+                            <tr class="text-center">
+                                <td colspan="3" style="background-color: yellow">Jumlah Mahasiswa Hadir</td>
+                                <td>{{ $jmlHadir1 ?? '0' }}</td>
+                                <td></td>
+                                <td>{{ $jmlHadir2 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir3 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir4 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir5 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir6 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir7 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir8 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir9 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir10 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir11 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir12 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir13 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir14 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir15 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir16 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir17 ?? '0' }} </td>
+                                <td></td>
+                                <td>{{ $jmlHadir18 ?? '0' }} </td>
+                                @for ($i = 1; $i < 7; $i++)
+                                    <td></td>
+                                @endfor
+
+                                @if (Auth::user()->role == 'prodi')
+                                <td></td>
+                                @endif
+                            </tr>
 
                         </tbody>
                     </table>
@@ -1172,4 +1704,3 @@
         </div>
     </div>
 </div>
-

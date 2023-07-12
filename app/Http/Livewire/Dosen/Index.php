@@ -112,23 +112,44 @@ class Index extends Component
             $this->status_aktif = $dosen->status_aktif;
             $this->jenis_kelamin = $dosen->jenis_kelamin;
         }
+        if ($this->nidn == null || $this->nidn == '') {
+            $user = User::where('username', $this->nik)->first();
 
-        $user = User::where('username', $this->nidn)->first();
-        if ($user) {
-            Alert::error('GAGAL!','Data user sudah ada!');
+            if ($user) {
+                Alert::error('GAGAL!','Data user sudah ada!');
+            } else {
+                User::create([
+                    'name' => $this->nama,
+                    'username' => $this->nik,
+                    'email' => $this->email,
+                    'role' => 'dosen',
+                    'password' => Hash::make('12345678'),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                Alert::success('BERHASIL!','Dosen '.$this->name.' berhasil dibuatkan akun!');
+            }
         } else {
-            User::create([
-                'name' => $this->nama,
-                'username' => $this->nidn,
-                'email' => $this->email,
-                'role' => 'dosen',
-                'password' => Hash::make($this->nidn),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            $user = User::where('username', $this->nidn)->first();
 
-            Alert::success('BERHASIL!','Dosen '.$this->name.' berhasil dibuatkan akun!');
+            if ($user) {
+                Alert::error('GAGAL!','Data user sudah ada!');
+            } else {
+                User::create([
+                    'name' => $this->nama,
+                    'username' => $this->nidn,
+                    'email' => $this->email,
+                    'role' => 'dosen',
+                    'password' => Hash::make($this->nidn),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                Alert::success('BERHASIL!','Dosen '.$this->name.' berhasil dibuatkan akun!');
+            }
         }
+
 
         // redirect
         return redirect()->route('dosen.index');
