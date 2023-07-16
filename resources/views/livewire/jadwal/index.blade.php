@@ -84,6 +84,7 @@
                                 <th class="text-light">SKS</th>
                                 <th class="text-light">JAM</th>
                                 <th class="text-light">DOSEN MENGAJAR</th>
+                                <th class="text-light">TAHUN <br>AJAR</th>
                                 <th class="text-light">HARI</th>
                                 <th class="text-light">JAM <br>AWAL</th>
                                 <th class="text-light">JAM <br>AKHIR</th>
@@ -131,6 +132,7 @@
                                         echo $dataDsn->nama;
                                     @endphp
                                 </td>
+                                <td>{{ $jadw->thn_ajar ?? '' }}</td>
                                 <td>{{ $jadw->hari }}</td>
                                 <td>{{ $jadw->jam_awal }}</td>
                                 <td>{{ $jadw->jam_akhir }}</td>

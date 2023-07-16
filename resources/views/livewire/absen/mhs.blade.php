@@ -50,8 +50,11 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                                 Absen</a>
                         </div>
                         @if (Auth::user()->role == 'dosen')
+                        @php
+                            $dtDosen = DB::table('dosens')->where('nik', Auth::user()->username)->select('dosens.*', 'id')->first() ?? DB::table('dosens')->where('nidn', Auth::user()->username)->select('dosens.*', 'id')->first();
+                        @endphp
 
-                        <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}" class="btn btn-danger btn-icon-text">
+                        <a href="{{ route('jadwal.indexDosen', $dtDosen->id) }}" class="btn btn-danger btn-icon-text">
 
                         @elseif (Auth::user()->role == 'prodi')
 

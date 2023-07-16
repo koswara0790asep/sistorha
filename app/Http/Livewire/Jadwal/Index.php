@@ -78,19 +78,19 @@ class Index extends Component
             return view('livewire.jadwal.index', [
                 'jadwals' => $this->klsId == null ?
                 Jadwal::all() :
-                Jadwal::first()->where('kelas_id', 'like', '%' . $this->klsId . '%')->get(),
+                Jadwal::first()->where('kelas_id', $this->klsId . '')->get(),
             ]);
         } elseif (Auth::user()->role == 'prodi') {
             return view('livewire.jadwal.index', [
                 'jadwals' => $this->prodiId == null ?
                 Jadwal::all() :
-                Jadwal::first()->where('prodi_id', 'like', '%' . $this->prodiId . '%')->get(),
+                Jadwal::first()->where('prodi_id', $this->prodiId . '')->where('thn_ajar', date('Y'))->get(),
             ]);
         } else {
             return view('livewire.jadwal.index', [
                 'jadwals' => $this->dosenId == null ?
                 Jadwal::all() :
-                Jadwal::first()->where('dosen_id', 'like', '%' . $this->dosenId . '%')->get(),
+                Jadwal::first()->where('dosen_id', $this->dosenId . '')->where('thn_ajar', date('Y'))->get(),
             ]);
         }
     }

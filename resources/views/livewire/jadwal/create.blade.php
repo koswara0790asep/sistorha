@@ -115,7 +115,7 @@
                 </div><!-- Row -->
 
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <label for="dosen_id">Dosen Pengampu: </label>
                         <div class="mb-3 input-group">
                             <select id="dosen_id" name="dosen_id" wire:model="dosen_id" class="form-select @error('dosen_id') is-invalid @enderror">
@@ -139,7 +139,22 @@
                             @enderror
                         </div>
                     </div><!-- Col -->
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
+                        <label for="thn_ajar">Tahun Ajar: </label>
+                        <div class="mb-3 input-group">
+                            <select id="thn_ajar" name="thn_ajar" wire:model="thn_ajar" class="form-select @error('thn_ajar') is-invalid @enderror" disabled>
+                                {{-- <option value="" hidden>--- Pilih Tahun Ajar ---</option> --}}
+                                <option value="{{ $this->thn_ajar }}">{{ $this->thn_ajar }}</option>
+                            </select>
+                            <span class="input-group-text"><h4><i class="mdi mdi-calendar"></i></h4></span>
+                            @error('thn_ajar')
+                            <span class="invalid-feedback">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
+                    </div><!-- Col -->
+                    <div class="col-sm-4">
                         <label for="hari">Hari: </label>
                         <div class="mb-3 input-group">
                             <select id="hari" name="hari" wire:model="hari" class="form-select @error('hari') is-invalid @enderror">

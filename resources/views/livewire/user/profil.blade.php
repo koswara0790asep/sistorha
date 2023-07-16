@@ -20,7 +20,7 @@
                     </h3>
                     <div style="text-align: right; margin-top: -35px;">
                         @if (Auth::user()->role == 'dosen')
-                            <a href="{{ route('dosen.edit', $data->id) }}" class="btn btn-warning btn-sm btn-icon-text">Edit <i class="mdi mdi-lead-pencil"></i></a>
+                            <a href="{{ route('dosen.edit', $data->id) }}" class="btn btn-warning btn-sm btn-icon-text"><i class="mdi mdi-lead-pencil"></i> Edit</a>
                         @endif
                         @if (Auth::user()->role == 'akademik')
                             <a href="/dashboard/akademik" class="btn btn-danger btn-sm btn-icon-text">

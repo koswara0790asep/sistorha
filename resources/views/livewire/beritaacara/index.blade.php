@@ -42,8 +42,10 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                                 class="mdi mdi-printer"></i> CETAK</a>
 
                                 @if (Auth::user()->role == 'dosen')
-
-                                <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}" class="btn btn-danger btn-icon-text">
+                                @php
+                                    $dtDosen = DB::table('dosens')->where('nik', Auth::user()->username)->select('dosens.*', 'id')->first() ?? DB::table('dosens')->where('nidn', Auth::user()->username)->select('dosens.*', 'id')->first();
+                                @endphp
+                                <a href="{{ route('jadwal.indexDosen', $dtDosen->id) }}" class="btn btn-danger btn-icon-text">
 
                                 @elseif (Auth::user()->role == 'prodi')
 

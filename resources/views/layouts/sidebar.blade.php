@@ -28,6 +28,7 @@
                     <span class="link-title">Dashboard</span>
                 </a>
             </li>
+            <li class="nav-item nav-category">Olah Data</li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#olah" role="button" aria-expanded="false"
                     aria-controls="olah">
@@ -90,7 +91,10 @@
             <li class="nav-item nav-category">web apps</li>
             <li class="nav-item">
                 <li class="nav-item">
-                    <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}" class="nav-link">
+                    @php
+                        $dtDosen = DB::table('dosens')->where('nik', Auth::user()->username)->select('dosens.*', 'id')->first() ?? DB::table('dosens')->where('nidn', Auth::user()->username)->select('dosens.*', 'id')->first();
+                    @endphp
+                    <a href="{{ route('jadwal.indexDosen', $dtDosen->id) }}" class="nav-link">
                         <i class="link-icon" data-feather="book"></i>
                         <span class="link-title">Jadwal Saya</span>
                     </a>

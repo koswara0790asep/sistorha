@@ -121,7 +121,7 @@ class CetakController extends Controller
             return view('livewire.jadwal.cetak', [
                 'jadwals' => $dosenId == null ?
                 Jadwal::get() :
-                Jadwal::first()->where('dosen_id', 'like', '%' . $dosenId . '%')->get(),
+                Jadwal::first()->where('dosen_id', $dosenId)->where('thn_ajar', date('Y'))->get(),
             ]);
         }
         if (Auth::user()->role == 'mahasiswa') {
@@ -134,12 +134,12 @@ class CetakController extends Controller
             return view('livewire.jadwal.cetak', [
                 'jadwals' => $klsId == null ?
                 Jadwal::get() :
-                Jadwal::first()->where('kelas_id', 'like', '%' . $klsId . '%')->get(),
+                Jadwal::first()->where('kelas_id', $klsId)->where('thn_ajar', date('Y'))->get(),
             ]);
         }
         if (Auth::user()->role == 'akademik') {
             return view('livewire.jadwal.cetak', [
-                'jadwals' => Jadwal::get(),
+                'jadwals' => Jadwal::first()->where('thn_ajar', date('Y'))->get(),
             ]);
         }
         if (Auth::user()->role == 'prodi') {
@@ -150,7 +150,7 @@ class CetakController extends Controller
             return view('livewire.jadwal.cetak', [
                 'jadwals' => $prodiId == null ?
                 Jadwal::get() :
-                Jadwal::first()->where('prodi_id', 'like', '%' . $prodiId . '%')->get(),
+                Jadwal::first()->where('prodi_id', $prodiId)->where('thn_ajar', date('Y'))->get(),
             ]);
         }
     }
@@ -212,6 +212,24 @@ class CetakController extends Controller
             ''
             :
             BeritaAcara::first()->where('kelas_id', 'like', '%' . $kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $matkulSelect . '%')->get(),
+        ]);
+    }
+
+    public function cetakSP(Mahasiswa $mahasiswa, DfMatkul $dfMatkul)
+    {
+        $mhsId = $mahasiswa->id;
+        $matkulId = $dfMatkul->id;
+        // dd($matkulId);
+        $dfMatkul = DB::table('df_matkuls')->where('id', $matkulId ?? '')->select('df_matkuls.*', 'id', 'nama_matkul')->first();
+        // dd($dfMatkul);
+
+        return view('livewire.absen.surat', [
+            'mahasiswa' => $mhsId == null ?
+            '' :
+            Mahasiswa::first()->where('id', $mhsId ?? '')->select('mahasiswas.*', 'id', 'nama', 'nim')->first(),
+            'matkul' => $matkulId == null ?
+            '' :
+            DfMatkul::first()->where('id', $matkulId ?? '')->select('df_matkuls.*', 'id', 'nama_matkul')->first(),
         ]);
     }
 

@@ -21,7 +21,7 @@
                         @php
                             $dtDosen = DB::table('dosens')->where('nidn', Auth::user()->username ?? null)->select('dosens.*', 'id')->first();
                             // dd(Auth::user()->username);
-                            $jml_jadwal = DB::table('jadwals')->where('dosen_id', $dtDosen->id ?? null)->select('jadwals.*')->get();
+                            $jml_jadwal = DB::table('jadwals')->where('dosen_id', $dtDosen->id ?? null)->where('thn_ajar', date('Y'))->select('jadwals.*')->get();
                         @endphp
                         {{ count($jml_jadwal) }}
                         </h4>
@@ -36,7 +36,7 @@
 
                     @else
 
-                    Lihat Data <a href="{{ route('jadwal.indexDosen', Auth::user()->username) }}" class="text-white btn-icon-prepend"><span class="mdi mdi-eye-arrow-right mdi-18px"></span></a>
+                    Lihat Data <a href="{{ route('jadwal.indexDosen', $dtDosen->id) }}" class="text-white btn-icon-prepend"><span class="mdi mdi-eye-arrow-right mdi-18px"></span></a>
                     @endif
                 </div>
             </div>

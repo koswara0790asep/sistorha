@@ -61,8 +61,12 @@
                                 <td class="text-center">
                                     <a href="{{ route('programstudi.edit', $prodi->id) }}"
                                         class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
-
-                                    <button wire:click="genAkun({{ $prodi->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
+                                        @php
+                                            $verifAcc = DB::table('users')->where('username', $prodi->kode)->exists();
+                                        @endphp
+                                    @if (!$verifAcc)
+                                        <button wire:click="genAkun({{ $prodi->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
+                                    @endif
 
                                     <!-- Modal -->
                                     <div class="modal fade text-center text-wrap" id="id_{{ $prodi->id }}" tabindex="-1"

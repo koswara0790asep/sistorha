@@ -21,9 +21,15 @@ class Create extends Component
     public $jml_jam;
     public $dosen_id;
     public $hari;
+    public $thn_ajar;
     public $jam_awal;
     public $jam_akhir;
     public $ruang_id;
+
+    public function mount()
+    {
+        $this->thn_ajar = date('Y');
+    }
 
     public function store()
     {
@@ -36,6 +42,7 @@ class Create extends Component
             'sks' => 'required',
             'dosen_id' => 'required',
             'hari' => 'required',
+            'thn_ajar' => 'required',
             'jam_awal' => 'required',
             'jam_akhir' => 'required',
             'ruang_id' => 'required',
@@ -87,6 +94,7 @@ class Create extends Component
                     'dosen_id' => $this->dosen_id,
                     'hr' => $this->hari,
                     'hari' => $hari,
+                    'thn_ajar' => $this->thn_ajar,
                     'jam_awal' => $this->jam_awal,
                     'jam_akhir' => $this->jam_akhir,
                     'ruang_id' => $this->ruang_id,

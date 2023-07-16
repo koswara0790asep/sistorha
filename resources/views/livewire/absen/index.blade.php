@@ -214,15 +214,15 @@
                             <table class="table table-bordered table-striped">
                                 <thead class="table table-dark">
                                     <tr class="text text-center">
-                                        <th colspan="{{ Auth::user()->role == 'prodi' ? 4 : 3 }}">MAHASISWA YANG ABSENNYA KURANG</th>
+                                        <th colspan="{{ Auth::user()->role == 'prodi' ? 4 : 4 }}">MAHASISWA YANG ABSENNYA KURANG</th>
                                     </tr>
                                     <tr class="text text-center">
                                         <th>NO</th>
                                         <th>NAMA</th>
                                         <th>ALFA</th>
-                                        @if (Auth::user()->role == 'prodi')
+                                        {{-- @if (Auth::user()->role == 'prodi') --}}
                                             <th>AKSI</th>
-                                        @endif
+                                        {{-- @endif --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -267,7 +267,7 @@
                                     $alfas = 0;
                                     $izins = 0;
                                     $sakits = 0;
-                                    $data = DB::table('mahasiswas')->where('nim', $absen->nim)->select('mahasiswas.*', 'nama', 'status_aktif', 'no_hp')->first();
+                                    $data = DB::table('mahasiswas')->where('nim', $absen->nim)->select('mahasiswas.*', 'id', 'nama', 'status_aktif', 'no_hp')->first();
 
                                             if ($absen->pertemuan1 == 'Hadir'){
                                             $h1 = 1;
@@ -546,15 +546,19 @@
                                                 <td class="text text-center">{{ $loop->iteration }}</td>
                                                 <td>{{ $data->nama }}</td>
                                                 <td class="text text-center">{{ $alfas }}</td>
-                                                @if (Auth::user()->role == 'prodi')
+                                                {{-- @if (Auth::user()->role == 'prodi') --}}
                                                 <td class="text text-center">
                                                     @if ($alfas >= '3')
+                                                        @if (Auth::user()->role == 'akademik')
+                                                        <a href="/surat_peringatan/{{ $data->id ?? '' }}/{{ $this->matkulSelect ?? '' }}" class="btn btn-sm btn-danger btn-icon" target="_blank"><i class="mdi mdi mdi-file-document"></i></a>
+                                                        @else
                                                         <a href="https://api.whatsapp.com/send/?phone=62{{ $data->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $data->nama }}%0A%0AKami dari Program Studi mengingatkan Anda. Bahwa Anda sudah tidak mengikuti perkuliahan sebanyak {{ $alfas }}. Perbaiki atau tidak dapat melaksanakan ujian-ujian!&type=phone_number&app_absent=0"
                                                             class="btn btn-sm btn-danger btn-icon" target="_blank"><i
                                                                 class="mdi mdi-whatsapp"></i></a>
+                                                        @endif
                                                     @endif
                                                 </td>
-                                                @endif
+                                                {{-- @endif --}}
                                             </tr>
                                         @endif
                                     @endforeach

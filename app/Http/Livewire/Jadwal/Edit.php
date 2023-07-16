@@ -23,6 +23,7 @@ class Edit extends Component
     public $jml_jam;
     public $dosen_id;
     public $hari;
+    public $thn_ajar;
     public $jam_awal;
     public $jam_akhir;
     public $ruang_id;
@@ -41,6 +42,7 @@ class Edit extends Component
             $this->jml_jam = $jadwal->jml_jam;
             $this->dosen_id = $jadwal->dosen_id;
             $this->hari = $jadwal->hr;
+            $this->thn_ajar = $jadwal->thn_ajar;
             $this->jam_awal = $jadwal->jam_awal;
             $this->jam_akhir = $jadwal->jam_akhir;
             $this->ruang_id = $jadwal->ruang_id;
@@ -60,6 +62,7 @@ class Edit extends Component
             'sks' => 'required',
             'dosen_id' => 'required',
             'hari' => 'required',
+            'thn_ajar' => 'required',
             'jam_awal' => 'required',
             'jam_akhir' => 'required',
             'ruang_id' => 'required',
@@ -78,7 +81,7 @@ class Edit extends Component
             } elseif ($this->hari == 4) {
                 $hari = 'Kamis';
             } elseif ($this->hari == 5) {
-                $hari = 'Jum.at';
+                $hari = "Jum'at";
             } elseif ($this->hari == 6) {
                 $hari = 'Sabtu';
             } elseif ($this->hari == 7) {
@@ -106,6 +109,7 @@ class Edit extends Component
                     'dosen_id' => $this->dosen_id,
                     'hr' => $this->hari,
                     'hari' => $hari,
+                    'thn_ajar' => $this->thn_ajar,
                     'jam_awal' => $this->jam_awal,
                     'jam_akhir' => $this->jam_akhir,
                     'ruang_id' => $this->ruang_id,

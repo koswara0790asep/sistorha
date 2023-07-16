@@ -19,9 +19,9 @@
                         </div>
                     @endif
 
-                    {{ __('Kamu berhasil masuk pada Sistem Monitoring Kehadiran TEDC!') }}
+                    {{ __('Anda berhasil masuk pada Sistem Monitoring Kehadiran TEDC!') }}
                     <hr>
-                    Selamat datang, {{ Auth::user()->name }}!
+                    Selamat datang, {{ Auth::user()->role != 'prodi' ? '' : 'Program Studi' }} {{ Auth::user()->name }}!
                 </div>
             </div>
         </div>

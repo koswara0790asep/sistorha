@@ -152,6 +152,7 @@ Route::middleware(['auth', 'role:akademik'])->group(function () {
     // Route::livewire('/absensis', 'absen.index')->name('absen.index');
     // Route::livewire('/absen/create', 'absen.create')->name('absen.create');
     // Route::livewire('/absen/edit/{jadwal}/{id}', 'absen.edit')->name('absen.edit');
+    Route::get('/surat_peringatan/{mahasiswa}/{df_matkul}', [CetakController::class, 'cetakSP'])->name('absen.surat');
     // Route::get('/absensis/cetak/{jadwal}/{dfkelas}/{dfmatkul}', [CetakController::class, 'cetakAbsenMhs'])->name('absen.cetak');
     // Route::get('/absensis/rekap/{jadwal}/{dfkelas}/{dfmatkul}', [CetakController::class, 'rekapAbsenMhs'])->name('absen.rekap');
 
@@ -191,7 +192,7 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::livewire('/dashboard/dosen', 'dashboard.dosen')->name('dashboard.dosen');
 
     // jadwal
-    Route::livewire('/jadwals/matkul/{dosen:nidn}', 'jadwal.index')->name('jadwal.indexDosen');
+    Route::livewire('/jadwals/matkul/{dosen:id}', 'jadwal.index')->name('jadwal.indexDosen');
 
     // berita acara
     Route::livewire('/beritaacara/{jadwal}/{dfmatkul}/{dfkelas}/{dosen}/create', 'beritaacara.create')->name('beritaacara.create');
