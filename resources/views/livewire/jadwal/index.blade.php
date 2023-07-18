@@ -152,14 +152,16 @@
                                         $beritaacaras = $jadw->matkul_id == null && $jadw->kelas_id == null ?
                                         ''
                                         :
-                                        App\Models\BeritaAcara::first()->where('kelas_id', 'like', '%' . $jadw->kelas_id . '%')->where( 'matkul_id', 'like', '%' . $jadw->matkul_id . '%')->get();
+                                        App\Models\BeritaAcara::first()->where('kelas_id', $jadw->kelas_id)->where( 'matkul_id', $jadw->matkul_id)->get();
                                         // dd(count($beritaacaras));
                                     @endphp
                                     @if (count($beritaacaras) == 8 || count($beritaacaras) == 16)
-                                    <a href="/absensis/{{ $jadw->id }}/{{ $jadw->kelas_id }}/{{ $jadw->matkul_id }}"
+                                    <a href="{{ route('absen.mhs', [$jadw->id,  $jadw->kelas_id, $jadw->matkul_id]) }}"
                                         class="btn btn-sm btn-info btn-icon-text"><i class="mdi mdi-file-document"></i> Absen</a>
+                                    {{-- <a href="/absensis/{{ $jadw->id }}/{{ $jadw->kelas_id }}/{{ $jadw->matkul_id }}"
+                                        class="btn btn-sm btn-info btn-icon-text"><i class="mdi mdi-file-document"></i> Absen</a> --}}
                                     @else
-                                        <a href="{{ Auth::user()->role != 'dosen' ? '/absensis/'.$jadw->id.'/'.$jadw->kelas_id.'/'.$jadw->matkul_id.'' : '/beritaacara/'.$jadw->id.'/'.$jadw->matkul_id.'/'.$jadw->kelas_id.'/'.$jadw->dosen_id.'/create' }}"
+                                        <a href="{{ Auth::user()->role != 'dosen' ? route('absen.mhs', [$jadw->id, $jadw->kelas_id, $jadw->matkul_id]) : route('beritaacara.create', [$jadw->id, $jadw->matkul_id, $jadw->kelas_id, $jadw->dosen_id]) }}"
                                             class="btn btn-sm btn-info btn-icon-text"><i class="mdi mdi-file-document"></i> Absen</a>
                                     @endif
 

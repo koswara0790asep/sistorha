@@ -11,7 +11,7 @@
             <div class="col-sm-3 d-flex">
                 <div class="col" style="text-align: right;">
 
-                    <a href="/kelasmhsw/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                    <a href="{{ route('kelasmhs.create') }}" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-table-column"></i> Tambah Data</a>
                     <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-printer"></i> Cetak</a>
@@ -119,6 +119,6 @@
 </div>
 <script>
     function openNewWindow() {
-        window.open("/kelasmhsws/cetak", "_blank");
+        window.open("{{ route('kelasmhsw.cetak') }}", "_blank");
     }
 </script>

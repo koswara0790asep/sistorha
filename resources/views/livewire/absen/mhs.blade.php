@@ -43,10 +43,10 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item"
-                                href="/absensis/cetak/{{ $jadwalId }}/{{ $kelasSelect }}/{{ $matkulSelect }}" target="_blank">Absen
+                                href="{{ route('absen.cetak', [$jadwalId, $kelasSelect, $matkulSelect]) }}" target="_blank">Absen
                                 Penuh</a>
                             <a class="dropdown-item"
-                                href="/absensis/rekap/{{ $jadwalId }}/{{ $kelasSelect }}/{{ $matkulSelect }}" target="_blank">Rekap
+                                href="{{ route('absen.rekap', [$jadwalId, $kelasSelect, $matkulSelect]) }}" target="_blank">Rekap
                                 Absen</a>
                         </div>
                         @if (Auth::user()->role == 'dosen')
@@ -290,7 +290,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                             @if (Auth::user()->role == 'dosen' || Auth::user()->role == 'prodi')
                                 <td style="position: sticky; left: 0px;">
                                     @if (Auth::user()->role == 'dosen')
-                                        <a href="{{ $data->status_aktif == 'Aktif' ? '/absen/edit/'.$jadwalId.'/'.$absen->id.'' : '#' }}"
+                                        <a href="{{ $data->status_aktif == 'Aktif' ? route('absen.edit', [$jadwalId, $absen->id]) : '#' }}"
                                             class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
                                     @endif
                                 <td style="position: sticky; left: 65px;">{{ $loop->iteration }}</td>

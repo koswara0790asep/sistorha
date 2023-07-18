@@ -146,7 +146,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                     @if (Auth::user()->role == 'prodi')
                         @if($lastMeetingDate->lte($twoWeeksAgo))
                         <div class="d-grid gap-2">
-                            <a href="https://api.whatsapp.com/send/?phone=62{{ $dosen->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $dosen->nama }}%0A%0AAnda sudah tidak tidak mengadakan perkuliahan selama 2 Minggu (2 Pertemuan), segera jadwalkan ulang perkuliahan kembali!&type=phone_number&app_absent=0"
+                            <a href="https://api.whatsapp.com/send/?phone=62{{ $dosen->no_hp }}&text=⚠️*PERHATIAN!*⚠️%0ANama: {{ $dosen->nama }}%0A%0AAnda sudah tidak mengadakan perkuliahan selama 2 Minggu (2 Pertemuan), segera jadwalkan ulang perkuliahan kembali!&type=phone_number&app_absent=0"
                                 class="btn btn-warning mt-2 mb-2" target="_blank"><i class="mdi mdi-whatsapp"></i> Hubungi
                                 Dosen</a>
                         </div>

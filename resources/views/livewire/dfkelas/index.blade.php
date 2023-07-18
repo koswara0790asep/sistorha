@@ -72,7 +72,7 @@
                                         $jadwal = DB::table('jadwals')->where('kelas_id', $kls->id)->select('jadwals.*', 'id', 'kelas_id')->exists();
                                     @endphp
                                     {{-- @if ($jadwal) --}}
-                                        <a href="/absensis/kelas/{{ $kls->id }}/rekap" class="btn btn-sm btn-info" target="_blank"><i
+                                        <a href="{{ route('dfkelas.rekap', $kls->id) }}" class="btn btn-sm btn-info" target="_blank"><i
                                             class="mdi mdi-file-document"></i></a>
                                     {{-- @endif --}}
                                 </td>
@@ -122,6 +122,6 @@
 </div>
 <script>
     function openNewWindow() {
-        window.open("/dfkelases/cetak", "_blank");
+        window.open("{{ route('dfkelas.cetak') }}", "_blank");
     }
 </script>

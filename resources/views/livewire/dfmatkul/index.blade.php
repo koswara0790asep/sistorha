@@ -11,7 +11,7 @@
             <div class="col-sm-3 d-flex">
                 <div class="col" style="text-align: right;">
                     @if (Auth::user()->role == 'akademik')
-                    <a href="/dfmatkul/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                    <a href="{{ route('dfmatkul.create') }}" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-account-plus"></i> Tambah Data</a>
                     @endif
                     <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
@@ -110,6 +110,6 @@
 </div>
 <script>
     function openNewWindow() {
-        window.open("/dfmatkuls/cetak", "_blank");
+        window.open("{{ route('dfmatkul.cetak') }}", "_blank");
     }
 </script>

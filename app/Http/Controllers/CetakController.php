@@ -174,7 +174,7 @@ class CetakController extends Controller
             'absensis' => $matkulSelect == null && $kelasSelect == null ?
             ''
             :
-            Absensi::first()->where('kelas_id', 'like', '%' . $kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $matkulSelect . '%')->get(),
+            Absensi::first()->where('kelas_id', $kelasSelect)->where( 'matkul_id', $matkulSelect)->get(),
         ]);
     }
 
@@ -192,7 +192,7 @@ class CetakController extends Controller
             'absensis' => $matkulSelect == null && $kelasSelect == null ?
             ''
             :
-            Absensi::first()->where('kelas_id', 'like', '%' . $kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $matkulSelect . '%')->get(),
+            Absensi::first()->where('kelas_id', $kelasSelect)->where( 'matkul_id', $matkulSelect)->get(),
         ]);
     }
 

@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-4" style="text-align: right;">
                 @if (Auth::user()->role == 'akademik')
-                <a href="/dosen/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                <a href="{{ route('dosen.create') }}" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                     <i class="mdi mdi-account-plus"></i> Tambah Data</a>
                 @endif
                 <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
@@ -149,6 +149,6 @@
 </div>
 <script>
     function openNewWindow() {
-        window.open("/dosens/cetak", "_blank");
+        window.open("{{ route('dosen.cetak') }}", "_blank");
     }
 </script>

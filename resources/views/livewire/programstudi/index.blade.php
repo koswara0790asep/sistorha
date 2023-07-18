@@ -11,7 +11,7 @@
             <div class="col-sm-3 d-flex">
                 <div class="col" style="text-align: right;">
 
-                    <a href="/programstudi/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                    <a href="{{ route('programstudi.create') }}" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-table-column"></i> Tambah Data</a>
                     <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-printer"></i> Cetak</a>
@@ -103,6 +103,6 @@
 </div>
 <script>
     function openNewWindow() {
-        window.open("/programstudies/cetak", "_blank");
+        window.open("{{ route('programstudi.cetak') }}", "_blank");
     }
 </script>

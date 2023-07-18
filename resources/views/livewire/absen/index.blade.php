@@ -10,7 +10,7 @@
             </div>
             <div class="col-md-4" style="text-align: right;">
                 @if (Auth::user()->role == 'akademik')
-                    <a href="/absen/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                    <a href="{{ route('absen.create') }}" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-table-column"></i> Tambah Data</a>
                     {{-- <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-printer"></i> Cetak</a> --}}
