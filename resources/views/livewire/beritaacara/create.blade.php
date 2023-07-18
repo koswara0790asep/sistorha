@@ -30,7 +30,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
             <form action="" wire:submit.prevent="store">
 
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <label for="pertemuan">Pertemuan: </label>
                         <div class="mb-3 input-group">
                             <input type="number" min="0" max="17" id="pertemuan" name="pertemuan" wire:model="pertemuan" class="form-control @error('pertemuan') is-invalid @enderror" disabled>
@@ -48,7 +48,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                             @enderror
                         </div>
                     </div><!-- Col -->
-                    <div class="col-sm-4">
+                    {{-- <div class="col-sm-4">
                         <label for="hari">Hari: </label>
                         <div class="mb-3 input-group">
                             <select id="hari" name="hari" wire:model="hari" class="form-select @error('hari') is-invalid @enderror">
@@ -68,9 +68,10 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                             </span>
                             @enderror
                         </div>
-                    </div><!-- Col -->
-                    <div class="col-sm-4">
-                        <label for="tanggal">Tanggal Masuk: </label>
+                    </div><!-- Col --> --}}
+                    <div class="col-sm-6">
+                        <label for="tanggal">Tanggal Masuk: 
+                            <span class="badge {{ $this->tanggal == null ? 'bg-danger' : 'bg-success' }}">{{ \Carbon\Carbon::parse($this->tanggal)->isoFormat('dddd') ?? '' }}</span> </label>
                         <div class="mb-3 input-group flatpickr" id="flatpickr-date">
                             <input type="text" id="tanggal" name="tanggal" wire:model="tanggal" class="form-control flatpickr-input @error('tanggal') is-invalid @enderror" placeholder="Pilih Tanggal" data-input>
                             <span class="input-group-text"><h4><i class="mdi mdi-calendar-blank"></i></h4></span>

@@ -99,7 +99,7 @@
                         </tr>
                         <tr>
                             <td><h4><i class="mdi mdi-label"></h4></i></td>
-                            <td>Periode</td>
+                            <td>Angkatan</td>
                             <td>:</td>
                             <td>{{ $mahasiswa->periode }}</td>
                         </tr>

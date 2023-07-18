@@ -36,7 +36,7 @@ class Index extends Component
             'beritaacaras' => $this->matkulSelect == null && $this->kelasSelect == null ?
             ''
             :
-            BeritaAcara::first()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $this->matkulSelect . '%')->get(),
+            BeritaAcara::first()->where('kelas_id', $this->kelasSelect)->where('matkul_id', $this->matkulSelect)->get(),
         ]);
     }
 

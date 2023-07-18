@@ -57,7 +57,7 @@
                                 </div>
                             </div><!-- Col -->
                             <div class="col-sm-6">
-                                <label for="periode">Periode: </label>
+                                <label for="periode">Angkatan: </label>
                                 <div class="mb-3 input-group">
                                     <input type="number" min="1999" max="2999" id="periode" name="periode" wire:model="periode" class="form-control @error('periode') is-invalid @enderror" step="1" placeholder="Masukkan Tahun Periode || con: 2019">
                                     <span class="input-group-text"><h4><i class="mdi mdi-calendar-check"></i></h4></span>

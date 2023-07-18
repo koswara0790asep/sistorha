@@ -26,7 +26,7 @@ class Edit extends Component
             $this->prodi_id = $kelas->prodi_id;
             $this->daftar_kelas_id = $kelas->daftar_kelas_id;
         } elseif ($this->daftar_kelas_id == null) {
-            Alert::error('Woops!','Data yang kamu cari tidak ada!');
+            Alert::error('Woops!','Data yang Anda cari tidak ada!');
         }
     }
 

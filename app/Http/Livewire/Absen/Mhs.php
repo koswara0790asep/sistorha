@@ -29,7 +29,7 @@ class Mhs extends Component
             'absensis' => $this->matkulSelect == null && $this->kelasSelect == null ?
             ''
             :
-            Absensi::first()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $this->matkulSelect . '%')->get(),
+            Absensi::first()->where('kelas_id', $this->kelasSelect)->where( 'matkul_id', $this->matkulSelect)->get(),
         ]);
     }
 }

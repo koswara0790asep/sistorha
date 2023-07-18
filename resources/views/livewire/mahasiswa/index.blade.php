@@ -73,7 +73,7 @@
                                 <th class="text-light">NIM</th>
                                 <th class="text-light">NAMA</th>
                                 <th class="text-light">PROGRAM STUDI</th>
-                                <th class="text-light">PERIODE</th>
+                                <th class="text-light">ANGKATAN</th>
                                 <th class="text-light">STATUS</th>
                                 <th class="text-light">NOMOR TELEPON</th>
                                 <th class="text-light">AKSI</th>

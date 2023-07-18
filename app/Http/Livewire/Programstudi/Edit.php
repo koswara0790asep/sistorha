@@ -25,7 +25,7 @@ class Edit extends Component
             $this->status = $prodi->status;
 
         } elseif ($this->programstudiId == null) {
-            Alert::warning('Woops!','Data yang kamu cari tidak ada!');
+            Alert::warning('Woops!','Data yang Anda cari tidak ada!');
         }
     }
 

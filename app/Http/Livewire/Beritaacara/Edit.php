@@ -47,17 +47,17 @@ class Edit extends Component
             $this->jumlah_mhs = $bap->jumlah_mhs;
             $this->pertemuan = $bap->pertemuan;
         } elseif ($this->bapId == null) {
-            Alert::warning('Woops!','Data yang kamu cari tidak ada!');
+            Alert::warning('Woops!','Data yang Anda cari tidak ada!');
         }
     }
 
     public function update()
     {
         $this->validate([
-            'hari' => 'required',
+            // 'hari' => 'required',
             'tanggal' => 'required',
             'jam_masuk' => 'required',
-            'jam_keluar' => 'required',
+            'jam_keluar' => 'required|after:jam_masuk',
             'pembahasan' => 'required',
             'jumlah_mhs' => 'required',
             'pertemuan' => 'required',
@@ -65,6 +65,7 @@ class Edit extends Component
 
         $this->matkul_id = $this->matkulSelect;
         $this->kelas_id = $this->kelasSelect;
+        $this->hari = \Carbon\Carbon::parse($this->tanggal)->isoFormat('dddd');
 
         if ($this->bapId) {
             $bap = BeritaAcara::find($this->bapId);

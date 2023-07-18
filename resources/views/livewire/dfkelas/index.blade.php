@@ -40,7 +40,7 @@
                                 <th class="text-light">KODE KELAS</th>
                                 <th class="text-light">NAMA KELAS</th>
                                 <th class="text-light">PROGRAM STUDI</th>
-                                <th class="text-light">PERIODE</th>
+                                <th class="text-light">ANGKATAN</th>
                                 <th class="text-light">DOSEN WALI</th>
                                 <th class="text-light">REKAP NILAI</th>
                                 <th class="text-light">AKSI</th>
@@ -68,8 +68,13 @@
                                     @endphp
                                 </td>
                                 <td class="text-center">
-                                    <a href="/absensis/kelas/{{ $kls->id }}/rekap" class="btn btn-sm btn-info" target="_blank"><i
-                                        class="mdi mdi-file-document"></i> Lihat</a>
+                                    @php
+                                        $jadwal = DB::table('jadwals')->where('kelas_id', $kls->id)->select('jadwals.*', 'id', 'kelas_id')->exists();
+                                    @endphp
+                                    {{-- @if ($jadwal) --}}
+                                        <a href="/absensis/kelas/{{ $kls->id }}/rekap" class="btn btn-sm btn-info" target="_blank"><i
+                                            class="mdi mdi-file-document"></i></a>
+                                    {{-- @endif --}}
                                 </td>
                                 <td class="text-center">
                                     <a href="{{ route('dfkelas.edit', $kls->id) }}"

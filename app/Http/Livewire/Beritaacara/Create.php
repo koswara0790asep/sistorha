@@ -51,15 +51,16 @@ class Create extends Component
         }
         // dd($lastMeet);
         $this->jumlah_mhs = 0;
+        // $this->hari = \Carbon\Carbon::parse($this->tanggal)->isoFormat('dddd');
     }
 
     public function store()
     {
         $this->validate([
-            'hari' => 'required',
+            // 'hari' => 'required',
             'tanggal' => 'required',
             'jam_masuk' => 'required',
-            'jam_keluar' => 'required',
+            'jam_keluar' => 'required|after:jam_masuk',
             'pembahasan' => 'required',
             'jumlah_mhs' => 'required',
             // 'pertemuan' => 'required',
@@ -67,6 +68,7 @@ class Create extends Component
 
         $this->matkul_id = $this->matkulSelect;
         $this->kelas_id = $this->kelasSelect;
+        $this->hari = \Carbon\Carbon::parse($this->tanggal)->isoFormat('dddd');
 
         $pertemuanExists = BeritaAcara::where('pertemuan', $this->pertemuan)
                                     ->where('kelas_id', $this->kelas_id)
@@ -85,6 +87,7 @@ class Create extends Component
             return redirect('/beritaacara/'.$this->jadwalId.'/'.$this->matkul_id.'/'.$this->kelas_id.'/'.$this->dosenID.'');
         } else {
             if (!$dataExists) {
+                // dd($this->hari, $this->tanggal);
                 BeritaAcara::firstOrCreate(
                     [
                         'pertemuan' => $this->pertemuan,

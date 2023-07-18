@@ -23,7 +23,7 @@ class Edpassword extends Component
         if ($user) {
             $this->userId = $user->id;
         } elseif ($this->userId != Auth::user()->id) {
-            Alert::error('Woops!','Data yang kamu cari tidak ada!');
+            Alert::error('Woops!','Data yang Anda cari tidak ada!');
         }
     }
 
@@ -48,16 +48,16 @@ class Edpassword extends Component
                             'updated_at' => now(),
                         ]);
 
-                        Alert::success('BERHASIL!','Password kamu berhasil diperbaharui!');
+                        Alert::success('BERHASIL!','Password Anda berhasil diperbaharui!');
                     } else {
-                        Alert::error('GAGAL!','Password kamu gagal diperbaharui!');
+                        Alert::error('GAGAL!','Password Anda gagal diperbaharui!');
                     }
                 } else {
-                    Alert::warning('GAGAL!','Password lama yang kamu masukkan salah!');
+                    Alert::warning('GAGAL!','Password lama yang Anda masukkan salah!');
                 }
 
             } else {
-                Alert::warning('GAGAL!','Password yang kamu masukkan tidak sama!');
+                Alert::warning('GAGAL!','Password yang Anda masukkan tidak sama!');
             }
         }
 

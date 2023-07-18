@@ -81,7 +81,7 @@ class Create extends Component
 
             if ($existingTimeSlot) {
                 // Jika ada, tampilkan pesan error
-                Alert::error('GAGAL!','Jadwal Hari, Jam, dan Ruangan Sudah Terisi!');
+                Alert::error('GAGAL!','Jadwal Hari, Jam, dan Ruangan sudah ada dalam daftar!');
             } else {
 
                 Jadwal::create([

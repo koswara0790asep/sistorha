@@ -44,7 +44,7 @@ class Edit extends Component
             $this->status_aktif = $mahasiswa->status_aktif;
             $this->jenis_kelamin = $mahasiswa->jenis_kelamin;
         } elseif ($this->nim == null) {
-            Alert::error('Woops!','Data yang kamu cari tidak ada!');
+            Alert::error('Woops!','Data yang Anda cari tidak ada!');
         }
     }
 

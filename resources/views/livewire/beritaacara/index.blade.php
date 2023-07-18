@@ -28,6 +28,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                 <div class="card-title mt-3">
                     <h4 style="margin-top: 10px;"><b><i class="mdi mdi-file-document"></i> Berita Acara</b></h4>
                     <div style="text-align: right; margin-top: -30px;">
+                        {{-- {{ (count($beritaacaras)) }} --}}
                         @if (Auth::user()->role == 'dosen')
                             @if (count($beritaacaras) != 16)
                             <a href="{{ route('beritaacara.create', [$jadwalId, $matkulSelect, $kelasSelect, $dosenID]) }}"
@@ -77,10 +78,14 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                     $lastMeetingDate = Carbon\Carbon::parse($tanggal ?? '');
                     $twoWeeksAgo = Carbon\Carbon::now()->subWeeks(2);
                 @endphp
-                @if($lastMeetingDate->lte($twoWeeksAgo))
-                    <div class="alert alert-danger" role="alert">
-                        <p><i>Perkuliahan ini sudah tidak ada pertemuan semenjak 2 minggu atau lebih kebelakang.</i></p>
-                    </div>
+                @if (count($beritaacaras) != 16)
+                    @if($lastMeetingDate->lte($twoWeeksAgo))
+                        <div class="alert alert-danger" role="alert">
+                            <p><i>Perkuliahan ini sudah tidak ada pertemuan semenjak 2 minggu atau lebih kebelakang.</i></p>
+                        </div>
+                    @endif
+                @else
+
                 @endif
                 <div class="row">
                     <div class="col-md-6">
@@ -125,7 +130,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                                 <td>{{ $dfKelas->nama_kelas ?? '' }}</td>
                             </tr>
                             <tr>
-                                <td>Periode</td>
+                                <td>Angkatan</td>
                                 <td>:</td>
                                 <td>{{ $dfKelas->periode ?? '' }}</td>
                             </tr>
@@ -137,6 +142,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                             </tr>
                         </table>
                     </div>
+                @if (count($beritaacaras) != 16)
                     @if (Auth::user()->role == 'prodi')
                         @if($lastMeetingDate->lte($twoWeeksAgo))
                         <div class="d-grid gap-2">
@@ -146,6 +152,9 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                         </div>
                         @endif
                     @endif
+                @else
+
+                @endif
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover">

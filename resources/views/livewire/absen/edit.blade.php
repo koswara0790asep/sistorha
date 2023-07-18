@@ -4,6 +4,20 @@
     $dfKelas = DB::table('df_kelases')->where('id', $this->kelas_id ?? '')->select('df_kelases.*', 'id', 'prodi_id', 'kode', 'periode')->first();
     $dfMatkul = DB::table('df_matkuls')->where('id', $this->matkul_id ?? '')->select('df_matkuls.*', 'id', 'kode_matkul', 'nama_matkul', 'dosen')->first();
     $dataMhs = DB::table('mahasiswas')->where('nim', $this->nim)->select('mahasiswas.*', 'nama', 'status_aktif')->first();
+    $absen = App\Models\Absent::find($this->absenId);
+
+    // $beritaacara = DB::table('berita_acaras')
+    //                             ->where('kelas_id', $this->kelas_id ?? '')
+    //                             ->where('matkul_id', $this->matkul_id ?? '')
+    //                             ->where('pertemuan', '3')
+    //                             ->select('berita_acaras.*', 'id', 'jumlah_mhs')
+    //                             ->first();
+
+    //             // dd($beritaacara);
+    //             // $bap = App\Models\BeritaAcara::find($beritaacara->id);
+    //             // dd($bap);
+    //             $lastSum = $beritaacara->jumlah_mhs + 1;
+    //             dd($lastSum);
 @endphp
 <div class="row">
     <div aria-label="breadcrumb">
@@ -185,7 +199,7 @@
                                 <label for="pertemuan1">Pertemuan (1): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen1 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen1 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan1" name="pertemuan1" wire:model="pertemuan1" class="form-select @error('pertemuan1') is-invalid @enderror" {{ $tglAbsen1 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan1 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan1" name="pertemuan1" wire:model="pertemuan1" class="form-select @error('pertemuan1') is-invalid @enderror" {{ $tglAbsen1 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan1 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -203,7 +217,7 @@
                             <div class="col-sm-6">
                                 <label for="telat1">Menit Telat (1): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat1" name="telat1" wire:model="telat1" class="form-control @error('telat1') is-invalid @enderror" {{ $tglAbsen1 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan1 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat1" name="telat1" wire:model="telat1" class="form-control @error('telat1') is-invalid @enderror" {{ $tglAbsen1 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan1 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat1')
                                     <span class="invalid-feedback">
@@ -218,7 +232,7 @@
                                 <label for="pertemuan2">Pertemuan (2): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen2 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen2 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan2" name="pertemuan2" wire:model="pertemuan2" class="form-select @error('pertemuan2') is-invalid @enderror" {{ $tglAbsen2 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan2 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan2" name="pertemuan2" wire:model="pertemuan2" class="form-select @error('pertemuan2') is-invalid @enderror" {{ $tglAbsen2 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan2 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -236,7 +250,7 @@
                             <div class="col-sm-6">
                                 <label for="telat2">Menit Telat (2): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat2" name="telat2" wire:model="telat2" class="form-control @error('telat2') is-invalid @enderror" {{ $tglAbsen2 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan2 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat2" name="telat2" wire:model="telat2" class="form-control @error('telat2') is-invalid @enderror" {{ $tglAbsen2 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan2 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat2')
                                     <span class="invalid-feedback">
@@ -251,7 +265,7 @@
                                 <label for="pertemuan3">Pertemuan (3): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen3 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen3 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan3" name="pertemuan3" wire:model="pertemuan3" class="form-select @error('pertemuan3') is-invalid @enderror" {{ $tglAbsen3 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan3 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan3" name="pertemuan3" wire:model="pertemuan3" class="form-select @error('pertemuan3') is-invalid @enderror" {{ $tglAbsen3 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan3 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -269,7 +283,7 @@
                             <div class="col-sm-6">
                                 <label for="telat3">Menit Telat (3): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat3" name="telat3" wire:model="telat3" class="form-control @error('telat3') is-invalid @enderror" {{ $tglAbsen3 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan3 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat3" name="telat3" wire:model="telat3" class="form-control @error('telat3') is-invalid @enderror" {{ $tglAbsen3 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan3 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat3')
                                     <span class="invalid-feedback">
@@ -284,7 +298,7 @@
                                 <label for="pertemuan4">Pertemuan (4): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen4 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen4 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan4" name="pertemuan4" wire:model="pertemuan4" class="form-select @error('pertemuan4') is-invalid @enderror" {{ $tglAbsen4 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan4 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan4" name="pertemuan4" wire:model="pertemuan4" class="form-select @error('pertemuan4') is-invalid @enderror" {{ $tglAbsen4 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan4 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -302,7 +316,7 @@
                             <div class="col-sm-6">
                                 <label for="telat4">Menit Telat (4): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat4" name="telat4" wire:model="telat4" class="form-control @error('telat4') is-invalid @enderror" {{ $tglAbsen4 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan4 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat4" name="telat4" wire:model="telat4" class="form-control @error('telat4') is-invalid @enderror" {{ $tglAbsen4 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan4 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat4')
                                     <span class="invalid-feedback">
@@ -317,7 +331,7 @@
                                 <label for="pertemuan5">Pertemuan (5): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen5 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen5 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan5" name="pertemuan5" wire:model="pertemuan5" class="form-select @error('pertemuan5') is-invalid @enderror" {{ $tglAbsen5 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan5 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan5" name="pertemuan5" wire:model="pertemuan5" class="form-select @error('pertemuan5') is-invalid @enderror" {{ $tglAbsen5 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan5 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -335,7 +349,7 @@
                             <div class="col-sm-6">
                                 <label for="telat5">Menit Telat (5): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat5" name="telat5" wire:model="telat5" class="form-control @error('telat5') is-invalid @enderror" {{ $tglAbsen5 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan5 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat5" name="telat5" wire:model="telat5" class="form-control @error('telat5') is-invalid @enderror" {{ $tglAbsen5 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan5 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat5')
                                     <span class="invalid-feedback">
@@ -350,7 +364,7 @@
                                 <label for="pertemuan6">Pertemuan (6): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen6 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen6 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan6" name="pertemuan6" wire:model="pertemuan6" class="form-select @error('pertemuan6') is-invalid @enderror"  {{ $tglAbsen6 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan6 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan6" name="pertemuan6" wire:model="pertemuan6" class="form-select @error('pertemuan6') is-invalid @enderror"  {{ $tglAbsen6 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan6 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -368,7 +382,7 @@
                             <div class="col-sm-6">
                                 <label for="telat6">Menit Telat (6): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat6" name="telat6" wire:model="telat6" class="form-control @error('telat6') is-invalid @enderror"  {{ $tglAbsen6 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan6 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat6" name="telat6" wire:model="telat6" class="form-control @error('telat6') is-invalid @enderror"  {{ $tglAbsen6 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan6 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat6')
                                     <span class="invalid-feedback">
@@ -383,7 +397,7 @@
                                 <label for="pertemuan7">Pertemuan (7): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen7 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen7 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan7" name="pertemuan7" wire:model="pertemuan7" class="form-select @error('pertemuan7') is-invalid @enderror" {{ $tglAbsen7 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan7 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan7" name="pertemuan7" wire:model="pertemuan7" class="form-select @error('pertemuan7') is-invalid @enderror" {{ $tglAbsen7 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan7 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -401,7 +415,7 @@
                             <div class="col-sm-6">
                                 <label for="telat7">Menit Telat (7): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat7" name="telat7" wire:model="telat7" class="form-control @error('telat7') is-invalid @enderror" {{ $tglAbsen7 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan7 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat7" name="telat7" wire:model="telat7" class="form-control @error('telat7') is-invalid @enderror" {{ $tglAbsen7 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan7 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat7')
                                     <span class="invalid-feedback">
@@ -416,7 +430,7 @@
                                 <label for="pertemuan8">Pertemuan (8): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen8 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen8 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan8" name="pertemuan8" wire:model="pertemuan8" class="form-select @error('pertemuan8') is-invalid @enderror" {{ $tglAbsen8 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan8 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan8" name="pertemuan8" wire:model="pertemuan8" class="form-select @error('pertemuan8') is-invalid @enderror" {{ $tglAbsen8 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan8 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -434,7 +448,7 @@
                             <div class="col-sm-6">
                                 <label for="telat8">Menit Telat (8): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat8" name="telat8" wire:model="telat8" class="form-control @error('telat8') is-invalid @enderror" {{ $tglAbsen8 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan8 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat8" name="telat8" wire:model="telat8" class="form-control @error('telat8') is-invalid @enderror" {{ $tglAbsen8 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan8 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat8')
                                     <span class="invalid-feedback">
@@ -449,7 +463,7 @@
                                 <label for="pertemuan9">Pertemuan (9): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen9 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen9 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan9" name="pertemuan9" wire:model="pertemuan9" class="form-select @error('pertemuan9') is-invalid @enderror" {{ $this->pertemuan9 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan9" name="pertemuan9" wire:model="pertemuan9" class="form-select @error('pertemuan9') is-invalid @enderror" {{ $absen->pertemuan9 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -467,7 +481,7 @@
                             <div class="col-sm-6">
                                 <label for="telat9">Menit Telat (9): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat9" name="telat9" wire:model="telat9" class="form-control @error('telat9') is-invalid @enderror" {{ $this->pertemuan9 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat9" name="telat9" wire:model="telat9" class="form-control @error('telat9') is-invalid @enderror" {{ $absen->pertemuan9 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat9')
                                     <span class="invalid-feedback">
@@ -482,7 +496,7 @@
                                 <label for="pertemuan10">Pertemuan (10): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen10 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen10 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan10" name="pertemuan10" wire:model="pertemuan10" class="form-select @error('pertemuan10') is-invalid @enderror" {{ $tglAbsen10 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan10 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan10" name="pertemuan10" wire:model="pertemuan10" class="form-select @error('pertemuan10') is-invalid @enderror" {{ $tglAbsen10 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan10 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -500,7 +514,7 @@
                             <div class="col-sm-6">
                                 <label for="telat10">Menit Telat (10): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat10" name="telat10" wire:model="telat10" class="form-control @error('telat10') is-invalid @enderror" {{ $tglAbsen10 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan10 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat10" name="telat10" wire:model="telat10" class="form-control @error('telat10') is-invalid @enderror" {{ $tglAbsen10 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan10 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat10')
                                     <span class="invalid-feedback">
@@ -515,7 +529,7 @@
                                 <label for="pertemuan11">Pertemuan (11): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen11 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen11 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan11" name="pertemuan11" wire:model="pertemuan11" class="form-select @error('pertemuan11') is-invalid @enderror" {{ $tglAbsen11 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan11 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan11" name="pertemuan11" wire:model="pertemuan11" class="form-select @error('pertemuan11') is-invalid @enderror" {{ $tglAbsen11 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan11 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -533,7 +547,7 @@
                             <div class="col-sm-6">
                                 <label for="telat11">Menit Telat (11): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat11" name="telat11" wire:model="telat11" class="form-control @error('telat11') is-invalid @enderror" {{ $tglAbsen11 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan11 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat11" name="telat11" wire:model="telat11" class="form-control @error('telat11') is-invalid @enderror" {{ $tglAbsen11 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan11 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat11')
                                     <span class="invalid-feedback">
@@ -548,7 +562,7 @@
                                 <label for="pertemuan12">Pertemuan (12): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen12 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen12 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan12" name="pertemuan12" wire:model="pertemuan12" class="form-select @error('pertemuan12') is-invalid @enderror" {{ $tglAbsen12 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan12 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan12" name="pertemuan12" wire:model="pertemuan12" class="form-select @error('pertemuan12') is-invalid @enderror" {{ $tglAbsen12 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan12 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -566,7 +580,7 @@
                             <div class="col-sm-6">
                                 <label for="telat12">Menit Telat (12): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat12" name="telat12" wire:model="telat12" class="form-control @error('telat12') is-invalid @enderror" {{ $tglAbsen12 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan12 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat12" name="telat12" wire:model="telat12" class="form-control @error('telat12') is-invalid @enderror" {{ $tglAbsen12 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan12 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat12')
                                     <span class="invalid-feedback">
@@ -581,7 +595,7 @@
                                 <label for="pertemuan13">Pertemuan (13): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen13 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen13 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan13" name="pertemuan13" wire:model="pertemuan13" class="form-select @error('pertemuan13') is-invalid @enderror" {{ $tglAbsen13 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan13 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan13" name="pertemuan13" wire:model="pertemuan13" class="form-select @error('pertemuan13') is-invalid @enderror" {{ $tglAbsen13 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan13 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -599,7 +613,7 @@
                             <div class="col-sm-6">
                                 <label for="telat13">Menit Telat (13): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat13" name="telat13" wire:model="telat13" class="form-control @error('telat13') is-invalid @enderror" {{ $tglAbsen13 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan13 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat13" name="telat13" wire:model="telat13" class="form-control @error('telat13') is-invalid @enderror" {{ $tglAbsen13 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan13 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat13')
                                     <span class="invalid-feedback">
@@ -612,9 +626,9 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="pertemuan14">Pertemuan (14): </label>
-                                <span class="badge rounded-pill {{ $tglAbsen15 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen15 }}</span>
+                                <span class="badge rounded-pill {{ $tglAbsen14 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen14 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan14" name="pertemuan14" wire:model="pertemuan14" class="form-select @error('pertemuan14') is-invalid @enderror" {{ $tglAbsen14 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan14 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan14" name="pertemuan14" wire:model="pertemuan14" class="form-select @error('pertemuan14') is-invalid @enderror" {{ $tglAbsen14 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan14 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -632,7 +646,7 @@
                             <div class="col-sm-6">
                                 <label for="telat14">Menit Telat (14): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat14" name="telat14" wire:model="telat14" class="form-control @error('telat14') is-invalid @enderror" {{ $tglAbsen14 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan14 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat14" name="telat14" wire:model="telat14" class="form-control @error('telat14') is-invalid @enderror" {{ $tglAbsen14 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan14 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat14')
                                     <span class="invalid-feedback">
@@ -647,7 +661,7 @@
                                 <label for="pertemuan15">Pertemuan (15): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen15 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen15 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan15" name="pertemuan15" wire:model="pertemuan15" class="form-select @error('pertemuan15') is-invalid @enderror" {{ $tglAbsen15 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan15 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan15" name="pertemuan15" wire:model="pertemuan15" class="form-select @error('pertemuan15') is-invalid @enderror" {{ $tglAbsen15 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan15 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -665,7 +679,7 @@
                             <div class="col-sm-6">
                                 <label for="telat15">Menit Telat (15): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat15" name="telat15" wire:model="telat15" class="form-control @error('telat15') is-invalid @enderror" {{ $tglAbsen15 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan15 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat15" name="telat15" wire:model="telat15" class="form-control @error('telat15') is-invalid @enderror" {{ $tglAbsen15 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan15 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat15')
                                     <span class="invalid-feedback">
@@ -680,7 +694,7 @@
                                 <label for="pertemuan16">Pertemuan (16): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen16 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen16 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan16" name="pertemuan16" wire:model="pertemuan16" class="form-select @error('pertemuan16') is-invalid @enderror" {{ $tglAbsen16 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan16 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan16" name="pertemuan16" wire:model="pertemuan16" class="form-select @error('pertemuan16') is-invalid @enderror" {{ $tglAbsen16 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan16 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -698,7 +712,7 @@
                             <div class="col-sm-6">
                                 <label for="telat16">Menit Telat (16): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat16" name="telat16" wire:model="telat16" class="form-control @error('telat16') is-invalid @enderror" {{ $tglAbsen16 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan16 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat16" name="telat16" wire:model="telat16" class="form-control @error('telat16') is-invalid @enderror" {{ $tglAbsen16 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan16 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat16')
                                     <span class="invalid-feedback">
@@ -713,7 +727,7 @@
                                 <label for="pertemuan17">Pertemuan (17): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen17 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen17 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan17" name="pertemuan17" wire:model="pertemuan17" class="form-select @error('pertemuan17') is-invalid @enderror" {{ $tglAbsen17 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan17 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan17" name="pertemuan17" wire:model="pertemuan17" class="form-select @error('pertemuan17') is-invalid @enderror" {{ $tglAbsen17 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan17 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -731,7 +745,7 @@
                             <div class="col-sm-6">
                                 <label for="telat17">Menit Telat (17): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat17" name="telat17" wire:model="telat17" class="form-control @error('telat17') is-invalid @enderror" {{ $tglAbsen17 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $this->pertemuan17 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat17" name="telat17" wire:model="telat17" class="form-control @error('telat17') is-invalid @enderror" {{ $tglAbsen17 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan17 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat17')
                                     <span class="invalid-feedback">
@@ -746,7 +760,7 @@
                                 <label for="pertemuan18">Pertemuan (18): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen18 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen18 }}</span>
                                 <div class="mb-3 input-group">
-                                    <select id="pertemuan18" name="pertemuan18" wire:model="pertemuan18" class="form-select @error('pertemuan18') is-invalid @enderror" {{ $this->pertemuan18 != null ? 'disabled' : ''}} >
+                                    <select id="pertemuan18" name="pertemuan18" wire:model="pertemuan18" class="form-select @error('pertemuan18') is-invalid @enderror" {{ $absen->pertemuan18 != null ? 'disabled' : ''}} >
                                         <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                         <option value="Hadir">Hadir</option>
                                         <option value="Alfa">Alfa</option>
@@ -764,7 +778,7 @@
                             <div class="col-sm-6">
                                 <label for="telat18">Menit Telat (18): </label>
                                 <div class="mb-3 input-group">
-                                    <input type="time" id="telat18" name="telat18" wire:model="telat18" class="form-control @error('telat18') is-invalid @enderror" {{ $this->pertemuan18 != null ? 'disabled' : ''}} >
+                                    <input type="time" id="telat18" name="telat18" wire:model="telat18" class="form-control @error('telat18') is-invalid @enderror" {{ $absen->pertemuan18 != null ? 'disabled' : ''}} >
                                     <span class="input-group-text"><h4><i class="mdi mdi-clock-alert"></i></h4></span>
                                     @error('telat18')
                                     <span class="invalid-feedback">

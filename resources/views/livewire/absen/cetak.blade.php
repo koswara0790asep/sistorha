@@ -55,7 +55,7 @@
         <td>Mata Kuliah (sks)</td>
         <td>:</td>
         <td>{{ $dfMatkul->nama_matkul ?? '' }} ({{ $dtJadwal->sks ?? ''}})</td>
-        <td>Periode</td>
+        <td>Angkatan</td>
         <td>:</td>
         <td>{{ $dfKelas->periode ?? '' }}</td>
     </tr>

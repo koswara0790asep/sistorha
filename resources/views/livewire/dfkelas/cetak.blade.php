@@ -45,7 +45,7 @@
             <th style='text-align: center;border:1px solid black;'>NAMA KELAS</th>
             <th style='text-align: center;border:1px solid black;'>DOSEN WALI</th>
             <th style='text-align: center;border:1px solid black;'>PROGRAM STUDI</th>
-            <th style='text-align: center;border:1px solid black;'>PERIODE</th>
+            <th style='text-align: center;border:1px solid black;'>Angkatan</th>
         </tr>
     </thead>
     <tbody>

@@ -30,7 +30,7 @@ class Profil extends Component
             $this->password = $user->password;
             $this->updated_at = $user->updated_at;
         } elseif ($this->username != Auth::user()->username) {
-            Alert::error('Woops!','Data yang kamu tuju bukan data kamu!');
+            Alert::error('Woops!','Data yang Anda tuju bukan data Anda!');
         }
     }
     public function render()

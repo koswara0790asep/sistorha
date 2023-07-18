@@ -119,7 +119,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                             <td>{{ $dfKelas->nama_kelas ?? '' }}</td>
                         </tr>
                         <tr>
-                            <td>Periode</td>
+                            <td>Angkatan</td>
                             <td>:</td>
                             <td>{{ $dfKelas->periode ?? '' }}</td>
                         </tr>

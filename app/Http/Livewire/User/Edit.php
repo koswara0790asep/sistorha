@@ -33,7 +33,7 @@ class Edit extends Component
             $this->updated_at = $user->updated_at;
 
         } elseif ($this->username == null) {
-            Alert::warning('Woops!','Data yang kamu cari tidak ada!');
+            Alert::warning('Woops!','Data yang Anda cari tidak ada!');
         }
     }
 

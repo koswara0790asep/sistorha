@@ -43,7 +43,7 @@
             <th style='text-align: center;border:1px solid black;'>NAMA</th>
             <th style='text-align: center;border:1px solid black;'>JENIS KELAMIN</th>
             <th style='text-align: center;border:1px solid black;'>PROGRAM STUDI</th>
-            <th style='text-align: center;border:1px solid black;'>PERIODE</th>
+            <th style='text-align: center;border:1px solid black;'>ANGKATAN</th>
             <th style='text-align: center;border:1px solid black;'>STATUS AKTIF</th>
         </tr>
     </thead>

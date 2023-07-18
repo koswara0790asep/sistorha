@@ -34,7 +34,7 @@ class Index extends Component
             $df_kelas->delete();
         }
 
-        Alert::success('BERHASIL','Data Ruangan berhasil dihapus!');
+        Alert::success('BERHASIL','Data kelas berhasil dihapus!');
 
         // redirect
         return redirect()->route('dfkelas.index');

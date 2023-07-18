@@ -100,7 +100,7 @@
                         </div>
                     </div><!-- Col -->
                     <div class="col-sm-4">
-                        <label for="periode">Periode: </label>
+                        <label for="periode">Angkatan: </label>
                         <div class="mb-3 input-group">
                             <input type="number" id="periode" name="periode" min="1000" max="3000" wire:model="periode" class="form-control @error('periode') is-invalid @enderror" placeholder="Masukkan Periode">
                             <span class="input-group-text"><h4><i class="mdi mdi-calendar-blank"></i></h4></span>

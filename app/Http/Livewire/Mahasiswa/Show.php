@@ -16,7 +16,7 @@ class Show extends Component
         $this->mahasiswa = Mahasiswa::find($id);
 
         if (!$this->mahasiswa) {
-            Alert::warning('Woops!','Data yang kamu cari tidak ada!');
+            Alert::warning('Woops!','Data yang Anda cari tidak ada!');
         }
     }
 
