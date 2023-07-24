@@ -130,5 +130,17 @@
             }
 
     </script>
+    {{-- <script>
+        // Simpan data tanggal libur dalam array
+        const tanggalLibur = ['2023-07-20', '2023-08-10', '2023-09-05']; // Misalnya tanggal libur pada tahun 2023
+
+        // Inisialisasi datepicker dengan flatpickr
+        flatpickr("#flatpickr-date", {
+            wrap: true,
+            minDate: "today",
+            dateFormat: "Y-m-d",
+            disable: ["2023-07-19", "2023-08-17", "2023-09-28", "2023-10-01", ],
+        });
+      </script> --}}
 </body>
 </html>

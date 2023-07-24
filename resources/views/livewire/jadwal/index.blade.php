@@ -64,12 +64,30 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-calendar-text"></i> Data Table Jadwal
+                        <i class="mdi mdi-calendar-text"></i> Data Tabel Jadwal
                     </h4>
                 </div>
             </div>
             <div class="card-body">
-
+                @if (Auth::user()->role == 'akademik')
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="">Semester Terpilih:</label><br>
+                            <select name="currentSmst" id="currentSmst" wire:model="currentSmst" class="form-select">
+                                <option value="" hidden>--- Pilih Semester ---</option>
+                                <option value="ganjil">Ganjil</option>
+                                <option value="genap">Genap</option>
+                            </select>
+                            {{-- <input type="radio" wire:model="currentSmst" value="ganjil"> Ganjil
+                            <input type="radio" wire:model="currentSmst" value="genap"> Genap --}}
+                        </div>
+                    </div>
+                    <br><br>
+                    @php
+                        // $jadwals = DB::table('jadwals')->where('semester % 2 = ?', [$this->currentSmst === 'ganjil' ? 1 : 0])->get();
+                        $jadwals = App\Models\Jadwal::whereRaw('semester % 2 = ?', [$this->currentSmst === 'ganjil' ? 1 : 0])->get();
+                    @endphp
+                @endif
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table table-bordered table-striped table-hover">
                         <thead class="table table-dark">
@@ -157,17 +175,17 @@
                                     @endphp
                                     @if (count($beritaacaras) == 8 || count($beritaacaras) == 16)
                                     <a href="{{ route('absen.mhs', [$jadw->id,  $jadw->kelas_id, $jadw->matkul_id]) }}"
-                                        class="btn btn-sm btn-info btn-icon-text"><i class="mdi mdi-file-document"></i> Absen</a>
+                                        class="btn btn-sm btn-info btn-icon-text"><i class="mdi mdi-file-document"></i> Progres</a>
                                     {{-- <a href="/absensis/{{ $jadw->id }}/{{ $jadw->kelas_id }}/{{ $jadw->matkul_id }}"
                                         class="btn btn-sm btn-info btn-icon-text"><i class="mdi mdi-file-document"></i> Absen</a> --}}
                                     @else
                                         <a href="{{ Auth::user()->role != 'dosen' ? route('absen.mhs', [$jadw->id, $jadw->kelas_id, $jadw->matkul_id]) : route('beritaacara.create', [$jadw->id, $jadw->matkul_id, $jadw->kelas_id, $jadw->dosen_id]) }}"
-                                            class="btn btn-sm btn-info btn-icon-text"><i class="mdi mdi-file-document"></i> Absen</a>
+                                            class="btn btn-sm btn-info btn-icon-text"><i class="mdi mdi-file-document"></i> Progres</a>
                                     @endif
 
                                     @if (Auth::user()->role == 'akademik')
                                         <a href="{{ route('jadwal.edit', $jadw->id) }}"
-                                            class="btn btn-warning btn-icon-text"><i class="mdi mdi-lead-pencil"></i></a>
+                                            class="btn btn-warning btn-icon-text"><i class="mdi mdi-lead-pencil"></i> Edit</a>
                                         {{-- <button type="button" class="btn btn-danger btn-icon-text" data-bs-toggle="modal"
                                             data-bs-target="#id_{{ $jadw->id }}">
                                             <i class="mdi mdi-delete"></i>

@@ -8,7 +8,7 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title" style="margin-top: 10px;"><b><i data-feather="users"></i> Data Table User</b></h4>
+                <h4 class="card-title" style="margin-top: 10px;"><b><i data-feather="users"></i> Data Tabel User</b></h4>
                 {{-- <div  style="text-align: right; margin-top: -50px;">
                     <a href="{{ route('user.create') }}" class="btn btn-primary btn-icon-text mb-2">
                         <i class="btn-icon-prepend" data-feather="user-plus"></i>
@@ -22,12 +22,12 @@
                         <thead class="table table-dark">
                             <tr>
                                 <th class="text-light">ID</th>
-                                <th class="text-light">NAME</th>
+                                <th class="text-light">NAMA</th>
                                 <th class="text-light">USERNAME</th>
                                 <th class="text-light">E-MAIL</th>
                                 <th class="text-light">ROLE</th>
-                                <th class="text-light">UPDATE</th>
-                                <th class="text-light">ACTION</th>
+                                <th class="text-light">PEMBAHARUAN</th>
+                                <th class="text-light">AKSI</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,10 +42,12 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-warning btn-icon"><i data-feather="edit"></i></a>
+                                    @if ($user->id != Auth::user()->id)
                                     <button type="button" class="btn btn-sm btn-danger btn-icon" data-bs-toggle="modal"
                                         data-bs-target="#id_{{ $user->id }}">
                                         <i data-feather="trash"></i>
                                     </button>
+                                    @endif
 
                                     <!-- Modal -->
                                     <div class="modal fade text-center" id="id_{{ $user->id }}" tabindex="-1" aria-labelledby="id_{{ $user->id }}Label"

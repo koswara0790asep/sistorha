@@ -26,7 +26,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-format-list-bulleted-type"></i> Data Table Daftar Kelas
+                        <i class="mdi mdi-format-list-bulleted-type"></i> Data Tabel Daftar Kelas
                     </h4>
                 </div>
             </div>

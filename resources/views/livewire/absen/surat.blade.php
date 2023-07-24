@@ -67,7 +67,7 @@
     <br><br><br><br><br><br>
     <b>Castaka Agus Sugianto, M.Kom., MCS</b>
 </p>
-
+<br><br><br><br>
 <p style="font-size: 12px; text-align: justify">
     <b>Tembusan : </b> <br>
     1. Wakil Direktur 1 <br>

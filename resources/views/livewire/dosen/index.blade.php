@@ -63,7 +63,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-account-multiple"></i> Data Table Dosen
+                        <i class="mdi mdi-account-multiple"></i> Data Tabel Dosen
                     </h4>
                 </div>
             </div>

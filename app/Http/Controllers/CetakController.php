@@ -139,7 +139,7 @@ class CetakController extends Controller
         }
         if (Auth::user()->role == 'akademik') {
             return view('livewire.jadwal.cetak', [
-                'jadwals' => Jadwal::first()->where('thn_ajar', date('Y'))->get(),
+                'jadwals' => Jadwal::first()->where('thn_ajar', date('Y'))->orderBy('prodi_id','asc')->orderBy('semester','asc')->get(),
             ]);
         }
         if (Auth::user()->role == 'prodi') {

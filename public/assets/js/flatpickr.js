@@ -4,11 +4,13 @@
 $(function() {
   'use strict';
 
-  // date picker 
+  // date picker
   if($('#flatpickr-date').length) {
     flatpickr("#flatpickr-date", {
       wrap: true,
+    //   minDate: "today",
       dateFormat: "Y-m-d",
+    //   disable: ["2023-07-19", "2023-08-17", "2023-09-28", "2023-10-01", ],
     });
   }
 

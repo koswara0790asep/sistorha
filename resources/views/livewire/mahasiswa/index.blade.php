@@ -59,7 +59,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-account-multiple"></i> Data Table Mahasiswa
+                        <i class="mdi mdi-account-multiple"></i> Data Tabel Mahasiswa
                     </h4>
                 </div>
             </div>

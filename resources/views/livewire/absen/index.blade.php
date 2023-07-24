@@ -30,7 +30,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-file-import"></i> Impor Absen Dari Exel
+                        <i class="mdi mdi-file-import"></i> Impor Kehadiran Dari Exel
                     </h4>
                 </div>
             </div>
@@ -60,7 +60,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-archive"></i> Data Table Absen Mahasiswa
+                        <i class="mdi mdi-archive"></i> Data Table Kehadiran Mahasiswa
                     </h4>
                 </div>
             </div>
@@ -120,7 +120,8 @@
                 @php
                     $dfKelas = DB::table('df_kelases')->where('id', $kelasSelect ?? null)->select('df_kelases.*', 'id', 'prodi_id', 'kode', 'periode')->first();
                     $dfMatkul = DB::table('df_matkuls')->where('id', $matkulSelect ?? null)->select('df_matkuls.*', 'id', 'kode_matkul', 'nama_matkul', 'dosen')->first();
-                    // $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.*', 'sks', 'jml_jam', 'hari', 'jam_awal', 'jam_akhir')->first();
+                    $dtJadwal = DB::table('jadwals')->where('matkul_id', $matkulSelect ?? null)->where('kelas_id', $kelasSelect ?? null)->select('jadwals.*', 'sks', 'jml_jam', 'hari', 'jam_awal', 'jam_akhir')->first();
+                    // dd($dtJadwal);
 
                     // $beritaacaras = DB::table('berita_acaras')->where('kelas_id', $this->kelasSelect ?? '')->where('matkul_id', $this->matkulSelect ?? '')->select('berita_acaras.*', 'kelas_id', 'matkul_id')->get();
                     // // dd($this->kelasSelect);
@@ -133,6 +134,12 @@
                     // }  else {
                     //     $persentaseDsn = 100 * (count($beritaacaras)/18);
                     // }
+                    // $dfKelas = DB::table('df_kelases')->where('id', $this->kelasSelect ?? '')->select('df_kelases.*', 'id', 'prodi_id', 'kode',
+                    // 'periode')->first();
+                    // $dfMatkul = DB::table('df_matkuls')->where('id', $this->matkulSelect ?? '')->select('df_matkuls.*', 'id', 'kode_matkul',
+                    // 'nama_matkul', 'dosen')->first();
+                    // $dtJadwal = DB::table('jadwals')->where('id', $this->jadwalId ?? '')->select('jadwals.*', 'sks', 'jml_jam', 'hari',
+                    // 'jam_awal', 'jam_akhir', 'dosen_id')->first();
                 @endphp
                 <div class="row">
                     <div class="col-md-6">
@@ -214,14 +221,14 @@
                             <table class="table table-bordered table-striped">
                                 <thead class="table table-dark">
                                     <tr class="text text-center">
-                                        <th colspan="{{ Auth::user()->role == 'prodi' ? 4 : 4 }}">MAHASISWA YANG ABSENNYA KURANG</th>
+                                        <th colspan="{{ Auth::user()->role == 'prodi' ? 4 : 4 }}" class="text-light">MAHASISWA YANG KEHADIRANNYA KURANG</th>
                                     </tr>
                                     <tr class="text text-center">
-                                        <th>NO</th>
-                                        <th>NAMA</th>
-                                        <th>ALFA</th>
+                                        <th class="text-light">NO</th>
+                                        <th class="text-light">NAMA</th>
+                                        <th class="text-light">ALFA</th>
                                         {{-- @if (Auth::user()->role == 'prodi') --}}
-                                            <th>AKSI</th>
+                                        <th class="text-light">AKSI</th>
                                         {{-- @endif --}}
                                     </tr>
                                 </thead>
@@ -260,6 +267,7 @@
                                         $h16 = 0;
                                         $h17 = 0;
                                         $h18 = 0;
+
                                     @endphp
 
                                     @foreach ($absensis as $absen)
@@ -715,6 +723,7 @@
                             @else
 
                             @php
+
                                 $h1 = 0;
                                 $h2 = 0;
                                 $h3 = 0;
@@ -755,6 +764,8 @@
 
                             @foreach ($absensis as $absen)
                             @php
+
+                            // dd($dtJadwal);
                             $alfas = 0;
                             $izins = 0;
                             $sakits = 0;
@@ -790,7 +801,7 @@
 
                                     @else
 
-                                    {{ $h1 == '1' ? "√" : strtoupper(substr($absen->pertemuan1, 0, 1)) }}
+                                    {{ $h1 == '1' ? "H" : strtoupper(substr($absen->pertemuan1, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -835,7 +846,7 @@
 
                                     @else
 
-                                    {{ $h2 == '1' ? "√" : strtoupper(substr($absen->pertemuan2, 0, 1)) }}
+                                    {{ $h2 == '1' ? "H" : strtoupper(substr($absen->pertemuan2, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -881,7 +892,7 @@
 
                                     @else
 
-                                    {{ $h3 == '1' ? "√" : strtoupper(substr($absen->pertemuan3, 0, 1)) }}
+                                    {{ $h3 == '1' ? "H" : strtoupper(substr($absen->pertemuan3, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -926,7 +937,7 @@
 
                                     @else
 
-                                    {{ $h4 == '1' ? "√" : strtoupper(substr($absen->pertemuan4, 0, 1)) }}
+                                    {{ $h4 == '1' ? "H" : strtoupper(substr($absen->pertemuan4, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -971,7 +982,7 @@
 
                                     @else
 
-                                    {{ $h5 == '1' ? "√" : strtoupper(substr($absen->pertemuan5, 0, 1)) }}
+                                    {{ $h5 == '1' ? "H" : strtoupper(substr($absen->pertemuan5, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1016,7 +1027,7 @@
 
                                     @else
 
-                                    {{ $h6 == '1' ? "√" : strtoupper(substr($absen->pertemuan6, 0, 1)) }}
+                                    {{ $h6 == '1' ? "H" : strtoupper(substr($absen->pertemuan6, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1061,7 +1072,7 @@
 
                                     @else
 
-                                    {{ $h7 == '1' ? "√" : strtoupper(substr($absen->pertemuan7, 0, 1)) }}
+                                    {{ $h7 == '1' ? "H" : strtoupper(substr($absen->pertemuan7, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1106,7 +1117,7 @@
 
                                     @else
 
-                                    {{ $h8 == '1' ? "√" : strtoupper(substr($absen->pertemuan8, 0, 1)) }}
+                                    {{ $h8 == '1' ? "H" : strtoupper(substr($absen->pertemuan8, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1151,7 +1162,7 @@
 
                                     @else
 
-                                    {{ $h9 == '1' ? "√" : strtoupper(substr($absen->pertemuan9, 0, 1)) }}
+                                    {{ $h9 == '1' ? "H" : strtoupper(substr($absen->pertemuan9, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1196,7 +1207,7 @@
 
                                     @else
 
-                                    {{ $h10 == '1' ? "√" : strtoupper(substr($absen->pertemuan10, 0, 1)) }}
+                                    {{ $h10 == '1' ? "H" : strtoupper(substr($absen->pertemuan10, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1241,7 +1252,7 @@
 
                                     @else
 
-                                    {{ $h11 == '1' ? "√" : strtoupper(substr($absen->pertemuan11, 0, 1)) }}
+                                    {{ $h11 == '1' ? "H" : strtoupper(substr($absen->pertemuan11, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1286,7 +1297,7 @@
 
                                     @else
 
-                                    {{ $h12 == '1' ? "√" : strtoupper(substr($absen->pertemuan12, 0, 1)) }}
+                                    {{ $h12 == '1' ? "H" : strtoupper(substr($absen->pertemuan12, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1331,7 +1342,7 @@
 
                                     @else
 
-                                    {{ $h13 == '1' ? "√" : strtoupper(substr($absen->pertemuan13, 0, 1)) }}
+                                    {{ $h13 == '1' ? "H" : strtoupper(substr($absen->pertemuan13, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1376,7 +1387,7 @@
 
                                     @else
 
-                                    {{ $h14 == '1' ? "√" : strtoupper(substr($absen->pertemuan14, 0, 1)) }}
+                                    {{ $h14 == '1' ? "H" : strtoupper(substr($absen->pertemuan14, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1421,7 +1432,7 @@
 
                                     @else
 
-                                    {{ $h15 == '1' ? "√" : strtoupper(substr($absen->pertemuan15, 0, 1)) }}
+                                    {{ $h15 == '1' ? "H" : strtoupper(substr($absen->pertemuan15, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1466,7 +1477,7 @@
 
                                     @else
 
-                                    {{ $h16 == '1' ? "√" : strtoupper(substr($absen->pertemuan16, 0, 1)) }}
+                                    {{ $h16 == '1' ? "H" : strtoupper(substr($absen->pertemuan16, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1511,7 +1522,7 @@
 
                                     @else
 
-                                    {{ $h17 == '1' ? "√" : strtoupper(substr($absen->pertemuan17, 0, 1)) }}
+                                    {{ $h17 == '1' ? "H" : strtoupper(substr($absen->pertemuan17, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>
@@ -1556,7 +1567,7 @@
 
                                     @else
 
-                                    {{ $h18 == '1' ? "√" : strtoupper(substr($absen->pertemuan18, 0, 1)) }}
+                                    {{ $h18 == '1' ? "H" : strtoupper(substr($absen->pertemuan18, 0, 1)) }}
                                     @endif
                                 </td>
                                 <td>

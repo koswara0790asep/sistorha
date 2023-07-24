@@ -229,7 +229,7 @@
 
                     @else
 
-                    {{ $h1 == '1' ? "√" : strtoupper(substr($absen->pertemuan1, 0, 1)) }}
+                    {{ $h1 == '1' ? "H" : strtoupper(substr($absen->pertemuan1, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -274,7 +274,7 @@
 
                     @else
 
-                    {{ $h2 == '1' ? "√" : strtoupper(substr($absen->pertemuan2, 0, 1)) }}
+                    {{ $h2 == '1' ? "H" : strtoupper(substr($absen->pertemuan2, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -320,7 +320,7 @@
 
                     @else
 
-                    {{ $h3 == '1' ? "√" : strtoupper(substr($absen->pertemuan3, 0, 1)) }}
+                    {{ $h3 == '1' ? "H" : strtoupper(substr($absen->pertemuan3, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -365,7 +365,7 @@
 
                     @else
 
-                    {{ $h4 == '1' ? "√" : strtoupper(substr($absen->pertemuan4, 0, 1)) }}
+                    {{ $h4 == '1' ? "H" : strtoupper(substr($absen->pertemuan4, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -410,7 +410,7 @@
 
                     @else
 
-                    {{ $h5 == '1' ? "√" : strtoupper(substr($absen->pertemuan5, 0, 1)) }}
+                    {{ $h5 == '1' ? "H" : strtoupper(substr($absen->pertemuan5, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -455,7 +455,7 @@
 
                     @else
 
-                    {{ $h6 == '1' ? "√" : strtoupper(substr($absen->pertemuan6, 0, 1)) }}
+                    {{ $h6 == '1' ? "H" : strtoupper(substr($absen->pertemuan6, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -500,7 +500,7 @@
 
                     @else
 
-                    {{ $h7 == '1' ? "√" : strtoupper(substr($absen->pertemuan7, 0, 1)) }}
+                    {{ $h7 == '1' ? "H" : strtoupper(substr($absen->pertemuan7, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -545,7 +545,7 @@
 
                     @else
 
-                    {{ $h8 == '1' ? "√" : strtoupper(substr($absen->pertemuan8, 0, 1)) }}
+                    {{ $h8 == '1' ? "H" : strtoupper(substr($absen->pertemuan8, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -590,7 +590,7 @@
 
                     @else
 
-                    {{ $h9 == '1' ? "√" : strtoupper(substr($absen->pertemuan9, 0, 1)) }}
+                    {{ $h9 == '1' ? "H" : strtoupper(substr($absen->pertemuan9, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -635,7 +635,7 @@
 
                     @else
 
-                    {{ $h10 == '1' ? "√" : strtoupper(substr($absen->pertemuan10, 0, 1)) }}
+                    {{ $h10 == '1' ? "H" : strtoupper(substr($absen->pertemuan10, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -680,7 +680,7 @@
 
                     @else
 
-                    {{ $h11 == '1' ? "√" : strtoupper(substr($absen->pertemuan11, 0, 1)) }}
+                    {{ $h11 == '1' ? "H" : strtoupper(substr($absen->pertemuan11, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -725,7 +725,7 @@
 
                     @else
 
-                    {{ $h12 == '1' ? "√" : strtoupper(substr($absen->pertemuan12, 0, 1)) }}
+                    {{ $h12 == '1' ? "H" : strtoupper(substr($absen->pertemuan12, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -770,7 +770,7 @@
 
                     @else
 
-                    {{ $h13 == '1' ? "√" : strtoupper(substr($absen->pertemuan13, 0, 1)) }}
+                    {{ $h13 == '1' ? "H" : strtoupper(substr($absen->pertemuan13, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -815,7 +815,7 @@
 
                     @else
 
-                    {{ $h14 == '1' ? "√" : strtoupper(substr($absen->pertemuan14, 0, 1)) }}
+                    {{ $h14 == '1' ? "H" : strtoupper(substr($absen->pertemuan14, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -860,7 +860,7 @@
 
                     @else
 
-                    {{ $h15 == '1' ? "√" : strtoupper(substr($absen->pertemuan15, 0, 1)) }}
+                    {{ $h15 == '1' ? "H" : strtoupper(substr($absen->pertemuan15, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -905,7 +905,7 @@
 
                     @else
 
-                    {{ $h16 == '1' ? "√" : strtoupper(substr($absen->pertemuan16, 0, 1)) }}
+                    {{ $h16 == '1' ? "H" : strtoupper(substr($absen->pertemuan16, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -950,7 +950,7 @@
 
                     @else
 
-                    {{ $h17 == '1' ? "√" : strtoupper(substr($absen->pertemuan17, 0, 1)) }}
+                    {{ $h17 == '1' ? "H" : strtoupper(substr($absen->pertemuan17, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -995,7 +995,7 @@
 
                     @else
 
-                    {{ $h18 == '1' ? "√" : strtoupper(substr($absen->pertemuan18, 0, 1)) }}
+                    {{ $h18 == '1' ? "H" : strtoupper(substr($absen->pertemuan18, 0, 1)) }}
                     @endif
                 </td>
                 <td style='text-align: center;border:1px solid black;'>
@@ -1082,8 +1082,44 @@
                 <td style='text-align: center;border:1px solid black;'>{{ $dtJadwal->jml_jam }}</td>
                 <td style='text-align: center;border:1px solid black;'></td>
             @endfor
-            {{-- <td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td> --}}
+                <td style='text-align: center;border:1px solid black;'></td>
+                {{-- <td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td> --}}
         </tr>
 
     </tbody>
+    {{-- <tr>
+        <td style=' color: white;'> .</td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td>
+        <td style='' colspan="7">
+            <p style="text-align: justify;">
+                Cimahi, {{ \Carbon\Carbon::parse()->isoFormat('D MMMM YYYY') }} <br>
+                Dosen Pengampu
+                <br><br><br><br><br><br>
+                <b>{{ $dosen->nama ?? '' }}</b>
+            </p>
+        </td>
+    </tr> --}}
 </table>
+<table>
+    <div class="" style="float: right;">
+        <p style="text-align: justify;">
+            Cimahi, {{ \Carbon\Carbon::parse()->isoFormat('D MMMM YYYY') }} <br>
+            Dosen Pengampu
+            <br><br><br><br><br><br>
+            <b>{{ $dosen->nama ?? '' }}</b>
+        </p>
+    </div>
+</table>
+{{-- <table>
+    <tr>
+        <td style=' color: white;'> .</td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td>
+        <td style='text-align: center;border:1px solid black;'>
+            <p style="font-size: 12px; text-align: justify; margin-left: 300px">
+                Cimahi, {{ \Carbon\Carbon::parse()->isoFormat('D MMMM YYYY') }} <br>
+                Dosen Pengampu
+                <br><br><br><br><br><br>
+                <b>Castaka Agus Sugianto, M.Kom., MCS</b>
+            </p>
+        </td>
+    </tr>
+</table> --}}
+

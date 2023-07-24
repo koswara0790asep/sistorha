@@ -22,7 +22,7 @@
 <div class="row">
     <div aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-arrwo">
-            <li class="breadcrumb-item" aria-current="page"> Halaman Absen</li>
+            <li class="breadcrumb-item" aria-current="page"> Halaman Kehadiran</li>
             <li class="breadcrumb-item" aria-current="page"> Mata Kuliah {{ $dfMatkul->nama_matkul }}</li>
             <li class="breadcrumb-item active" aria-current="page"> Kelas {{ $dfKelas->kode }}</li>
         </ol>
@@ -194,11 +194,11 @@
                         @endphp
                         {{-- <span class="badge badge-warning">{{  $tglAbsen16 }}</span> --}}
                         {{-- <p>{{  $tglAbsen1-> != null ? \Carbon\Carbon::parse($tglAbsen1->tanggal)->isoFormat('dddd, D MMMM YYYY') : 'BAP Belum Terisi'}}</p> --}}
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen1)
                         <div class="card">
                             <div class="card-body bg-warning">
+                                <center><h3>Pertemuan Aktif</h3></center>
+                                @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen1)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan1">Pertemuan (1): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen1 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen1 }}</span>
@@ -231,14 +231,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen2)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen2)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan2">Pertemuan (2): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen2 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen2 }}</span>
@@ -271,14 +266,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen3)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen3)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan3">Pertemuan (3): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen3 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen3 }}</span>
@@ -311,14 +301,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen4)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen4)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan4">Pertemuan (4): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen4 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen4 }}</span>
@@ -351,14 +336,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen5)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen5)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan5">Pertemuan (5): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen5 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen5 }}</span>
@@ -391,14 +371,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen6)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen6)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan6">Pertemuan (6): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen6 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen6 }}</span>
@@ -431,14 +406,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen7)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen7)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan7">Pertemuan (7): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen7 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen7 }}</span>
@@ -471,14 +441,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen8)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen8)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan8">Pertemuan (8): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen8 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen8 }}</span>
@@ -511,14 +476,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen9)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen9)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan9">Pertemuan (9): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen9 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen9 }}</span>
@@ -551,14 +511,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen10)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen10)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan10">Pertemuan (10): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen10 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen10 }}</span>
@@ -591,14 +546,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen11)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen11)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan11">Pertemuan (11): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen11 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen11 }}</span>
@@ -631,14 +581,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen12)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen12)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan12">Pertemuan (12): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen12 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen12 }}</span>
@@ -671,14 +616,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen13)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen13)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan13">Pertemuan (13): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen13 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen13 }}</span>
@@ -711,14 +651,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen14)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen14)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan14">Pertemuan (14): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen14 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen14 }}</span>
@@ -751,14 +686,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen15)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen15)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan15">Pertemuan (15): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen15 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen15 }}</span>
@@ -791,14 +721,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen16)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen16)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan16">Pertemuan (16): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen16 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen16 }}</span>
@@ -831,14 +756,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen17)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen17)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan17">Pertemuan (17): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen17 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen17 }}</span>
@@ -871,14 +791,9 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
-                                </div>
-                            </div>
-                        @endif
-                        @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen18)
-                            <div class="card">
-                                <div class="card-body bg-warning">
+                                    @endif
+                                    @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen18)
                                     <div class="row">
-                                        <center><h3>Pertemuan Aktif</h3></center>
                                         <div class="col-sm-6">
                                             <label for="pertemuan18">Pertemuan (18): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen18 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen18 }}</span>
@@ -911,10 +826,10 @@
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Row -->
+                                    @endif
                                 </div>
                             </div>
-                        @endif
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-sm-6">
                                 <label for="pertemuan1">Pertemuan (1): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen1 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen1 }}</span>
@@ -1177,7 +1092,7 @@
                                     @enderror
                                 </div>
                             </div><!-- Col -->
-                        </div><!-- Row -->
+                        </div><!-- Row --> --}}
                         <div class="card">
                             <div class="card-body bg-success">
                                 <div class="row">
@@ -1216,7 +1131,7 @@
                                 </div><!-- Row -->
                             </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-sm-6">
                                 <label for="pertemuan10">Pertemuan (10): </label>
                                 <span class="badge rounded-pill {{ $tglAbsen10 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen10 }}</span>
@@ -1479,7 +1394,7 @@
                                     @enderror
                                 </div>
                             </div><!-- Col -->
-                        </div><!-- Row -->
+                        </div><!-- Row --> --}}
                         <div class="card">
                             <div class="card-body bg-success">
                                 <div class="row">
@@ -1529,4 +1444,7 @@
         </div>
     </div>
 </div>
+@else
+<center><h1>403 | F O R B I D D E N </h1>
+<a href="{{ route('home') }}" class="btn btn-danger btn-lg btn-icon-text"><i class="mdi mdi-arrow-left-thin"></i> KEMBALI</a></center>
 @endif

@@ -70,7 +70,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                         </div>
                     </div><!-- Col --> --}}
                     <div class="col-sm-6">
-                        <label for="tanggal">Tanggal Masuk: 
+                        <label for="tanggal">Tanggal Masuk:
                             <span class="badge {{ $this->tanggal == null ? 'bg-danger' : 'bg-success' }}">{{ \Carbon\Carbon::parse($this->tanggal)->isoFormat('dddd') ?? '' }}</span> </label>
                         <div class="mb-3 input-group flatpickr" id="flatpickr-date">
                             <input type="text" id="tanggal" name="tanggal" wire:model="tanggal" class="form-control flatpickr-input @error('tanggal') is-invalid @enderror" placeholder="Pilih Tanggal" data-input>

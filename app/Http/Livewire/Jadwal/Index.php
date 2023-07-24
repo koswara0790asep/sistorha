@@ -42,6 +42,9 @@ class Index extends Component
     public $jam_awal;
     public $jam_akhir;
     public $ruang_id;
+    // public $ganjil = 1;
+    // public $genap = 0;
+    public $currentSmst = 'genap';
 
     public $importJadwal;
 
@@ -78,19 +81,28 @@ class Index extends Component
             return view('livewire.jadwal.index', [
                 'jadwals' => $this->klsId == null ?
                 Jadwal::all() :
-                Jadwal::first()->where('kelas_id', $this->klsId . '')->get(),
+                Jadwal::first()->where('kelas_id', $this->klsId)->get(),
+                'currentSmst' => $this->currentSmst,
+                // 'ganjil' => $this->ganjil,
+                // 'genap' => $this->genap,
             ]);
         } elseif (Auth::user()->role == 'prodi') {
             return view('livewire.jadwal.index', [
                 'jadwals' => $this->prodiId == null ?
                 Jadwal::all() :
-                Jadwal::first()->where('prodi_id', $this->prodiId . '')->where('thn_ajar', date('Y'))->get(),
+                Jadwal::first()->where('prodi_id', $this->prodiId)->where('thn_ajar', date('Y'))->get(),
+                'currentSmst' => $this->currentSmst,
+                // 'ganjil' => $this->ganjil,
+                // 'genap' => $this->genap,
             ]);
         } else {
             return view('livewire.jadwal.index', [
                 'jadwals' => $this->dosenId == null ?
                 Jadwal::all() :
-                Jadwal::first()->where('dosen_id', $this->dosenId . '')->where('thn_ajar', date('Y'))->get(),
+                Jadwal::first()->where('dosen_id', $this->dosenId)->where('thn_ajar', date('Y'))->get(),
+                'currentSmst' => $this->currentSmst,
+                // 'ganjil' => $this->ganjil,
+                // 'genap' => $this->genap,
             ]);
         }
     }

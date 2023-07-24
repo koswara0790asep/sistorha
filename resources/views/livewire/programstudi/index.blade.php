@@ -25,7 +25,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-heart-box-outline"></i> Data Table Program Studi
+                        <i class="mdi mdi-heart-box-outline"></i> Data Tabel Program Studi
                     </h4>
                 </div>
             </div>

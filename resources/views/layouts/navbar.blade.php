@@ -194,7 +194,7 @@
               </a>
             </li>
             <li class="dropdown-item py-2">
-              <a href="/user/epassword/{{ Auth::user()->id }}" class="text-body ms-0">
+              <a href="{{ route('user.edpassword', Auth::user()->id) }}" class="text-body ms-0">
                 <i class="me-2 icon-md" data-feather="edit"></i>
                 <span>Edit Password</span>
               </a>

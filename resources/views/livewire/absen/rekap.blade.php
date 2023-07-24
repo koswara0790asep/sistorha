@@ -702,3 +702,13 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
     </tbody>
 </table>
+<table>
+    <div class="" style="float: right;">
+        <p style="text-align: justify;">
+            Cimahi, {{ \Carbon\Carbon::parse()->isoFormat('D MMMM YYYY') }} <br>
+            Dosen Pengampu
+            <br><br><br><br><br><br>
+            <b>{{ $dosen->nama ?? '' }}</b>
+        </p>
+    </div>
+</table>

@@ -4,7 +4,7 @@
     <div aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-arrwo">
             <li class="breadcrumb-item">Olah Data</li>
-            <li class="breadcrumb-item">Absensi</li>
+            <li class="breadcrumb-item">Kehadiran</li>
             <li class="breadcrumb-item active">Tambah Data</li>
         </ol>
     </div>
@@ -14,7 +14,7 @@
                 <a href="{{ route('absen.index') }}" class="btn btn-danger btn-sm shadow"><i
                         class="mdi mdi-close"></i></a>
                 <i class="mdi mdi-table-column-plus-after"></i>
-                TAMBAH ABSENSI
+                TAMBAH FORM KEHADIRAN
             </h4>
         </div>
         <div class="card-body">

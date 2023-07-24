@@ -25,7 +25,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-stairs"></i> Data Table Ruangan
+                        <i class="mdi mdi-stairs"></i> Data Tabel Ruangan
                     </h4>
                 </div>
             </div>
