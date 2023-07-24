@@ -229,3 +229,13 @@ $dtDosen = DB::table('dosens')->where('id', $dtJadwal->dosen_id ?? '')->select('
         @endif
     </tbody>
 </table>
+<table>
+    <div class="" style="float: right;">
+        <p style="text-align: justify;">
+            Cimahi, {{ \Carbon\Carbon::parse()->isoFormat('D MMMM YYYY') }} <br>
+            Dosen Pengampu
+            <br><br><br><br><br><br>
+            <b>{{ $dtDosen->nama ?? '' }}</b>
+        </p>
+    </div>
+</table>

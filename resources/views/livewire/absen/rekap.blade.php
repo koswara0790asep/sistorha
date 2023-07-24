@@ -206,7 +206,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h1 == '1' ? "√" : strtoupper(substr($absen->pertemuan1, 0, 1)) }}
+                {{ $h1 == '1' ? "H" : strtoupper(substr($absen->pertemuan1, 0, 1)) }}
                 @endif
             </td>
 
@@ -232,7 +232,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h2 == '1' ? "√" : strtoupper(substr($absen->pertemuan2, 0, 1)) }}
+                {{ $h2 == '1' ? "H" : strtoupper(substr($absen->pertemuan2, 0, 1)) }}
                 @endif
             </td>
 
@@ -258,7 +258,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h3 == '1' ? "√" : strtoupper(substr($absen->pertemuan3, 0, 1)) }}
+                {{ $h3 == '1' ? "H" : strtoupper(substr($absen->pertemuan3, 0, 1)) }}
                 @endif
             </td>
 
@@ -284,7 +284,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h4 == '1' ? "√" : strtoupper(substr($absen->pertemuan4, 0, 1)) }}
+                {{ $h4 == '1' ? "H" : strtoupper(substr($absen->pertemuan4, 0, 1)) }}
                 @endif
             </td>
 
@@ -310,7 +310,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h5 == '1' ? "√" : strtoupper(substr($absen->pertemuan5, 0, 1)) }}
+                {{ $h5 == '1' ? "H" : strtoupper(substr($absen->pertemuan5, 0, 1)) }}
                 @endif
             </td>
 
@@ -336,7 +336,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h6 == '1' ? "√" : strtoupper(substr($absen->pertemuan6, 0, 1)) }}
+                {{ $h6 == '1' ? "H" : strtoupper(substr($absen->pertemuan6, 0, 1)) }}
                 @endif
             </td>
 
@@ -362,7 +362,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h7 == '1' ? "√" : strtoupper(substr($absen->pertemuan7, 0, 1)) }}
+                {{ $h7 == '1' ? "H" : strtoupper(substr($absen->pertemuan7, 0, 1)) }}
                 @endif
             </td>
 
@@ -388,7 +388,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h8 == '1' ? "√" : strtoupper(substr($absen->pertemuan8, 0, 1)) }}
+                {{ $h8 == '1' ? "H" : strtoupper(substr($absen->pertemuan8, 0, 1)) }}
                 @endif
             </td>
 
@@ -414,7 +414,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h9 == '1' ? "√" : strtoupper(substr($absen->pertemuan9, 0, 1)) }}
+                {{ $h9 == '1' ? "H" : strtoupper(substr($absen->pertemuan9, 0, 1)) }}
                 @endif
             </td>
 
@@ -440,7 +440,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h10 == '1' ? "√" : strtoupper(substr($absen->pertemuan10, 0, 1)) }}
+                {{ $h10 == '1' ? "H" : strtoupper(substr($absen->pertemuan10, 0, 1)) }}
                 @endif
             </td>
 
@@ -466,7 +466,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h11 == '1' ? "√" : strtoupper(substr($absen->pertemuan11, 0, 1)) }}
+                {{ $h11 == '1' ? "H" : strtoupper(substr($absen->pertemuan11, 0, 1)) }}
                 @endif
             </td>
 
@@ -492,7 +492,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h12 == '1' ? "√" : strtoupper(substr($absen->pertemuan12, 0, 1)) }}
+                {{ $h12 == '1' ? "H" : strtoupper(substr($absen->pertemuan12, 0, 1)) }}
                 @endif
             </td>
 
@@ -518,7 +518,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h13 == '1' ? "√" : strtoupper(substr($absen->pertemuan13, 0, 1)) }}
+                {{ $h13 == '1' ? "H" : strtoupper(substr($absen->pertemuan13, 0, 1)) }}
                 @endif
             </td>
 
@@ -544,7 +544,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h14 == '1' ? "√" : strtoupper(substr($absen->pertemuan14, 0, 1)) }}
+                {{ $h14 == '1' ? "H" : strtoupper(substr($absen->pertemuan14, 0, 1)) }}
                 @endif
             </td>
 
@@ -570,7 +570,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h15 == '1' ? "√" : strtoupper(substr($absen->pertemuan15, 0, 1)) }}
+                {{ $h15 == '1' ? "H" : strtoupper(substr($absen->pertemuan15, 0, 1)) }}
                 @endif
             </td>
 
@@ -596,7 +596,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h16 == '1' ? "√" : strtoupper(substr($absen->pertemuan16, 0, 1)) }}
+                {{ $h16 == '1' ? "H" : strtoupper(substr($absen->pertemuan16, 0, 1)) }}
                 @endif
             </td>
 
@@ -622,7 +622,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h17 == '1' ? "√" : strtoupper(substr($absen->pertemuan17, 0, 1)) }}
+                {{ $h17 == '1' ? "H" : strtoupper(substr($absen->pertemuan17, 0, 1)) }}
                 @endif
             </td>
 
@@ -648,7 +648,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
 
                 @else
 
-                {{ $h18 == '1' ? "√" : strtoupper(substr($absen->pertemuan18, 0, 1)) }}
+                {{ $h18 == '1' ? "H" : strtoupper(substr($absen->pertemuan18, 0, 1)) }}
                 @endif
             </td>
 
