@@ -4,8 +4,9 @@
     $dfKelas = DB::table('df_kelases')->where('id', $this->kelas_id ?? '')->select('df_kelases.*', 'id', 'prodi_id', 'kode', 'periode')->first();
     $dfMatkul = DB::table('df_matkuls')->where('id', $this->matkul_id ?? '')->select('df_matkuls.*', 'id', 'kode_matkul', 'nama_matkul', 'dosen')->first();
     $dataMhs = DB::table('mahasiswas')->where('nim', $this->nim)->select('mahasiswas.*', 'nama', 'status_aktif')->first();
+    $baps = DB::table('berita_acaras')->where('kelas_id', $this->kelas_id ?? '')->where('matkul_id', $this->matkul_id ?? '')->select('berita_acaras.*', 'id')->get();
     $absen = App\Models\Absent::find($this->absenId);
-
+    // dd(count($baps));
     // $beritaacara = DB::table('berita_acaras')
     //                             ->where('kelas_id', $this->kelas_id ?? '')
     //                             ->where('matkul_id', $this->matkul_id ?? '')
@@ -1093,10 +1094,11 @@
                                 </div>
                             </div><!-- Col -->
                         </div><!-- Row --> --}}
+                        @if (count($baps) == 8)
                         <div class="card">
                             <div class="card-body bg-success">
                                 <div class="row">
-                                    <center><h3>Penilaian Tengah Semester</h3></center>
+                                    <center><h3>Ujian Tengah Semester</h3></center>
                                     <div class="col-sm-6">
                                         <label for="pertemuan9">Pertemuan (9): </label>
                                         <span class="badge rounded-pill {{ $tglAbsen9 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen9 }}</span>
@@ -1131,6 +1133,7 @@
                                 </div><!-- Row -->
                             </div>
                         </div>
+                        @endif
                         {{-- <div class="row">
                             <div class="col-sm-6">
                                 <label for="pertemuan10">Pertemuan (10): </label>
@@ -1395,10 +1398,11 @@
                                 </div>
                             </div><!-- Col -->
                         </div><!-- Row --> --}}
+                        @if (count($baps) == 16)
                         <div class="card">
                             <div class="card-body bg-success">
                                 <div class="row">
-                                    <center><h3>Penilaian Akhir Semester</h3></center>
+                                    <center><h3>Ujian Akhir Semester</h3></center>
                                     <div class="col-sm-6">
                                         <label for="pertemuan18">Pertemuan (18): </label>
                                         <span class="badge rounded-pill {{ $tglAbsen18 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen18 }}</span>
@@ -1433,6 +1437,7 @@
                                 </div><!-- Row -->
                             </div>
                         </div>
+                        @endif
                         {{-- @php
                             $no++
                         @endphp

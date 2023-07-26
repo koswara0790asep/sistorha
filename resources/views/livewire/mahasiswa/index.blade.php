@@ -82,7 +82,8 @@
                         <tbody>
                             @foreach ($mahasiswas as $mhs)
                             <tr>
-                                <td>{{ $mhs->id }}</td>
+                                <td>{{ $loop->iteration }}</td>
+                                {{-- <td>{{ $mhs->id }}</td> --}}
                                 <td>{{ $mhs->nim }}</td>
                                 <td>{{ $mhs->nama }}</td>
                                 <td>

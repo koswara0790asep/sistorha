@@ -45,7 +45,8 @@
                         <tbody>
                             @foreach($kelasmhsws as $key => $klsmhs)
                             <tr>
-                                <td class="text-center">{{ $klsmhs->id }}</td>
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                {{-- <td class="text-center">{{ $klsmhs->id }}</td> --}}
                                 <td class="text-center">
                                     @php
                                         $data = DB::table('df_kelases')->where('id',
