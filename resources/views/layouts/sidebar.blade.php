@@ -63,13 +63,13 @@
                             <a href="{{ route('ruangan.index') }}" class="nav-link">Ruangan</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('dfmatkul.index') }}" class="nav-link">Daftar Matakuliah</a>
+                            <a href="{{ route('dfmatkul.index') }}" class="nav-link">Daftar Mata Kuliah</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('jadwal.index') }}" class="nav-link">Jadwal</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('absen.index') }}" class="nav-link">Absensi</a>
+                            <a href="{{ route('absen.index') }}" class="nav-link">Monitoring Kehadiran</a>
                         </li>
                     </ul>
                 </div>
@@ -137,7 +137,7 @@
                             <a href="{{ route('kelasmhs.index') }}" class="nav-link">Kelas Mahasiswa</a>
                         </li> --}}
                         <li class="nav-item">
-                            <a href="{{ route('dfmatkul.index') }}" class="nav-link">Daftar Matakuliah</a>
+                            <a href="{{ route('dfmatkul.index') }}" class="nav-link">Daftar Mata Kuliah</a>
                         </li>
                         @php
                             $dtProdi = DB::table('program_studies')->where('kode', Auth::user()->username ?? '')->select('program_studies.*', 'id')->first();
@@ -146,7 +146,7 @@
                             <a href="{{ route('jadwal.indexProdi', $dtProdi->id) }}" class="nav-link">Jadwal</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('absen.index') }}" class="nav-link">Absensi</a>
+                            <a href="{{ route('absen.index') }}" class="nav-link">Monitoring Kehadiran</a>
                         </li>
                     </ul>
                 </div>

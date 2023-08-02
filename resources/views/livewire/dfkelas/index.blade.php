@@ -11,7 +11,7 @@
             <div class="col-sm-3 d-flex">
                 <div class="col" style="text-align: right;">
                     @if (Auth::user()->role == 'akademik')
-                    <a href="/dfkelas/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                    <a href="{{ route('dfkelas.create') }}" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-table-column"></i> Tambah Data</a>
                     @endif
                     <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">

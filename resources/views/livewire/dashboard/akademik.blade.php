@@ -291,6 +291,64 @@ foreach ($dosens as $dsn) {
         </div>
     </div>
 
+    {{-- Membuat Monitoring Pertemuan Dosen --}}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card grid-margin strech-card">
+                <div class="card-header">
+                    <div class="card-title mt-2">
+                        <h5>
+                            <i class="mdi mdi-table"></i> Monitoring Pertemuan
+                        </h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Keterangan: <span class="badge bg-danger">Perhitungan Tidak Sama Dengan Rekap Kehadiran!</span></h5>
+                            <p>Pertemuan = (Jumlah Pertemuan/16) x 100%</p>
+                            <p>UTS dan UAS tidak dihitung.</p>
+                        </div>
+                    </div>
+                    <table id="dataTableExample" class="table table-bordered table-striped ">
+                        <thead class="table table-dark">
+                            <tr>
+                                <th class="text-light">Dosen</th>
+                                <th class="text-light">Mata Kuliah</th>
+                                <th class="text-light">Kelas (Pertemuan)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($datas as $item)
+                                <tr>
+                                    @php
+                                        $dtDosen = DB::table('dosens')->where('id', $item->dosen ?? '')->select('dosens.*', 'id', 'nama')->first();
+                                        $dtJadwal = DB::table('jadwals')->where('matkul_id', $item->id ?? '')->where('thn_ajar', date('Y'))->select('jadwals.*', 'id', 'kelas_id', 'matkul_id')->get();
+                                    @endphp
+                                    <td>{{ $dtDosen->nama ?? ''}}</td>
+                                    <td>{{ $item->nama_matkul ?? '' }}</td>
+                                    <td>
+                                    @foreach ($dtJadwal as $jadwal)
+                                        @php
+                                            $dtKelas = DB::table('df_kelases')->where('id', $jadwal->kelas_id ?? '')->select('df_kelases.*', 'id', 'nama_kelas')->first();
+                                            $berita_acara = DB::table('berita_acaras')->where('matkul_id', $jadwal->matkul_id ?? '')->where('kelas_id', $jadwal->kelas_id ?? '')->select('berita_acaras.*', 'id', 'pertemuan')->get();
+                                        @endphp
+                                            {{ $dtKelas->nama_kelas ?? '' }} ({{ count($berita_acara) }}) <br>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-{{ array_rand($colors) }}" role="progressbar" style="width: {{ (count($berita_acara)/16)*100 }}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ (count($berita_acara)/16)*100 }}%</div>
+                                            </div>
+                                            <br>
+                                    @endforeach
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {{-- Membuat chart menggunakan Chart.js --}}
 
 <script>

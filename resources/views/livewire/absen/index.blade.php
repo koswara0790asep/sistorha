@@ -60,7 +60,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-archive"></i> Data Table Kehadiran Mahasiswa
+                        <i class="mdi mdi-archive"></i> Data Tabel Kehadiran Mahasiswa
                     </h4>
                 </div>
             </div>
