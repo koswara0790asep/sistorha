@@ -201,16 +201,19 @@
                                 @if (\Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') == $tglAbsen1)
                                     <div class="row">
                                         <div class="col-sm-6">
+                                            {{-- @php
+                                                $this->pertemuan1 = "Hadir";
+                                            @endphp --}}
                                             <label for="pertemuan1">Pertemuan (1): </label>
                                             <span class="badge rounded-pill {{ $tglAbsen1 == 'BAP Belum Terisi' ? 'bg-danger' : 'bg-info' }}">{{ $tglAbsen1 }}</span>
                                             <div class="mb-3 input-group">
                                             {{-- <br> --}}
-                                            {{-- <label for="pertemuan1">
-                                                <input type="radio" name="pertemuan1" id="pertemuan1" class="@error('pertemuan1') is-invalid @enderror" {{ $tglAbsen1 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan1 != null ? 'disabled' : ''}} value="Hadir" checked> Hadir
+                                            {{-- <label for="pertemuan1"> --}}
+                                                {{-- <input type="radio" name="pertemuan1" id="pertemuan1" class="@error('pertemuan1') is-invalid @enderror" {{ $tglAbsen1 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan1 != null ? 'disabled' : ''}} value="Hadir" checked> Hadir
                                                 <input type="radio" name="pertemuan1" id="pertemuan1" class="@error('pertemuan1') is-invalid @enderror" {{ $tglAbsen1 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan1 != null ? 'disabled' : ''}} value="Alfa" > Alfa
                                                 <input type="radio" name="pertemuan1" id="pertemuan1" class="@error('pertemuan1') is-invalid @enderror" {{ $tglAbsen1 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan1 != null ? 'disabled' : ''}} value="Sakit" > Sakit
-                                                <input type="radio" name="pertemuan1" id="pertemuan1" class="@error('pertemuan1') is-invalid @enderror" {{ $tglAbsen1 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan1 != null ? 'disabled' : ''}} value="Izin" > Izin
-                                            </label> --}}
+                                                <input type="radio" name="pertemuan1" id="pertemuan1" class="@error('pertemuan1') is-invalid @enderror" {{ $tglAbsen1 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan1 != null ? 'disabled' : ''}} value="Izin" > Izin --}}
+                                            {{-- </label> --}}
                                                 <select id="pertemuan1" name="pertemuan1" wire:model="pertemuan1" class="form-select @error('pertemuan1') is-invalid @enderror" {{ $tglAbsen1 == \Carbon\Carbon::parse()->isoFormat('dddd, D MMMM YYYY') ? '' : 'disabled' }} {{ $absen->pertemuan1 != null ? 'disabled' : ''}} >
                                                     <option value="" hidden>--- Hadir/Alfa/Sakit/Izin ---</option>
                                                     <option value="Hadir">Hadir</option>

@@ -157,9 +157,9 @@ class Index extends Component
 
     public function importDsn()
     {
-        // $this->validate([
-        //     'importDosen' => 'required|mimes:xlsx'
-        // ]);
+        $this->validate([
+            'importDosen' => 'required|mimes:xlsx'
+        ]);
 
         $file = $this->importDosen;
         $reader = IOFactory::createReader('Xlsx');

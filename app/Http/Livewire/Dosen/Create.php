@@ -42,7 +42,7 @@ class Create extends Component
         ]);
 
         if (Dosen::where('nidn', $this->nidn)->exists()) {
-            Alert::error('GAGAL!','Data Mahasiswa Sudah Ada!');
+            Alert::error('GAGAL!','Data Dosen Sudah Ada!');
         } else {
             Dosen::create([
                 'nama' => $this->nama,
@@ -59,10 +59,10 @@ class Create extends Component
                 'status_aktif' => $this->status_aktif,
                 'jenis_kelamin' => $this->jenis_kelamin,
             ]);
+            //flash message
+            Alert::success('BERHASIL!','Data Dosen ' .$this->nama. ' Berhasil Disimpan!');
         }
 
-        //flash message
-        Alert::success('BERHASIL!','Data Dosen ' .$this->nama. ' Berhasil Disimpan!');
 
         // redirect
         return redirect()->route('dosen.index');

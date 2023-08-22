@@ -32,7 +32,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-file-import"></i> Impor Data Dari Exel
+                        <i class="mdi mdi-file-import"></i> Impor Data Dari Excel
                     </h4>
                 </div>
             </div>
@@ -133,8 +133,10 @@
                                         $verifAcc = $dsn->nidn == null || $dsn->nidn == '' ? DB::table('users')->where('username', $dsn->nik)->exists() : DB::table('users')->where('username', $dsn->nidn)->exists();
                                     @endphp
                                     @if (!$verifAcc)
-                                    <button wire:click="genAkun({{ $dsn->id }})"
-                                        class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
+                                        @if ($dsn->status_aktif != "Tidak Aktif")
+                                            <button wire:click="genAkun({{ $dsn->id }})"
+                                                class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
+                                        @endif
                                     @endif
                                     <a href="{{ route('dosen.show', $dsn->id) }}"
                                         class="btn btn-sm btn-info btn-icon"><i class="mdi mdi-eye"></i></a>

@@ -135,9 +135,9 @@ class Index extends Component
 
     public function import()
     {
-        // $this->validate([
-        //     'importFile' => 'required|mimes:xlsx'
-        // ]);
+        $this->validate([
+            'importFile' => 'required|mimes:xlsx'
+        ]);
 
         $file = $this->importFile;
         $reader = IOFactory::createReader('Xlsx');

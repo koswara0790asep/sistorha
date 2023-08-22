@@ -66,7 +66,9 @@
                                             $verifAcc = DB::table('users')->where('username', $prodi->kode)->exists();
                                         @endphp
                                     @if (!$verifAcc)
-                                        <button wire:click="genAkun({{ $prodi->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
+                                        @if ($prodi->status != "Tidak Aktif")
+                                            <button wire:click="genAkun({{ $prodi->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
+                                        @endif
                                     @endif
 
                                     <!-- Modal -->

@@ -30,7 +30,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-file-import"></i> Impor Data Dari Exel
+                        <i class="mdi mdi-file-import"></i> Impor Data Dari Excel
                     </h4>
                 </div>
             </div>
@@ -130,7 +130,9 @@
                                         $verifAcc = DB::table('users')->where('username', $mhs->nim)->exists();
                                     @endphp
                                     @if (!$verifAcc)
-                                        <button wire:click="genAkun({{ $mhs->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
+                                        @if ($mhs->status_aktif != 'Tidak Aktif')
+                                            <button wire:click="genAkun({{ $mhs->id }})" class="btn btn-sm btn-success btn-icon"><i class="mdi mdi-account"></i></button>
+                                        @endif
                                     @endif
                                     <a href="{{ route('mahasiswa.show', $mhs->id) }}" class="btn btn-sm btn-info btn-icon"><i class="mdi mdi-eye"></i></a>
                                 </td>

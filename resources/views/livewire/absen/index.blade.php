@@ -17,7 +17,7 @@
                     <!-- Button trigger modal -->
 
                     <button type="button" onclick="toggle()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
-                        <i class="mdi mdi-file-import"></i> Import XLSX</button>
+                        <i class="mdi mdi-file-import"></i> Impor XLSX</button>
                 @endif
             </div>
         </div>
@@ -30,7 +30,7 @@
             <div class="card-header">
                 <div class="card-title mt-3">
                     <h4>
-                        <i class="mdi mdi-file-import"></i> Impor Kehadiran Dari Exel
+                        <i class="mdi mdi-file-import"></i> Impor Kehadiran Dari Excel
                     </h4>
                 </div>
             </div>

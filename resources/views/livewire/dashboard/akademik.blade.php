@@ -229,8 +229,8 @@ foreach ($dosens as $dsn) {
                 <div class="card-body">
                     <div class="text-center">
                         <div class="btn-group btn-group-sm" role="group">
-                            <button type="button" class="btn btn-outline-success btn-icon-text"><i class="mdi mdi-check"></i> Aktif : {{ $dataStatusDsn[0] }}</button>
-                            <button type="button" class="btn btn-outline-danger btn-icon-text">Tidak Aktif : {{ $dataStatusDsn[1] }} <i class="mdi mdi-close"></i></button>
+                            <button type="button" class="btn btn-outline-success btn-icon-text"><i class="mdi mdi-check"></i> Aktif : {{ $dataStatusDsn[0] ?? 0 }}</button>
+                            <button type="button" class="btn btn-outline-danger btn-icon-text">Tidak Aktif : {{ $dataStatusDsn[1] ?? 0 }} <i class="mdi mdi-close"></i></button>
                         </div>
                     </div>
                     <canvas id="pieChartDsn"></canvas>
@@ -281,8 +281,8 @@ foreach ($dosens as $dsn) {
                 <div class="card-body">
                     <div class="text-center">
                         <div class="btn-group btn-group-sm" role="group">
-                            <button type="button" class="btn btn-outline-success btn-icon-text"><i class="mdi mdi-check"></i> Aktif : {{ $dataStatus[0] }}</button>
-                            <button type="button" class="btn btn-outline-danger btn-icon-text">Tidak Aktif : {{ $dataStatus[1] }} <i class="mdi mdi-close"></i></button>
+                            <button type="button" class="btn btn-outline-success btn-icon-text"><i class="mdi mdi-check"></i> Aktif : {{ $dataStatus[0] ?? 0 }}</button>
+                            <button type="button" class="btn btn-outline-danger btn-icon-text">Tidak Aktif : {{ $dataStatus[1] ?? 0 }} <i class="mdi mdi-close"></i></button>
                         </div>
                     </div>
                     <canvas id="pieChartMhs"></canvas>

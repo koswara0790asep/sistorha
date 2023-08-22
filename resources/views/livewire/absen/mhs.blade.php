@@ -1255,7 +1255,7 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
                     <tr>
                         <td>Hadir</td>
                         <td>:</td>
-                        <td>√</td>
+                        <td>H</td>
                     </tr>
                     <tr>
                         <td>Alfa</td>

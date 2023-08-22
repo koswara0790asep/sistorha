@@ -10,7 +10,7 @@
             <div class="col-md-5" style="text-align: right;">
                 @if (Auth::user()->role == 'akademik')
 
-                    <a href="/jadwal/create" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
+                    <a href="{{ route('jadwal.create') }}" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-table-column"></i> Tambah Data</a>
                     <!-- Button trigger modal -->
                     <button type="button" onclick="toggle()"
@@ -31,7 +31,7 @@
                 <div class="card-header">
                     <div class="card-title mt-3">
                         <h4>
-                            <i class="mdi mdi-file-import"></i> Impor Data Dari Exel
+                            <i class="mdi mdi-file-import"></i> Impor Data Dari Excel
                         </h4>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                                         $dataKls = DB::table('df_kelases')->where('id',
                                         $jadw->kelas_id)->select('df_kelases.*', 'kode', 'prodi_id')->first();
                                     @endphp
-                                    {{ $dataKls->kode }}
+                                    {{ $dataKls->kode ?? '' }}
                                 </td>
                                 <td class="text-center">Reguler</td>
                                 <td class="text-center">
@@ -131,19 +131,19 @@
                                         $dataProd = DB::table('program_studies')->where('id',
                                         $jadw->prodi_id)->select('program_studies.*', 'program_studi')->first();
                                     @endphp
-                                    {{ $dataProd->program_studi }}
+                                    {{ $dataProd->program_studi ?? ''  }}
                                 </td>
-                                <td class="text-center">{{ $jadw->semester }}</td>
+                                <td class="text-center">{{ $jadw->semester ?? '' }}</td>
                                 <td class="text-center">
                                     @php
                                         $dataMk = DB::table('df_matkuls')->where('id',
                                         $jadw->matkul_id)->select('df_matkuls.*', 'kode_matkul', 'nama_matkul')->first();
                                     @endphp
-                                    {{ $dataMk->kode_matkul }}
+                                    {{ $dataMk->kode_matkul ?? '' }}
                                 </td>
                                 <td>{{ $dataMk->nama_matkul }}</td>
-                                <td class="text-center">{{ $jadw->sks }}</td>
-                                <td class="text-center">{{ $jadw->jml_jam }}</td>
+                                <td class="text-center">{{ $jadw->sks ?? '' }}</td>
+                                <td class="text-center">{{ $jadw->jml_jam ?? '' }}</td>
                                 <td>
                                     @php
                                         $dataDsn = DB::table('dosens')->where('id',
@@ -151,10 +151,17 @@
                                         echo $dataDsn->nama;
                                     @endphp
                                 </td>
-                                <td>{{ $jadw->thn_ajar ?? '' }}</td>
-                                <td>{{ $jadw->hari }}</td>
-                                <td>{{ $jadw->jam_awal }}</td>
-                                <td>{{ $jadw->jam_akhir }}</td>
+                                <td>
+                                    @if ($this->currentSmst == "ganjil")
+                                       {{ $jadw->thn_ajar ?? '' }} - {{ $jadw->thn_ajar + 1 ?? '' }}
+                                    @else
+                                       {{ $jadw->thn_ajar - 1 ?? '' }} - {{ $jadw->thn_ajar ?? '' }}
+                                    @endif
+                                </td>
+                                {{-- <td>{{ $jadw->thn_ajar ?? '' }}</td> --}}
+                                <td>{{ $jadw->hari ?? '' }}</td>
+                                <td>{{ $jadw->jam_awal ?? '' }}</td>
+                                <td>{{ $jadw->jam_akhir ?? '' }}</td>
                                 <td class="text-center">
                                     @php
                                         $dataRn = DB::table('ruangans')->where('id',
@@ -202,7 +209,7 @@
                                                                 class="mdi mdi-alert-circle-outline"></i></p>
                                                         <br>
                                                         <h3>Apakah anda yakin?</h3>
-                                                        <p>Data {{ $jadw->nama_matkul }} dari Daftar Jadwal yang dihapus
+                                                        <p>Data {{ $jadw->nama_matkul ?? '' }} dari Daftar Jadwal yang dihapus
                                                             tidak dapat dikembalikan.</p>
                                                         <br>
 
