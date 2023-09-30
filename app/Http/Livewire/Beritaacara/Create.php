@@ -37,7 +37,6 @@ class Create extends Component
         ''
         :
         BeritaAcara::first()->where('kelas_id', 'like', '%' . $this->kelasSelect . '%')->where( 'matkul_id', 'like', '%' . $this->matkulSelect . '%')->select('berita_acaras.*', 'id', 'pertemuan')->get();
-        // dd(count($beritaacara));
 
         $lastMeet = count($beritaacara);
         if ($lastMeet == 0) {
@@ -49,21 +48,18 @@ class Create extends Component
         } else {
             $this->pertemuan = $lastMeet + 1;
         }
-        // dd($lastMeet);
+
         $this->jumlah_mhs = 0;
-        // $this->hari = \Carbon\Carbon::parse($this->tanggal)->isoFormat('dddd');
     }
 
     public function store()
     {
         $this->validate([
-            // 'hari' => 'required',
             'tanggal' => 'required',
             'jam_masuk' => 'required',
             'jam_keluar' => 'required|after:jam_masuk',
             'pembahasan' => 'required',
             'jumlah_mhs' => 'required',
-            // 'pertemuan' => 'required',
         ]);
 
         $this->matkul_id = $this->matkulSelect;
@@ -87,7 +83,7 @@ class Create extends Component
             return redirect('/beritaacara/'.$this->jadwalId.'/'.$this->matkul_id.'/'.$this->kelas_id.'/'.$this->dosenID.'');
         } else {
             if (!$dataExists) {
-                // dd($this->hari, $this->tanggal);
+
                 BeritaAcara::firstOrCreate(
                     [
                         'pertemuan' => $this->pertemuan,

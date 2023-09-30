@@ -54,7 +54,6 @@ class Edit extends Component
     public function update()
     {
         $this->validate([
-            // 'hari' => 'required',
             'tanggal' => 'required',
             'jam_masuk' => 'required',
             'jam_keluar' => 'required|after:jam_masuk',

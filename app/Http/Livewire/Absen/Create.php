@@ -3,11 +3,9 @@
 namespace App\Http\Livewire\Absen;
 
 use App\Models\Absensi;
-use App\Models\Absent;
 use App\Models\DfKelas;
 use App\Models\DfMatkul;
 use App\Models\KelasMhsw;
-use App\Models\Mahasiswa;
 use App\Models\ProgramStudi;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;

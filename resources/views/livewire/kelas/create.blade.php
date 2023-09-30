@@ -57,7 +57,6 @@
                         <label for="selectedKelases">Daftar Kelas: </label>
                         <div class="mb-3 input-group">
                             <select id="selectedKelases" name="selectedKelases" wire:model="selectedKelases" class="form-control @error('selectedKelases') is-invalid @enderror" multiple>
-                                {{-- <option value="" hidden>--- Pilih Daftar Kelas ---</option> --}}
                                 @foreach ($dfkelases as $dfkelas)
                                     <option value="{{ $dfkelas->id }}">{{ $dfkelas->kode }} - {{ $dfkelas->nama_kelas }}</option>
                                 @endforeach

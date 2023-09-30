@@ -68,29 +68,9 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                             @enderror
                         </div>
                     </div><!-- Col -->
-                    {{-- <div class="col-sm-4">
-                        <label for="hari">Hari: </label>
-                        <div class="mb-3 input-group">
-                            <select id="hari" name="hari" wire:model="hari" class="form-select @error('hari') is-invalid @enderror">
-                                <option value="" hidden>--- Pilih Hari Masuk ---</option>
-                                <option value="Senin">Senin</option>
-                                <option value="Selasa">Selasa</option>
-                                <option value="Rabu">Rabu</option>
-                                <option value="Kamis">Kamis</option>
-                                <option value="Jum'at">Jum'at</option>
-                                <option value="Sabtu">Sabtu</option>
-                                <option value="Minggu">Minggu/Ahad</option>
-                            </select>
-                            <span class="input-group-text"><h4><i class="mdi mdi-calendar"></i></h4></span>
-                            @error('hari')
-                            <span class="invalid-feedback">
-                                {{ $message }}
-                            </span>
-                            @enderror
-                        </div>
-                    </div><!-- Col --> --}}
+                    
                     <div class="col-sm-6">
-                        <label for="tanggal">Tanggal Masuk: 
+                        <label for="tanggal">Tanggal Masuk:
                             <span class="badge {{ $this->tanggal == null ? 'bg-danger' : 'bg-success' }}">{{ \Carbon\Carbon::parse($this->tanggal)->isoFormat('dddd') ?? '' }}</span> </label>
                         </label>
                         <div class="mb-3 input-group flatpickr" id="flatpickr-date">

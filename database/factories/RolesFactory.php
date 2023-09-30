@@ -13,23 +13,23 @@ class RolesFactory extends Factory
      */
     public function definition()
     {
-        return [
-            [
-                'id' => 1,
-                'name' => 'akademik',
-            ],
-            [
-                'id' => 2,
-                'name' => 'prodi',
-            ],
-            [
-                'id' => 3,
-                'name' => 'dosen',
-            ],
-            [
-                'id' => 4,
-                'name' => 'mahasiswa',
-            ],
-        ];
+        // return [
+        //     [
+        //         'id' => 1,
+        //         'name' => 'akademik',
+        //     ],
+        //     [
+        //         'id' => 2,
+        //         'name' => 'prodi',
+        //     ],
+        //     [
+        //         'id' => 3,
+        //         'name' => 'dosen',
+        //     ],
+        //     [
+        //         'id' => 4,
+        //         'name' => 'mahasiswa',
+        //     ],
+        // ];
     }
 }

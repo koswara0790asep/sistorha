@@ -14,25 +14,25 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        $roles = [
-            [
-                'id' => 1,
-                'name' => 'akademik',
-            ],
-            [
-                'id' => 2,
-                'name' => 'prodi',
-            ],
-            [
-                'id' => 3,
-                'name' => 'dosen',
-            ],
-            [
-                'id' => 4,
-                'name' => 'mahasiswa',
-            ],
-        ];
+        // $roles = [
+        //     [
+        //         'id' => 1,
+        //         'name' => 'akademik',
+        //     ],
+        //     [
+        //         'id' => 2,
+        //         'name' => 'prodi',
+        //     ],
+        //     [
+        //         'id' => 3,
+        //         'name' => 'dosen',
+        //     ],
+        //     [
+        //         'id' => 4,
+        //         'name' => 'mahasiswa',
+        //     ],
+        // ];
 
-        Roles::insert($roles);
+        // Roles::insert($roles);
     }
 }

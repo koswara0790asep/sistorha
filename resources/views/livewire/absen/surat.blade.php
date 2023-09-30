@@ -42,10 +42,6 @@
     </p>
 
 </center>
-{{-- @php
-    $dataMhs = DB::table('mahasiswas')->where('id', $mhsId ?? '')->select('mahasiswas.*', 'id', 'nama', 'nim')->first();
-    // dd($dataMhs);
-@endphp --}}
 <p style="font-size: 12px">
     Kepada, <br>
     {{ $mahasiswa->nama }} <br>

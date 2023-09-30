@@ -12,5 +12,4 @@ class ProgramStudi extends Model
     public $table = 'program_studies';
 
     protected $guarded = [];
-    // protected $fillable = ['program_studi', 'kode', 'status'];
 }

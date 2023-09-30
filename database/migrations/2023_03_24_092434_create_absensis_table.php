@@ -16,9 +16,7 @@ class CreateAbsensisTable extends Migration
         Schema::create('absensis', function (Blueprint $table) {
             $table->id();
             $table->integer('matkul_id')->unsigned();
-            // $table->foreign('matkul_id')->references('id')->on('matkuls');
             $table->integer('kelas_id')->unsigned();
-            // $table->foreign('kelas_id')->references('id')->on('kelases');
             $table->string('semester', 2);
             $table->string('nim', 16);
             $table->enum('pertemuan1', ['Hadir', 'Alfa', 'Sakit', 'Izin'])->nullable();

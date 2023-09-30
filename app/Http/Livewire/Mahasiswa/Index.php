@@ -12,7 +12,6 @@ use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use RealRashid\SweetAlert\Facades\Alert;
-use Sortable;
 
 class Index extends Component
 {
@@ -208,20 +207,6 @@ class Index extends Component
             // Menambahkan data pada baris saat ini ke dalam array data
             $data[] = $rowData;
         }
-
-        // dd($data);
-        // $rows = [];
-        // foreach ($worksheet->getRowIterator() as $row) {
-        //     $cellIterator = $row->getCellIterator();
-        //     $cellIterator->setIterateOnlyExistingCells(false);
-        //     $rowData = [];
-        //     foreach ($cellIterator as $cell) {
-        //         $rowData[] = $cell->getValue();
-        //     }
-        //     $rows[] = $rowData;
-        // }
-
-
 
         // Simpan data ke database
         foreach ($data as $row){

@@ -28,8 +28,6 @@ class Create extends Component
                             ->where('daftar_kelas_id', $this->selectedKelases)
                             ->exists();
 
-        // dd($dataExists);
-
         if (!$dataExists) {
             foreach ($this->selectedKelases as $kelas) {
                 Kelas::firstOrCreate(
@@ -47,8 +45,6 @@ class Create extends Component
         } else {
             Alert::warning('GAGAL!','Data Kelas Sudah Ada!');
         }
-
-
 
         // redirect
         return redirect()->route('kelas.index');

@@ -76,7 +76,6 @@
                         <label for="daftar_kelas_id">Daftar Kelas: </label>
                         <div class="mb-3 input-group">
                             <select id="daftar_kelas_id" name="daftar_kelas_id" wire:model="daftar_kelas_id" class="form-select @error('daftar_kelas_id') is-invalid @enderror">
-                                {{-- <option value="" hidden>--- Pilih Daftar Kelas ---</option> --}}
                                 @foreach ($dfkelases as $dfkelas)
                                     <option value="{{ $dfkelas->id }}">{{ $dfkelas->kode }} - {{ $dfkelas->nama_kelas }}</option>
                                 @endforeach

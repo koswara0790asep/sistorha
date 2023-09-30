@@ -8,12 +8,9 @@ use App\Models\KelasMhsw;
 use App\Models\Mahasiswa;
 use App\Models\ProgramStudi;
 use Carbon\Carbon;
-use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel\Time;
-use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel\TimeValue;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -42,8 +39,7 @@ class Index extends Component
     public $jam_awal;
     public $jam_akhir;
     public $ruang_id;
-    // public $ganjil = 1;
-    // public $genap = 0;
+
     public $currentSmst = 'genap';
 
     public $importJadwal;
@@ -83,8 +79,6 @@ class Index extends Component
                 Jadwal::all() :
                 Jadwal::first()->where('kelas_id', $this->klsId)->get(),
                 'currentSmst' => $this->currentSmst,
-                // 'ganjil' => $this->ganjil,
-                // 'genap' => $this->genap,
             ]);
         } elseif (Auth::user()->role == 'prodi') {
             return view('livewire.jadwal.index', [
@@ -92,8 +86,6 @@ class Index extends Component
                 Jadwal::all() :
                 Jadwal::first()->where('prodi_id', $this->prodiId)->where('thn_ajar', date('Y'))->get(),
                 'currentSmst' => $this->currentSmst,
-                // 'ganjil' => $this->ganjil,
-                // 'genap' => $this->genap,
             ]);
         } else {
             return view('livewire.jadwal.index', [
@@ -101,8 +93,6 @@ class Index extends Component
                 Jadwal::all() :
                 Jadwal::first()->where('dosen_id', $this->dosenId)->where('thn_ajar', date('Y'))->get(),
                 'currentSmst' => $this->currentSmst,
-                // 'ganjil' => $this->ganjil,
-                // 'genap' => $this->genap,
             ]);
         }
     }

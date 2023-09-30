@@ -1,12 +1,3 @@
-{{-- <style>
-    /* Tambahkan class "sticky-panel" pada panel yang ingin Anda tetapkan */
-    .sticky-panel {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-        background-color: #fff;
-    }
-</style> --}}
 @php
 $dfKelas = DB::table('df_kelases')->where('id', $kelasSelect ?? '')->select('df_kelases.*', 'id', 'prodi_id', 'kode',
 'periode')->first();

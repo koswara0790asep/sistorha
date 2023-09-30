@@ -12,9 +12,6 @@
                 @if (Auth::user()->role == 'akademik')
                     <a href="{{ route('absen.create') }}" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-table-column"></i> Tambah Data</a>
-                    {{-- <a onclick="openNewWindow()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
-                        <i class="mdi mdi-printer"></i> Cetak</a> --}}
-                    <!-- Button trigger modal -->
 
                     <button type="button" onclick="toggle()" class="btn btn-primary btn-sm btn-icon-text btn-icon-prepend mb-2">
                         <i class="mdi mdi-file-import"></i> Impor XLSX</button>
@@ -38,7 +35,6 @@
                 <form action="">
                     <div>
                         <input type="file" name="importFile" id="importFile" wire:model="importFile" class="form-control @error('importFile') is-invalid @enderror">
-                        {{-- <span class="input-group-text"><i class="mdi mdi-file"></i></span> --}}
                         @error('importFile')
                         <span class="invalid-feedback">
                             {{ $message }}
@@ -47,7 +43,6 @@
                     </div>
                     <br>
                     <button class="btn {{ $importFile != null ? 'btn-success' : 'btn-secondary' }} btn-sm" type="submit" wire:click.prevent="import"><i class="mdi mdi-content-save"></i> Impor Data</button>
-                    {{-- <button class="btn btn-primary btn-sm" type="submit" wire:click="download"><i class="mdi mdi-download"></i> Unduh Contoh</button> --}}
                     <a href="{{ asset('/sheets/ex-absen.xlsx') }}" class="btn btn-info btn-sm" @disabled(true)><i class="mdi mdi-download"></i> Unduh Contoh</a>
 
                 </form>
@@ -89,57 +84,14 @@
                             </select>
                             <span class="input-group-text"><h4><i class="mdi mdi-home-variant"></i></h4></span>
                         </div>
-                        {{-- <p>{{ $this->kelasSelect }} {{ $this->matkulSelect }}</p> --}}
                     </div><!-- Col -->
                 </div><!-- Row -->
 
                 @php
-                    // $dfKelas = DB::table('df_kelases')->where('id', $this->kelasSelect ?? '')->select('df_kelases.*', 'id', 'prodi_id', 'kode', 'periode')->first();
-                    // $dfMatkul = DB::table('df_matkuls')->where('id', $this->matkulSelect ?? '')->select('df_matkuls.*', 'id', 'kode_matkul', 'nama_matkul', 'dosen')->first();
-                    // $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.*', 'sks', 'jml_jam', 'hari', 'jam_awal', 'jam_akhir')->first();
-
-                    // $beritaacaras = DB::table('berita_acaras')->where('kelas_id', $this->kelasSelect ?? '')->where('matkul_id', $matkulSelect ?? '')->select('berita_acaras.*', 'kelas_id', 'matkul_id')->get();
-                    // dd($this->kelasSelect);
-                    // if ($beritaacaras) {
-                        // if (count($beritaacaras) == 8 || count($beritaacaras) == 16) {
-                        //     $beritaacaras = count($beritaacaras) + 2;
-                        //     $persentaseDsn = 100 * ($beritaacaras/18);
-                        // } elseif (count($beritaacaras) >= 8) {
-                        //     $beritaacaras = count($beritaacaras) + 1;
-                        //     $persentaseDsn = 100 * ($beritaacaras/18);
-                        // }  else {
-                        //     $persentaseDsn = 100 * (count($beritaacaras)/18);
-                        // }
-                    // }
-                @endphp
-                {{-- <div class="col-md-6">
-
-                    <p>{{ count($beritaacaras) ?? '' }} || {{ $persentaseDsn ?? '' }}</p>
-                    <canvas id="chartDonut"></canvas>
-                </div> --}}
-                @php
                     $dfKelas = DB::table('df_kelases')->where('id', $kelasSelect ?? null)->select('df_kelases.*', 'id', 'prodi_id', 'kode', 'periode')->first();
                     $dfMatkul = DB::table('df_matkuls')->where('id', $matkulSelect ?? null)->select('df_matkuls.*', 'id', 'kode_matkul', 'nama_matkul', 'dosen')->first();
                     $dtJadwal = DB::table('jadwals')->where('matkul_id', $matkulSelect ?? null)->where('kelas_id', $kelasSelect ?? null)->select('jadwals.*', 'sks', 'jml_jam', 'hari', 'jam_awal', 'jam_akhir')->first();
-                    // dd($dtJadwal);
 
-                    // $beritaacaras = DB::table('berita_acaras')->where('kelas_id', $this->kelasSelect ?? '')->where('matkul_id', $this->matkulSelect ?? '')->select('berita_acaras.*', 'kelas_id', 'matkul_id')->get();
-                    // // dd($this->kelasSelect);
-                    // if (count($beritaacaras) == 8 || count($beritaacaras) == 16) {
-                    //     $beritaacaras = count($beritaacaras) + 2;
-                    //     $persentaseDsn = 100 * ($beritaacaras/18);
-                    // } elseif (count($beritaacaras) >= 8) {
-                    //     $beritaacaras = count($beritaacaras) + 1;
-                    //     $persentaseDsn = 100 * ($beritaacaras/18);
-                    // }  else {
-                    //     $persentaseDsn = 100 * (count($beritaacaras)/18);
-                    // }
-                    // $dfKelas = DB::table('df_kelases')->where('id', $this->kelasSelect ?? '')->select('df_kelases.*', 'id', 'prodi_id', 'kode',
-                    // 'periode')->first();
-                    // $dfMatkul = DB::table('df_matkuls')->where('id', $this->matkulSelect ?? '')->select('df_matkuls.*', 'id', 'kode_matkul',
-                    // 'nama_matkul', 'dosen')->first();
-                    // $dtJadwal = DB::table('jadwals')->where('id', $this->jadwalId ?? '')->select('jadwals.*', 'sks', 'jml_jam', 'hari',
-                    // 'jam_awal', 'jam_akhir', 'dosen_id')->first();
                 @endphp
                 <div class="row">
                     <div class="col-md-6">
@@ -147,28 +99,10 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="mdi mdi-chart-arc mdi-36px"></span>
-                                    {{-- @if ($this->kelasSelect != null && $this->matkulSelect != null )
-                                        @php
-                                            $beritaacaras = DB::table('berita_acaras')->where('kelas_id', $this->kelasSelect ?? '')->where('matkul_id', $this->matkulSelect ?? '')->select('berita_acaras.*', 'kelas_id', 'matkul_id')->get();
-                                        @endphp
-                                        @if (count($beritaacaras) == 8 || count($beritaacaras) == 16)
-                                            @php
-                                                $persentaseDsn = 100 * ($beritaacaras/18);
-                                            @endphp
-                                        @elseif (count($beritaacaras) >= 8)
-                                            @php
-                                                $persentaseDsn = 100 * ($beritaacaras/18);
-                                            @endphp
-                                        @else
-                                            @php
-                                                $persentaseDsn = 100 * (count($beritaacaras)/18);
-                                            @endphp
-                                        @endif --}}
-                                    {{-- @endif --}}
+
                                     <div class="text-end">
                                         <h4 class="card-title mb-0">
                                             Total Pertemuan <span class="badge bg-{{ array_rand($colors) }}">
-                                            {{-- @if ($this->kelasSelect != null && $this->matkulSelect != null ) --}}
                                             @php
                                                 $beritaacaras = DB::table('berita_acaras')->where('kelas_id', $this->kelasSelect ?? '')->where('matkul_id', $this->matkulSelect ?? '')->select('berita_acaras.*', 'kelas_id', 'matkul_id')->get();
                                             @endphp
@@ -190,7 +124,6 @@
                                                     @endphp
                                                     {{ count($beritaacaras) }}
                                                 @endif
-                                                {{-- {{ count($beritaacaras) >= 8 ? count($beritaacaras) : $beritaacaras }} --}}
                                             </span>
                                         </h4>
                                         <p class="card-text">Dari 18 Pertemuan</p>
@@ -227,9 +160,7 @@
                                         <th class="text-light">NO</th>
                                         <th class="text-light">NAMA</th>
                                         <th class="text-light">ALFA</th>
-                                        {{-- @if (Auth::user()->role == 'prodi') --}}
                                         <th class="text-light">AKSI</th>
-                                        {{-- @endif --}}
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -3,8 +3,6 @@
 namespace App\Http\Livewire\Dosen;
 
 use App\Models\Dosen;
-use App\Models\Kelas;
-use App\Models\Mahasiswa;
 use App\Models\ProgramStudi;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;

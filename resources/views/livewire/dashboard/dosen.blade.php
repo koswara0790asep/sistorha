@@ -20,7 +20,6 @@
                         <h4 class="card-title mb-0">
                         @php
                             $dtDosen = DB::table('dosens')->where('nidn', Auth::user()->username ?? null)->select('dosens.*', 'id')->first();
-                            // dd(Auth::user()->username);
                             $jml_jadwal = DB::table('jadwals')->where('dosen_id', $dtDosen->id ?? null)->where('thn_ajar', date('Y'))->select('jadwals.*')->get();
                         @endphp
                         {{ count($jml_jadwal) }}

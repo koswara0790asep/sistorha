@@ -82,8 +82,6 @@ $dtDosen = DB::table('dosens')->where('id', $dtJadwal->dosen_id ?? '')->select('
             <th style='text-align: center;border:1px solid black;'>WAKTU<br>PERKULIAHAN</th>
             <th style='text-align: center;border:1px solid black;'>POKOK PEMBAHASAN</th>
             <th style='text-align: center;border:1px solid black;'>JML HADIR<br>MAHASISWA</th>
-            {{-- <th style='text-align: center;border:1px solid black;'>TTD DOSEN</th>
-            <th style='text-align: center;border:1px solid black;'>TTD KETUA<br>KELAS</th> --}}
         </tr>
     </thead>
     <tbody>
@@ -108,8 +106,6 @@ $dtDosen = DB::table('dosens')->where('id', $dtJadwal->dosen_id ?? '')->select('
                 <td style='text-align: center;border:1px solid black;'>{{ $bap->jam_masuk }} s.d. <br>{{ $bap->jam_keluar }}</td>
                 <td style='border:1px solid black;'>{{ $bap->pembahasan }}</td>
                 <td style='text-align: center;border:1px solid black;'>{{ $bap->jumlah_mhs }}</td>
-                {{-- <td style='border:1px solid black;'></td>
-                <td style='border:1px solid black;'></td> --}}
             </tr>
             @php
                 $no++;
@@ -206,8 +202,6 @@ $dtDosen = DB::table('dosens')->where('id', $dtJadwal->dosen_id ?? '')->select('
                             <th style='text-align: center;border:1px solid black;'>WAKTU<br>PERKULIAHAN</th>
                             <th style='text-align: center;border:1px solid black;'>POKOK PEMBAHASAN</th>
                             <th style='text-align: center;border:1px solid black;'>JML HADIR<br>MAHASISWA</th>
-                            {{-- <th style='text-align: center;border:1px solid black;'>TTD DOSEN</th>
-                            <th style='text-align: center;border:1px solid black;'>TTD KETUA<br>KELAS</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -218,8 +212,6 @@ $dtDosen = DB::table('dosens')->where('id', $dtJadwal->dosen_id ?? '')->select('
                             <td style='text-align: center;border:1px solid black;'>{{ $bap->jam_masuk }} s.d. {{ $bap->jam_keluar }}</td>
                             <td style='border:1px solid black;'>{{ $bap->pembahasan }}</td>
                             <td style='text-align: center;border:1px solid black;'>{{ $bap->jumlah_mhs }}</td>
-                            {{-- <td style='border:1px solid black;'></td>
-                            <td style='border:1px solid black;'></td> --}}
                         </tr>
                     @endif
                 @endif

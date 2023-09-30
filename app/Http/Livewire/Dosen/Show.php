@@ -6,8 +6,6 @@ use App\Models\Dosen;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
-use function GuzzleHttp\Promise\all;
-
 class Show extends Component
 {
     public $dosen;

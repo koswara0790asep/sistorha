@@ -7,7 +7,6 @@ use App\Models\BeritaAcara;
 use App\Models\Jadwal;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use Livewire\Redirector;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class Edit extends Component
@@ -118,7 +117,7 @@ class Edit extends Component
 
         if ($this->absenId) {
             $absen = Absent::find($this->absenId);
-            // dd($absen->pertemuan1);
+
             $p1 = DB::table('berita_acaras')
                     ->where('kelas_id', $this->kelas_id ?? '')
                     ->where('matkul_id', $this->matkul_id ?? '')
@@ -212,9 +211,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan1 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -235,9 +234,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan2 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -258,9 +257,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $beritaacara->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan3 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -281,9 +280,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan4 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -304,9 +303,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan5 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -327,9 +326,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan6 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -350,9 +349,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan7 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -373,9 +372,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan8 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -396,9 +395,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan10 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -419,9 +418,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan11 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -442,10 +441,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                // dd($bap, $lastSum, $absen->pertemuan13 != 'Hadir');
-                    // dd($lastSum);
+
                     if ($this->pertemuan12 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -466,9 +464,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan13 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -489,9 +487,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan14 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -512,9 +510,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan15 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -535,9 +533,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan16 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -558,9 +556,9 @@ class Edit extends Component
                                     ->first();
 
                     $bap = BeritaAcara::find($beritaacara->id);
-                    // dd($bap);
+
                     $lastSum = $bap->jumlah_mhs + 1;
-                    // dd($lastSum);
+
                     if ($this->pertemuan17 == 'Hadir') {
                         if ($bap) {
                             $bap->update([
@@ -571,13 +569,6 @@ class Edit extends Component
                 }
 
             }
-
-            // dd($absen);
-
-            // dd($absen);
-
-            // dd($bap, $lastSum, $absen->pertemuan13 != 'Hadir');
-            // dd($absen, $lastSum);
 
             if ($absen) {
                 $absen->update([

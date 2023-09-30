@@ -102,30 +102,6 @@
                                 <td class="text text-center">
                                     <a href="{{ route('mahasiswa.edit', $mhs->id) }}" class="btn btn-sm btn-warning btn-icon"><i class="mdi mdi-lead-pencil"></i></a>
 
-                                    <!-- Modal -->
-                                    {{-- <div class="modal fade text-center text-wrap" id="id_{{ $mhs->id }}" tabindex="-1" aria-labelledby="id_{{ $mhs->id }}Label"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <p class="text text-warning" style="font-size: 100px"><i
-                                                            class="mdi mdi-alert-circle-outline"></i></p>
-                                                    <br>
-                                                    <h3>Apakah anda yakin?</h3>
-                                                    <p>Semua data Mahasiswa {{ $mhs->nama }} (termasuk akun) yang dihapus tidak dapat dikembalikan.</p>
-                                                    <br>
-
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">
-                                                        <i class="mdi mdi-window-close"></i> Batalkan
-                                                    </button>
-                                                        <button wire:click="destroy({{ $mhs->id }})" class="btn btn-danger">
-                                                            <i class="mdi mdi-delete"></i> Ya, Hapus
-                                                        </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
                                     @php
                                         $verifAcc = DB::table('users')->where('username', $mhs->nim)->exists();
                                     @endphp

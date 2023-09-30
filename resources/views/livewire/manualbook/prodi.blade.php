@@ -20,27 +20,7 @@
                         <p class="text-muted">Halaman Tambah/Ubah Data</p>
                     </center>
                     <p>Pada halaman ini disediakan <i>form input</i> untuk mengisi data yang dimana setiap kolom harus terisi untuk masuk datanya kedalam <i>database</i>. Ada tombol kembali dan simpan sebagai interaksi pada halaman ini. Berbeda dengan halaman tambah data, halaman ubah data sudah terisi penuh semua kolom yang harus diisinya. Anda dapat mengubah data sesuai dengan apa yang diperlukan.</p>
-                    {{-- <hr>
-                    <h4 id="print">PRINT PAGE (HALAMAN CETAK)</h4>
-                    <center>
-                        <img src="{{ asset('manualbook-asset/user/be4print-page.png') }}" alt="...." width="720px">
-                        <img src="{{ asset('manualbook-asset/user/print-page.png') }}" alt="...." width="720px">
-                        <p class="text-muted">Halaman Cetak Data</p>
-                    </center>
-                    <p>Saat sudah di halaman cetak data, Anda diperlukan untuk menekan <b class="btn btn-sm btn-info">Ctrl + P</b> untuk melanjutkan opsi untuk menyimpan atau cetak data tersebut. Sebagai penyesuaian, Anda dapat mengubah pengaturan pada hasil cetak atau simpan pada menu bagian kanan.</p>
-                    <hr>
-                    <h4 id="impor">TOOL IMPORT DATA (ALAT IMPOR DATA)</h4>
-                    <center>
-                        <img src="{{ asset('manualbook-asset/user/importData.png') }}" alt="...." width="720px">
-                        <p class="text-muted">Alat Impor Data</p>
-                    </center>
-                    <p>Alat impor data ini hanya suport dengan file .xlsx yang dimana contohnya dapat diunduh langsung pada tombol <button class="btn btn-sm btn-info"><i class="mdi mdi-download"></i> Unduh Contoh</button>. Nantinya akan terunduh contohnya dan filenya dapat diubah untuk melanjutkan mengisi data pada tabel (data sebelumnya dapat dihapus atau tidak menyesuaikan dengan data yang ada).</p>
-                    <br>
-                    <center>
-                        <img src="{{ asset('manualbook-asset/user/ex-Jadwal.png') }}" alt="...." width="720px">
-                        <p class="text-muted">Contoh Data dari Hasil Unduh</p>
-                    </center>
-                    <p>Data diatas merupakan contoh data yang diunduh untuk keperluan impor data kedalam sistem. terdapat kolom-kolom dan keterangan untuk kolom tersebut sebagai contoh isian agar dapat masuk kedalam database. Setelah pemilihan file, tunggu tombol <button class="btn btn-sm btn-secondary"><i class="mdi mdi-content-save"></i> Impor Data</button> menjadi berwana hijau <button class="btn btn-sm btn-success"><i class="mdi mdi-content-save"></i> Impor Data</button>.</p> --}}
+
                 </div>
             </div>
             <div class="card mt-4" id="alert">
@@ -85,7 +65,6 @@
                                 <li class="nav-item"><a href="#index" class="nav-link">HALAMAN INDEX</a></li>
                                 <li class="nav-item"><a href="#cupage" class="nav-link">HALAMAN TAMBAH/UBAH</a></li>
                                 <li class="nav-item"><a href="#print" class="nav-link">HALAMAN CETAK</a></li>
-                                {{-- <li class="nav-item"><a href="#impor" class="nav-link">ALAT IMPOR DATA</a></li> --}}
                             </ul>
                           </li>
                           <li class="nav-item">

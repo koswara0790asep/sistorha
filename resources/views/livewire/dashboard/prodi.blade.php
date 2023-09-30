@@ -16,8 +16,6 @@ $data = [
     'Perempuan' => $perempuan,
 ];
 
-// echo json_encode($data);
-
 $mahasiswas = DB::table('mahasiswas')
                 ->where('program_studi', $dtProdi->id)
                 ->select('status_aktif', DB::raw('count(*) as jumlah'))
@@ -46,8 +44,6 @@ $dataDsn = [
     'Laki-laki' => $lakiLakiDsn,
     'Perempuan' => $perempuanDsn,
 ];
-
-// echo json_encode($dataDsn);
 
 $statusDsn = [];
 $dataStatusDsn = [];

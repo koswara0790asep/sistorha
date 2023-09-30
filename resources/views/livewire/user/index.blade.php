@@ -9,12 +9,6 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title" style="margin-top: 10px;"><b><i data-feather="users"></i> Data Tabel User</b></h4>
-                {{-- <div  style="text-align: right; margin-top: -50px;">
-                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-icon-text mb-2">
-                        <i class="btn-icon-prepend" data-feather="user-plus"></i>
-                        Tambah User
-                    </a>
-                </div> --}}
             </div>
             <div class="card-body">
                 <div class="table-responsive">

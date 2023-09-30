@@ -34,12 +34,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                         <label for="pertemuan">Pertemuan: </label>
                         <div class="mb-3 input-group">
                             <input type="number" min="0" max="17" id="pertemuan" name="pertemuan" wire:model="pertemuan" class="form-control @error('pertemuan') is-invalid @enderror" disabled>
-                            {{-- <select id="pertemuan" name="pertemuan" wire:model="pertemuan" class="form-select @error('pertemuan') is-invalid @enderror">
-                                <option value="" hidden>--- Pilih Angka Pertemuan ---</option>
-                                @for ($i = 1; $i < 18; $i++)
-                                    <option value="{{ $i }}" {{ $i == 9 || $i == 18 ? 'hidden' : '' }}>{{ $i }}</option>
-                                @endfor
-                            </select> --}}
+
                             <span class="input-group-text"><h4><i class="mdi mdi-file-check"></i></h4></span>
                             @error('pertemuan')
                             <span class="invalid-feedback">
@@ -48,27 +43,7 @@ $dtDosen = DB::table('dosens')->where('id', $dosenID ?? '')->select('dosens.*', 
                             @enderror
                         </div>
                     </div><!-- Col -->
-                    {{-- <div class="col-sm-4">
-                        <label for="hari">Hari: </label>
-                        <div class="mb-3 input-group">
-                            <select id="hari" name="hari" wire:model="hari" class="form-select @error('hari') is-invalid @enderror">
-                                <option value="" hidden>--- Pilih Hari Masuk ---</option>
-                                <option value="Senin">Senin</option>
-                                <option value="Selasa">Selasa</option>
-                                <option value="Rabu">Rabu</option>
-                                <option value="Kamis">Kamis</option>
-                                <option value="Jum'at">Jum'at</option>
-                                <option value="Sabtu">Sabtu</option>
-                                <option value="Minggu">Minggu/Ahad</option>
-                            </select>
-                            <span class="input-group-text"><h4><i class="mdi mdi-calendar"></i></h4></span>
-                            @error('hari')
-                            <span class="invalid-feedback">
-                                {{ $message }}
-                            </span>
-                            @enderror
-                        </div>
-                    </div><!-- Col --> --}}
+                    
                     <div class="col-sm-6">
                         <label for="tanggal">Tanggal Masuk:
                             <span class="badge {{ $this->tanggal == null ? 'bg-danger' : 'bg-success' }}">{{ \Carbon\Carbon::parse($this->tanggal)->isoFormat('dddd') ?? '' }}</span> </label>

@@ -684,15 +684,6 @@ $dtJadwal = DB::table('jadwals')->where('id', $jadwalId ?? '')->select('jadwals.
         @endforeach
         @endif
 
-        {{-- @for ($j = 0; $j < 3; $j++)
-            <tr>
-                <td style='text-align: center;border:1px solid black; color: white;'> .</td>
-                @for ($i = 0; $i < 25; $i++)
-                    <td style='text-align: center;border:1px solid black;'></td>
-                @endfor
-            </tr>
-        @endfor --}}
-
         <tr style="background-color: yellow">
             <td style='text-align: center;border:1px solid black;' colspan="3"><b><i>Jumlah Mhs</i></b></td>
             <td style='text-align: center;border:1px solid black;'>{{ $jmlHadir1 ?? '' }}</td>

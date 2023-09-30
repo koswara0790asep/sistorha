@@ -21,9 +21,7 @@
                         @php
                             $dtMhs = DB::table('mahasiswas')->where('nim', Auth::user()->username ?? null)->select('mahasiswas.*', 'id')->first();
                             $dtKls = DB::table('kelas_mhsws')->where('mahasiswa_id', $dtMhs->id ?? null)->select('kelas_mhsws.*', 'kelas_id')->orderBy('created_at', 'desc')->first();
-                            // dd(Auth::user()->username);
                             $jml_jadwal = DB::table('jadwals')->where('kelas_id', $dtKls->kelas_id ?? null)->select('jadwals.*')->get();
-                            // dd($dtKls->kelas_id);
                         @endphp
                         {{ count($jml_jadwal) ?? 0 }}
                         </h4>

@@ -48,7 +48,6 @@
                             @foreach($prodies as $prodi)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                {{-- <td class="text-center">{{ $prodi->id }}</td> --}}
                                 <td>{{ $prodi->program_studi }}</td>
                                 <td class="text-center">{{ $prodi->kode }}</td>
                                 <td class="text-center">

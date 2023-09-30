@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\User;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;

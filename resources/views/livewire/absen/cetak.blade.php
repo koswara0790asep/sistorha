@@ -1083,21 +1083,10 @@
                 <td style='text-align: center;border:1px solid black;'></td>
             @endfor
                 <td style='text-align: center;border:1px solid black;'></td>
-                {{-- <td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td> --}}
         </tr>
 
     </tbody>
-    {{-- <tr>
-        <td style=' color: white;'> .</td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td><td style=''></td>
-        <td style='' colspan="7">
-            <p style="text-align: justify;">
-                Cimahi, {{ \Carbon\Carbon::parse()->isoFormat('D MMMM YYYY') }} <br>
-                Dosen Pengampu
-                <br><br><br><br><br><br>
-                <b>{{ $dosen->nama ?? '' }}</b>
-            </p>
-        </td>
-    </tr> --}}
+
 </table>
 <table>
     <div class="" style="float: right;">
@@ -1109,17 +1098,5 @@
         </p>
     </div>
 </table>
-{{-- <table>
-    <tr>
-        <td style=' color: white;'> .</td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td><td style='text-align: center;border:1px solid black;'></td>
-        <td style='text-align: center;border:1px solid black;'>
-            <p style="font-size: 12px; text-align: justify; margin-left: 300px">
-                Cimahi, {{ \Carbon\Carbon::parse()->isoFormat('D MMMM YYYY') }} <br>
-                Dosen Pengampu
-                <br><br><br><br><br><br>
-                <b>Castaka Agus Sugianto, M.Kom., MCS</b>
-            </p>
-        </td>
-    </tr>
-</table> --}}
+
 

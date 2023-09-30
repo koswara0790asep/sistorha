@@ -3,8 +3,6 @@
 @section('content')
 <div class="container mt-7">
     <div class="row justify-content-center">
-        {{-- <h5>/<a href="">dasboard</a></h5>
-        <hr> --}}
         <center>
             <h1>HALAMAN MASUK {{ strtoupper(Auth::user()->role) }}</h1>
         </center>

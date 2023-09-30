@@ -10,7 +10,6 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    {{-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet"> --}}
     <!-- End fonts -->
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss']) --}}
@@ -33,7 +32,6 @@
 
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('/assets/css/demo1/style.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('/css/app.css') }}"> --}}
     <!-- End layout styles -->
 
     <link rel="shortcut icon" href="{{ asset('/assets/images/logotedc.png') }}" />
@@ -85,7 +83,6 @@
     <script type="module">
         import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
     </script>
-    {{-- <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false"></script> --}}
 	<!-- core:js -->
 	<script src="{{ asset('/assets/vendors/core/core.js') }}"></script>
 	<!-- endinject -->
@@ -111,14 +108,7 @@
     <script src="{{ asset('/assets/js/data-table.js') }}"></script>
     <script src="{{ asset('/assets/vendors/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script> --}}
-    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.15/dist/sweetalert2.all.min.js"></script> --}}
-	<!-- End custom js for this page -->
-    {{-- <script>
-        document.addEventListener('swal:confirm', function (event) {
-            Livewire.emit('hapus', event.detail.id);
-        });
-    </script> --}}
+
     <script>
         function toggle() {
             var content = document.getElementById("content");
@@ -130,17 +120,5 @@
             }
 
     </script>
-    {{-- <script>
-        // Simpan data tanggal libur dalam array
-        const tanggalLibur = ['2023-07-20', '2023-08-10', '2023-09-05']; // Misalnya tanggal libur pada tahun 2023
-
-        // Inisialisasi datepicker dengan flatpickr
-        flatpickr("#flatpickr-date", {
-            wrap: true,
-            minDate: "today",
-            dateFormat: "Y-m-d",
-            disable: ["2023-07-19", "2023-08-17", "2023-09-28", "2023-10-01", ],
-        });
-      </script> --}}
 </body>
 </html>

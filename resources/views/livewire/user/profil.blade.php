@@ -2,7 +2,6 @@
     $data = DB::table('dosens')->where('nik',
     Auth::user()->username)->select('dosens.*', 'id', 'status_aktif', 'nik', 'nidn', 'nip', 'alamat', 'agama', 'no_hp', 'program_studi', 'jenis_kelamin')->first() ?? DB::table('dosens')->where('nidn',
     Auth::user()->username)->select('dosens.*', 'id', 'status_aktif', 'nik', 'nidn', 'nip', 'alamat', 'agama', 'no_hp', 'program_studi', 'jenis_kelamin')->first();
-    // dd($data);
 @endphp
 <div class="row">
     <nav aria-label="breadcrumb">
@@ -31,7 +30,6 @@
                         @elseif (Auth::user()->role == 'mahasiswa')
                             <a href="{{ route('dashboard.mahasiswa') }}" class="btn btn-danger btn-sm btn-icon-text">
                         @endif
-                        {{-- <a href="/dashboard/{{ Auth::user()->role == 'akademik' ? 'akademik' : Auth::user()->role == 'prodi' ? 'prodi' : Auth::user()->role == 'dosen' ? 'dosen' : Auth::user()->role == 'mahasiswa' ? 'mahasiswa' : '#' }}" class="btn btn-danger btn-sm btn-icon-text"> --}}
                             <i class="mdi mdi-arrow-left"></i>
                             Kembali
                         </a>

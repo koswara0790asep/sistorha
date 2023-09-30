@@ -108,16 +108,13 @@
                                 <th class="text-light">JAM <br>AKHIR</th>
                                 <th class="text-light">RUANGAN</th>
                                 <th class="text-light">BERITA <br>ACARA</th>
-                            {{-- @if (Auth::user()->role == 'akademik') --}}
                                 <th class="text-light">AKSI</th>
-                            {{-- @endif --}}
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($jadwals as $jadw)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                {{-- <td class="text-center">{{ $jadw->id }}</td> --}}
                                 <td class="text-center">
                                     @php
                                         $dataKls = DB::table('df_kelases')->where('id',
@@ -158,7 +155,6 @@
                                        {{ $jadw->thn_ajar - 1 ?? '' }} - {{ $jadw->thn_ajar ?? '' }}
                                     @endif
                                 </td>
-                                {{-- <td>{{ $jadw->thn_ajar ?? '' }}</td> --}}
                                 <td>{{ $jadw->hari ?? '' }}</td>
                                 <td>{{ $jadw->jam_awal ?? '' }}</td>
                                 <td>{{ $jadw->jam_akhir ?? '' }}</td>
@@ -179,13 +175,10 @@
                                         ''
                                         :
                                         App\Models\BeritaAcara::first()->where('kelas_id', $jadw->kelas_id)->where( 'matkul_id', $jadw->matkul_id)->get();
-                                        // dd(count($beritaacaras));
                                     @endphp
                                     @if (count($beritaacaras) == 8 || count($beritaacaras) == 16)
                                     <a href="{{ route('absen.mhs', [$jadw->id,  $jadw->kelas_id, $jadw->matkul_id]) }}"
                                         class="btn btn-sm btn-info btn-icon-text"><i class="mdi mdi-file-document"></i> Progres</a>
-                                    {{-- <a href="/absensis/{{ $jadw->id }}/{{ $jadw->kelas_id }}/{{ $jadw->matkul_id }}"
-                                        class="btn btn-sm btn-info btn-icon-text"><i class="mdi mdi-file-document"></i> Absen</a> --}}
                                     @else
                                         <a href="{{ Auth::user()->role != 'dosen' ? route('absen.mhs', [$jadw->id, $jadw->kelas_id, $jadw->matkul_id]) : route('beritaacara.create', [$jadw->id, $jadw->matkul_id, $jadw->kelas_id, $jadw->dosen_id]) }}"
                                             class="btn btn-sm btn-info btn-icon-text"><i class="mdi mdi-file-document"></i> Progres</a>
@@ -194,10 +187,6 @@
                                     @if (Auth::user()->role == 'akademik')
                                         <a href="{{ route('jadwal.edit', $jadw->id) }}"
                                             class="btn btn-warning btn-icon-text"><i class="mdi mdi-lead-pencil"></i> Edit</a>
-                                        {{-- <button type="button" class="btn btn-danger btn-icon-text" data-bs-toggle="modal"
-                                            data-bs-target="#id_{{ $jadw->id }}">
-                                            <i class="mdi mdi-delete"></i>
-                                        </button> --}}
 
                                         <!-- Modal -->
                                         <div class="modal fade text-center text-wrap" id="id_{{ $jadw->id }}" tabindex="-1"
@@ -233,8 +222,3 @@
         </div>
     </div>
 </div>
-{{-- <script>
-    function openNewWindow() {
-        window.open("/jadwals/cetak", "_blank");
-    }
-</script> --}}

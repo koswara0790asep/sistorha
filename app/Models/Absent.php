@@ -11,19 +11,5 @@ class Absent extends Model
 
     public $table = 'absensis';
 
-    protected $guarded = [
-        // 'nim',
-        // 'kode_matkul',
-        // 'nama',
-        // 'kelas',
-        // 'p1',
-        // 'p2',
-        // 'p3',
-        // 'p4',
-        // 'p5',
-        // 'p6',
-        // 'p7',
-        // 'p8',
-        // 'p9',
-    ];
+    protected $guarded = [];
 }

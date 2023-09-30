@@ -94,7 +94,6 @@ class Edit extends Component
 
         // redirect
         if (Auth::user()->role == 'dosen') {
-            // dd(Auth::user()->id);
             //flash message
             Alert::success('BERHASIL!','Data Anda Berhasil Diperbaharui!');
             return redirect('/user/profil/'. $userId .'');

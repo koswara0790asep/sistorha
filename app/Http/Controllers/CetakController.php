@@ -13,10 +13,7 @@ use App\Models\KelasMhsw;
 use App\Models\Mahasiswa;
 use App\Models\ProgramStudi;
 use App\Models\Ruangan;
-use Illuminate\Http\Request;
-// use Barryvdh\DomPDF\Facade\Pdf;
 use Barryvdh\DomPDF\Facade\PDF;
-use FontLib\Table\Type\post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -49,9 +46,6 @@ class CetakController extends Controller
     public function rekapAbsenKelas(DfKelas $dfkelas)
     {
         $kelas = $dfkelas->id;
-        // dd($kelas);
-        // $dfkelases = DfKelas::get();
-        // $dfkelases = DfKelas::orderBy('kode','asc')->get();
         return view('livewire.dfkelas.rekap', [
             'kelas' => $kelas,
             'absens' => $kelas == null ?
@@ -64,7 +58,6 @@ class CetakController extends Controller
     {
         $dosens = Dosen::get();
         $kelases = Kelas::get();
-        // $dosens = DfKelas::orderBy('kode','asc')->get();
         return view('livewire.kelas.cetak', compact(['dosens', 'kelases']));
     }
 
@@ -85,7 +78,6 @@ class CetakController extends Controller
             $mahasiswas = Mahasiswa::get();
             $kelases = DfKelas::get();
             $kelasmhsws = KelasMhsw::get();
-            // $dosens = DfKelas::orderBy('kode','asc')->get();
             return view('livewire.kelasmhs.cetak', compact(['mahasiswas', 'kelases', 'kelasmhsws']));
         }
 
@@ -166,7 +158,6 @@ class CetakController extends Controller
         $matkulSelect = $jadwal->matkul_id;
         $jadwalId = $jadwal->id;
 
-        // $jadwals = Jadwal::get();
         return view('livewire.absen.cetak', [
             'jadwalId' => $jadwalId,
             'kelasSelect' => $kelasSelect,
@@ -184,7 +175,6 @@ class CetakController extends Controller
         $matkulSelect = $jadwal->matkul_id;
         $jadwalId = $jadwal->id;
 
-        // $jadwals = Jadwal::get();
         return view('livewire.absen.rekap', [
             'jadwalId' => $jadwalId,
             'kelasSelect' => $kelasSelect,
@@ -203,7 +193,6 @@ class CetakController extends Controller
         $jadwalId = $jadwal->id;
 
 
-        // $jadwals = Jadwal::get();
         return view('livewire.beritaacara.cetak', [
             'jadwalId' => $jadwalId,
             'kelasSelect' => $kelasSelect,
@@ -219,9 +208,8 @@ class CetakController extends Controller
     {
         $mhsId = $mahasiswa->id;
         $matkulId = $dfMatkul->id;
-        // dd($matkulId);
+
         $dfMatkul = DB::table('df_matkuls')->where('id', $matkulId ?? '')->select('df_matkuls.*', 'id', 'nama_matkul')->first();
-        // dd($dfMatkul);
 
         return view('livewire.absen.surat', [
             'mahasiswa' => $mhsId == null ?

@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Matkul;
 
 use App\Models\Matkul;
 use Livewire\Component;
-use Livewire\WithPagination;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class Index extends Component

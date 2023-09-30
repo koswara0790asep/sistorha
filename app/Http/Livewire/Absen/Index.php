@@ -20,7 +20,6 @@ class Index extends Component
     public $kelasSelect;
 
     public $colors;
-    // public $prodiId;
 
     use WithFileUploads;
 
@@ -39,7 +38,7 @@ class Index extends Component
             $dtProdi = ProgramStudi::where('kode', Auth::user()->username)->first();
             $matkuls = DfMatkul::where('program_studi', $dtProdi->id)->select('df_matkuls.*')->get();
             $kelases = DfKelas::where('prodi_id', $dtProdi->id)->get();
-            // dd($matkuls);
+
             return view('livewire.absen.index', [
                 'matkuls' => $matkuls,
                 'kelases' => $kelases,

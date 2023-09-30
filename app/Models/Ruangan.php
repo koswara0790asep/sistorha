@@ -9,8 +9,5 @@ class Ruangan extends Model
 {
     use HasFactory;
 
-    // public $table = 'ruangans';
-
     protected $guarded = [];
-    // protected $fillable = ['id', 'lantai', 'ruangan', 'kode'];
 }

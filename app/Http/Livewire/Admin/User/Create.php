@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Admin\User;
 use App\Models\User;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
-use Illuminate\Support\Facades\Hash;
 
 class Create extends Component
 {
@@ -38,7 +37,6 @@ class Create extends Component
             ]);
             //flash message
             Alert::success('Tambah Data User','User berhasil ditambahkan!');
-            // session()->flash('message', 'Data User ' .$this->nama. ' Berhasil Disimpan!');
 
             // redirect
             return redirect()->route('/users');
